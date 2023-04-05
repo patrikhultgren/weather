@@ -1,0 +1,103 @@
+{
+  "latitude": 59.2599983215332,
+  "longitude": 18.1299991607666,
+  "continent": "Europe",
+  "lookupSource": "ip geolocation",
+  "continentCode": "EU",
+  "localityLanguageRequested": "en",
+  "city": "Stockholm",
+  "countryName": "Sweden",
+  "countryCode": "SE",
+  "postcode": "",
+  "principalSubdivision": "Stockholm County",
+  "principalSubdivisionCode": "SE-AB",
+  "plusCode": "9FFW745H+XX",
+  "locality": "Flaten",
+  "localityInfo": {
+    "administrative": [
+      {
+        "name": "Sweden",
+        "description": "country in Northern Europe",
+        "order": 4,
+        "adminLevel": 2,
+        "isoCode": "SE",
+        "wikidataId": "Q34",
+        "geonameId": 2661886
+      },
+      {
+        "name": "Svealand",
+        "description": "central land of Sweden",
+        "order": 5,
+        "adminLevel": 3,
+        "wikidataId": "Q203835"
+      },
+      {
+        "name": "Stockholm County",
+        "description": "county in Sweden",
+        "order": 6,
+        "adminLevel": 4,
+        "isoCode": "SE-AB",
+        "wikidataId": "Q104231",
+        "geonameId": 2673722
+      },
+      {
+        "name": "Stockholm",
+        "description": "capital and largest city of Sweden",
+        "order": 9,
+        "adminLevel": 7,
+        "wikidataId": "Q1754",
+        "geonameId": 2673730
+      },
+      {
+        "name": "Skarpnack city district",
+        "description": "city district in Stockholm, Sweden",
+        "order": 10,
+        "adminLevel": 9,
+        "wikidataId": "Q779963",
+        "geonameId": 2678049
+      }
+    ],
+    "informative": [
+      {
+        "name": "Europe",
+        "description": "continent",
+        "order": 1,
+        "isoCode": "EU",
+        "wikidataId": "Q46",
+        "geonameId": 6255148
+      },
+      {
+        "name": "Scandinavia",
+        "description": "region in Northern Europe",
+        "order": 2,
+        "wikidataId": "Q21195",
+        "geonameId": 2614165
+      },
+      {
+        "name": "Europe/Stockholm",
+        "description": "time zone",
+        "order": 3
+      },
+      {
+        "name": "Sodermanland",
+        "description": "province in Sweden",
+        "order": 7,
+        "wikidataId": "Q626062",
+        "geonameId": 2676207
+      },
+      {
+        "name": "Sodertorn",
+        "description": "peninsula in Sweden",
+        "order": 8,
+        "wikidataId": "Q2031843",
+        "geonameId": 2676169
+      },
+      {
+        "name": "Flaten",
+        "description": "nature reserve in Stockholm, Sweden",
+        "order": 11,
+        "wikidataId": "Q10496362"
+      }
+    ]
+  }
+}
