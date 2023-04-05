@@ -37,8 +37,6 @@ export default function Day({ day }: IProps) {
     [day, showAll, showAllEnabled, numberOfMissingHours]
   )
 
-  console.log('day', day)
-
   return (
     <article className="mt-4" key={day[0].time}>
       <h2 className="font-bold text-xl py-2 bg-slate-200 px-3 py-1 borders border-slate-400">

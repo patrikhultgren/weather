@@ -10,7 +10,7 @@ interface Props {
 }
 
 const Error = ({ error, className }: Props) => (
-  <div className={classNames('bg-red-200', 'p-4', className)}>
+  <div className={classNames('bg-red-100', 'p-4', className)}>
     <Container className="flex items-center">
       <ErrorIcon />
       <span className="ml-2">{error.message}</span>
