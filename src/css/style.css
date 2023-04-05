@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Karma';
+  src: url('../webfonts/karma/regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'sofiapro-light';
+  src: url('../webfonts/sofiapro/sofiapro-light-webfont.woff2') format('woff2'),
+    url('../webfonts/sofiapro/sofiapro-light-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: 'sofiapro-light', sans-serif, Arial, Verdana;
+  /* color: #303030; */
+  color: #000;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
