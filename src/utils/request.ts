@@ -67,7 +67,6 @@ const request = async ({
     options.headers = {
       Accept: 'application/json, text/plain, */*',
       'Content-Type': contentType,
-      'X-Requested-With': 'XMLHttpRequest',
       ...headers,
     }
   }
