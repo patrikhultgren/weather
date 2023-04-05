@@ -10,11 +10,14 @@ export default function Login({ authenticator }: any) {
           <input
             type="text"
             placeholder="Ange kod"
-            className="block px-4"
+            className="block px-4 basis-1/2"
             value={authenticator.code}
             onChange={authenticator.onChangeCode}
           />
-          <button type="submit" className="bg-slate-300 py-2 px-4">
+          <button
+            type="submit"
+            className="bg-slate-300 py-2 px-4 basis-1/2 hover:bg-slate-400"
+          >
             Logga in
           </button>
         </form>
