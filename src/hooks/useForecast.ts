@@ -21,7 +21,9 @@ const useForecast = ({ latitude, longitude }: IProps): IQuery<any> => {
 
       try {
         const response = await request({
-          endpoint: `${FORECAST_API_URL}?lat=${latitude}&lon=${longitude}`,
+          endpoint: `${FORECAST_API_URL}?lat=${latitude.toFixed(
+            4
+          )}&lon=${longitude.toFixed(4)}`,
         })
 
         setResult({

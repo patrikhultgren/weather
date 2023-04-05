@@ -9,11 +9,11 @@ export default function Weather() {
   const weather = useWeather()
 
   return (
-    <main>
-      <Loading loading={weather.loading} error={weather.error} />
+    <>
       <Header weather={weather} />
+      <Loading loading={weather.loading} error={weather.error} />
       <Forecast weather={weather} />
       <Credit />
-    </main>
+    </>
   )
 }
