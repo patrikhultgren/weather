@@ -1,6 +1,3 @@
-import { ReactNode } from 'react'
-import classNames from 'classnames'
-
 export default function Login({ authenticator }: any) {
   return (
     <div className="md:h-screen flex flex-col items-center justify-center">
