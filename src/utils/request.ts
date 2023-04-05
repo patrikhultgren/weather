@@ -66,7 +66,6 @@ const request = async ({
   if (contentType !== 'multipart/form-data') {
     options.headers = {
       Accept: 'application/json, text/plain, */*',
-      'Content-Type': contentType,
       ...headers,
     }
   }
