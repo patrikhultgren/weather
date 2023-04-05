@@ -39,7 +39,7 @@ export default function Day({ day }: IProps) {
 
   return (
     <article className="mt-4" key={day[0].time}>
-      <h2 className="font-bold text-xl py-2 bg-slate-200 px-3 py-1 borders border-slate-400">
+      <h2 className="font-bold text-xl py-2 bg-slate-200 px-3 py-1 border-x border-t border-slate-300">
         <span className="capitalize">{format(day[0].time, 'EEEE')}</span>{' '}
         {format(day[0].time, 'd MMMM')}
       </h2>

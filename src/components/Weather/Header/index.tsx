@@ -11,16 +11,13 @@ export default function Header({ weather, className }: IProps) {
   return (
     <header
       className={classNames(
-        'bg-slate-100',
-        'text-black',
-        'flex',
-        'px-4',
-        'py-2',
         'flex',
         'justify-center',
+        'px-4',
+        'py-2',
+        'bg-slate-600',
         'text-3xl',
-        'border-b',
-        'border-slate-300',
+        'text-white',
         className
       )}
     >

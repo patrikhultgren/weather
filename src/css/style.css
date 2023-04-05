@@ -18,9 +18,8 @@
 }
 
 body {
-  font-family: 'sofiapro-light', sans-serif, Arial, Verdana;
-  /* color: #303030; */
   color: #000;
+  font-family: 'sofiapro-light', sans-serif, Arial, Verdana;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;

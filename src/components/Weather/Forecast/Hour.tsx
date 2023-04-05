@@ -49,7 +49,7 @@ export default function Hour({ timeSerie }: IProps) {
       <td className="border border-slate-300 px-2 py-1 text-center">
         <span
           className={classNames(
-            'font-bolds',
+            'font-bold',
             airTemperature > 0 ? 'text-red-700' : 'text-blue-700'
           )}
         >
