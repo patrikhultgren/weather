@@ -12,7 +12,7 @@ export default function Hours({ hours, showAll }: IProps) {
       key={hour.time}
       className={classNames({ 'bg-slate-50': index % 2 === 0 })}
     >
-      <Hour timeSerie={hour} showAll={showAll} />
+      <Hour hour={hour} showAll={showAll} />
     </tr>
   ))
 }

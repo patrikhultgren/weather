@@ -30,16 +30,14 @@ const icons: any = {
 }
 
 interface IProps {
-  timeSerie: any
+  hour: any
   showAll: boolean
 }
 
-export default function Hour({ timeSerie, showAll }: IProps) {
-  const nextOneHoursSymbolCode =
-    timeSerie.data?.next_1_hours?.summary?.symbol_code
+export default function Hour({ hour, showAll }: IProps) {
+  const nextOneHoursSymbolCode = hour.data?.next_1_hours?.summary?.symbol_code
 
-  const nextSixHoursSymbolCode =
-    timeSerie.data?.next_6_hours?.summary?.symbol_code
+  const nextSixHoursSymbolCode = hour.data?.next_6_hours?.summary?.symbol_code
 
   const symbolCode = useMemo(
     () => nextOneHoursSymbolCode || nextSixHoursSymbolCode,
@@ -47,24 +45,24 @@ export default function Hour({ timeSerie, showAll }: IProps) {
   )
 
   const airTemperature = useMemo(
-    () => Math.round(timeSerie.data.instant.details.air_temperature),
-    [timeSerie]
+    () => Math.round(hour.data.instant.details.air_temperature),
+    [hour]
   )
 
   const windSpeed = useMemo(() => {
-    const speed = timeSerie.data.instant.details.wind_speed
+    const speed = hour.data.instant.details.wind_speed
     return speed ? Math.round(speed) : null
-  }, [timeSerie])
+  }, [hour])
 
   const windSpeedOfGust = useMemo(() => {
-    const speed = timeSerie.data.instant.details.wind_speed_of_gust
+    const speed = hour.data.instant.details.wind_speed_of_gust
     return speed ? Math.round(speed) : null
-  }, [timeSerie])
+  }, [hour])
 
   return (
     <>
       <td className="border-y border-slate-300 px-2 py-1 text-center">
-        {format(timeSerie.time, 'HH')}
+        {format(hour.time, 'HH')}
       </td>
       <td className="border-y border-slate-300 px-2 py-1">
         <div className="flex justify-center">
