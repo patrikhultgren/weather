@@ -21,7 +21,7 @@ const usePosition = ({ latitude, longitude }: IProps): IQuery<any> => {
 
       try {
         const response = await request({
-          endpoint: `${POSITION_API_URL}?latitude=${latitude}&longitude=${longitude}&localityLanguage=se`,
+          endpoint: `${POSITION_API_URL}?latitude=${latitude}&longitude=${longitude}&localityLanguage=sv`,
         })
 
         setResult({
