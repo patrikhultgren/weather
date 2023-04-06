@@ -63,11 +63,7 @@ export default function Hour({ timeSerie, showAll }: IProps) {
 
   return (
     <>
-      <td
-        className={classNames(
-          'border-y border-slate-300 px-2 py-1 text-center'
-        )}
-      >
+      <td className="border-y border-slate-300 px-2 py-1 text-center">
         {format(timeSerie.time, 'HH')}
       </td>
       <td className="border-y border-slate-300 px-2 py-1">
