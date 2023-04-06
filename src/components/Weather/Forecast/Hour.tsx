@@ -27,11 +27,11 @@ interface IProps {
 }
 
 export default function Hour({ timeSerie, showAll }: IProps) {
+  const next_1_hours = timeSerie.data?.next_1_hours?.summary?.symbol_code
+  const next_6_hours = timeSerie.data?.next_6_hours?.summary?.symbol_code
+
   const symbolCode = useMemo(
-    () =>
-      showAll
-        ? timeSerie.data?.next_1_hours?.summary?.symbol_code
-        : timeSerie.data?.next_6_hours?.summary?.symbol_code,
+    () => (showAll ? next_1_hours : next_6_hours || next_1_hours),
     [timeSerie, showAll]
   )
 
