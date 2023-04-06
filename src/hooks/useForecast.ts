@@ -4,8 +4,8 @@ import request from 'utils/request'
 import { FORECAST_API_URL } from 'config'
 
 interface IProps {
-  latitude?: number
-  longitude?: number
+  latitude?: string
+  longitude?: string
 }
 
 const useForecast = ({ latitude, longitude }: IProps): IQuery<any> => {
@@ -21,9 +21,7 @@ const useForecast = ({ latitude, longitude }: IProps): IQuery<any> => {
 
       try {
         const response = await request({
-          endpoint: `${FORECAST_API_URL}?lat=${latitude.toFixed(
-            4
-          )}&lon=${longitude.toFixed(4)}`,
+          endpoint: `${FORECAST_API_URL}?lat=${latitude}&lon=${longitude}`,
         })
 
         setResult({

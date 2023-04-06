@@ -19,8 +19,8 @@ const useWeather = (): IQuery<IWeather> => {
   })
 
   const forecast = useForecast({
-    latitude: geoPosition?.latitude,
-    longitude: geoPosition?.longitude,
+    latitude: geoPosition?.latitude?.toFixed(4),
+    longitude: geoPosition?.longitude?.toFixed(4),
   })
 
   return useMemo(() => {
