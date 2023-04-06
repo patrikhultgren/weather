@@ -39,7 +39,6 @@ const FairDay = ({ className = 'w-10 h-10' }: IProps) => (
         d="M22.74,51.5a21,21,0,1,0,7.69-28.69A21,21,0,0,0,22.74,51.5Z"
       ></path>
     </symbol>
-
     <defs>
       <mask id="cloud_43_37_063_063_5">
         <rect x="0" y="0" width="100" height="100" fill="white"></rect>
@@ -47,8 +46,8 @@ const FairDay = ({ className = 'w-10 h-10' }: IProps) => (
           xlinkHref="#cloud"
           fill="black"
           stroke="black"
-          stroke-linejoin="round"
-          stroke-width="10"
+          strokeLinejoin="round"
+          strokeWidth="10"
           x="0"
           y="0"
           width="100"
@@ -63,13 +62,13 @@ const FairDay = ({ className = 'w-10 h-10' }: IProps) => (
         r="41"
         gradientUnits="userSpaceOnUse"
       >
-        <stop offset="54%" stop-color="#d6b849" />
-        <stop offset="67%" stop-color="#ffce47" />
-        <stop offset="100%" stop-color="#ffdb73" />
+        <stop offset="54%" stopColor="#d6b849" />
+        <stop offset="67%" stopColor="#ffce47" />
+        <stop offset="100%" stopColor="#ffdb73" />
       </radialGradient>
       <linearGradient id="sun-inner-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stop-color="#ffaf22" />
-        <stop offset="100%" stop-color="#f09900" />
+        <stop offset="0%" stopColor="#ffaf22" />
+        <stop offset="100%" stopColor="#f09900" />
       </linearGradient>
     </defs>
     <symbol id="s02d">

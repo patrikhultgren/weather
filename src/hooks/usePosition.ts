@@ -3,7 +3,12 @@ import { IQuery } from 'utils/types'
 import request from 'utils/request'
 import { POSITION_API_URL } from 'config'
 
-const usePosition = (): IQuery<any> => {
+interface IProps {
+  latitude?: number
+  longitude?: number
+}
+
+const usePosition = ({ latitude, longitude }: IProps): IQuery<any> => {
   const [result, setResult] = useState<IQuery<any>>({
     loading: false,
     error: null,
@@ -11,26 +16,28 @@ const usePosition = (): IQuery<any> => {
   })
 
   const loadData = useCallback(async () => {
-    setResult((prev: any) => ({ ...prev, loading: true, error: null }))
+    if (latitude && longitude) {
+      setResult((prev: any) => ({ ...prev, loading: true, error: null }))
 
-    try {
-      const response = await request({
-        endpoint: POSITION_API_URL,
-      })
+      try {
+        const response = await request({
+          endpoint: `${POSITION_API_URL}?latitude=${latitude}&longitude=${longitude}&localityLanguage=se`,
+        })
 
-      setResult({
-        response,
-        loading: false,
-        error: null,
-      })
-    } catch (error) {
-      setResult({
-        response: null,
-        loading: false,
-        error,
-      })
+        setResult({
+          response,
+          loading: false,
+          error: null,
+        })
+      } catch (error) {
+        setResult({
+          response: null,
+          loading: false,
+          error,
+        })
+      }
     }
-  }, [])
+  }, [latitude, longitude])
 
   useEffect(() => {
     loadData()

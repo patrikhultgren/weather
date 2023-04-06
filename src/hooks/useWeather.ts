@@ -1,6 +1,7 @@
 import { useMemo } from 'react'
 import { format } from 'utils/date'
 import { IQuery } from 'utils/types'
+import useGeoPosition from 'hooks/useGeoPosition'
 import usePosition from 'hooks/usePosition'
 import useForecast from 'hooks/useForecast'
 
@@ -10,17 +11,22 @@ interface IWeather {
 }
 
 const useWeather = (): IQuery<IWeather> => {
-  const position = usePosition()
+  const geoPosition = useGeoPosition()
+
+  const position = usePosition({
+    latitude: geoPosition?.latitude,
+    longitude: geoPosition?.longitude,
+  })
 
   const forecast = useForecast({
-    latitude: position.response?.latitude,
-    longitude: position.response?.longitude,
+    latitude: geoPosition?.latitude,
+    longitude: geoPosition?.longitude,
   })
 
   return useMemo(() => {
     let result: IQuery<IWeather> = {
-      loading: position.loading || forecast.loading,
-      error: position.error || forecast.error,
+      loading: geoPosition.loading || position.loading || forecast.loading,
+      error: geoPosition.error || position.error || forecast.error,
       response: { position: null, days: null },
     }
 
@@ -48,7 +54,7 @@ const useWeather = (): IQuery<IWeather> => {
     }
 
     return result
-  }, [position, forecast])
+  }, [geoPosition, position, forecast])
 }
 
 export default useWeather
