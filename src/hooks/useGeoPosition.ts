@@ -1,4 +1,5 @@
 import { useCallback, useState, useEffect } from 'react'
+import { GEO_POSITION_STORAGE_KEY } from 'config'
 
 interface IPosition {
   error: any
@@ -20,6 +21,14 @@ const useGeoPosition = (): IPosition => {
       error: '',
       loading: false,
     })
+
+    localStorage.setItem(
+      GEO_POSITION_STORAGE_KEY,
+      JSON.stringify({
+        latitude: coords.latitude,
+        longitude: coords.longitude,
+      })
+    )
   }
 
   const onError = useCallback(
@@ -30,21 +39,49 @@ const useGeoPosition = (): IPosition => {
   )
 
   useEffect(() => {
-    const geo = navigator.geolocation
+    if (!navigator.onLine) {
+      const data = localStorage.getItem(GEO_POSITION_STORAGE_KEY)
 
-    if (!geo) {
+      if (data) {
+        try {
+          const geoPosition = JSON.parse(data)
+
+          setPosition({
+            latitude: geoPosition.latitude,
+            longitude: geoPosition.longitude,
+            error: '',
+            loading: false,
+          })
+        } catch {
+          setPosition({
+            error: 'Kunde ej läsa sparad position i offline läge.',
+            loading: false,
+          })
+        }
+      } else {
+        setPosition({
+          error: 'Kunde ej finna sparad position i offline läge.',
+          loading: false,
+        })
+      }
+
+      return
+    }
+
+    if (!navigator.geolocation) {
       setPosition((prev) => ({
         ...prev,
         error: new Error(
           'Hämtning av latitud och longitud stödjs inte i denna webbläsare.'
         ),
       }))
+
       return
     }
 
-    const watcher = geo.watchPosition(onChange, onError)
+    const watcher = navigator.geolocation.watchPosition(onChange, onError)
 
-    return () => geo.clearWatch(watcher)
+    return () => navigator.geolocation.clearWatch(watcher)
   }, [onError])
 
   return position
