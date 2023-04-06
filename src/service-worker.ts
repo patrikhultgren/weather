@@ -86,4 +86,9 @@ self.addEventListener('message', (event) => {
   }
 })
 
-// Any other custom service worker logic can go here.
+// Reload app when opening.
+self.addEventListener('visibilitychange', function () {
+  if (document.visibilityState === 'visible') {
+    window.location.reload()
+  }
+})
