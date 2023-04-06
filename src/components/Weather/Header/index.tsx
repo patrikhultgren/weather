@@ -22,7 +22,7 @@ export default function Header({ weather, className }: IProps) {
         className
       )}
     >
-      {position && <h1>Vädret i {position.city}</h1>}
+      <h1>Vädret i {position ? position.city : '...'}</h1>
     </header>
   )
 }
