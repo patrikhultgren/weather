@@ -1,3 +1,4 @@
+import { useMemo } from 'react'
 import classNames from 'classnames'
 import { format } from 'utils/date'
 import PartlyCloudyNight from 'components/Icon/Weather/PartlyCloudyNight'
@@ -22,12 +23,17 @@ const icons: any = {
 
 interface IProps {
   timeSerie: any
+  showAll: boolean
 }
 
-export default function Hour({ timeSerie }: IProps) {
-  const symbolCode =
-    timeSerie.data?.next_1_hours?.summary?.symbol_code ||
-    timeSerie.data?.next_6_hours?.summary?.symbol_code
+export default function Hour({ timeSerie, showAll }: IProps) {
+  const symbolCode = useMemo(
+    () =>
+      showAll
+        ? timeSerie.data?.next_1_hours?.summary?.symbol_code
+        : timeSerie.data?.next_6_hours?.summary?.symbol_code,
+    [timeSerie, showAll]
+  )
 
   const windSpeedOfGust = timeSerie.data.instant.details.wind_speed_of_gust
   const airTemperature = Math.round(

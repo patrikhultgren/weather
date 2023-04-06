@@ -71,7 +71,7 @@ export default function Day({ day }: IProps) {
           </tr>
         </thead>
         <tbody className="">
-          <Hours day={filteredDay} />
+          <Hours day={filteredDay} showAll={showAll} />
         </tbody>
       </table>
       {showAllEnabled && (
