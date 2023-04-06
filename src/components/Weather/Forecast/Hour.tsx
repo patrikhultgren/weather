@@ -43,7 +43,7 @@ export default function Hour({ timeSerie, showAll }: IProps) {
 
   const symbolCode = useMemo(
     () => nextOneHoursSymbolCode || nextSixHoursSymbolCode,
-    [showAll, nextOneHoursSymbolCode, nextSixHoursSymbolCode]
+    [nextOneHoursSymbolCode, nextSixHoursSymbolCode]
   )
 
   const airTemperature = useMemo(
