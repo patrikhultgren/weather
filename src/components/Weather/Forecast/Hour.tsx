@@ -65,16 +65,18 @@ export default function Hour({ timeSerie, showAll }: IProps) {
   return (
     <>
       <td
-        className={classNames('border border-slate-300 px-2 py-1 text-center')}
+        className={classNames(
+          'border-y border-slate-300 px-2 py-1 text-center'
+        )}
       >
         {format(timeSerie.time, 'HH')}
       </td>
-      <td className="border border-slate-300 px-2 py-1">
+      <td className="border-y border-slate-300 px-2 py-1">
         <div className="flex justify-center">
           {icons[symbolCode] ? icons[symbolCode] : symbolCode}
         </div>
       </td>
-      <td className="border border-slate-300 px-2 py-1 text-center">
+      <td className="border-y border-slate-300 px-2 py-1 text-center">
         <span
           className={classNames(
             'font-bold',
@@ -84,7 +86,7 @@ export default function Hour({ timeSerie, showAll }: IProps) {
           {airTemperature} °
         </span>
       </td>
-      <td className="border border-slate-300 px-2 py-1 text-center">
+      <td className="border-y border-slate-300 px-2 py-1 text-center">
         {windSpeed} {windSpeedOfGust ? `(${windSpeedOfGust})` : ''} m/s
       </td>
     </>
