@@ -18,32 +18,23 @@ export default function Day({ day, dayIndex }: IProps) {
 
   const showAllEnabled = useMemo(() => day.length > 4, [day])
 
-  const isSpecialDay = useMemo(() => dayIndex === 2, [dayIndex])
+  const hours = useMemo(() => {
+    const hoursPerPart = Math.floor(day.length / 4)
+    let countHours = 0
 
-  const numberOfMissingHours = useMemo(
-    () => (isSpecialDay ? 0 : 24 - day.length),
-    [day, isSpecialDay]
-  )
-
-  const hours = useMemo(
-    () =>
-      day.filter((_hour: any, hourIndex: number) => {
-        if (showAll || !showAllEnabled) {
+    return day.filter((_hour: any, hourIndex: number) => {
+      if (showAll || !showAllEnabled) {
+        return true
+      } else {
+        if (hourIndex % hoursPerPart === 0 && countHours < 4) {
+          countHours++
           return true
-        } else {
-          if (
-            [0, 6, 12, 18].includes(numberOfMissingHours + hourIndex) ||
-            (isSpecialDay && hourIndex === day.length - 1) ||
-            hourIndex === 0
-          ) {
-            return true
-          }
         }
+      }
 
-        return false
-      }),
-    [day, isSpecialDay, showAll, showAllEnabled, numberOfMissingHours]
-  )
+      return false
+    })
+  }, [day, showAll, showAllEnabled])
 
   return (
     <article className="mt-6 first:mt-0 md:first:mt-4" key={day[0].time}>
