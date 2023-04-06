@@ -42,10 +42,7 @@ export default function Hour({ timeSerie, showAll }: IProps) {
     timeSerie.data?.next_6_hours?.summary?.symbol_code
 
   const symbolCode = useMemo(
-    () =>
-      showAll
-        ? nextOneHoursSymbolCode || nextSixHoursSymbolCode
-        : nextSixHoursSymbolCode || nextOneHoursSymbolCode,
+    () => nextOneHoursSymbolCode || nextSixHoursSymbolCode,
     [showAll, nextOneHoursSymbolCode, nextSixHoursSymbolCode]
   )
 
