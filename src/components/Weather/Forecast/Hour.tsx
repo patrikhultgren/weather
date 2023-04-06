@@ -27,18 +27,34 @@ interface IProps {
 }
 
 export default function Hour({ timeSerie, showAll }: IProps) {
-  const next_1_hours = timeSerie.data?.next_1_hours?.summary?.symbol_code
-  const next_6_hours = timeSerie.data?.next_6_hours?.summary?.symbol_code
+  const nextOneHoursSymbolCode =
+    timeSerie.data?.next_1_hours?.summary?.symbol_code
+
+  const nextSixHoursSymbolCode =
+    timeSerie.data?.next_6_hours?.summary?.symbol_code
 
   const symbolCode = useMemo(
-    () => (showAll ? next_1_hours : next_6_hours || next_1_hours),
-    [timeSerie, showAll]
+    () =>
+      showAll
+        ? nextOneHoursSymbolCode || nextSixHoursSymbolCode
+        : nextSixHoursSymbolCode || nextOneHoursSymbolCode,
+    [showAll, nextOneHoursSymbolCode, nextSixHoursSymbolCode]
   )
 
-  const windSpeedOfGust = timeSerie.data.instant.details.wind_speed_of_gust
-  const airTemperature = Math.round(
-    timeSerie.data.instant.details.air_temperature
+  const airTemperature = useMemo(
+    () => Math.round(timeSerie.data.instant.details.air_temperature),
+    [timeSerie]
   )
+
+  const windSpeed = useMemo(() => {
+    const speed = timeSerie.data.instant.details.wind_speed
+    return speed ? Math.round(speed) : null
+  }, [timeSerie])
+
+  const windSpeedOfGust = useMemo(() => {
+    const speed = timeSerie.data.instant.details.wind_speed_of_gust
+    return speed ? Math.round(speed) : null
+  }, [timeSerie])
 
   return (
     <>
@@ -63,8 +79,7 @@ export default function Hour({ timeSerie, showAll }: IProps) {
         </span>
       </td>
       <td className="border border-slate-300 px-2 py-1 text-center">
-        {Math.round(timeSerie.data.instant.details.wind_speed)}{' '}
-        {windSpeedOfGust ? `(${Math.round(windSpeedOfGust)})` : ''} m/s
+        {windSpeed} {windSpeedOfGust ? `(${windSpeedOfGust})` : ''} m/s
       </td>
     </>
   )

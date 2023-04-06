@@ -6,9 +6,10 @@ import Hours from './Hours'
 
 interface IProps {
   day: any
+  dayIndex: number
 }
 
-export default function Day({ day }: IProps) {
+export default function Day({ day, dayIndex }: IProps) {
   const [showAll, setShowAll] = useState<boolean>(false)
 
   const onClick = useCallback(() => {
@@ -16,17 +17,24 @@ export default function Day({ day }: IProps) {
   }, [])
 
   const showAllEnabled = useMemo(() => day.length > 4, [day])
-  const numberOfMissingHours = useMemo(() => 24 - day.length, [day])
 
-  const filteredDay = useMemo(
+  const isSpecialDay = useMemo(() => dayIndex === 2, [dayIndex])
+
+  const numberOfMissingHours = useMemo(
+    () => (isSpecialDay ? 0 : 24 - day.length),
+    [day, isSpecialDay]
+  )
+
+  const hours = useMemo(
     () =>
-      day.filter((_hour: any, index: number) => {
+      day.filter((_hour: any, hourIndex: number) => {
         if (showAll || !showAllEnabled) {
           return true
         } else {
           if (
-            [0, 6, 12, 18].includes(numberOfMissingHours + index) ||
-            index === 0
+            [0, 6, 12, 18].includes(numberOfMissingHours + hourIndex) ||
+            (isSpecialDay && hourIndex === day.length - 1) ||
+            hourIndex === 0
           ) {
             return true
           }
@@ -34,7 +42,7 @@ export default function Day({ day }: IProps) {
 
         return false
       }),
-    [day, showAll, showAllEnabled, numberOfMissingHours]
+    [day, isSpecialDay, showAll, showAllEnabled, numberOfMissingHours]
   )
 
   return (
@@ -71,7 +79,7 @@ export default function Day({ day }: IProps) {
           </tr>
         </thead>
         <tbody className="">
-          <Hours day={filteredDay} showAll={showAll} />
+          <Hours hours={hours} showAll={showAll} />
         </tbody>
       </table>
       {showAllEnabled && (
