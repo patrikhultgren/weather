@@ -13,6 +13,7 @@ const useForecast = ({ latitude, longitude }: IProps): IQuery<any> => {
     loading: false,
     error: null,
     response: null,
+    expires: null,
   })
 
   const loadData = useCallback(async () => {
@@ -28,12 +29,14 @@ const useForecast = ({ latitude, longitude }: IProps): IQuery<any> => {
 
         setResult({
           response,
+          expires: null,
           loading: false,
           error: null,
         })
       } catch (error) {
         setResult({
           response: null,
+          expires: null,
           loading: false,
           error,
         })

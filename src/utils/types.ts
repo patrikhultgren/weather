@@ -6,6 +6,7 @@ export interface IError {
 
 export interface IQuery<IResponse> {
   response: IResponse | null
+  expires: Date | null
   loading: boolean
   error: any
 }
