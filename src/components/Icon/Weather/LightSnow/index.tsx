@@ -11,6 +11,7 @@ const LightSnow = ({ className = 'w-10 h-10' }: IProps) => (
     xmlnsXlink="http://www.w3.org/1999/xlink"
     className={className}
   >
+    <title>Lite snö</title>
     <symbol id="snowflake">
       <path
         fill="#47c0e3"

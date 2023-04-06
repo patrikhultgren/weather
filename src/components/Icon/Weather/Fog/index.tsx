@@ -11,6 +11,7 @@ const Fog = ({ className = 'w-10 h-10' }: IProps) => (
     xmlnsXlink="http://www.w3.org/1999/xlink"
     className={className}
   >
+    <title>Dimma</title>
     <symbol id="fog">
       <g fill="#999999">
         <path d="M88.7,3H14.3C13.6,3,13,2.3,13,1.5S13.6,0,14.3,0h74.4C89.4,0,90,0.7,90,1.5S89.4,3,88.7,3z"></path>
