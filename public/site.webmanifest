@@ -1,6 +1,7 @@
 {
-  "name": "",
-  "short_name": "",
+  "start_url": "/weather",
+  "name": "Väderprognoser",
+  "short_name": "Väderprognoser",
   "icons": [
     {
       "src": "/weather/android-chrome-192x192.png",

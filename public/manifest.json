@@ -1,7 +1,7 @@
 {
-  "start_url": ".",
-  "name": "Hultgren Development AB",
-  "short_name": "Hultgren Dev AB",
+  "start_url": "/weather",
+  "name": "Väderprognoser",
+  "short_name": "Väderprognoser",
   "icons": [
     {
       "src": "/weather/favicon.ico",

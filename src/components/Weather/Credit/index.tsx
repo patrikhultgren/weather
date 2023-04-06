@@ -6,7 +6,7 @@ export default function Credit() {
       <Container className="text-sm text-slate-900">
         <div className="px-4">
           <p>
-            Denna sida är byggd som ett hobbyprojekt av{' '}
+            Denna sida är byggd som ett projekt av{' '}
             <a className="underline" href="mailto:patrik.hult@gmail.com">
               Patrik Hultgren.
             </a>
