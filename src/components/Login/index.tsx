@@ -7,6 +7,11 @@ export default function Login({ authenticator }: any) {
           <h1 className="text-3xl">Inloggning</h1>
           <p className="mt-2">
             Logga in med kod. Som inloggad får du tillgång till väderprognoser.
+            Kontakta{' '}
+            <a className="underline" href="mailto:patrik.hult@gmail.com">
+              Patrik Hultgren
+            </a>{' '}
+            vid frågor.
           </p>
           <form onSubmit={authenticator.onSubmitCode} className="flex mt-4">
             <input
