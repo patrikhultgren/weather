@@ -13,6 +13,7 @@ import Fog from 'components/Icon/Weather/Fog'
 import LightSleet from 'components/Icon/Weather/LightSleet'
 import FairDay from 'components/Icon/Weather/FairDay'
 import Sleet from 'components/Icon/Weather/Sleet'
+import Rain from 'components/Icon/Weather/Rain'
 
 const icons: any = {
   partlycloudy_night: <PartlyCloudyNight />,
@@ -27,6 +28,7 @@ const icons: any = {
   lightsleet: <LightSleet />,
   fair_day: <FairDay />,
   sleet: <Sleet />,
+  rain: <Rain />,
 }
 
 interface IProps {
