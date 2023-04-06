@@ -27,3 +27,11 @@ serviceWorkerRegistration.register({
     }
   },
 })
+
+document.addEventListener('visibilitychange', () => {
+  const state = document.visibilityState
+
+  if (state === 'visible') {
+    window.location.reload()
+  }
+})

@@ -22,7 +22,6 @@ const useWeather = (): IQuery<IWeather> => {
       loading: position.loading || forecast.loading,
       error: position.error || forecast.error,
       response: { position: null, days: null },
-      expires: null,
     }
 
     if (result.response) {

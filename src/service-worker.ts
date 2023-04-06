@@ -85,10 +85,3 @@ self.addEventListener('message', (event) => {
     self.skipWaiting()
   }
 })
-
-// Reload app when opening.
-self.addEventListener('visibilitychange', function () {
-  if (document.visibilityState === 'visible') {
-    window.location.reload()
-  }
-})

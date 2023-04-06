@@ -1,9 +1,7 @@
-import { useEffect, useCallback, useMemo, useState } from 'react'
+import { useEffect, useCallback, useState } from 'react'
 import { IQuery } from 'utils/types'
 import request from 'utils/request'
-import { FORECAST_CACHE_EXPIRES_IN_MINUTES, FORECAST_API_URL } from 'config'
-import { addMinutes } from 'date-fns'
-import useInterval from './useInterval'
+import { FORECAST_API_URL } from 'config'
 
 interface IProps {
   latitude?: number
@@ -15,7 +13,6 @@ const useForecast = ({ latitude, longitude }: IProps): IQuery<any> => {
     loading: false,
     error: null,
     response: null,
-    expires: null,
   })
 
   const loadData = useCallback(async () => {
@@ -31,14 +28,12 @@ const useForecast = ({ latitude, longitude }: IProps): IQuery<any> => {
 
         setResult({
           response,
-          expires: addMinutes(new Date(), FORECAST_CACHE_EXPIRES_IN_MINUTES),
           loading: false,
           error: null,
         })
       } catch (error) {
         setResult({
           response: null,
-          expires: addMinutes(new Date(), FORECAST_CACHE_EXPIRES_IN_MINUTES),
           loading: false,
           error,
         })
@@ -49,24 +44,6 @@ const useForecast = ({ latitude, longitude }: IProps): IQuery<any> => {
   useEffect(() => {
     loadData()
   }, [loadData])
-
-  const delay = useMemo(() => {
-    if (result.expires) {
-      const diffInMs = result.expires.getTime() - new Date().getTime()
-
-      if (diffInMs > 0) {
-        return diffInMs
-      }
-
-      return 0
-    }
-
-    return null
-  }, [result.expires])
-
-  useInterval(() => {
-    loadData()
-  }, delay)
 
   return result
 }
