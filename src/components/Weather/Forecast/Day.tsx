@@ -38,7 +38,7 @@ export default function Day({ day }: IProps) {
   )
 
   return (
-    <article className="mt-4" key={day[0].time}>
+    <article className="mt-6 first:mt-0 md:first:mt-4" key={day[0].time}>
       <h2 className="font-bold text-xl py-2 bg-slate-200 px-3 py-1 border-x border-t border-slate-300">
         <span className="capitalize">{format(day[0].time, 'EEEE')}</span>{' '}
         {format(day[0].time, 'd MMMM')}
@@ -78,7 +78,7 @@ export default function Day({ day }: IProps) {
         <button
           onClick={onClick}
           type="button"
-          className="py-2 block bg-slate-200a flex mx-auto items-center"
+          className="py-2 block flex mx-auto items-center bg-slate-50 px-4 mt-6 rounded hover:bg-slate-600 border border-slate-300 shadow hover:text-white"
         >
           <span className="mr-1">
             {showAll ? 'Visa färre timmar' : 'Visa alla timmar'}

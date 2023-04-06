@@ -13,11 +13,7 @@ const info = {
 const Arrow = ({ direction }: IProps) => (
   <FiChevronDown
     title={info[direction].title}
-    className={classNames(
-      'ease-in-out',
-      'duration-300',
-      info[direction].className
-    )}
+    className={classNames(info[direction].className)}
     size={18}
   />
 )
