@@ -12,7 +12,7 @@ import { clientsClaim } from 'workbox-core'
 import { ExpirationPlugin } from 'workbox-expiration'
 import { precacheAndRoute, createHandlerBoundToURL } from 'workbox-precaching'
 import { registerRoute } from 'workbox-routing'
-import { StaleWhileRevalidate } from 'workbox-strategies'
+import { StaleWhileRevalidate, NetworkFirst } from 'workbox-strategies'
 
 declare const self: ServiceWorkerGlobalScope
 
@@ -68,6 +68,14 @@ registerRoute(
       new ExpirationPlugin({ maxEntries: 50 }),
     ],
   })
+)
+
+// Read API response from cache when user is offline.
+registerRoute(
+  ({ url }) =>
+    url.href.includes(process.env.REACT_APP_POSITION_API_URL || '') ||
+    url.href.includes(process.env.REACT_APP_FORECAST_API_URL || ''),
+  new NetworkFirst()
 )
 
 // This allows the web app to trigger skipWaiting via
