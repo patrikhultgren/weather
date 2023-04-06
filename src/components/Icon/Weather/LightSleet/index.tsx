@@ -11,7 +11,7 @@ const LightSleet = ({ className = 'w-10 h-10' }: IProps) => (
     xmlnsXlink="http://www.w3.org/1999/xlink"
     className={className}
   >
-    <title>Lätt snöstorm</title>
+    <title>Lätt snöblandat regn</title>
     <symbol id="raindrop">
       <path
         fill="#0062bf"
