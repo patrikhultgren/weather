@@ -2,6 +2,7 @@ import { useEffect, useCallback, useState } from 'react'
 import { IQuery } from 'utils/types'
 import request from 'utils/request'
 import { FORECAST_API_URL } from 'config'
+import useVisibilityChange from 'hooks/useVisibilityChange'
 
 interface IProps {
   latitude?: string
@@ -9,6 +10,18 @@ interface IProps {
 }
 
 const useForecast = ({ latitude, longitude }: IProps): IQuery<any> => {
+  const [count, setCount] = useState<number>(1)
+
+  const onVisibilityChange = useCallback(() => {
+    const state = document.visibilityState
+
+    if (state === 'visible') {
+      setCount((prev) => prev + 1)
+    }
+  }, [])
+
+  useVisibilityChange(onVisibilityChange)
+
   const [result, setResult] = useState<IQuery<any>>({
     loading: false,
     error: null,
@@ -16,7 +29,7 @@ const useForecast = ({ latitude, longitude }: IProps): IQuery<any> => {
   })
 
   const loadData = useCallback(async () => {
-    if (latitude && longitude) {
+    if (latitude && longitude && count) {
       setResult((prev: any) => ({ ...prev, loading: true, error: null }))
 
       try {
@@ -37,7 +50,7 @@ const useForecast = ({ latitude, longitude }: IProps): IQuery<any> => {
         })
       }
     }
-  }, [latitude, longitude])
+  }, [latitude, longitude, count])
 
   useEffect(() => {
     loadData()

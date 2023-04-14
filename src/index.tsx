@@ -23,15 +23,8 @@ serviceWorkerRegistration.register({
           window.location.reload()
         }
       })
+
       waitingServiceWorker.postMessage({ type: 'SKIP_WAITING' })
     }
   },
-})
-
-document.addEventListener('visibilitychange', () => {
-  const state = document.visibilityState
-
-  if (state === 'visible') {
-    window.location.reload()
-  }
 })
