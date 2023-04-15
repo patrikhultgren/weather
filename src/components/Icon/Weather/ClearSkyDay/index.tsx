@@ -23,7 +23,7 @@ const ClearSkyDay = ({ className, size = '2.5rem', title }: IProps) => {
       height={size}
       className={className}
     >
-      <title>{title}</title>
+      {title && <title>{title}</title>}
       <symbol id={sun}>
         <path
           className="sun-glow"

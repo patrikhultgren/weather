@@ -18,10 +18,10 @@ import Rain from 'components/Icon/Weather/Rain'
 const icons: any = {
   partlycloudy_night: <PartlyCloudyNight />,
   fair_night: <FairNight />,
-  clearsky_night: <ClearSkyNight />,
+  clearsky_night: <ClearSkyNight title="Klar natt" />,
   clearsky_day: <ClearSkyDay title="Soligt" />,
   partlycloudy_day: <PartlyCloudyDay />,
-  cloudy: <Cloudy />,
+  cloudy: <Cloudy title="Monligt" />,
   lightsnow: <LightSnow />,
   snow: <Snow />,
   fog: <Fog />,
