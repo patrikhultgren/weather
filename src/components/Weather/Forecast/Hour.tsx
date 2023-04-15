@@ -19,7 +19,7 @@ const icons: any = {
   partlycloudy_night: <PartlyCloudyNight />,
   fair_night: <FairNight />,
   clearsky_night: <ClearSkyNight />,
-  clearsky_day: <ClearSkyDay />,
+  clearsky_day: <ClearSkyDay title="Soligt" />,
   partlycloudy_day: <PartlyCloudyDay />,
   cloudy: <Cloudy />,
   lightsnow: <LightSnow />,

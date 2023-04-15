@@ -2,9 +2,11 @@ import { useId } from 'react'
 
 interface IProps {
   className?: string
+  size?: string
+  title?: string
 }
 
-const ClearSkyDay = ({ className = 'w-10 h-10' }: IProps) => {
+const ClearSkyDay = ({ className, size = '2.5rem', title }: IProps) => {
   const sun = useId()
   const sunGlowGrad = useId()
   const sunInnerGrad = useId()
@@ -17,9 +19,11 @@ const ClearSkyDay = ({ className = 'w-10 h-10' }: IProps) => {
       viewBox="0 0 100 100"
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
+      width={size}
+      height={size}
       className={className}
     >
-      <title>Soligt</title>
+      <title>{title}</title>
       <symbol id={sun}>
         <path
           className="sun-glow"
