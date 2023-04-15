@@ -37,7 +37,6 @@ const ClearSkyDay = ({ className = 'w-10 h-10' }: IProps) => {
           d="M22.74,51.5a21,21,0,1,0,7.69-28.69A21,21,0,0,0,22.74,51.5Z"
         ></path>
       </symbol>
-
       <defs>
         <radialGradient
           id={sunGlowGrad}
