@@ -2,14 +2,14 @@ import { useCallback, useState, useMemo } from 'react'
 import { format } from 'utils/date'
 import Arrow from 'components/Icon/Arrow'
 import classNames from 'classnames'
+import { isToday, isTomorrow } from 'date-fns'
 import Hours from './Hours'
 
 interface IProps {
   day: any
-  dayIndex: number
 }
 
-export default function Day({ day, dayIndex }: IProps) {
+export default function Day({ day }: IProps) {
   const [showAll, setShowAll] = useState<boolean>(false)
 
   const onClick = useCallback(() => {
@@ -36,12 +36,22 @@ export default function Day({ day, dayIndex }: IProps) {
     })
   }, [day, showAll, showAllEnabled])
 
+  const date = useMemo(() => new Date(day[0].time), [day[0].time])
+  const dateStr = useMemo(() => day[0].time, [day[0].time])
+
   return (
-    <article className="mt-6 first:mt-0 md:first:mt-4" key={day[0].time}>
-      <h2 className="font-bold text-xl py-2 bg-slate-200 px-3 py-1 border-t border-slate-300">
-        <span className="capitalize">{format(day[0].time, 'EEEE')}</span>{' '}
-        {format(day[0].time, 'd MMMM')}
-      </h2>
+    <article className="mt-6 first:mt-0 md:first:mt-4" key={dateStr}>
+      <div className="font-bold text-xl bg-slate-200 border-t border-slate-300 flex items-center py-2">
+        <h2 className="font-bold text-xl px-3">
+          <span className="capitalize">{format(dateStr, 'EEEE')}</span>{' '}
+          {format(dateStr, 'd MMMM')}
+        </h2>
+        {(isToday(date) || isTomorrow(date)) && (
+          <div className="ml-auto border-l border-slate-300 px-3 basis-1/4 text-center">
+            {isToday(date) ? 'Idag' : 'Imorgon'}
+          </div>
+        )}
+      </div>
       <table
         className={classNames(
           'w-full',
