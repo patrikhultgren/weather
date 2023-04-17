@@ -16,6 +16,8 @@ export default function Header({ weather, className }: IProps) {
         'px-4',
         'py-2',
         'bg-slate-600',
+        'border-b-4',
+        'border-b-slate-400',
         'text-2xl',
         'md:text-3xl',
         'text-white',
