@@ -36,8 +36,8 @@ export default function Day({ day }: IProps) {
     })
   }, [day, showAll, showAllEnabled])
 
-  const date = useMemo(() => new Date(day[0].time), [day[0].time])
-  const dateStr = useMemo(() => day[0].time, [day[0].time])
+  const date = useMemo(() => new Date(day[0].time), [day])
+  const dateStr = useMemo(() => day[0].time, [day])
 
   return (
     <article className="mt-6 first:mt-0 md:first:mt-4" key={dateStr}>
