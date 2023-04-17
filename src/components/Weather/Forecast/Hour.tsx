@@ -5,10 +5,10 @@ import {
   ClearSkyNight,
   Cloudy,
   FairDay,
+  FairNight,
 } from '@patrikhultgren/react-weather-icons'
 import { format } from 'utils/date'
 import PartlyCloudyNight from 'components/Icon/Weather/PartlyCloudyNight'
-import FairNight from 'components/Icon/Weather/FairNight'
 import PartlyCloudyDay from 'components/Icon/Weather/PartlyCloudyDay'
 import LightSnow from 'components/Icon/Weather/LightSnow'
 import Snow from 'components/Icon/Weather/Snow'
@@ -19,7 +19,7 @@ import Rain from 'components/Icon/Weather/Rain'
 
 const icons: any = {
   partlycloudy_night: <PartlyCloudyNight />,
-  fair_night: <FairNight />,
+  fair_night: <FairNight title="Delvis molnig natt" />,
   clearsky_night: <ClearSkyNight title="Klar natt" />,
   clearsky_day: <ClearSkyDay title="Soligt" />,
   partlycloudy_day: <PartlyCloudyDay />,
