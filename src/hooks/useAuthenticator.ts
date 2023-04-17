@@ -1,4 +1,10 @@
-import { useLayoutEffect, useCallback, useState } from 'react'
+import {
+  useLayoutEffect,
+  useCallback,
+  useState,
+  ChangeEvent,
+  FormEvent,
+} from 'react'
 import { IS_LOGGED_IN_STORAGE_KEY } from 'config'
 
 const useAuthenticator = (): any => {
@@ -6,7 +12,7 @@ const useAuthenticator = (): any => {
   const [code, setCode] = useState<string>('')
 
   const onSubmitCode = useCallback(
-    (event: any) => {
+    (event: FormEvent) => {
       event.preventDefault()
 
       if (code === 'beta') {
@@ -17,7 +23,7 @@ const useAuthenticator = (): any => {
     [code]
   )
 
-  const onChangeCode = useCallback((event: any) => {
+  const onChangeCode = useCallback((event: ChangeEvent<HTMLInputElement>) => {
     setCode(event.target.value)
   }, [])
 
