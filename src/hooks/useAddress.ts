@@ -1,7 +1,7 @@
 import { useEffect, useCallback, useState } from 'react'
 import { IQuery } from 'utils/types'
 import request from 'utils/request'
-import { POSITION_API_URL } from 'config'
+import { ADDRESS_API_URL } from 'config'
 import useVisibilityChange from 'hooks/useVisibilityChange'
 
 interface IProps {
@@ -34,7 +34,7 @@ const useAddress = ({ latitude, longitude }: IProps): IQuery<any> => {
 
       try {
         const response = await request({
-          endpoint: `${POSITION_API_URL}?latitude=${latitude}&longitude=${longitude}&localityLanguage=sv`,
+          endpoint: `${ADDRESS_API_URL}?latitude=${latitude}&longitude=${longitude}&localityLanguage=sv`,
         })
 
         setResult({

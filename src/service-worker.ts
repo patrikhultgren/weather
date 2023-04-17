@@ -73,7 +73,7 @@ registerRoute(
 // Read API response from cache when user is offline.
 registerRoute(
   ({ url }) =>
-    url.href.includes(process.env.REACT_APP_POSITION_API_URL || '') ||
+    url.href.includes(process.env.REACT_APP_ADDRESS_API_URL || '') ||
     url.href.includes(process.env.REACT_APP_FORECAST_API_URL || ''),
   new NetworkFirst()
 )
