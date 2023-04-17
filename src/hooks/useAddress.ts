@@ -9,7 +9,7 @@ interface IProps {
   longitude?: number
 }
 
-const usePosition = ({ latitude, longitude }: IProps): IQuery<any> => {
+const useAddress = ({ latitude, longitude }: IProps): IQuery<any> => {
   const [count, setCount] = useState<number>(1)
 
   const onVisibilityChange = useCallback(() => {
@@ -59,4 +59,4 @@ const usePosition = ({ latitude, longitude }: IProps): IQuery<any> => {
   return result
 }
 
-export default usePosition
+export default useAddress
