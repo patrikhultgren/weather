@@ -14,9 +14,7 @@ export default function Forecast({ weather, className }: IProps) {
   return (
     <Container className={classNames('mb-10', className)}>
       {days
-        ? days.map((day: any, dayIndex: number) => (
-            <Day day={day} key={day[0].time} />
-          ))
+        ? days.map((day: any) => <Day day={day} key={day[0].time} />)
         : [0, 1, 2, 4, 5, 6, 7, 8, 9].map((placeholderIndex: number) => (
             <Placeholder
               key={placeholderIndex}
