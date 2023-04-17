@@ -1,16 +1,19 @@
 import { useMemo } from 'react'
 import classNames from 'classnames'
-import { ClearSkyDay, ClearSkyNight } from '@patrikhultgren/react-weather-icons'
+import {
+  ClearSkyDay,
+  ClearSkyNight,
+  Cloudy,
+  FairDay,
+} from '@patrikhultgren/react-weather-icons'
 import { format } from 'utils/date'
 import PartlyCloudyNight from 'components/Icon/Weather/PartlyCloudyNight'
 import FairNight from 'components/Icon/Weather/FairNight'
 import PartlyCloudyDay from 'components/Icon/Weather/PartlyCloudyDay'
-import Cloudy from 'components/Icon/Weather/Cloudy'
 import LightSnow from 'components/Icon/Weather/LightSnow'
 import Snow from 'components/Icon/Weather/Snow'
 import Fog from 'components/Icon/Weather/Fog'
 import LightSleet from 'components/Icon/Weather/LightSleet'
-import FairDay from 'components/Icon/Weather/FairDay'
 import Sleet from 'components/Icon/Weather/Sleet'
 import Rain from 'components/Icon/Weather/Rain'
 
