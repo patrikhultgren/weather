@@ -43,7 +43,8 @@ const useSearchHandler = (setPosition: any): any => {
   }, [])
 
   const url = useMemo(
-    () => `${SEARCH_API_URL}?key=${SEARCH_API_KEY}&q=${searchTerm}&format=json`,
+    () =>
+      `${SEARCH_API_URL}?key=${SEARCH_API_KEY}&q=${searchTerm.trim()}&format=json`,
     [searchTerm]
   )
 
