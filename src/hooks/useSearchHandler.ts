@@ -8,11 +8,13 @@ const useSearchHandler = (setPosition: any): any => {
   const [run, setRun] = useState<boolean>(false)
   const [reset, setReset] = useState<boolean>(false)
   const [searchTerm, setSearchTerm] = useState<string>('')
+  const [active, setActive] = useState<boolean>(false)
 
   const resetSearch = useCallback(() => {
     setSearchTerm('')
     setReset(true)
     setRun(false)
+    setActive(false)
   }, [])
 
   const onSelectSearchResult = useCallback(
@@ -59,6 +61,8 @@ const useSearchHandler = (setPosition: any): any => {
       onChangeSearchTerm,
       onSelectSearchResult,
       resetSearch,
+      active,
+      setActive,
     }),
     [
       searchResults,
@@ -67,6 +71,8 @@ const useSearchHandler = (setPosition: any): any => {
       onChangeSearchTerm,
       onSelectSearchResult,
       resetSearch,
+      active,
+      setActive,
     ]
   )
 }

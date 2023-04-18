@@ -2,7 +2,7 @@ import Container from 'components/Container'
 
 export default function Credit() {
   return (
-    <footer className="my-10">
+    <footer className="my-10 mb-16">
       <Container className="text-sm text-slate-900">
         <div className="px-4 [&>p]:mt-4 first:[&>p]:mt-0">
           <p>
