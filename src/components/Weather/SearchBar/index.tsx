@@ -7,20 +7,20 @@ interface IProps {
 
 export default function SearchBar({ searchHandler }: IProps) {
   return (
-    <>
+    <div className="max-w-[450px] mx-auto">
       {searchHandler.searchResults.response && (
         <button
           type="button"
-          className="fixed top-0 left-0 text-black z-20 fixed text-xl bg-slate-100 border-4 border-slate-300 w-full h-10 flex items-center justify-center md:hidden"
+          className="fixed top-0 left-0 text-black z-20 fixed text-xl bg-slate-100 border-4 border-slate-300 w-full h-10 flex items-center justify-center"
           onClick={searchHandler.resetSearch}
         >
           <Close title="Stäng sök" />
         </button>
       )}
-      <div className="bg-white z-10 w-full fixed static bottom-0 left-0 max-w-[450px] mx-auto">
+      <div className="bg-white z-10 w-full fixed static bottom-0 left-0">
         <div className="md:px-0 relative">
           {searchHandler.searchResults.response && (
-            <ul className="md:hidden">
+            <ul className="overflow-auto h-[calc(100vh-2.5rem-3.5rem)]">
               {searchHandler.searchResults.response.map((searchResult: any) => (
                 <li
                   role="button"
@@ -64,6 +64,6 @@ export default function SearchBar({ searchHandler }: IProps) {
           </form>
         </div>
       </div>
-    </>
+    </div>
   )
 }

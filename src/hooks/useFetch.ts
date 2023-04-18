@@ -8,6 +8,7 @@ interface IProps {
   url: string
   run: boolean
   reset?: boolean
+  transformResponse?: (response: any) => any
 }
 
 const initialState = {
@@ -17,7 +18,12 @@ const initialState = {
   expires: null,
 }
 
-const useFetch = ({ url, run, reset }: IProps): IQuery<any> => {
+const useFetch = ({
+  url,
+  run,
+  reset,
+  transformResponse,
+}: IProps): IQuery<any> => {
   const [count, setCount] = useState<number>(1)
 
   const onVisibilityChange = useCallback(() => {
@@ -42,7 +48,7 @@ const useFetch = ({ url, run, reset }: IProps): IQuery<any> => {
         })
 
         setResult({
-          response,
+          response: transformResponse ? transformResponse(response) : response,
           loading: false,
           error: null,
           expires: addMinutes(new Date(), 15),

@@ -2,6 +2,8 @@ import { useMemo, useCallback, useState } from 'react'
 import { SEARCH_API_KEY, SEARCH_API_URL } from 'config'
 import useFetch from 'hooks/useFetch'
 
+const transformResponse = (response: any) => response.slice().reverse()
+
 const useSearchHandler = (setPosition: any): any => {
   const [run, setRun] = useState<boolean>(false)
   const [reset, setReset] = useState<boolean>(false)
@@ -45,7 +47,7 @@ const useSearchHandler = (setPosition: any): any => {
     [searchTerm]
   )
 
-  const searchResults = useFetch({ url, run, reset })
+  const searchResults = useFetch({ url, run, reset, transformResponse })
 
   return useMemo(
     () => ({
