@@ -12,7 +12,11 @@ import { clientsClaim } from 'workbox-core'
 import { ExpirationPlugin } from 'workbox-expiration'
 import { precacheAndRoute, createHandlerBoundToURL } from 'workbox-precaching'
 import { registerRoute } from 'workbox-routing'
-import { StaleWhileRevalidate, NetworkFirst } from 'workbox-strategies'
+import {
+  StaleWhileRevalidate,
+  NetworkFirst,
+  CacheFirst,
+} from 'workbox-strategies'
 
 declare const self: ServiceWorkerGlobalScope
 
@@ -76,6 +80,12 @@ registerRoute(
     url.href.includes(process.env.REACT_APP_ADDRESS_API_URL || '') ||
     url.href.includes(process.env.REACT_APP_FORECAST_API_URL || ''),
   new NetworkFirst()
+)
+
+// Read search API response from cache when possible.
+registerRoute(
+  ({ url }) => url.href.includes(process.env.REACT_APP_SEARCH_API_URL || ''),
+  new CacheFirst()
 )
 
 // This allows the web app to trigger skipWaiting via
