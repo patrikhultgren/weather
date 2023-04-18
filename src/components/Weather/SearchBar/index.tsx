@@ -78,7 +78,7 @@ export default function SearchBar({ searchHandler }: IProps) {
           'mx-auto z-10 bg-slate-500 hover:bg-slate-700 text-white h-12 w-12 flex items-center justify-center',
           { 'mb-6': isFullscreen }
         )}
-        onClick={() => searchHandler.setActive(true)}
+        onClick={searchHandler.openSearch}
       >
         <Search />
       </button>

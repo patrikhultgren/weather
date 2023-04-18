@@ -10,6 +10,10 @@ const useSearchHandler = (setPosition: any): any => {
   const [searchTerm, setSearchTerm] = useState<string>('')
   const [active, setActive] = useState<boolean>(false)
 
+  const openSearch = useCallback(() => {
+    setActive(true)
+  }, [])
+
   const closeSearch = useCallback(() => {
     setSearchTerm('')
     setReset(true)
@@ -79,6 +83,7 @@ const useSearchHandler = (setPosition: any): any => {
       onSubmitSearch,
       onChangeSearchTerm,
       onSelectSearchResult,
+      openSearch,
       closeSearch,
       resetSearchTerm,
       active,
@@ -90,6 +95,7 @@ const useSearchHandler = (setPosition: any): any => {
       onSubmitSearch,
       onChangeSearchTerm,
       onSelectSearchResult,
+      openSearch,
       closeSearch,
       resetSearchTerm,
       active,
