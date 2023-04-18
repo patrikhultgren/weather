@@ -4,19 +4,15 @@ export default function Credit() {
   return (
     <footer className="my-10">
       <Container className="text-sm text-slate-900">
-        <div className="px-4">
+        <div className="px-4 [&>p]:mt-4 first:[&>p]:mt-0">
           <p>
-            Denna sida är byggd som ett projekt av{' '}
-            <a className="underline" href="mailto:patrik.hult@gmail.com">
+            Denna sida är byggd som ett sidoprojekt av mig{' '}
+            <a className="underline" href="mailto:info@patrikhultgren.se">
               Patrik Hultgren.
             </a>
+            . Jag hoppas den kan hjälpa dig att finna väderprognoser.
           </p>
-          <p>Inget ansvar tas kring innehållet då det kan vara felaktigt.</p>
-          <p className="mt-4">
-            Aktuell stad hämtas med hjälp av Big Data Cloud via tjänsten
-            Client-side Reverse Geocoding API.
-          </p>
-          <p className="mt-4">
+          <p>
             Prognosdatan tillhandahålls av MET Norge och är licenserad under{' '}
             <a className="underline" href="https://data.norge.no/nlod/en/2.0">
               Norwegian Licence for Open Government Data (NLOD) 2.0
@@ -30,6 +26,7 @@ export default function Credit() {
             </a>
             .
           </p>
+          <p>Inget ansvar tas kring innehållet.</p>
         </div>
       </Container>
     </footer>
