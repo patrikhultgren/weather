@@ -7,7 +7,7 @@ export default function Credit() {
         <div className="px-4 [&>p]:mt-4 first:[&>p]:mt-0">
           <p>
             Denna sida är byggd som ett sidoprojekt av mig{' '}
-            <a className="underline" href="mailto:info@patrikhultgren.se">
+            <a className="underline" href="mailto:patrik.hult@gmail.com">
               Patrik Hultgren.
             </a>
             . Jag hoppas den kan hjälpa dig att finna väderprognoser.
