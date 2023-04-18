@@ -12,9 +12,6 @@ export default function SearchBar({ searchHandler }: IProps) {
 
   return (
     <>
-      {searchHandler.active && (
-        <div className="fixed inset-0 bg-slate-600 h-full w-full z-10" />
-      )}
       {!searchHandler.active && (
         <div className="fixed bottom-0 left-0 bg-slate-600 w-full z-10">
           <button
@@ -29,27 +26,29 @@ export default function SearchBar({ searchHandler }: IProps) {
           </button>
         </div>
       )}
-      <div
-        className={classNames(
-          'z-20 w-full fixed px-4',
-          isFullscreen ? 'bottom-10' : 'bottom-4'
-        )}
-      >
-        {searchHandler.active && searchHandler.searchResults.response && (
-          <ul className="mb-4 overflow-auto h-[calc(100vh-16rem)]">
-            {searchHandler.searchResults.response.map((searchResult: any) => (
-              <li
-                role="button"
-                className="px-4 even:bg-white odd:bg-slate-200 border-b py-3 truncate"
-                key={searchResult.place_id}
-                onClick={() => searchHandler.onSelectSearchResult(searchResult)}
-              >
-                {searchResult.display_name}
-              </li>
-            ))}
-          </ul>
-        )}
-        {searchHandler.active && (
+      {searchHandler.active && (
+        <div
+          className={classNames(
+            'z-20 w-full px-4 flex flex-col justify-end absolute left-0 top-0 h-[100vh] bg-slate-600',
+            isFullscreen ? 'pb-10' : 'pb-4'
+          )}
+        >
+          {searchHandler.searchResults.response && (
+            <ul className="overflow-auto mb-4 max-h-[75%]">
+              {searchHandler.searchResults.response.map((searchResult: any) => (
+                <li
+                  role="button"
+                  className="px-4 even:bg-white odd:bg-slate-200 border-b py-3 truncate"
+                  key={searchResult.place_id}
+                  onClick={() =>
+                    searchHandler.onSelectSearchResult(searchResult)
+                  }
+                >
+                  {searchResult.display_name}
+                </li>
+              ))}
+            </ul>
+          )}
           <div className="flex">
             <form
               onSubmit={searchHandler.onSubmitSearch}
@@ -91,8 +90,8 @@ export default function SearchBar({ searchHandler }: IProps) {
               </button>
             )}
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </>
   )
 }

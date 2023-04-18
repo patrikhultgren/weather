@@ -11,11 +11,11 @@ export default function Weather() {
 
   return (
     <>
-      <Header weather={weather} />
+      {!weather.searchHandler.active && <Header weather={weather} />}
       <SearchBar searchHandler={weather.searchHandler} />
       <Loading loading={weather.loading} error={weather.error} />
-      <Forecast weather={weather} />
-      <Credit />
+      {!weather.searchHandler.active && <Forecast weather={weather} />}
+      {!weather.searchHandler.active && <Credit />}
     </>
   )
 }
