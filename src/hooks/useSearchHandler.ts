@@ -29,6 +29,7 @@ const useSearchHandler = (setPosition: any): any => {
   const onSubmitSearch = useCallback(
     (event: any) => {
       event.preventDefault()
+
       if (searchTerm) {
         setRun(true)
       }

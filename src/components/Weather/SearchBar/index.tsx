@@ -45,6 +45,7 @@ export default function SearchBar({ searchHandler }: IProps) {
               className="block px-4 w-full h-14"
               value={searchHandler.searchTerm}
               onChange={searchHandler.onChangeSearchTerm}
+              onBlur={searchHandler.onSubmitSearch}
             />
             {searchHandler.searchTerm && (
               <button
