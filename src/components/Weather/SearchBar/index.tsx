@@ -13,7 +13,7 @@ export default function SearchBar({ searchHandler }: IProps) {
   return searchHandler.active ? (
     <div
       className={classNames(
-        'z-20 w-full px-4 flex flex-col justify-end absolute left-0 top-0 h-[100vh] bg-slate-600',
+        'z-20 w-full px-4 flex flex-col justify-end absolute top-0 left-0 h-[100vh] md:left-1/2 md:max-w-[700px] md:transform md:-translate-x-1/2',
         isFullscreen ? 'pb-10' : 'pb-4'
       )}
     >
@@ -22,7 +22,7 @@ export default function SearchBar({ searchHandler }: IProps) {
           {searchHandler.searchResults.response.map((searchResult: any) => (
             <li
               role="button"
-              className="px-4 even:bg-white odd:bg-slate-200 border-b py-3 truncate"
+              className="px-4 even:bg-white odd:bg-slate-200 hover:bg-slate-700 hover:text-white py-3 truncate"
               key={searchResult.place_id}
               onClick={() => searchHandler.onSelectSearchResult(searchResult)}
             >

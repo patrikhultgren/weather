@@ -69,9 +69,11 @@ const useSearchHandler = (setPosition: any): any => {
   const searchResults = useFetch({ url, run, reset, transformResponse })
 
   useEffect(() => {
+    document.body.style.backgroundColor = active ? '#475569' : '#fff'
     document.body.style.overflow = active ? 'hidden' : 'auto'
 
     return () => {
+      document.body.style.backgroundColor = '#fff'
       document.body.style.overflow = 'auto'
     }
   }, [active])
