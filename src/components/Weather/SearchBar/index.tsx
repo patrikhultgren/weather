@@ -66,6 +66,7 @@ export default function SearchBar({ searchHandler }: IProps) {
               {searchHandler.searchTerm && (
                 <button
                   type="button"
+                  data-ref="reset-search-term"
                   className="bg-slate-100 py-2 px-4 hover:bg-slate-200 border-r border-r-slate-300"
                   onClick={searchHandler.resetSearchTerm}
                 >
@@ -82,6 +83,7 @@ export default function SearchBar({ searchHandler }: IProps) {
             {searchHandler.active && (
               <button
                 type="button"
+                data-ref="close-search"
                 className="text-black z-10 right-0 w-14 ml-2 text-xl bg-slate-100 py-2.5 flex items-center justify-center"
                 onClick={searchHandler.closeSearch}
               >

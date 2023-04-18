@@ -38,7 +38,12 @@ const useSearchHandler = (setPosition: any): any => {
     (event: any) => {
       event.preventDefault()
 
-      if (searchTerm) {
+      if (
+        searchTerm &&
+        !['close-search', 'reset-search-term'].includes(
+          event?.relatedTarget?.dataset?.ref
+        )
+      ) {
         setRun(true)
       }
     },
