@@ -38,7 +38,7 @@ const useWeather = (): IQuery<IWeather> => {
         longitude: geoPosition.longitude,
       })
     }
-  }, [geoPosition])
+  }, [geoPosition?.latitude, geoPosition?.longitude])
 
   return useMemo(() => {
     let result: IQuery<IWeather> = {
