@@ -1,15 +1,23 @@
-import { useEffect, useCallback, useMemo, useState } from 'react'
+import { useEffect, useCallback, useState } from 'react'
 import { IQuery } from 'utils/types'
 import request from 'utils/request'
 import useVisibilityChange from 'hooks/useVisibilityChange'
-import { addMinutes, isAfter } from 'date-fns'
+import { addMinutes } from 'date-fns'
 
 interface IProps {
   url: string
   run: boolean
+  reset?: boolean
 }
 
-const useFetch = ({ url, run }: IProps): IQuery<any> => {
+const initialState = {
+  loading: false,
+  error: null,
+  response: null,
+  expires: null,
+}
+
+const useFetch = ({ url, run, reset }: IProps): IQuery<any> => {
   const [count, setCount] = useState<number>(1)
 
   const onVisibilityChange = useCallback(() => {
@@ -22,20 +30,10 @@ const useFetch = ({ url, run }: IProps): IQuery<any> => {
 
   useVisibilityChange(onVisibilityChange)
 
-  const [result, setResult] = useState<IQuery<any>>({
-    loading: false,
-    error: null,
-    response: null,
-    expires: null,
-  })
-
-  const hasExpired = useMemo(
-    () => (result.expires ? isAfter(new Date(), result.expires) : true),
-    [result.expires]
-  )
+  const [result, setResult] = useState<IQuery<any>>({ ...initialState })
 
   const loadData = useCallback(async () => {
-    if (url && count && run && hasExpired) {
+    if (url && count && run) {
       setResult((prev: any) => ({ ...prev, loading: true, error: null }))
 
       try {
@@ -58,11 +56,17 @@ const useFetch = ({ url, run }: IProps): IQuery<any> => {
         })
       }
     }
-  }, [url, count, run, hasExpired])
+  }, [url, count, run])
 
   useEffect(() => {
     loadData()
   }, [loadData])
+
+  useEffect(() => {
+    if (reset) {
+      setResult({ ...initialState })
+    }
+  }, [reset])
 
   return result
 }

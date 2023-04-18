@@ -4,5 +4,8 @@
 # build
 /build
 
+# settings
+.env.local
+
 # misc
 .DS_Store

@@ -9,4 +9,5 @@ export interface IQuery<IResponse> {
   loading: boolean
   error: any
   expires: Date | null
+  searchHandler?: any
 }

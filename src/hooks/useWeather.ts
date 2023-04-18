@@ -1,9 +1,10 @@
-import { useMemo } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { format } from 'utils/date'
 import { IQuery } from 'utils/types'
 import useGeoPosition from 'hooks/useGeoPosition'
 import useAddress from 'hooks/useAddress'
 import useForecast from 'hooks/useForecast'
+import useSearchHandler from 'hooks/useSearchHandler'
 
 interface IWeather {
   address: any
@@ -11,17 +12,33 @@ interface IWeather {
 }
 
 const useWeather = (): IQuery<IWeather> => {
+  const [position, setPosition] = useState<any>({
+    latitude: null,
+    longitude: null,
+  })
+
+  const searchHandler = useSearchHandler(setPosition)
+
   const geoPosition = useGeoPosition()
 
   const address = useAddress({
-    latitude: geoPosition?.latitude,
-    longitude: geoPosition?.longitude,
+    latitude: position?.latitude,
+    longitude: position?.longitude,
   })
 
   const forecast = useForecast({
-    latitude: geoPosition?.latitude?.toFixed(4),
-    longitude: geoPosition?.longitude?.toFixed(4),
+    latitude: position?.latitude?.toFixed(4),
+    longitude: position?.longitude?.toFixed(4),
   })
+
+  useEffect(() => {
+    if (geoPosition?.latitude && geoPosition?.longitude) {
+      setPosition({
+        latitude: geoPosition.latitude,
+        longitude: geoPosition.longitude,
+      })
+    }
+  }, [geoPosition])
 
   return useMemo(() => {
     let result: IQuery<IWeather> = {
@@ -29,6 +46,7 @@ const useWeather = (): IQuery<IWeather> => {
       error: geoPosition.error || address.error || forecast.error,
       response: { address: null, days: null },
       expires: null,
+      searchHandler,
     }
 
     if (result.response) {
@@ -55,7 +73,7 @@ const useWeather = (): IQuery<IWeather> => {
     }
 
     return result
-  }, [geoPosition, address, forecast])
+  }, [geoPosition, address, forecast, searchHandler])
 }
 
 export default useWeather
