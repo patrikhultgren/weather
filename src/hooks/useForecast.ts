@@ -1,8 +1,7 @@
-import { useEffect, useCallback, useState } from 'react'
+import { useMemo } from 'react'
 import { IQuery } from 'utils/types'
-import request from 'utils/request'
 import { FORECAST_API_URL } from 'config'
-import useVisibilityChange from 'hooks/useVisibilityChange'
+import useFetch from 'hooks/useFetch'
 
 interface IProps {
   latitude?: string
@@ -10,53 +9,17 @@ interface IProps {
 }
 
 const useForecast = ({ latitude, longitude }: IProps): IQuery<any> => {
-  const [count, setCount] = useState<number>(1)
+  const run = useMemo(
+    () => Boolean(latitude && longitude),
+    [latitude, longitude]
+  )
 
-  const onVisibilityChange = useCallback(() => {
-    const state = document.visibilityState
+  const url = useMemo(
+    () => `${FORECAST_API_URL}?lat=${latitude}&lon=${longitude}`,
+    [latitude, longitude]
+  )
 
-    if (state === 'visible') {
-      setCount((prev) => prev + 1)
-    }
-  }, [])
-
-  useVisibilityChange(onVisibilityChange)
-
-  const [result, setResult] = useState<IQuery<any>>({
-    loading: false,
-    error: null,
-    response: null,
-  })
-
-  const loadData = useCallback(async () => {
-    if (latitude && longitude && count) {
-      setResult((prev: any) => ({ ...prev, loading: true, error: null }))
-
-      try {
-        const response = await request({
-          endpoint: `${FORECAST_API_URL}?lat=${latitude}&lon=${longitude}`,
-        })
-
-        setResult({
-          response,
-          loading: false,
-          error: null,
-        })
-      } catch (error) {
-        setResult({
-          response: null,
-          loading: false,
-          error,
-        })
-      }
-    }
-  }, [latitude, longitude, count])
-
-  useEffect(() => {
-    loadData()
-  }, [loadData])
-
-  return result
+  return useFetch({ url, run })
 }
 
 export default useForecast
