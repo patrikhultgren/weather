@@ -58,7 +58,7 @@ const useFetch = ({ url, run }: IProps): IQuery<any> => {
         })
       }
     }
-  }, [count, run, hasExpired])
+  }, [url, count, run, hasExpired])
 
   useEffect(() => {
     loadData()
