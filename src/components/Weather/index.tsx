@@ -11,8 +11,8 @@ export default function Weather() {
 
   return (
     <>
-      {!weather.searchHandler.active && <Header weather={weather} />}
       <Loading loading={weather.loading} error={weather.error} />
+      {!weather.searchHandler.active && <Header weather={weather} />}
       {!weather.searchHandler.active && <Forecast weather={weather} />}
       {!weather.searchHandler.active && <Credit />}
       <SearchBar searchHandler={weather.searchHandler} />
