@@ -7,23 +7,32 @@ const useSearchHandler = (setPosition: any): any => {
   const [reset, setReset] = useState<boolean>(false)
   const [searchTerm, setSearchTerm] = useState<string>('')
 
+  const resetSearch = useCallback(() => {
+    setSearchTerm('')
+    setReset(true)
+    setRun(false)
+  }, [])
+
   const onSelectSearchResult = useCallback(
     (searchResult: any) => {
       setPosition({
         latitude: parseFloat(searchResult.lat),
         longitude: parseFloat(searchResult.lon),
       })
-      setSearchTerm('')
-      setReset(true)
-      setRun(false)
+      resetSearch()
     },
-    [setPosition]
+    [setPosition, resetSearch]
   )
 
-  const onSubmitSearch = useCallback((event: any) => {
-    event.preventDefault()
-    setRun(true)
-  }, [])
+  const onSubmitSearch = useCallback(
+    (event: any) => {
+      event.preventDefault()
+      if (searchTerm) {
+        setRun(true)
+      }
+    },
+    [searchTerm]
+  )
 
   const onChangeSearchTerm = useCallback((event: any) => {
     setSearchTerm(event.target.value)
@@ -45,6 +54,7 @@ const useSearchHandler = (setPosition: any): any => {
       onSubmitSearch,
       onChangeSearchTerm,
       onSelectSearchResult,
+      resetSearch,
     }),
     [
       searchResults,
@@ -52,6 +62,7 @@ const useSearchHandler = (setPosition: any): any => {
       onSubmitSearch,
       onChangeSearchTerm,
       onSelectSearchResult,
+      resetSearch,
     ]
   )
 }
