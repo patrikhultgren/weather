@@ -42,7 +42,7 @@ export default function SearchBar({ searchHandler }: IProps) {
             <input
               type="text"
               placeholder="Sök efter en plats"
-              className="block px-4 w-full h-10"
+              className="block px-4 w-full h-14"
               value={searchHandler.searchTerm}
               onChange={searchHandler.onChangeSearchTerm}
             />
