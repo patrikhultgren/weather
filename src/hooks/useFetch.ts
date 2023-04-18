@@ -1,7 +1,8 @@
-import { useEffect, useCallback, useState } from 'react'
+import { useEffect, useCallback, useMemo, useState } from 'react'
 import { IQuery } from 'utils/types'
 import request from 'utils/request'
 import useVisibilityChange from 'hooks/useVisibilityChange'
+import { addMinutes, isAfter } from 'date-fns'
 
 interface IProps {
   url: string
@@ -25,10 +26,16 @@ const useFetch = ({ url, run }: IProps): IQuery<any> => {
     loading: false,
     error: null,
     response: null,
+    expires: null,
   })
 
+  const hasExpired = useMemo(
+    () => (result.expires ? isAfter(new Date(), result.expires) : true),
+    [result.expires]
+  )
+
   const loadData = useCallback(async () => {
-    if (url && count && run) {
+    if (url && count && run && hasExpired) {
       setResult((prev: any) => ({ ...prev, loading: true, error: null }))
 
       try {
@@ -40,16 +47,18 @@ const useFetch = ({ url, run }: IProps): IQuery<any> => {
           response,
           loading: false,
           error: null,
+          expires: addMinutes(new Date(), 15),
         })
       } catch (error) {
         setResult({
           response: null,
           loading: false,
           error,
+          expires: null,
         })
       }
     }
-  }, [count, run])
+  }, [count, run, hasExpired])
 
   useEffect(() => {
     loadData()
