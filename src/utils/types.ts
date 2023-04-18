@@ -8,6 +8,5 @@ export interface IQuery<IResponse> {
   response: IResponse | null
   loading: boolean
   error: any
-  expires: Date | null
   searchHandler?: any
 }

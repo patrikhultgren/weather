@@ -2,7 +2,6 @@ import { useEffect, useCallback, useState } from 'react'
 import { IQuery } from 'utils/types'
 import request from 'utils/request'
 import useVisibilityChange from 'hooks/useVisibilityChange'
-import { addMinutes } from 'date-fns'
 
 interface IProps {
   url: string
@@ -15,7 +14,6 @@ const initialState = {
   loading: false,
   error: null,
   response: null,
-  expires: null,
 }
 
 const useFetch = ({
@@ -51,14 +49,12 @@ const useFetch = ({
           response: transformResponse ? transformResponse(response) : response,
           loading: false,
           error: null,
-          expires: addMinutes(new Date(), 15),
         })
       } catch (error) {
         setResult({
           response: null,
           loading: false,
           error,
-          expires: null,
         })
       }
     }

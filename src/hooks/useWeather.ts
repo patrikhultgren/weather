@@ -45,7 +45,6 @@ const useWeather = (): IQuery<IWeather> => {
       loading: geoPosition.loading || address.loading || forecast.loading,
       error: geoPosition.error || address.error || forecast.error,
       response: { address: null, days: null },
-      expires: null,
       searchHandler,
     }
 

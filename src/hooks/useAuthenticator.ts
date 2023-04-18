@@ -15,7 +15,7 @@ const useAuthenticator = (): any => {
     (event: FormEvent) => {
       event.preventDefault()
 
-      if (code === 'beta') {
+      if (code.toLowerCase() === 'beta') {
         setIsLoggedIn(true)
         localStorage.setItem(IS_LOGGED_IN_STORAGE_KEY, 'true')
       }
