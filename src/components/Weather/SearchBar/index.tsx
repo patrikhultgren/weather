@@ -15,7 +15,7 @@ export default function SearchBar({ searchHandler }: IProps) {
         <div className="fixed bottom-0 left-0 bg-slate-600 w-full z-10">
           <button
             type="button"
-            className="mx-auto z-10 bg-slate-600 hover:bg-slate-700 text-white h-12 w-12 border-x border-slate-300 flex items-center justify-center"
+            className="mx-auto z-10 bg-slate-600 hover:bg-slate-700 text-white h-16 w-16 border-x flex items-center justify-center"
             onClick={() => searchHandler.setActive(true)}
           >
             <Search />

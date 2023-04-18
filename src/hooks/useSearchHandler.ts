@@ -1,4 +1,4 @@
-import { useMemo, useCallback, useState } from 'react'
+import { useMemo, useCallback, useEffect, useState } from 'react'
 import { SEARCH_API_KEY, SEARCH_API_URL } from 'config'
 import useFetch from 'hooks/useFetch'
 
@@ -52,6 +52,14 @@ const useSearchHandler = (setPosition: any): any => {
   )
 
   const searchResults = useFetch({ url, run, reset, transformResponse })
+
+  useEffect(() => {
+    document.body.style.overflow = active ? 'hidden' : 'auto'
+
+    return () => {
+      document.body.style.overflow = 'auto'
+    }
+  }, [active])
 
   return useMemo(
     () => ({
