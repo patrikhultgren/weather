@@ -62,7 +62,7 @@ const useFetch = ({
         })
       }
     }
-  }, [url, count, run])
+  }, [url, count, run, transformResponse])
 
   useEffect(() => {
     loadData()
