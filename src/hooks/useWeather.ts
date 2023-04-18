@@ -9,15 +9,18 @@ import useSearchHandler from 'hooks/useSearchHandler'
 interface IWeather {
   address: any
   days: Array<any> | null
+  city: string | null
 }
 
 const useWeather = (): IQuery<IWeather> => {
+  const [city, setCity] = useState<string | null>(null)
+
   const [position, setPosition] = useState<any>({
     latitude: null,
     longitude: null,
   })
 
-  const searchHandler = useSearchHandler(setPosition)
+  const searchHandler = useSearchHandler(setPosition, setCity)
 
   const geoPosition = useGeoPosition()
 
@@ -40,11 +43,19 @@ const useWeather = (): IQuery<IWeather> => {
     }
   }, [geoPosition?.latitude, geoPosition?.longitude])
 
+  const addressCity = address.response?.city
+
+  useEffect(() => {
+    if (addressCity) {
+      setCity(addressCity)
+    }
+  }, [addressCity])
+
   return useMemo(() => {
     let result: IQuery<IWeather> = {
       loading: geoPosition.loading || address.loading || forecast.loading,
       error: geoPosition.error || address.error || forecast.error,
-      response: { address: null, days: null },
+      response: { address: null, days: null, city },
       searchHandler,
     }
 
@@ -72,7 +83,7 @@ const useWeather = (): IQuery<IWeather> => {
     }
 
     return result
-  }, [geoPosition, address, forecast, searchHandler])
+  }, [geoPosition, address, city, forecast, searchHandler])
 }
 
 export default useWeather

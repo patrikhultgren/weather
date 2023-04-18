@@ -4,7 +4,7 @@ import useFetch from 'hooks/useFetch'
 
 const transformResponse = (response: any) => response.slice().reverse()
 
-const useSearchHandler = (setPosition: any): any => {
+const useSearchHandler = (setPosition: any, setCity: any): any => {
   const [run, setRun] = useState<boolean>(false)
   const [reset, setReset] = useState<boolean>(false)
   const [searchTerm, setSearchTerm] = useState<string>('')
@@ -33,9 +33,10 @@ const useSearchHandler = (setPosition: any): any => {
         latitude: parseFloat(searchResult.lat),
         longitude: parseFloat(searchResult.lon),
       })
+      setCity(searchResult.display_name)
       closeSearch()
     },
-    [setPosition, closeSearch]
+    [setPosition, setCity, closeSearch]
   )
 
   const onSubmitSearch = useCallback(

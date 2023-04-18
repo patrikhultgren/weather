@@ -6,7 +6,7 @@ interface IProps {
 }
 
 export default function Header({ weather, className }: IProps) {
-  const { address } = weather.response
+  const { city } = weather.response
 
   return (
     <header
@@ -24,7 +24,7 @@ export default function Header({ weather, className }: IProps) {
         className
       )}
     >
-      <h1>Vädret i {address ? address.city : '...'}</h1>
+      <h1 className="truncate">Vädret i {city ? city : '...'}</h1>
     </header>
   )
 }
