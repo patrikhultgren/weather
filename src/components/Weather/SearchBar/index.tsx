@@ -37,6 +37,7 @@ export default function SearchBar({ searchHandler }: IProps) {
             type="text"
             placeholder="Sök efter en plats"
             className="block px-4 py-3 w-full"
+            autoFocus
             value={searchHandler.searchTerm}
             onChange={searchHandler.onChangeSearchTerm}
             onBlur={searchHandler.onSubmitSearch}
