@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { useEffect, useMemo } from 'react'
 import { IQuery } from 'utils/types'
 import { ADDRESS_API_URL } from 'config'
 import useFetch from 'hooks/useFetch'
@@ -6,9 +6,16 @@ import useFetch from 'hooks/useFetch'
 interface IProps {
   latitude?: number
   longitude?: number
+  position: any
+  setPosition: any
 }
 
-const useAddress = ({ latitude, longitude }: IProps): IQuery<any> => {
+const useAddress = ({
+  latitude,
+  longitude,
+  position,
+  setPosition,
+}: IProps): IQuery<any> => {
   const run = useMemo(
     () => Boolean(latitude && longitude),
     [latitude, longitude]
@@ -20,7 +27,17 @@ const useAddress = ({ latitude, longitude }: IProps): IQuery<any> => {
     [latitude, longitude]
   )
 
-  return useFetch({ url, run })
+  const address = useFetch({ url, run })
+
+  const city = address.response?.city
+
+  useEffect(() => {
+    if (city && !position.city) {
+      setPosition((prev: any) => ({ ...prev, city }))
+    }
+  }, [city, position.city])
+
+  return address
 }
 
 export default useAddress

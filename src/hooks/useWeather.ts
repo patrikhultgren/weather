@@ -26,20 +26,14 @@ const useWeather = (): IQuery<IWeather> => {
   const address = useAddress({
     latitude: position?.latitude,
     longitude: position?.longitude,
+    setPosition,
+    position,
   })
 
   const forecast = useForecast({
     latitude: position?.latitude?.toFixed(4),
     longitude: position?.longitude?.toFixed(4),
   })
-
-  const city = address.response?.city
-
-  useEffect(() => {
-    if (city && !position.city) {
-      setPosition((prev: any) => ({ ...prev, city }))
-    }
-  }, [city, position.city])
 
   return useMemo(() => {
     let result: IQuery<IWeather> = {
