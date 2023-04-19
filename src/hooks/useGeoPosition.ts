@@ -71,6 +71,7 @@ const useGeoPosition = (setPosition: any): IPosition => {
     if (!navigator.geolocation) {
       setGeoPosition((prev) => ({
         ...prev,
+        loading: false,
         error: new Error(
           'Hämtning av latitud och longitud stödjs inte i denna webbläsare.'
         ),
