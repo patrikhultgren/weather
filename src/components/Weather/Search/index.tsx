@@ -3,8 +3,6 @@ import SearchIcon from 'components/Icon/Search'
 import Close from 'components/Icon/Close'
 import useIsFullscreen from 'hooks/useIsFullscreen'
 
-const SEARCH_RESULT_HEIGHT = 48
-
 interface IProps {
   searchHandler: any
 }
@@ -12,37 +10,9 @@ interface IProps {
 export default function Search({ searchHandler }: IProps) {
   const isFullscreen = useIsFullscreen()
 
-  const numberOfItemsToShow = Math.floor(
-    (window.innerHeight - 150) / SEARCH_RESULT_HEIGHT
-  )
-
   return searchHandler.active ? (
-    <div
-      className={classNames(
-        'z-20 w-full px-4 flex flex-col justify-end absolute top-0 left-0 h-[100vh] md:left-1/2 md:max-w-[700px] md:transform md:-translate-x-1/2',
-        isFullscreen ? 'pb-10' : 'pb-4'
-      )}
-    >
-      {searchHandler.searchResults.response && (
-        <ul
-          className="overflow-auto mb-4"
-          style={{
-            maxHeight: `${numberOfItemsToShow * SEARCH_RESULT_HEIGHT}px`,
-          }}
-        >
-          {searchHandler.searchResults.response.map((searchResult: any) => (
-            <li
-              role="button"
-              className="px-4 even:bg-white odd:bg-slate-200 hover:bg-slate-700 hover:text-white py-3 truncate"
-              key={searchResult.place_id}
-              onClick={() => searchHandler.onSelectSearchResult(searchResult)}
-            >
-              {searchResult.display_name}
-            </li>
-          ))}
-        </ul>
-      )}
-      <div className="flex">
+    <div className="px-4">
+      <div className="flex mt-4">
         <form onSubmit={searchHandler.onSubmitSearch} className="flex w-full">
           <input
             type="text"
@@ -79,6 +49,20 @@ export default function Search({ searchHandler }: IProps) {
           <Close title="Stäng sök" />
         </button>
       </div>
+      {searchHandler.searchResults.response && (
+        <ul className="overflow-auto mt-4">
+          {searchHandler.searchResults.response.map((searchResult: any) => (
+            <li
+              role="button"
+              className="px-4 odd:bg-white even:bg-slate-200 hover:bg-slate-700 hover:text-white py-3 truncate"
+              key={searchResult.place_id}
+              onClick={() => searchHandler.onSelectSearchResult(searchResult)}
+            >
+              {searchResult.display_name}
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   ) : (
     <div className="fixed bottom-0 left-0 bg-gray-300 w-full z-10">
