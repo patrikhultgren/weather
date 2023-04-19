@@ -9,7 +9,7 @@ interface IProps {
 }
 
 export default function Forecast({ weather, className }: IProps) {
-  const { days } = weather.response
+  const { days } = weather
 
   return (
     <Container className={classNames('mb-10', className)}>

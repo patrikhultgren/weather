@@ -6,7 +6,7 @@ interface IProps {
 }
 
 export default function Header({ weather, className }: IProps) {
-  const { city } = weather.response
+  const { city } = weather
 
   return (
     <header

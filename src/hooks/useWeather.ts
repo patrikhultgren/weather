@@ -7,11 +7,14 @@ import useForecast from 'hooks/useForecast'
 import useSearchHandler from 'hooks/useSearchHandler'
 
 interface IWeather {
-  days: Array<any> | null
   city: string | null
+  days: Array<any> | null
+  loading: boolean
+  error: any
+  searchHandler: any
 }
 
-const useWeather = (): IQuery<IWeather> => {
+const useWeather = (): IWeather => {
   const [position, setPosition] = useState<any>({
     latitude: null,
     longitude: null,
@@ -35,30 +38,29 @@ const useWeather = (): IQuery<IWeather> => {
   })
 
   return useMemo(() => {
-    let result: IQuery<IWeather> = {
+    let result: IWeather = {
+      city: position.city,
+      days: null,
       loading: geoPosition.loading || address.loading || forecast.loading,
       error: geoPosition.error || address.error || forecast.error,
-      response: { days: null, city: position.city },
       searchHandler,
     }
 
-    if (result.response) {
-      if (forecast.response) {
-        const groupDaysByMonth = forecast.response.properties.timeseries.reduce(
-          (acc: any, timeSerie: any) => {
-            const key = format(timeSerie.time, 'yyyy-MM-dd')
-            return {
-              ...acc,
-              [key]: acc[key] ? [...acc[key], timeSerie] : [timeSerie],
-            }
-          },
-          {}
-        )
+    if (forecast.response) {
+      const groupDaysByMonth = forecast.response.properties.timeseries.reduce(
+        (acc: any, timeSerie: any) => {
+          const key = format(timeSerie.time, 'yyyy-MM-dd')
+          return {
+            ...acc,
+            [key]: acc[key] ? [...acc[key], timeSerie] : [timeSerie],
+          }
+        },
+        {}
+      )
 
-        result.response.days = Object.keys(groupDaysByMonth).map(
-          (key) => groupDaysByMonth[key]
-        )
-      }
+      result.days = Object.keys(groupDaysByMonth).map(
+        (key) => groupDaysByMonth[key]
+      )
     }
 
     return result
