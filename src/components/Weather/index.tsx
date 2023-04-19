@@ -4,7 +4,7 @@ import useWeather from 'hooks/useWeather'
 import Header from './Header'
 import Forecast from './Forecast'
 import Credit from './Credit'
-import SearchBar from './SearchBar'
+import Search from './Search'
 
 export default function Weather() {
   const weather = useWeather()
@@ -15,7 +15,7 @@ export default function Weather() {
       {!weather.searchHandler.active && <Header weather={weather} />}
       {!weather.searchHandler.active && <Forecast weather={weather} />}
       {!weather.searchHandler.active && <Credit />}
-      <SearchBar searchHandler={weather.searchHandler} />
+      <Search searchHandler={weather.searchHandler} />
     </>
   )
 }
