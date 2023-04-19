@@ -3,12 +3,17 @@ import SearchIcon from 'components/Icon/Search'
 import Close from 'components/Icon/Close'
 import useIsFullscreen from 'hooks/useIsFullscreen'
 
+const SEARCH_RESULT_HEIGHT = 48
+
 interface IProps {
   searchHandler: any
 }
 
 export default function Search({ searchHandler }: IProps) {
   const isFullscreen = useIsFullscreen()
+
+  const numberOfItemsToShow =
+    Math.floor(window.innerHeight - 150) / SEARCH_RESULT_HEIGHT
 
   return searchHandler.active ? (
     <div
@@ -19,10 +24,10 @@ export default function Search({ searchHandler }: IProps) {
     >
       {searchHandler.searchResults.response && (
         <ul
-          className={`overflow-auto mb-4 max-h-[calc(3rem*${Math.min(
-            searchHandler.searchResults.response.length,
-            7
-          )})]`}
+          className="overflow-auto mb-4"
+          style={{
+            maxHeight: `${numberOfItemsToShow * SEARCH_RESULT_HEIGHT}px`,
+          }}
         >
           {searchHandler.searchResults.response.map((searchResult: any) => (
             <li
