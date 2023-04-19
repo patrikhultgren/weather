@@ -26,12 +26,12 @@ const useAddress = ({ position, setPositions }: IProps): IQuery<any> => {
   const city = address.response?.city
 
   useEffect(() => {
-    if (city && position.latitude && position.longitude) {
+    if (run && city && position.latitude && position.longitude) {
       setPositions((positions: Array<any>) =>
         addPosition(positions, position.latitude, position.longitude, city)
       )
     }
-  }, [city, position, setPositions])
+  }, [run, city, position, setPositions])
 
   return address
 }

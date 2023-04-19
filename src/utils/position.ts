@@ -1,4 +1,5 @@
 import { GEO_POSITION_STORAGE_KEY } from 'config'
+import isEqual from 'lodash/isEqual'
 
 export const getPositions = () => {
   let result = []
@@ -33,6 +34,10 @@ export const addPosition = (
     longitude,
     city,
   })
+
+  if (isEqual(positions, result)) {
+    return positions
+  }
 
   return result
 }

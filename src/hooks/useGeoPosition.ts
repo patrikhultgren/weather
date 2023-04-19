@@ -2,15 +2,11 @@ import { useCallback, useState, useEffect } from 'react'
 import { addPosition, getPositions } from 'utils/position'
 
 const initialState = {
-  latitude: null,
-  longitude: null,
   error: null,
   loading: false,
 }
 
 interface IGeoPosition {
-  latitude: number | null
-  longitude: number | null
   error: any
   loading: boolean
 }
@@ -24,13 +20,18 @@ const useGeoPosition = (setPositions: any): IGeoPosition => {
     loading: run,
   })
 
-  const onChange = useCallback(({ coords }: any) => {
-    setGeoPosition({
-      ...initialState,
-      latitude: coords.latitude,
-      longitude: coords.longitude,
-    })
-  }, [])
+  const onChange = useCallback(
+    ({ coords }: any) => {
+      setGeoPosition({
+        ...initialState,
+      })
+
+      setPositions((prev: Array<any>) =>
+        addPosition(prev, coords.latitude, coords.longitude, '')
+      )
+    },
+    [setPositions]
+  )
 
   const onError = useCallback(
     (error: any) => {
@@ -48,19 +49,6 @@ const useGeoPosition = (setPositions: any): IGeoPosition => {
 
     return () => navigator.geolocation.clearWatch(watcher)
   }, [run, onError, onChange])
-
-  useEffect(() => {
-    if (geoPosition.latitude && geoPosition.longitude) {
-      setPositions((prev: Array<any>) =>
-        addPosition(
-          prev,
-          geoPosition.latitude || 0,
-          geoPosition.longitude || 0,
-          ''
-        )
-      )
-    }
-  }, [geoPosition.latitude, geoPosition.longitude, setPositions])
 
   return geoPosition
 }
