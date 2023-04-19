@@ -43,7 +43,7 @@ const useWeather = (): IWeather => {
   })
 
   return useMemo(() => {
-    let result: IWeather = {
+    let weather: IWeather = {
       city: position.city,
       days: null,
       geoPosition,
@@ -67,14 +67,14 @@ const useWeather = (): IWeather => {
         {}
       )
 
-      result.days = Object.keys(groupDaysByMonth).map(
+      weather.days = Object.keys(groupDaysByMonth).map(
         (key) => groupDaysByMonth[key]
       )
 
-      result.status.type = 'spinner'
+      weather.status.type = 'spinner'
     }
 
-    return result
+    return weather
   }, [geoPosition, address, position.city, forecast, searchHandler])
 }
 
