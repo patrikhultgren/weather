@@ -13,14 +13,13 @@ interface IWeather {
 }
 
 const useWeather = (): IQuery<IWeather> => {
-  const [city, setCity] = useState<string | null>(null)
-
   const [position, setPosition] = useState<any>({
     latitude: null,
     longitude: null,
+    city: null,
   })
 
-  const searchHandler = useSearchHandler(setPosition, setCity)
+  const searchHandler = useSearchHandler(setPosition)
 
   const geoPosition = useGeoPosition()
 
@@ -39,23 +38,24 @@ const useWeather = (): IQuery<IWeather> => {
       setPosition({
         latitude: geoPosition.latitude,
         longitude: geoPosition.longitude,
+        city: null,
       })
     }
   }, [geoPosition?.latitude, geoPosition?.longitude])
 
-  const addressCity = address.response?.city
+  const city = address.response?.city
 
   useEffect(() => {
-    if (addressCity) {
-      setCity(addressCity)
+    if (city && !position.city) {
+      setPosition((prev: any) => ({ ...prev, city }))
     }
-  }, [addressCity])
+  }, [city, position.city])
 
   return useMemo(() => {
     let result: IQuery<IWeather> = {
       loading: geoPosition.loading || address.loading || forecast.loading,
       error: geoPosition.error || address.error || forecast.error,
-      response: { address: null, days: null, city },
+      response: { address: null, days: null, city: position.city },
       searchHandler,
     }
 
@@ -83,7 +83,7 @@ const useWeather = (): IQuery<IWeather> => {
     }
 
     return result
-  }, [geoPosition, address, city, forecast, searchHandler])
+  }, [geoPosition, address, position.city, forecast, searchHandler])
 }
 
 export default useWeather
