@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 import { format } from 'utils/date'
 import { IQuery } from 'utils/types'
 import useGeoPosition from 'hooks/useGeoPosition'
@@ -7,7 +7,6 @@ import useForecast from 'hooks/useForecast'
 import useSearchHandler from 'hooks/useSearchHandler'
 
 interface IWeather {
-  address: any
   days: Array<any> | null
   city: string | null
 }
@@ -39,15 +38,11 @@ const useWeather = (): IQuery<IWeather> => {
     let result: IQuery<IWeather> = {
       loading: geoPosition.loading || address.loading || forecast.loading,
       error: geoPosition.error || address.error || forecast.error,
-      response: { address: null, days: null, city: position.city },
+      response: { days: null, city: position.city },
       searchHandler,
     }
 
     if (result.response) {
-      if (address.response) {
-        result.response.address = address.response
-      }
-
       if (forecast.response) {
         const groupDaysByMonth = forecast.response.properties.timeseries.reduce(
           (acc: any, timeSerie: any) => {
