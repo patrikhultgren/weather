@@ -1,8 +1,9 @@
 import { useMemo, useCallback, useEffect, useState } from 'react'
 import { SEARCH_API_KEY, SEARCH_API_URL } from 'config'
 import useFetch from 'hooks/useFetch'
+import { addPosition } from 'utils/position'
 
-const useSearchHandler = (setPosition: any): any => {
+const useSearchHandler = (setPositions: any): any => {
   const [run, setRun] = useState<boolean>(false)
   const [reset, setReset] = useState<boolean>(false)
   const [searchTerm, setSearchTerm] = useState<string>('')
@@ -31,15 +32,11 @@ const useSearchHandler = (setPosition: any): any => {
       const longitude = parseFloat(searchResult.lon)
       const city = searchResult.display_name
 
-      setPosition({
-        latitude,
-        longitude,
-        city,
-      })
+      setPositions((prev: any) => addPosition(prev, latitude, longitude, city))
 
       closeSearch()
     },
-    [setPosition, closeSearch]
+    [setPositions, closeSearch]
   )
 
   const onSubmitSearch = useCallback(

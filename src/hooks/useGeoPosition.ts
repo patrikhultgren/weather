@@ -1,10 +1,9 @@
 import { useCallback, useState, useEffect } from 'react'
-import { GEO_POSITION_STORAGE_KEY } from 'config'
+import { addPosition, getPositions } from 'utils/position'
 
 const initialState = {
   latitude: null,
   longitude: null,
-  city: null,
   error: null,
   loading: false,
 }
@@ -12,15 +11,17 @@ const initialState = {
 interface IGeoPosition {
   latitude: number | null
   longitude: number | null
-  city: string | null
   error: any
   loading: boolean
 }
 
-const useGeoPosition = (setPosition: any): IGeoPosition => {
+const useGeoPosition = (setPositions: any): IGeoPosition => {
+  const positions = getPositions()
+  const run = positions.length === 0
+
   const [geoPosition, setGeoPosition] = useState<IGeoPosition>({
     ...initialState,
-    loading: true,
+    loading: run,
   })
 
   const onChange = ({ coords }: any) => {
@@ -39,49 +40,27 @@ const useGeoPosition = (setPosition: any): IGeoPosition => {
   )
 
   useEffect(() => {
-    const data = localStorage.getItem(GEO_POSITION_STORAGE_KEY)
-
-    if (data) {
-      try {
-        const geoPosition = JSON.parse(data)[0]
-
-        setGeoPosition({
-          ...initialState,
-          ...geoPosition,
-        })
-      } catch {
-        setGeoPosition({
-          ...initialState,
-          error: new Error('Kunde ej läsa sparad position.'),
-        })
-      }
-
-      return
-    }
-
-    if (!navigator.geolocation) {
+    if (!run || !navigator.geolocation) {
       return
     }
 
     const watcher = navigator.geolocation.watchPosition(onChange, onError)
 
     return () => navigator.geolocation.clearWatch(watcher)
-  }, [onError])
+  }, [run, onError])
 
   useEffect(() => {
     if (geoPosition.latitude && geoPosition.longitude) {
-      setPosition({
-        latitude: geoPosition.latitude,
-        longitude: geoPosition.longitude,
-        city: geoPosition.city,
-      })
+      setPositions((positions: Array<any>) =>
+        addPosition(
+          positions,
+          geoPosition.latitude || 0,
+          geoPosition.longitude || 0,
+          ''
+        )
+      )
     }
-  }, [
-    geoPosition.latitude,
-    geoPosition.longitude,
-    geoPosition.city,
-    setPosition,
-  ])
+  }, [geoPosition.latitude, geoPosition.longitude, setPositions])
 
   return geoPosition
 }

@@ -1,12 +1,14 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { format } from 'utils/date'
 import useGeoPosition from 'hooks/useGeoPosition'
 import useAddress from 'hooks/useAddress'
 import useForecast from 'hooks/useForecast'
 import useSearchHandler from 'hooks/useSearchHandler'
-import usePersistPosition from 'hooks/usePersistPosition'
+import usePersistPositions from 'hooks/usePersistPositions'
 import useIsFullscreen from 'hooks/useIsFullscreen'
 import useOnline from 'hooks/useOnline'
+import useFirstPosition from './useFirstPosition'
+import { getPositions } from 'utils/position'
 
 interface IStatus {
   online: boolean
@@ -27,30 +29,27 @@ interface IWeather {
 const useWeather = (): IWeather => {
   const online = useOnline()
   const isFullscreen = useIsFullscreen()
-
-  const [position, setPosition] = useState<any>({
-    latitude: null,
-    longitude: null,
-    city: null,
-  })
-
-  const searchHandler = useSearchHandler(setPosition)
-
-  const geoPosition = useGeoPosition(setPosition)
+  const [positions, setPositions] = useState<Array<any>>([])
+  const position = useFirstPosition(positions)
+  const searchHandler = useSearchHandler(setPositions)
+  const geoPosition = useGeoPosition(setPositions)
 
   const address = useAddress({
-    latitude: position?.latitude,
-    longitude: position?.longitude,
-    setPosition,
-    position,
+    latitude: position.latitude,
+    longitude: position.longitude,
+    setPositions,
   })
 
   const forecast = useForecast({
-    latitude: position?.latitude?.toFixed(4),
-    longitude: position?.longitude?.toFixed(4),
+    latitude: position.latitude?.toFixed(4),
+    longitude: position.longitude?.toFixed(4),
   })
 
-  usePersistPosition(position)
+  useEffect(() => {
+    setPositions(getPositions())
+  }, [])
+
+  usePersistPositions(positions)
 
   return useMemo(() => {
     let weather: IWeather = {
