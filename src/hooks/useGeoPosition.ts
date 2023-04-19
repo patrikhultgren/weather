@@ -9,7 +9,7 @@ const initialState = {
   loading: false,
 }
 
-interface IPosition {
+interface IGeoPosition {
   latitude: number | null
   longitude: number | null
   city: string | null
@@ -17,8 +17,8 @@ interface IPosition {
   loading: boolean
 }
 
-const useGeoPosition = (setPosition: any): IPosition => {
-  const [geoPosition, setGeoPosition] = useState<IPosition>({
+const useGeoPosition = (setPosition: any): IGeoPosition => {
+  const [geoPosition, setGeoPosition] = useState<IGeoPosition>({
     ...initialState,
     loading: true,
   })
@@ -84,19 +84,6 @@ const useGeoPosition = (setPosition: any): IPosition => {
     geoPosition.city,
     setPosition,
   ])
-
-  useEffect(() => {
-    if (geoPosition.latitude && geoPosition.longitude && geoPosition.city) {
-      localStorage.setItem(
-        GEO_POSITION_STORAGE_KEY,
-        JSON.stringify({
-          latitude: geoPosition.latitude,
-          longitude: geoPosition.longitude,
-          city: geoPosition.city,
-        })
-      )
-    }
-  }, [geoPosition.latitude, geoPosition.longitude, geoPosition.city])
 
   return geoPosition
 }

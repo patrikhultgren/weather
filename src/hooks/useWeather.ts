@@ -4,6 +4,7 @@ import useGeoPosition from 'hooks/useGeoPosition'
 import useAddress from 'hooks/useAddress'
 import useForecast from 'hooks/useForecast'
 import useSearchHandler from 'hooks/useSearchHandler'
+import usePersistPosition from 'hooks/usePersistPosition'
 
 interface IStatus {
   loading: boolean
@@ -41,6 +42,8 @@ const useWeather = (): IWeather => {
     latitude: position?.latitude?.toFixed(4),
     longitude: position?.longitude?.toFixed(4),
   })
+
+  usePersistPosition(position)
 
   return useMemo(() => {
     let weather: IWeather = {
