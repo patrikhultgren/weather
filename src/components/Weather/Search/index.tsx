@@ -13,7 +13,7 @@ export default function Search({ searchHandler }: IProps) {
   const isFullscreen = useIsFullscreen()
 
   const numberOfItemsToShow = Math.floor(
-    window.innerHeight - 150 / SEARCH_RESULT_HEIGHT
+    (window.innerHeight - 150) / SEARCH_RESULT_HEIGHT
   )
 
   return searchHandler.active ? (
