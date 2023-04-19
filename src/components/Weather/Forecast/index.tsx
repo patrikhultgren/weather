@@ -10,7 +10,10 @@ interface IProps {
 }
 
 export default function Forecast({ weather }: IProps) {
-  const { days } = weather
+  const {
+    days,
+    status: { online },
+  } = weather
 
   if (weather.geoPosition.error && !days) {
     return (
@@ -60,7 +63,51 @@ export default function Forecast({ weather }: IProps) {
         ))}
       </Container>
     )
+  } else if (!online) {
+    return (
+      <Container
+        className={classNames(
+          'min-h-[40vh]',
+          'flex',
+          'items-center',
+          'text-center',
+          className
+        )}
+      >
+        <div className="px-4 mt-6">
+          <p className="text-2xl font-bold">Tappat uppkopplingen?</p>
+          <p className="mt-4 text-xl">
+            Väderprognosen finns tyvärr inte sparad i offline läge.
+          </p>
+        </div>
+      </Container>
+    )
   }
 
-  return null
+  return (
+    <Container
+      className={classNames(
+        'min-h-[40vh]',
+        'flex',
+        'items-center',
+        'text-center',
+        className
+      )}
+    >
+      <div className="px-4 mt-6">
+        <p className="text-2xl font-bold">Se väderprognoser</p>
+        <p className="mt-4 text-xl">
+          Använd{' '}
+          <button
+            type="button"
+            className="underline py-2"
+            onClick={weather.searchHandler.openSearch}
+          >
+            sökfunktionen
+          </button>{' '}
+          .
+        </p>
+      </div>
+    </Container>
+  )
 }
