@@ -54,13 +54,13 @@ const useGeoPosition = (setPosition: any): IPosition => {
           })
         } catch {
           setGeoPosition({
-            error: 'Kunde ej läsa sparad position i offline läge.',
+            error: new Error('Kunde ej läsa sparad position i offline läge.'),
             loading: false,
           })
         }
       } else {
         setGeoPosition({
-          error: 'Kunde ej finna sparad position i offline läge.',
+          error: new Error('Kunde ej finna sparad position i offline läge.'),
           loading: false,
         })
       }
