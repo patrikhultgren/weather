@@ -5,10 +5,12 @@ import useAddress from 'hooks/useAddress'
 import useForecast from 'hooks/useForecast'
 import useSearchHandler from 'hooks/useSearchHandler'
 import usePersistPosition from 'hooks/usePersistPosition'
+import useIsFullscreen from 'hooks/useIsFullscreen'
 import useOnline from 'hooks/useOnline'
 
 interface IStatus {
   online: boolean
+  isFullscreen: boolean
   loading: boolean
   type: 'spinner' | 'placeholder'
 }
@@ -24,6 +26,7 @@ interface IWeather {
 
 const useWeather = (): IWeather => {
   const online = useOnline()
+  const isFullscreen = useIsFullscreen()
 
   const [position, setPosition] = useState<any>({
     latitude: null,
@@ -58,6 +61,7 @@ const useWeather = (): IWeather => {
       error: geoPosition.error || address.error || forecast.error,
       status: {
         online,
+        isFullscreen,
         loading: geoPosition.loading || address.loading || forecast.loading,
         type: 'placeholder',
       },
@@ -83,7 +87,15 @@ const useWeather = (): IWeather => {
     }
 
     return weather
-  }, [geoPosition, address, position.city, forecast, online, searchHandler])
+  }, [
+    geoPosition,
+    address,
+    position.city,
+    forecast,
+    online,
+    isFullscreen,
+    searchHandler,
+  ])
 }
 
 export default useWeather

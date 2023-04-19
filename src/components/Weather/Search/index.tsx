@@ -1,14 +1,16 @@
 import classNames from 'classnames'
 import SearchIcon from 'components/Icon/Search'
 import Close from 'components/Icon/Close'
-import useIsFullscreen from 'hooks/useIsFullscreen'
 
 interface IProps {
-  searchHandler: any
+  weather: any
 }
 
-export default function Search({ searchHandler }: IProps) {
-  const isFullscreen = useIsFullscreen()
+export default function Search({ weather }: IProps) {
+  const {
+    searchHandler,
+    status: { isFullscreen },
+  } = weather
 
   return searchHandler.active ? (
     <div className="px-4">
