@@ -33,7 +33,7 @@ const useGeoPosition = (setPosition: any): IPosition => {
 
   const onError = useCallback(
     (error: any) => {
-      setGeoPosition((prev) => ({ ...prev, error }))
+      setGeoPosition((prev) => ({ ...prev, loading: false, error }))
     },
     [setGeoPosition]
   )
