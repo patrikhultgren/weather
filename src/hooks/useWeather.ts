@@ -32,7 +32,8 @@ const useWeather = (): IWeather => {
   const [positions, setPositions] = useState<Array<any>>([])
   const position = useFirstPosition(positions)
   const searchHandler = useSearchHandler(setPositions)
-  const geoPosition = useGeoPosition(setPositions)
+  const [runGeoPosition, setRunGeoPosition] = useState<boolean>(false)
+  const geoPosition = useGeoPosition(setPositions, runGeoPosition)
 
   const address = useAddress({
     position,
@@ -45,7 +46,12 @@ const useWeather = (): IWeather => {
   })
 
   useEffect(() => {
-    setPositions(getPositions())
+    const positionsFromLocalStorage = getPositions()
+    setPositions(positionsFromLocalStorage)
+
+    if (!positionsFromLocalStorage.length) {
+      setRunGeoPosition(true)
+    }
   }, [])
 
   usePersistPositions(positions)
