@@ -1,6 +1,5 @@
 import { useMemo, useState } from 'react'
 import { format } from 'utils/date'
-import { IQuery } from 'utils/types'
 import useGeoPosition from 'hooks/useGeoPosition'
 import useAddress from 'hooks/useAddress'
 import useForecast from 'hooks/useForecast'
