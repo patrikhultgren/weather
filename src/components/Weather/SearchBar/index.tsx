@@ -18,7 +18,12 @@ export default function SearchBar({ searchHandler }: IProps) {
       )}
     >
       {searchHandler.searchResults.response && (
-        <ul className="overflow-auto mb-4 max-h-[75%]">
+        <ul
+          className={`overflow-auto mb-4 max-h-[calc(3rem*${Math.min(
+            searchHandler.searchResults.response.length,
+            7
+          )})]`}
+        >
           {searchHandler.searchResults.response.map((searchResult: any) => (
             <li
               role="button"
