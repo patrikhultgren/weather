@@ -43,13 +43,11 @@ const useGeoPosition = (setPosition: any): IGeoPosition => {
 
     if (data) {
       try {
-        const geoPosition = JSON.parse(data)
+        const geoPosition = JSON.parse(data)[0]
 
         setGeoPosition({
           ...initialState,
-          latitude: geoPosition.latitude,
-          longitude: geoPosition.longitude,
-          city: geoPosition.city,
+          ...geoPosition,
         })
       } catch {
         setGeoPosition({
