@@ -93,7 +93,7 @@ const useGeoPosition = (setPosition: any): IPosition => {
         city: null,
       })
     }
-  }, [geoPosition?.latitude, geoPosition?.longitude])
+  }, [geoPosition?.latitude, geoPosition?.longitude, setPosition])
 
   return geoPosition
 }

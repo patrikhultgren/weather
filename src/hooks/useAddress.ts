@@ -35,7 +35,7 @@ const useAddress = ({
     if (city && !position.city) {
       setPosition((prev: any) => ({ ...prev, city }))
     }
-  }, [city, position.city])
+  }, [city, position.city, setPosition])
 
   return address
 }
