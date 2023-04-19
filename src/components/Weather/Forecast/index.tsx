@@ -10,12 +10,9 @@ interface IProps {
 }
 
 export default function Forecast({ weather }: IProps) {
-  const {
-    days,
-    status: { online },
-  } = weather
+  const { days, status, geoPosition, searchHandler } = weather
 
-  if (weather.geoPosition.error && !days) {
+  if (geoPosition.error && !days) {
     return (
       <Container
         className={classNames(
@@ -35,7 +32,7 @@ export default function Forecast({ weather }: IProps) {
             <button
               type="button"
               className="underline py-2"
-              onClick={weather.searchHandler.openSearch}
+              onClick={searchHandler.openSearch}
             >
               sökfunktionen
             </button>{' '}
@@ -44,7 +41,7 @@ export default function Forecast({ weather }: IProps) {
         </div>
       </Container>
     )
-  } else if (weather.status.loading && weather.status.type === 'placeholder') {
+  } else if (status.loading && status.type === 'placeholder') {
     return (
       <Container className={className}>
         {[0, 1, 2, 4, 5, 6, 7, 8, 9].map((placeholderIndex: number) => (
@@ -63,7 +60,7 @@ export default function Forecast({ weather }: IProps) {
         ))}
       </Container>
     )
-  } else if (!online) {
+  } else if (!status.online) {
     return (
       <Container
         className={classNames(
@@ -101,7 +98,7 @@ export default function Forecast({ weather }: IProps) {
           <button
             type="button"
             className="underline py-2"
-            onClick={weather.searchHandler.openSearch}
+            onClick={searchHandler.openSearch}
           >
             sökfunktionen
           </button>{' '}
