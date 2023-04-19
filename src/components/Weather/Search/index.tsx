@@ -70,16 +70,14 @@ export default function Search({ searchHandler }: IProps) {
             <SearchIcon />
           </button>
         </form>
-        {searchHandler.active && (
-          <button
-            type="button"
-            data-ref="close-search"
-            className="text-black z-10 right-0 w-14 ml-2 text-xl bg-slate-100 py-2.5 flex items-center justify-center"
-            onClick={searchHandler.closeSearch}
-          >
-            <Close title="Stäng sök" />
-          </button>
-        )}
+        <button
+          type="button"
+          data-ref="close-search"
+          className="text-black z-10 right-0 w-14 ml-2 text-xl bg-slate-100 py-2.5 flex items-center justify-center"
+          onClick={searchHandler.closeSearch}
+        >
+          <Close title="Stäng sök" />
+        </button>
       </div>
     </div>
   ) : (
