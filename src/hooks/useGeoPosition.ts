@@ -10,7 +10,7 @@ interface IPosition {
 
 const useGeoPosition = (setPosition: any): IPosition => {
   const [geoPosition, setGeoPosition] = useState<IPosition>({
-    error: '',
+    error: null,
     loading: true,
   })
 
@@ -18,7 +18,7 @@ const useGeoPosition = (setPosition: any): IPosition => {
     setGeoPosition({
       latitude: coords.latitude,
       longitude: coords.longitude,
-      error: '',
+      error: null,
       loading: false,
     })
 
