@@ -83,11 +83,11 @@ export default function Search({ searchHandler }: IProps) {
       </div>
     </div>
   ) : (
-    <div className="fixed bottom-0 left-0 bg-slate-600 w-full z-10">
+    <div className="fixed bottom-0 left-0 bg-gray-300 w-full z-10">
       <button
         type="button"
         className={classNames(
-          'mx-auto z-10 bg-slate-500 hover:bg-slate-700 text-white h-12 w-12 flex items-center justify-center',
+          'mx-auto z-10 bg-gray-100 hover:bg-gray-200 text-black h-12 w-12 flex items-center justify-center',
           { 'mb-6': isFullscreen }
         )}
         onClick={searchHandler.openSearch}
