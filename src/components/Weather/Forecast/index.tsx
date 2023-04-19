@@ -71,7 +71,7 @@ export default function Forecast({ weather }: IProps) {
           className
         )}
       >
-        <div className="px-4 mt-6">
+        <div className="px-4 mt-6 w-full">
           <p className="text-2xl font-bold">Tappat uppkopplingen?</p>
           <p className="mt-4 text-xl">
             Väderprognosen finns tyvärr inte sparad i offline läge.
@@ -91,7 +91,7 @@ export default function Forecast({ weather }: IProps) {
         className
       )}
     >
-      <div className="px-4 mt-6">
+      <div className="px-4 mt-6 w-full">
         <p className="text-2xl font-bold">Se väderprognoser</p>
         <p className="mt-4 text-xl">
           Använd{' '}
@@ -101,7 +101,7 @@ export default function Forecast({ weather }: IProps) {
             onClick={searchHandler.openSearch}
           >
             sökfunktionen
-          </button>{' '}
+          </button>
           .
         </p>
       </div>

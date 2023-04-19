@@ -5,25 +5,20 @@ import useFetch from 'hooks/useFetch'
 import { addPosition } from 'utils/position'
 
 interface IProps {
-  latitude?: number
-  longitude?: number
+  position?: any
   setPositions: any
 }
 
-const useAddress = ({
-  latitude,
-  longitude,
-  setPositions,
-}: IProps): IQuery<any> => {
+const useAddress = ({ position, setPositions }: IProps): IQuery<any> => {
   const run = useMemo(
-    () => Boolean(latitude && longitude),
-    [latitude, longitude]
+    () => Boolean(position.latitude && position.longitude && !position.city),
+    [position]
   )
 
   const url = useMemo(
     () =>
-      `${ADDRESS_API_URL}?latitude=${latitude}&longitude=${longitude}&localityLanguage=sv`,
-    [latitude, longitude]
+      `${ADDRESS_API_URL}?latitude=${position.latitude}&longitude=${position.longitude}&localityLanguage=sv`,
+    [position.latitude, position.longitude]
   )
 
   const address = useFetch({ url, run })
@@ -31,10 +26,12 @@ const useAddress = ({
   const city = address.response?.city
 
   useEffect(() => {
-    if (city && latitude && longitude) {
-      setPositions((prev: any) => addPosition(prev, latitude, longitude, city))
+    if (city && position.latitude && position.longitude) {
+      setPositions((positions: Array<any>) =>
+        addPosition(positions, position.latitude, position.longitude, city)
+      )
     }
-  }, [city, latitude, longitude, setPositions])
+  }, [city, position, setPositions])
 
   return address
 }

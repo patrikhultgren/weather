@@ -24,13 +24,13 @@ const useGeoPosition = (setPositions: any): IGeoPosition => {
     loading: run,
   })
 
-  const onChange = ({ coords }: any) => {
+  const onChange = useCallback(({ coords }: any) => {
     setGeoPosition({
       ...initialState,
       latitude: coords.latitude,
       longitude: coords.longitude,
     })
-  }
+  }, [])
 
   const onError = useCallback(
     (error: any) => {
@@ -47,13 +47,13 @@ const useGeoPosition = (setPositions: any): IGeoPosition => {
     const watcher = navigator.geolocation.watchPosition(onChange, onError)
 
     return () => navigator.geolocation.clearWatch(watcher)
-  }, [run, onError])
+  }, [run, onError, onChange])
 
   useEffect(() => {
     if (geoPosition.latitude && geoPosition.longitude) {
-      setPositions((positions: Array<any>) =>
+      setPositions((prev: Array<any>) =>
         addPosition(
-          positions,
+          prev,
           geoPosition.latitude || 0,
           geoPosition.longitude || 0,
           ''
