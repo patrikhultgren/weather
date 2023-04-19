@@ -21,6 +21,16 @@ const Error = ({ error, className }: Props) => {
     setShow(true)
   }, [error])
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (show) {
+        setShow(false)
+      }
+    }, 5000)
+
+    return () => clearTimeout(timer)
+  }, [show, setShow])
+
   return show ? (
     <div className={classNames('bg-red-100', 'px-4', 'py-2', className)}>
       <Container className="flex items-center">

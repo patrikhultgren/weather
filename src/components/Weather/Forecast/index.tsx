@@ -23,11 +23,11 @@ export default function Forecast({ weather, className }: IProps) {
           className
         )}
       >
-        <div className="px-4 mt-6 text-xl">
+        <div className="px-4 mt-6">
           <p className="text-2xl font-bold">
-            Ops... det gick inte att hitta din plats.{' '}
+            Ops... det gick inte att hitta din plats.
           </p>
-          <p className="mt-4">
+          <p className="mt-4 text-xl">
             Använd{' '}
             <button
               type="button"
