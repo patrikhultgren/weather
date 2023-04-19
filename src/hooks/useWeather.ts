@@ -5,10 +5,15 @@ import useAddress from 'hooks/useAddress'
 import useForecast from 'hooks/useForecast'
 import useSearchHandler from 'hooks/useSearchHandler'
 
+interface IStatus {
+  loading: boolean
+  type: 'spinner' | 'placeholder'
+}
+
 interface IWeather {
   city: string | null
   days: Array<any> | null
-  loading: boolean
+  status: IStatus
   error: any
   searchHandler: any
   geoPosition: any
@@ -41,10 +46,13 @@ const useWeather = (): IWeather => {
     let result: IWeather = {
       city: position.city,
       days: null,
-      loading: geoPosition.loading || address.loading || forecast.loading,
-      error: geoPosition.error || address.error || forecast.error,
       geoPosition,
       searchHandler,
+      error: geoPosition.error || address.error || forecast.error,
+      status: {
+        loading: geoPosition.loading || address.loading || forecast.loading,
+        type: 'placeholder',
+      },
     }
 
     if (forecast.response) {
@@ -62,6 +70,8 @@ const useWeather = (): IWeather => {
       result.days = Object.keys(groupDaysByMonth).map(
         (key) => groupDaysByMonth[key]
       )
+
+      result.status.type = 'spinner'
     }
 
     return result
