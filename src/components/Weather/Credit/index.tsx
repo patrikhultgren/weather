@@ -2,16 +2,10 @@ import Container from 'components/Container'
 
 export default function Credit() {
   return (
-    <footer className="my-10 mb-16">
+    <footer className="my-10 mb-[90px] border-t border-slate-300 pt-6">
       <Container className="text-sm text-slate-900">
         <div className="px-4 [&>p]:mt-4 first:[&>p]:mt-0">
-          <p>
-            Denna sida är byggd som ett sidoprojekt av mig{' '}
-            <a className="underline" href="mailto:patrik.hult@gmail.com">
-              Patrik Hultgren.
-            </a>
-            . Jag hoppas den kan hjälpa dig att finna väderprognoser.
-          </p>
+          <p>Denna app är till för att se väderprognoser.</p>
           <p>
             Prognosdatan tillhandahålls av MET Norge och är licenserad under{' '}
             <a className="underline" href="https://data.norge.no/nlod/en/2.0">
@@ -26,7 +20,13 @@ export default function Credit() {
             </a>
             .
           </p>
-          <p>Inget ansvar tas kring innehållet.</p>
+          <p>Innehållet kan vara felaktigt så inget ansvar tas.</p>
+          <p>
+            Appen är byggd av{' '}
+            <a className="underline" href="mailto:patrik.hult@gmail.com">
+              Patrik Hultgren.
+            </a>
+          </p>
         </div>
       </Container>
     </footer>

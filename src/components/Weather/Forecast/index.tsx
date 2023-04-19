@@ -11,6 +11,38 @@ interface IProps {
 export default function Forecast({ weather, className }: IProps) {
   const { days } = weather
 
+  if (weather.geoPosition.error && !days) {
+    return (
+      <Container
+        className={classNames(
+          'mb-10',
+          'min-h-[40vh]',
+          'flex',
+          'items-center',
+          'text-center',
+          className
+        )}
+      >
+        <div className="px-4 mt-6 text-xl">
+          <p className="text-2xl font-bold">
+            Ops... det gick inte att hitta din plats.{' '}
+          </p>
+          <p className="mt-4">
+            Använd{' '}
+            <button
+              type="button"
+              className="underline py-2"
+              onClick={weather.searchHandler.openSearch}
+            >
+              sökfunktionen
+            </button>{' '}
+            istället.
+          </p>
+        </div>
+      </Container>
+    )
+  }
+
   return (
     <Container className={classNames('mb-10', className)}>
       {days

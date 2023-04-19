@@ -11,6 +11,7 @@ interface IWeather {
   loading: boolean
   error: any
   searchHandler: any
+  geoPosition: any
 }
 
 const useWeather = (): IWeather => {
@@ -42,6 +43,7 @@ const useWeather = (): IWeather => {
       days: null,
       loading: geoPosition.loading || address.loading || forecast.loading,
       error: geoPosition.error || address.error || forecast.error,
+      geoPosition,
       searchHandler,
     }
 
