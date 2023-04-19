@@ -39,29 +39,22 @@ const useGeoPosition = (setPosition: any): IPosition => {
   )
 
   useEffect(() => {
-    if (!navigator.onLine) {
-      const data = localStorage.getItem(GEO_POSITION_STORAGE_KEY)
+    const data = localStorage.getItem(GEO_POSITION_STORAGE_KEY)
 
-      if (data) {
-        try {
-          const geoPosition = JSON.parse(data)
+    if (data) {
+      try {
+        const geoPosition = JSON.parse(data)
 
-          setGeoPosition({
-            ...initialState,
-            latitude: geoPosition.latitude,
-            longitude: geoPosition.longitude,
-            city: geoPosition.city,
-          })
-        } catch {
-          setGeoPosition({
-            ...initialState,
-            error: new Error('Kunde ej läsa sparad position i offline läge.'),
-          })
-        }
-      } else {
         setGeoPosition({
           ...initialState,
-          error: new Error('Kunde ej finna sparad position i offline läge.'),
+          latitude: geoPosition.latitude,
+          longitude: geoPosition.longitude,
+          city: geoPosition.city,
+        })
+      } catch {
+        setGeoPosition({
+          ...initialState,
+          error: new Error('Kunde ej läsa sparad position.'),
         })
       }
 
@@ -69,14 +62,6 @@ const useGeoPosition = (setPosition: any): IPosition => {
     }
 
     if (!navigator.geolocation) {
-      setGeoPosition((prev) => ({
-        ...prev,
-        loading: false,
-        error: new Error(
-          'Hämtning av latitud och longitud stödjs inte i denna webbläsare.'
-        ),
-      }))
-
       return
     }
 
