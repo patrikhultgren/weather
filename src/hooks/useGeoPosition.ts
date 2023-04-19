@@ -8,14 +8,14 @@ interface IPosition {
   loading: boolean
 }
 
-const useGeoPosition = (): IPosition => {
-  const [position, setPosition] = useState<IPosition>({
+const useGeoPosition = (setPosition: any): IPosition => {
+  const [geoPosition, setGeoPosition] = useState<IPosition>({
     error: '',
     loading: true,
   })
 
   const onChange = ({ coords }: any) => {
-    setPosition({
+    setGeoPosition({
       latitude: coords.latitude,
       longitude: coords.longitude,
       error: '',
@@ -33,9 +33,9 @@ const useGeoPosition = (): IPosition => {
 
   const onError = useCallback(
     (error: any) => {
-      setPosition((prev) => ({ ...prev, error }))
+      setGeoPosition((prev) => ({ ...prev, error }))
     },
-    [setPosition]
+    [setGeoPosition]
   )
 
   useEffect(() => {
@@ -46,20 +46,20 @@ const useGeoPosition = (): IPosition => {
         try {
           const geoPosition = JSON.parse(data)
 
-          setPosition({
+          setGeoPosition({
             latitude: geoPosition.latitude,
             longitude: geoPosition.longitude,
             error: '',
             loading: false,
           })
         } catch {
-          setPosition({
+          setGeoPosition({
             error: 'Kunde ej läsa sparad position i offline läge.',
             loading: false,
           })
         }
       } else {
-        setPosition({
+        setGeoPosition({
           error: 'Kunde ej finna sparad position i offline läge.',
           loading: false,
         })
@@ -69,7 +69,7 @@ const useGeoPosition = (): IPosition => {
     }
 
     if (!navigator.geolocation) {
-      setPosition((prev) => ({
+      setGeoPosition((prev) => ({
         ...prev,
         error: new Error(
           'Hämtning av latitud och longitud stödjs inte i denna webbläsare.'
@@ -84,7 +84,17 @@ const useGeoPosition = (): IPosition => {
     return () => navigator.geolocation.clearWatch(watcher)
   }, [onError])
 
-  return position
+  useEffect(() => {
+    if (geoPosition?.latitude && geoPosition?.longitude) {
+      setPosition({
+        latitude: geoPosition.latitude,
+        longitude: geoPosition.longitude,
+        city: null,
+      })
+    }
+  }, [geoPosition?.latitude, geoPosition?.longitude])
+
+  return geoPosition
 }
 
 export default useGeoPosition

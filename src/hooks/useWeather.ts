@@ -21,7 +21,7 @@ const useWeather = (): IQuery<IWeather> => {
 
   const searchHandler = useSearchHandler(setPosition)
 
-  const geoPosition = useGeoPosition()
+  const geoPosition = useGeoPosition(setPosition)
 
   const address = useAddress({
     latitude: position?.latitude,
@@ -32,16 +32,6 @@ const useWeather = (): IQuery<IWeather> => {
     latitude: position?.latitude?.toFixed(4),
     longitude: position?.longitude?.toFixed(4),
   })
-
-  useEffect(() => {
-    if (geoPosition?.latitude && geoPosition?.longitude) {
-      setPosition({
-        latitude: geoPosition.latitude,
-        longitude: geoPosition.longitude,
-        city: null,
-      })
-    }
-  }, [geoPosition?.latitude, geoPosition?.longitude])
 
   const city = address.response?.city
 
