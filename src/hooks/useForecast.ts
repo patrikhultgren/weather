@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { IQuery } from 'utils/types'
+import { IQuery, IForecast } from 'utils/types'
 import { FORECAST_API_URL } from 'config'
 import useFetch from 'hooks/useFetch'
 
@@ -8,7 +8,7 @@ interface IProps {
   longitude?: string
 }
 
-const useForecast = ({ latitude, longitude }: IProps): IQuery<any> => {
+const useForecast = ({ latitude, longitude }: IProps): IQuery<IForecast> => {
   const run = useMemo(
     () => Boolean(latitude && longitude),
     [latitude, longitude]
