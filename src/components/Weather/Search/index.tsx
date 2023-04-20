@@ -55,18 +55,16 @@ export default function Search({ weather }: IProps) {
       </div>
       {searchHandler.searchResults.response && (
         <ul className="overflow-auto mt-4">
-          {searchHandler.searchResults.response.map(
-            (searchResult: IPosition) => (
-              <li
-                role="button"
-                className="px-4 odd:bg-white even:bg-slate-200 hover:bg-slate-700 hover:text-white py-3 truncate"
-                key={`${searchResult.latitude}_${searchResult.longitude}`}
-                onClick={() => searchHandler.onSelectSearchResult(searchResult)}
-              >
-                {searchResult.city}
-              </li>
-            )
-          )}
+          {searchHandler.searchResults.response.map((searchResult) => (
+            <li
+              role="button"
+              className="px-4 odd:bg-white even:bg-slate-200 hover:bg-slate-700 hover:text-white py-3 truncate"
+              key={`${searchResult.latitude}_${searchResult.longitude}`}
+              onClick={() => searchHandler.onSelectSearchResult(searchResult)}
+            >
+              {searchResult.city}
+            </li>
+          ))}
         </ul>
       )}
     </div>

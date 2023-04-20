@@ -179,6 +179,17 @@ export interface IWeather {
     type: 'spinner' | 'placeholder'
   }
   error: any
-  searchHandler: any
+  searchHandler: {
+    searchResults: IQuery<IPosition[]>
+    searchTerm: string
+    onSubmitSearch: (event: any) => void
+    onChangeSearchTerm: (event: any) => void
+    onSelectSearchResult: (searchResult: IPosition) => void
+    openSearch: () => void
+    closeSearch: () => void
+    resetSearchTerm: () => void
+    active: boolean
+    setActive: React.Dispatch<React.SetStateAction<boolean>>
+  }
   geoPosition: any
 }
