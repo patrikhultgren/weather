@@ -80,7 +80,7 @@ export default function Day({ day }: IProps) {
           </tr>
         </thead>
         <tbody className="">
-          <Hours hours={hours} showAll={showAll} />
+          <Hours hours={hours} />
         </tbody>
       </table>
       {showAllEnabled && (

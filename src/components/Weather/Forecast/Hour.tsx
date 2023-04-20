@@ -35,10 +35,9 @@ const icons: any = {
 
 interface IProps {
   hour: any
-  showAll: boolean
 }
 
-export default function Hour({ hour, showAll }: IProps) {
+export default function Hour({ hour }: IProps) {
   const nextOneHoursSymbolCode = hour.data?.next_1_hours?.summary?.symbol_code
 
   const nextSixHoursSymbolCode = hour.data?.next_6_hours?.summary?.symbol_code
