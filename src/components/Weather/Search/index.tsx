@@ -57,7 +57,7 @@ export default function Search({ weather }: IProps) {
             <li
               role="button"
               className="px-4 odd:bg-white even:bg-slate-200 hover:bg-slate-700 hover:text-white py-3 truncate"
-              key={searchResult.place_id}
+              key={`${searchResult.lat}_${searchResult.lon}`}
               onClick={() => searchHandler.onSelectSearchResult(searchResult)}
             >
               {searchResult.display_name}

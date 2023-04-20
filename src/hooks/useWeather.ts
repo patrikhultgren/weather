@@ -31,7 +31,7 @@ const useWeather = (): IWeather => {
   const isFullscreen = useIsFullscreen()
   const [positions, setPositions] = useState<Array<any>>([])
   const position = useFirstPosition(positions)
-  const searchHandler = useSearchHandler(setPositions)
+  const searchHandler = useSearchHandler(positions, setPositions)
   const [positionsAreLoaded, setPositionsAreLoaded] = useState<boolean>(false)
   const geoPosition = useGeoPosition(
     setPositions,
