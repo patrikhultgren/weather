@@ -34,11 +34,11 @@ const useFetch = <TResponse>({
 
   useVisibilityChange(onVisibilityChange)
 
-  const [result, setResult] = useState<IQuery<any>>({ ...initialState })
+  const [result, setResult] = useState<IQuery<TResponse>>({ ...initialState })
 
   const loadData = useCallback(async () => {
     if (url && count && run) {
-      setResult((prev: any) => ({ ...prev, loading: true, error: null }))
+      setResult((prev) => ({ ...prev, loading: true, error: null }))
 
       try {
         const response = await request({

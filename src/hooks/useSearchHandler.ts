@@ -1,7 +1,7 @@
 import { useMemo, useCallback, useEffect, useState } from 'react'
 import { SEARCH_API_KEY, SEARCH_API_URL } from 'config'
 import { addPosition } from 'utils/position'
-import { IPosition, ILocationIQPosition } from 'utils/types'
+import { IPosition, ILocationIQPosition, ISearchHandler } from 'utils/types'
 import useFetch from 'hooks/useFetch'
 
 const transformResponse = (
@@ -16,7 +16,7 @@ const transformResponse = (
 const useSearchHandler = (
   positions: Array<IPosition>,
   setPositions: Function
-): any => {
+): ISearchHandler => {
   const [run, setRun] = useState<boolean>(false)
   const [reset, setReset] = useState<boolean>(false)
   const [searchTerm, setSearchTerm] = useState<string>('')

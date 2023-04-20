@@ -8,7 +8,6 @@ export interface IQuery<IResponse> {
   response: IResponse | null
   loading: boolean
   error: any
-  searchHandler?: any
 }
 
 export interface IPosition {
@@ -176,23 +175,25 @@ export interface IAppStatus {
   type: 'spinner' | 'placeholder'
 }
 
+export interface ISearchHandler {
+  searchResults: IQuery<IPosition[]>
+  searchTerm: string
+  onSubmitSearch: (event: any) => void
+  onChangeSearchTerm: React.ChangeEventHandler<HTMLInputElement>
+  onSelectSearchResult: (searchResult: IPosition) => void
+  openSearch: () => void
+  closeSearch: () => void
+  resetSearchTerm: () => void
+  active: boolean
+  setActive: React.Dispatch<React.SetStateAction<boolean>>
+}
+
 export interface IWeather {
   city: string
   days: Array<Array<ITimeSerie>> | null
   status: IAppStatus
   error: any
-  searchHandler: {
-    searchResults: IQuery<IPosition[]>
-    searchTerm: string
-    onSubmitSearch: (event: any) => void
-    onChangeSearchTerm: React.ChangeEventHandler<HTMLInputElement>
-    onSelectSearchResult: (searchResult: IPosition) => void
-    openSearch: () => void
-    closeSearch: () => void
-    resetSearchTerm: () => void
-    active: boolean
-    setActive: React.Dispatch<React.SetStateAction<boolean>>
-  }
+  searchHandler: ISearchHandler
   geoPosition: IGeoPosition
 }
 
