@@ -3,7 +3,7 @@ import { IQuery } from 'utils/types'
 import { ADDRESS_API_URL } from 'config'
 import useFetch from 'hooks/useFetch'
 import { addPosition } from 'utils/position'
-import { IPosition } from 'utils/types'
+import { IPosition, IAddress } from 'utils/types'
 
 interface IProps {
   position: IPosition
@@ -22,7 +22,7 @@ const useAddress = ({ position, setPositions }: IProps): IQuery<IPosition> => {
     [position.latitude, position.longitude]
   )
 
-  const address = useFetch<any>({ url, run })
+  const address = useFetch<IAddress>({ url, run })
 
   const city = address.response?.city
 

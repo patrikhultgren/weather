@@ -130,3 +130,39 @@ export interface IForecast {
     }>
   }
 }
+
+export interface IAddress {
+  latitude: number
+  longitude: number
+  continent: string
+  lookupSource: string
+  continentCode: string
+  localityLanguageRequested: string
+  city: string
+  countryName: string
+  countryCode: string
+  postcode: string
+  principalSubdivision: string
+  principalSubdivisionCode: string
+  plusCode: string
+  locality: string
+  localityInfo: {
+    administrative: Array<{
+      name: string
+      description: string
+      order: number
+      adminLevel: number
+      isoCode?: string
+      wikidataId: string
+      geonameId?: number
+    }>
+    informative: Array<{
+      name: string
+      description: string
+      order: number
+      isoCode?: string
+      wikidataId?: string
+      geonameId?: number
+    }>
+  }
+}
