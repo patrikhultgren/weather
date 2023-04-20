@@ -1,7 +1,8 @@
 import classNames from 'classnames'
+import { IWeather } from 'utils/types'
 
 interface IProps {
-  weather: any
+  weather: IWeather
   className?: string
 }
 

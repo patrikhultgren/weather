@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { format } from 'utils/date'
 import { getPositions } from 'utils/position'
-import { IPosition } from 'utils/types'
+import { IPosition, IWeather } from 'utils/types'
 import useGeoPosition from 'hooks/useGeoPosition'
 import useAddress from 'hooks/useAddress'
 import useForecast from 'hooks/useForecast'
@@ -10,22 +10,6 @@ import usePersistPositions from 'hooks/usePersistPositions'
 import useIsFullscreen from 'hooks/useIsFullscreen'
 import useOnline from 'hooks/useOnline'
 import useFirstPosition from './useFirstPosition'
-
-interface IStatus {
-  online: boolean
-  isFullscreen: boolean
-  loading: boolean
-  type: 'spinner' | 'placeholder'
-}
-
-interface IWeather {
-  city: string | null
-  days: Array<any> | null
-  status: IStatus
-  error: any
-  searchHandler: any
-  geoPosition: any
-}
 
 const useWeather = (): IWeather => {
   const online = useOnline()

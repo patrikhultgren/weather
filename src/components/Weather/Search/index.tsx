@@ -2,9 +2,10 @@ import classNames from 'classnames'
 import SearchIcon from 'components/Icon/Search'
 import Close from 'components/Icon/Close'
 import { IPosition } from 'utils/types'
+import { IWeather } from 'utils/types'
 
 interface IProps {
-  weather: any
+  weather: IWeather
 }
 
 export default function Search({ weather }: IProps) {

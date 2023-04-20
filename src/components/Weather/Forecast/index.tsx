@@ -1,12 +1,13 @@
 import classNames from 'classnames'
 import Container from 'components/Container'
+import { IWeather } from 'utils/types'
 import Day from './Day'
 import Placeholder from './Placeholder'
 
 const className = 'mb-10'
 
 interface IProps {
-  weather: any
+  weather: IWeather
 }
 
 export default function Forecast({ weather }: IProps) {
@@ -55,8 +56,8 @@ export default function Forecast({ weather }: IProps) {
   } else if (days) {
     return (
       <Container className={className}>
-        {days.map((day: any) => (
-          <Day day={day} key={day[0].time} />
+        {days.map((day) => (
+          <Day day={day} key={day.time} />
         ))}
       </Container>
     )
