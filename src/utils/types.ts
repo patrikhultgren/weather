@@ -169,15 +169,17 @@ export interface IAddress {
   }
 }
 
+export interface IAppStatus {
+  online: boolean
+  isFullscreen: boolean
+  loading: boolean
+  type: 'spinner' | 'placeholder'
+}
+
 export interface IWeather {
   city: string
   days: Array<Array<ITimeSerie>> | null
-  status: {
-    online: boolean
-    isFullscreen: boolean
-    loading: boolean
-    type: 'spinner' | 'placeholder'
-  }
+  status: IAppStatus
   error: any
   searchHandler: {
     searchResults: IQuery<IPosition[]>
