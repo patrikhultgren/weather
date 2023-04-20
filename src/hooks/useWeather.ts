@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
-import { format } from 'utils/date'
 import { getPositions } from 'utils/position'
-import { IPosition, ITimeSerie, IWeather } from 'utils/types'
+import { IPosition, IWeather } from 'utils/types'
 import useGeoPosition from 'hooks/useGeoPosition'
 import useAddress from 'hooks/useAddress'
 import useForecast from 'hooks/useForecast'
@@ -18,6 +17,7 @@ const useWeather = (): IWeather => {
   const position = useFirstPosition(positions)
   const searchHandler = useSearchHandler(positions, setPositions)
   const [positionsAreLoaded, setPositionsAreLoaded] = useState<boolean>(false)
+
   const geoPosition = useGeoPosition(
     setPositions,
     positionsAreLoaded,
@@ -45,10 +45,10 @@ const useWeather = (): IWeather => {
 
   usePersistPositions(positions)
 
-  return useMemo(() => {
-    let weather: IWeather = {
+  return useMemo(
+    () => ({
       city: position.city,
-      days: null,
+      days: forecast.response,
       geoPosition,
       searchHandler,
       error: geoPosition.error || address.error || forecast.error,
@@ -56,41 +56,19 @@ const useWeather = (): IWeather => {
         online,
         isFullscreen,
         loading: geoPosition.loading || address.loading || forecast.loading,
-        type: 'placeholder',
+        type: forecast.response ? 'spinner' : 'placeholder',
       },
-    }
-
-    if (forecast.response) {
-      const groupDaysByMonth: {
-        [key: string]: Array<ITimeSerie>
-      } = forecast.response.properties.timeseries.reduce(
-        (acc: { [key: string]: Array<ITimeSerie> }, timeSerie) => {
-          const key = format(timeSerie.time, 'yyyy-MM-dd')
-          return {
-            ...acc,
-            [key]: acc[key] ? [...acc[key], timeSerie] : [timeSerie],
-          }
-        },
-        {}
-      )
-
-      weather.days = Object.keys(groupDaysByMonth).map(
-        (key) => groupDaysByMonth[key]
-      )
-
-      weather.status.type = 'spinner'
-    }
-
-    return weather
-  }, [
-    geoPosition,
-    address,
-    position.city,
-    forecast,
-    online,
-    isFullscreen,
-    searchHandler,
-  ])
+    }),
+    [
+      geoPosition,
+      address,
+      position.city,
+      forecast,
+      online,
+      isFullscreen,
+      searchHandler,
+    ]
+  )
 }
 
 export default useWeather
