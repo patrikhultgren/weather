@@ -84,7 +84,7 @@ export default function Hour({ hour, showAll }: IProps) {
         </span>
       </td>
       <td className="border-y border-slate-300 px-2 py-1 text-center">
-        {windSpeed} {windSpeedOfGust ? `(${windSpeedOfGust})` : ''} m/s
+        {windSpeed} {windSpeedOfGust ? `(${windSpeedOfGust})` : ''}
       </td>
     </>
   )

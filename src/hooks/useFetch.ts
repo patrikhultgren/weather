@@ -16,12 +16,12 @@ const initialState = {
   response: null,
 }
 
-const useFetch = ({
+const useFetch = <TResponse>({
   url,
   run,
   reset,
   transformResponse,
-}: IProps): IQuery<any> => {
+}: IProps): IQuery<TResponse> => {
   const [count, setCount] = useState<number>(1)
 
   const onVisibilityChange = useCallback(() => {

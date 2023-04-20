@@ -22,7 +22,7 @@ const useAddress = ({ position, setPositions }: IProps): IQuery<IPosition> => {
     [position.latitude, position.longitude]
   )
 
-  const address = useFetch({ url, run })
+  const address = useFetch<any>({ url, run })
 
   const city = address.response?.city
 

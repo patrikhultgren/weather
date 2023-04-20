@@ -19,7 +19,7 @@ const useForecast = ({ latitude, longitude }: IProps): IQuery<any> => {
     [latitude, longitude]
   )
 
-  return useFetch({ url, run })
+  return useFetch<any>({ url, run })
 }
 
 export default useForecast
