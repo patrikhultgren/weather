@@ -28,14 +28,19 @@ const useGeoPosition = (
   })
 
   const onChange = useCallback(
-    ({ coords }: any) => {
+    ({ coords }: GeolocationPosition) => {
       setGeoPosition({
         ...initialState,
       })
 
       if (!positionExists(positionsRef)) {
         setPositions((prev: Array<IPosition>) =>
-          addPosition(prev, coords.latitude, coords.longitude, '')
+          addPosition(
+            prev,
+            parseFloat(coords.latitude.toFixed(5)),
+            parseFloat(coords.longitude.toFixed(5)),
+            ''
+          )
         )
       }
     },
