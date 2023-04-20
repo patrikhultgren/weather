@@ -32,8 +32,12 @@ const useWeather = (): IWeather => {
   const [positions, setPositions] = useState<Array<any>>([])
   const position = useFirstPosition(positions)
   const searchHandler = useSearchHandler(setPositions)
-  const [runGeoPosition, setRunGeoPosition] = useState<boolean>(false)
-  const geoPosition = useGeoPosition(setPositions, runGeoPosition)
+  const [positionsAreLoaded, setPositionsAreLoaded] = useState<boolean>(false)
+  const geoPosition = useGeoPosition(
+    setPositions,
+    positionsAreLoaded,
+    positions
+  )
 
   const address = useAddress({
     position,
@@ -50,7 +54,7 @@ const useWeather = (): IWeather => {
     setPositions(positionsFromLocalStorage)
 
     if (!positionsFromLocalStorage.length) {
-      setRunGeoPosition(true)
+      setPositionsAreLoaded(true)
     }
   }, [])
 

@@ -1,5 +1,8 @@
-import { useCallback, useState, useEffect } from 'react'
+import { useCallback, useState, useEffect, useRef } from 'react'
 import { addPosition } from 'utils/position'
+
+const positionExists = (positionsRef: any) =>
+  positionsRef && positionsRef.current && positionsRef.current.length
 
 const initialState = {
   error: null,
@@ -13,8 +16,11 @@ interface IGeoPosition {
 
 const useGeoPosition = (
   setPositions: any,
-  runGeoPosition: boolean
+  positionsAreLoaded: boolean,
+  positions: Array<any>
 ): IGeoPosition => {
+  const positionsRef = useRef(positions)
+
   const [geoPosition, setGeoPosition] = useState<IGeoPosition>({
     ...initialState,
     loading: true,
@@ -26,11 +32,13 @@ const useGeoPosition = (
         ...initialState,
       })
 
-      setPositions((prev: Array<any>) =>
-        addPosition(prev, coords.latitude, coords.longitude, '')
-      )
+      if (!positionExists(positionsRef)) {
+        setPositions((prev: Array<any>) =>
+          addPosition(prev, coords.latitude, coords.longitude, '')
+        )
+      }
     },
-    [setPositions]
+    [setPositions, positionsRef]
   )
 
   const onError = useCallback(
@@ -41,7 +49,10 @@ const useGeoPosition = (
   )
 
   useEffect(() => {
-    if (!runGeoPosition || !navigator.geolocation) {
+    if (
+      (positionsAreLoaded && positionExists(positionsRef)) ||
+      !navigator.geolocation
+    ) {
       setGeoPosition({
         ...initialState,
       })
@@ -52,7 +63,7 @@ const useGeoPosition = (
     const watcher = navigator.geolocation.watchPosition(onChange, onError)
 
     return () => navigator.geolocation.clearWatch(watcher)
-  }, [runGeoPosition, onError, onChange])
+  }, [positionsAreLoaded, positionsRef, onError, onChange])
 
   return geoPosition
 }
