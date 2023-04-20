@@ -57,7 +57,7 @@ export default function Forecast({ weather }: IProps) {
     return (
       <Container className={className}>
         {days.map((day) => (
-          <Day day={day} key={day.time} />
+          <Day day={day} key={day[0].time} />
         ))}
       </Container>
     )

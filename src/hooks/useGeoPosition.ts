@@ -1,18 +1,13 @@
 import { useCallback, useState, useEffect, useRef } from 'react'
 import { addPosition } from 'utils/position'
-import { IPosition } from 'utils/types'
+import { IPosition, IGeoPosition } from 'utils/types'
 
 const positionExists = (positionsRef: any) =>
   positionsRef && positionsRef.current && positionsRef.current.length
 
-const initialState = {
+const initialState: IGeoPosition = {
   error: null,
   loading: false,
-}
-
-interface IGeoPosition {
-  error: any
-  loading: boolean
 }
 
 const useGeoPosition = (

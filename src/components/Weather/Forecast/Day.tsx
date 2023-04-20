@@ -3,10 +3,11 @@ import { format } from 'utils/date'
 import Arrow from 'components/Icon/Arrow'
 import classNames from 'classnames'
 import { isToday, isTomorrow } from 'date-fns'
+import { ITimeSerie } from 'utils/types'
 import Hours from './Hours'
 
 interface IProps {
-  day: any
+  day: Array<ITimeSerie>
 }
 
 export default function Day({ day }: IProps) {
@@ -22,7 +23,7 @@ export default function Day({ day }: IProps) {
     const hoursPerPart = Math.floor(day.length / 4)
     let countHours = 0
 
-    return day.filter((_hour: any, hourIndex: number) => {
+    return day.filter((_hour, hourIndex) => {
       if (showAll || !showAllEnabled) {
         return true
       } else {

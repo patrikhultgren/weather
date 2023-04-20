@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { format } from 'utils/date'
 import { getPositions } from 'utils/position'
-import { IPosition, IWeather } from 'utils/types'
+import { IPosition, ITimeSerie, IWeather } from 'utils/types'
 import useGeoPosition from 'hooks/useGeoPosition'
 import useAddress from 'hooks/useAddress'
 import useForecast from 'hooks/useForecast'
@@ -61,8 +61,10 @@ const useWeather = (): IWeather => {
     }
 
     if (forecast.response) {
-      const groupDaysByMonth = forecast.response.properties.timeseries.reduce(
-        (acc: any, timeSerie: any) => {
+      const groupDaysByMonth: {
+        [key: string]: Array<ITimeSerie>
+      } = forecast.response.properties.timeseries.reduce(
+        (acc: { [key: string]: Array<ITimeSerie> }, timeSerie) => {
           const key = format(timeSerie.time, 'yyyy-MM-dd')
           return {
             ...acc,

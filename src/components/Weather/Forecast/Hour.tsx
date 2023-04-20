@@ -8,6 +8,7 @@ import {
   FairNight,
 } from '@patrikhultgren/react-weather-icons'
 import { format } from 'utils/date'
+import { ITimeSerie } from 'utils/types'
 import PartlyCloudyNight from 'components/Icon/Weather/PartlyCloudyNight'
 import PartlyCloudyDay from 'components/Icon/Weather/PartlyCloudyDay'
 import LightSnow from 'components/Icon/Weather/LightSnow'
@@ -34,7 +35,7 @@ const icons: any = {
 }
 
 interface IProps {
-  hour: any
+  hour: ITimeSerie
 }
 
 export default function Hour({ hour }: IProps) {

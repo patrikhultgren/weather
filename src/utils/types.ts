@@ -170,8 +170,8 @@ export interface IAddress {
 }
 
 export interface IWeather {
-  city: string | null
-  days: Array<ITimeSerie> | null
+  city: string
+  days: Array<Array<ITimeSerie>> | null
   status: {
     online: boolean
     isFullscreen: boolean
@@ -191,5 +191,10 @@ export interface IWeather {
     active: boolean
     setActive: React.Dispatch<React.SetStateAction<boolean>>
   }
-  geoPosition: any
+  geoPosition: IGeoPosition
+}
+
+export interface IGeoPosition {
+  error: any
+  loading: boolean
 }
