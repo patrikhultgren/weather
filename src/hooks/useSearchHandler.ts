@@ -71,11 +71,14 @@ const useSearchHandler = (
     [searchTerm]
   )
 
-  const onChangeSearchTerm = useCallback((event: any) => {
-    setSearchTerm(event.target.value)
-    setRun(false)
-    setReset(false)
-  }, [])
+  const onChangeSearchTerm = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      setSearchTerm(event.target.value)
+      setRun(false)
+      setReset(false)
+    },
+    []
+  )
 
   const url = useMemo(
     () =>

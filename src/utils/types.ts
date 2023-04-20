@@ -185,7 +185,7 @@ export interface IWeather {
     searchResults: IQuery<IPosition[]>
     searchTerm: string
     onSubmitSearch: (event: any) => void
-    onChangeSearchTerm: (event: any) => void
+    onChangeSearchTerm: React.ChangeEventHandler<HTMLInputElement>
     onSelectSearchResult: (searchResult: IPosition) => void
     openSearch: () => void
     closeSearch: () => void
