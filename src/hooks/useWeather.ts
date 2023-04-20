@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { format } from 'utils/date'
 import { getPositions } from 'utils/position'
+import { IPosition } from 'utils/types'
 import useGeoPosition from 'hooks/useGeoPosition'
 import useAddress from 'hooks/useAddress'
 import useForecast from 'hooks/useForecast'
@@ -29,7 +30,7 @@ interface IWeather {
 const useWeather = (): IWeather => {
   const online = useOnline()
   const isFullscreen = useIsFullscreen()
-  const [positions, setPositions] = useState<Array<any>>([])
+  const [positions, setPositions] = useState<Array<IPosition>>([])
   const position = useFirstPosition(positions)
   const searchHandler = useSearchHandler(positions, setPositions)
   const [positionsAreLoaded, setPositionsAreLoaded] = useState<boolean>(false)

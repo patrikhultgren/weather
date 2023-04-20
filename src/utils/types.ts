@@ -10,3 +10,9 @@ export interface IQuery<IResponse> {
   error: any
   searchHandler?: any
 }
+
+export interface IPosition {
+  latitude: number
+  longitude: number
+  city: string
+}

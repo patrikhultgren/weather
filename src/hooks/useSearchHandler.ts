@@ -2,8 +2,19 @@ import { useMemo, useCallback, useEffect, useState } from 'react'
 import { SEARCH_API_KEY, SEARCH_API_URL } from 'config'
 import useFetch from 'hooks/useFetch'
 import { addPosition } from 'utils/position'
+import { IPosition } from 'utils/types'
 
-const useSearchHandler = (positions: Array<any>, setPositions: any): any => {
+const transformResponse = (response: any) =>
+  response.map((position: any) => ({
+    latitude: parseFloat(position.lat),
+    longitude: parseFloat(position.lon),
+    city: position.display_name,
+  }))
+
+const useSearchHandler = (
+  positions: Array<IPosition>,
+  setPositions: any
+): any => {
   const [run, setRun] = useState<boolean>(false)
   const [reset, setReset] = useState<boolean>(false)
   const [searchTerm, setSearchTerm] = useState<string>('')
@@ -27,12 +38,15 @@ const useSearchHandler = (positions: Array<any>, setPositions: any): any => {
   }, [])
 
   const onSelectSearchResult = useCallback(
-    (searchResult: any) => {
-      const latitude = parseFloat(searchResult.lat)
-      const longitude = parseFloat(searchResult.lon)
-      const city = searchResult.display_name
-
-      setPositions((prev: any) => addPosition(prev, latitude, longitude, city))
+    (searchResult: IPosition) => {
+      setPositions((prev: Array<IPosition>) =>
+        addPosition(
+          prev,
+          searchResult.latitude,
+          searchResult.longitude,
+          searchResult.city
+        )
+      )
 
       closeSearch()
     },
@@ -67,7 +81,12 @@ const useSearchHandler = (positions: Array<any>, setPositions: any): any => {
     [searchTerm]
   )
 
-  const searchResultsByApi = useFetch({ url, run, reset })
+  const searchResultsByApi = useFetch({
+    url,
+    run,
+    reset,
+    transformResponse,
+  })
 
   const searchResults = useMemo(
     () =>
@@ -76,13 +95,7 @@ const useSearchHandler = (positions: Array<any>, setPositions: any): any => {
         : {
             loading: false,
             error: null,
-            response: positions
-              .filter((_position: any, index: number) => index > 0)
-              .map((position) => ({
-                lat: position.latitude,
-                lon: position.longitude,
-                display_name: position.city,
-              })),
+            response: positions.filter((_position, index) => index > 0),
           },
     [searchTerm, searchResultsByApi, positions]
   )

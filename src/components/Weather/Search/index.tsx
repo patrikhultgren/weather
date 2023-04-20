@@ -1,6 +1,7 @@
 import classNames from 'classnames'
 import SearchIcon from 'components/Icon/Search'
 import Close from 'components/Icon/Close'
+import { IPosition } from 'utils/types'
 
 interface IProps {
   weather: any
@@ -53,16 +54,18 @@ export default function Search({ weather }: IProps) {
       </div>
       {searchHandler.searchResults.response && (
         <ul className="overflow-auto mt-4">
-          {searchHandler.searchResults.response.map((searchResult: any) => (
-            <li
-              role="button"
-              className="px-4 odd:bg-white even:bg-slate-200 hover:bg-slate-700 hover:text-white py-3 truncate"
-              key={`${searchResult.lat}_${searchResult.lon}`}
-              onClick={() => searchHandler.onSelectSearchResult(searchResult)}
-            >
-              {searchResult.display_name}
-            </li>
-          ))}
+          {searchHandler.searchResults.response.map(
+            (searchResult: IPosition) => (
+              <li
+                role="button"
+                className="px-4 odd:bg-white even:bg-slate-200 hover:bg-slate-700 hover:text-white py-3 truncate"
+                key={`${searchResult.latitude}_${searchResult.longitude}`}
+                onClick={() => searchHandler.onSelectSearchResult(searchResult)}
+              >
+                {searchResult.city}
+              </li>
+            )
+          )}
         </ul>
       )}
     </div>

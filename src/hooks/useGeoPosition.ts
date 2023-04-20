@@ -1,5 +1,6 @@
 import { useCallback, useState, useEffect, useRef } from 'react'
 import { addPosition } from 'utils/position'
+import { IPosition } from 'utils/types'
 
 const positionExists = (positionsRef: any) =>
   positionsRef && positionsRef.current && positionsRef.current.length
@@ -15,9 +16,9 @@ interface IGeoPosition {
 }
 
 const useGeoPosition = (
-  setPositions: any,
+  setPositions: Function,
   positionsAreLoaded: boolean,
-  positions: Array<any>
+  positions: Array<IPosition>
 ): IGeoPosition => {
   const positionsRef = useRef(positions)
 
@@ -33,7 +34,7 @@ const useGeoPosition = (
       })
 
       if (!positionExists(positionsRef)) {
-        setPositions((prev: Array<any>) =>
+        setPositions((prev: Array<IPosition>) =>
           addPosition(prev, coords.latitude, coords.longitude, '')
         )
       }
