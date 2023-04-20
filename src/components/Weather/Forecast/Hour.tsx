@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { ReactNode, useMemo } from 'react'
 import classNames from 'classnames'
 import {
   ClearSkyDay,
@@ -18,7 +18,7 @@ import LightSleet from 'components/Icon/Weather/LightSleet'
 import Sleet from 'components/Icon/Weather/Sleet'
 import Rain from 'components/Icon/Weather/Rain'
 
-const icons: any = {
+const icons: { [key: string]: ReactNode } = {
   partlycloudy_night: <PartlyCloudyNight />,
   fair_night: <FairNight title="Delvis molnig natt" />,
   clearsky_night: <ClearSkyNight title="Klar natt" />,
