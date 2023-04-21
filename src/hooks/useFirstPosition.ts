@@ -7,7 +7,7 @@ const useFirstPosition = (positions: Array<IPosition>): IPosition =>
       return positions[0]
     }
 
-    return { latitude: 0, longitude: 0, city: '', status: 'awaitingCity' }
+    return { latitude: 0, longitude: 0, city: '', status: 'empty' }
   }, [positions])
 
 export default useFirstPosition
