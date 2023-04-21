@@ -20,7 +20,7 @@ export const savePositions = (positions: Array<IPosition>) => {
   localStorage.setItem(GEO_POSITION_STORAGE_KEY, JSON.stringify(positions))
 }
 
-export const addPosition = (
+export const savePosition = (
   positions: Array<IPosition>,
   position: IPosition
 ) => {
