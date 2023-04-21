@@ -44,8 +44,7 @@ export default function Hour({ hour }: IProps) {
     6: hour.data?.next_6_hours?.details?.precipitation_amount,
   }
 
-  const precipitationAmount =
-    precipitationAmountByHours['1'] || precipitationAmountByHours['6']
+  const precipitationAmount = precipitationAmountByHours['1']
 
   const symbolCodeByHours = {
     1: hour.data?.next_1_hours?.summary?.symbol_code,
@@ -96,7 +95,7 @@ export default function Hour({ hour }: IProps) {
         {windSpeed} {windSpeedOfGust ? `(${windSpeedOfGust})` : ''}{' '}
         <span className="hidden md:inline">m/s</span>
       </td>
-      <td className="border-y border-slate-300 px-2 py-1 text-center hidden md:table-cell">
+      <td className="border-y border-slate-300 px-2 py-1 text-center hidden md:table-cell text-blue-700">
         {precipitationAmount > 0 && `${precipitationAmount} mm`}
       </td>
     </>
