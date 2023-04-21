@@ -22,20 +22,15 @@ export const savePositions = (positions: Array<IPosition>) => {
 
 export const addPosition = (
   positions: Array<IPosition>,
-  latitude: number,
-  longitude: number,
-  city: string
+  position: IPosition
 ) => {
   let result = positions.filter(
-    (position) =>
-      position.latitude !== latitude && position.longitude !== longitude
+    (item) =>
+      item.latitude !== position.latitude &&
+      item.longitude !== position.longitude
   )
 
-  result.unshift({
-    latitude,
-    longitude,
-    city,
-  })
+  result.unshift(position)
 
   if (isEqual(positions, result)) {
     return positions

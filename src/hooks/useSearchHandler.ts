@@ -11,6 +11,7 @@ const transformResponse = (
     latitude: parseFloat(position.lat),
     longitude: parseFloat(position.lon),
     city: position.display_name,
+    status: 'foundBySearch',
   }))
 
 const useSearchHandler = (
@@ -41,15 +42,7 @@ const useSearchHandler = (
 
   const onSelectSearchResult = useCallback(
     (searchResult: IPosition) => {
-      setPositions((prev: Array<IPosition>) =>
-        addPosition(
-          prev,
-          searchResult.latitude,
-          searchResult.longitude,
-          searchResult.city
-        )
-      )
-
+      setPositions((prev: Array<IPosition>) => addPosition(prev, searchResult))
       closeSearch()
     },
     [setPositions, closeSearch]

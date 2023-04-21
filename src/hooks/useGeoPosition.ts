@@ -30,12 +30,12 @@ const useGeoPosition = (
 
       if (!positionExists(positionsRef)) {
         setPositions((prev: Array<IPosition>) =>
-          addPosition(
-            prev,
-            parseFloat(coords.latitude.toFixed(5)),
-            parseFloat(coords.longitude.toFixed(5)),
-            ''
-          )
+          addPosition(prev, {
+            latitude: parseFloat(coords.latitude.toFixed(5)),
+            longitude: parseFloat(coords.longitude.toFixed(5)),
+            city: '',
+            status: 'awaitingCity',
+          })
         )
       }
     },

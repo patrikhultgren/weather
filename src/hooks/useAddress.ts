@@ -10,7 +10,7 @@ interface IProps {
   setPositions: Function
 }
 
-const useAddress = ({ position, setPositions }: IProps): IQuery<IPosition> => {
+const useAddress = ({ position, setPositions }: IProps): IQuery<IAddress> => {
   const run = useMemo(
     () => Boolean(position.latitude && position.longitude && !position.city),
     [position]
@@ -29,7 +29,7 @@ const useAddress = ({ position, setPositions }: IProps): IQuery<IPosition> => {
   useEffect(() => {
     if (run && city && position.latitude && position.longitude) {
       setPositions((positions: Array<IPosition>) =>
-        addPosition(positions, position.latitude, position.longitude, city)
+        addPosition(positions, { ...position, city })
       )
     }
   }, [run, city, position, setPositions])
