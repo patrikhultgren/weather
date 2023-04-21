@@ -2,7 +2,7 @@ import classNames from 'classnames'
 import SearchIcon from 'components/Icon/Search'
 import Close from 'components/Icon/Close'
 import { IWeather } from 'utils/types'
-import { useMemo, useId } from 'react'
+import { useId } from 'react'
 
 interface IProps {
   weather: IWeather
@@ -17,11 +17,6 @@ export default function Search({ weather }: IProps) {
   } = weather
 
   const { response } = searchHandler.searchResults
-
-  const hasSearchResults = useMemo(
-    () => Boolean(response?.positions?.[0]),
-    [response]
-  )
 
   return searchHandler.active ? (
     <div className="px-4 max-w-[700px] mx-auto">
