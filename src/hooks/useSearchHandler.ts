@@ -107,7 +107,9 @@ const useSearchHandler = (
             error: null,
             response: {
               type: 'history',
-              positions: positions.filter((_position, index) => index > 0),
+              positions: positions
+                .filter((position) => position.city)
+                .filter((_position, index) => index > 0),
             },
           },
     [searchTerm, fetchedSearchResults, positions]
