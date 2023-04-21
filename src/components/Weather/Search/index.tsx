@@ -39,7 +39,6 @@ export default function Search({ weather }: IProps) {
             className="block px-4 py-3 w-full"
             autoComplete="off"
             autoCapitalize="off"
-            role="combobox"
             name="search"
             spellCheck={false}
             value={searchHandler.searchTerm}
