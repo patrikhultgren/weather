@@ -52,7 +52,11 @@ const useGeoPosition = (
   )
 
   useEffect(() => {
-    if (!navigator.geolocation) {
+    if (
+      !navigator.geolocation ||
+      !positionsAreLoaded ||
+      !allPositionsAreFoundByAllowingPosition(positions)
+    ) {
       setGeoPosition({
         ...initialState,
       })
@@ -63,7 +67,7 @@ const useGeoPosition = (
     const watcher = navigator.geolocation.watchPosition(onChange, onError)
 
     return () => navigator.geolocation.clearWatch(watcher)
-  }, [positionsAreLoaded, onError, onChange])
+  }, [positions, positionsAreLoaded, onError, onChange])
 
   return geoPosition
 }
