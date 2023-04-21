@@ -96,7 +96,8 @@ export default function Hour({ hour }: IProps) {
         <span className="hidden md:inline">m/s</span>
       </td>
       <td className="border-y border-slate-300 px-2 py-1 text-center hidden md:table-cell text-blue-700">
-        {precipitationAmount > 0 && `${precipitationAmount} mm`}
+        {precipitationAmount > 0 &&
+          `${precipitationAmount.toLocaleString('sv-SE')} mm`}
       </td>
     </>
   )
