@@ -2,13 +2,15 @@ import classNames from 'classnames'
 import SearchIcon from 'components/Icon/Search'
 import Close from 'components/Icon/Close'
 import { IWeather } from 'utils/types'
-import { useMemo } from 'react'
+import { useMemo, useId } from 'react'
 
 interface IProps {
   weather: IWeather
 }
 
 export default function Search({ weather }: IProps) {
+  const searchResultsId = useId()
+
   const {
     searchHandler,
     status: { isFullscreen },
@@ -36,6 +38,7 @@ export default function Search({ weather }: IProps) {
             role="combobox"
             name="search"
             spellCheck={false}
+            aria-controls={searchResultsId}
             aria-expanded={hasSearchResults}
             value={searchHandler.searchTerm}
             onChange={searchHandler.onChangeSearchTerm}
@@ -68,7 +71,7 @@ export default function Search({ weather }: IProps) {
         </button>
       </div>
       {response?.positions?.[0] && (
-        <>
+        <div id={searchResultsId}>
           <h2 className="p-4 py-2 bg-gray-300 mt-4 font-bold">
             {response.type === 'searchResults'
               ? 'Sökresultat'
@@ -86,7 +89,7 @@ export default function Search({ weather }: IProps) {
               </li>
             ))}
           </ul>
-        </>
+        </div>
       )}
     </div>
   ) : (
