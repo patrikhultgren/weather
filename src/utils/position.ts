@@ -24,11 +24,13 @@ export const addPosition = (
   positions: Array<IPosition>,
   position: IPosition
 ) => {
-  let result = positions.filter(
-    (item) =>
-      item.latitude !== position.latitude &&
-      item.longitude !== position.longitude
-  )
+  let result = positions
+    .filter((item) => !position.city || item.city !== position.city)
+    .filter(
+      (item) =>
+        item.latitude !== position.latitude &&
+        item.longitude !== position.longitude
+    )
 
   result.unshift(position)
 
