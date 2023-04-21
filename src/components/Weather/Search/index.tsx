@@ -26,7 +26,11 @@ export default function Search({ weather }: IProps) {
   return searchHandler.active ? (
     <div className="px-4 max-w-[700px] mx-auto">
       <div className="flex mt-4">
-        <form onSubmit={searchHandler.onSubmitSearch} className="flex w-full">
+        <form
+          role="search"
+          className="flex w-full"
+          onSubmit={searchHandler.onSubmitSearch}
+        >
           <input
             autoFocus
             type="text"
@@ -38,8 +42,6 @@ export default function Search({ weather }: IProps) {
             role="combobox"
             name="search"
             spellCheck={false}
-            aria-controls={searchResultsId}
-            aria-expanded={hasSearchResults}
             value={searchHandler.searchTerm}
             onChange={searchHandler.onChangeSearchTerm}
             onBlur={searchHandler.onSubmitSearch}
