@@ -14,7 +14,7 @@ export interface IPosition {
   latitude: number
   longitude: number
   city: string
-  status: 'foundBySearch' | 'foundByAllowingPosition' | 'awaitingCity' | 'empty'
+  status: 'foundBySearch' | 'foundByAllowingPosition' | 'empty'
 }
 
 export interface ILocationIQPosition {

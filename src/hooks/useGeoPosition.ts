@@ -2,8 +2,12 @@ import { useCallback, useState, useEffect, useRef } from 'react'
 import { addPosition } from 'utils/position'
 import { IPosition, IGeoPosition } from 'utils/types'
 
-const positionExists = (positionsRef: any) =>
-  positionsRef && positionsRef.current && positionsRef.current.length
+const allPositionsAreFoundByAllowingPosition = (positionsRef: any) =>
+  positionsRef &&
+  positionsRef.current &&
+  positionsRef.current.every(
+    (position: IPosition) => position.status === 'foundByAllowingPosition'
+  )
 
 const initialState: IGeoPosition = {
   error: null,
@@ -28,13 +32,13 @@ const useGeoPosition = (
         ...initialState,
       })
 
-      if (!positionExists(positionsRef)) {
+      if (allPositionsAreFoundByAllowingPosition(positionsRef)) {
         setPositions((prev: Array<IPosition>) =>
           addPosition(prev, {
             latitude: parseFloat(coords.latitude.toFixed(4)),
             longitude: parseFloat(coords.longitude.toFixed(4)),
             city: '',
-            status: 'awaitingCity',
+            status: 'foundByAllowingPosition',
           })
         )
       }
@@ -50,10 +54,7 @@ const useGeoPosition = (
   )
 
   useEffect(() => {
-    if (
-      (positionsAreLoaded && positionExists(positionsRef)) ||
-      !navigator.geolocation
-    ) {
+    if (!navigator.geolocation) {
       setGeoPosition({
         ...initialState,
       })
