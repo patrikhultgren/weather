@@ -1,5 +1,11 @@
 import { AiOutlineSearch } from 'react-icons/ai'
 
-const Search = () => <AiOutlineSearch title="Sök" size={24} />
+interface IProps {
+  className?: string
+}
+
+const Search = ({ className }: IProps) => (
+  <AiOutlineSearch className={className} title="Sök" size={24} />
+)
 
 export default Search

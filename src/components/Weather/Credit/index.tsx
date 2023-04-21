@@ -2,7 +2,7 @@ import Container from 'components/Container'
 
 export default function Credit() {
   return (
-    <footer className="my-10 mb-[90px] border-t border-slate-300 pt-6">
+    <footer className="my-10 mb-[90px] md:mb-6 border-t border-slate-300 pt-6">
       <Container className="text-sm text-slate-900">
         <div className="px-4 [&>p]:mt-4 first:[&>p]:mt-0">
           <p>Denna app är till för att se väderprognoser.</p>

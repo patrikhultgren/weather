@@ -30,7 +30,9 @@ export default function Header({ weather, className }: IProps) {
         className
       )}
     >
-      <h1 className="truncate">Vädret i {city ? city : '...'}</h1>
+      <h1 className="truncate">
+        <span className="font-bold">Vädret i</span> {city ? city : '...'}
+      </h1>
     </header>
   )
 }

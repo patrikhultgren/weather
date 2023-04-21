@@ -16,7 +16,7 @@ export default function Search({ weather }: IProps) {
   const { response } = searchHandler.searchResults
 
   return searchHandler.active ? (
-    <div className="px-4">
+    <div className="px-4 max-w-[700px] mx-auto">
       <div className="flex mt-4">
         <form onSubmit={searchHandler.onSubmitSearch} className="flex w-full">
           <input
@@ -77,16 +77,17 @@ export default function Search({ weather }: IProps) {
       )}
     </div>
   ) : (
-    <div className="fixed bottom-0 left-0 bg-gray-300 w-full z-10">
+    <div className="fixed md:static bottom-0 left-0 bg-gray-300 w-full z-10">
       <button
         type="button"
         className={classNames(
-          'mx-auto z-10 bg-gray-100 hover:bg-gray-200 text-black h-12 w-12 flex items-center justify-center',
+          'mx-auto z-10 bg-gray-100 hover:bg-gray-200 text-black h-12 w-12 md:w-auto md:px-4 flex items-center justify-center',
           { 'mb-6': isFullscreen }
         )}
         onClick={searchHandler.openSearch}
       >
-        <SearchIcon />
+        <SearchIcon className="md:mr-2" />
+        <span className="hidden md:inline">Sök efter plats</span>
       </button>
     </div>
   )
