@@ -8,6 +8,7 @@ export interface IQuery<IResponse> {
   response: IResponse | null
   loading: boolean
   error: any
+  finished: boolean
 }
 
 export interface IPosition {

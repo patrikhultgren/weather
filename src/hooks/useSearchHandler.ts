@@ -105,6 +105,7 @@ const useSearchHandler = (
         : {
             loading: false,
             error: null,
+            finished: true,
             response: {
               type: 'history',
               positions: positions

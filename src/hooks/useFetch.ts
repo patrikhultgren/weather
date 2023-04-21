@@ -14,6 +14,7 @@ const initialState = {
   loading: false,
   error: null,
   response: null,
+  finished: false,
 }
 
 const useFetch = <TResponse>({
@@ -38,7 +39,12 @@ const useFetch = <TResponse>({
 
   const loadData = useCallback(async () => {
     if (url && count && run) {
-      setResult((prev) => ({ ...prev, loading: true, error: null }))
+      setResult((prev) => ({
+        ...prev,
+        finished: false,
+        loading: true,
+        error: null,
+      }))
 
       try {
         const response = await request({
@@ -48,12 +54,14 @@ const useFetch = <TResponse>({
         setResult({
           response: transformResponse ? transformResponse(response) : response,
           loading: false,
+          finished: true,
           error: null,
         })
       } catch (error) {
         setResult({
           response: null,
           loading: false,
+          finished: false,
           error,
         })
       }

@@ -1,3 +1,4 @@
+import { useMemo } from 'react'
 import classNames from 'classnames'
 import SearchIcon from 'components/Icon/Search'
 import Close from 'components/Icon/Close'
@@ -18,7 +19,12 @@ export default function Search({ weather }: IProps) {
     status: { isFullscreen },
   } = weather
 
-  const { response } = searchHandler.searchResults
+  const { response, finished } = searchHandler.searchResults
+
+  const hasSearchResults = useMemo(
+    () => Boolean(response?.positions?.length),
+    [response]
+  )
 
   return searchHandler.active ? (
     <div className="px-4 max-w-[700px] mx-auto">
@@ -68,15 +74,15 @@ export default function Search({ weather }: IProps) {
           <Close title="Stäng sök" />
         </button>
       </div>
-      {response?.positions?.[0] && (
+      {hasSearchResults && (
         <div id={searchResultsId}>
           <h2 className="p-4 py-2 bg-gray-300 mt-4 font-bold">
-            {response.type === 'searchResults'
+            {response?.type === 'searchResults'
               ? 'Sökresultat'
               : 'Tidigare platser'}
           </h2>
           <ul className="overflow-auto">
-            {response.positions.map((searchResult) => (
+            {response?.positions?.map((searchResult) => (
               <li
                 role="button"
                 className="px-4 odd:bg-white even:bg-slate-200 hover:bg-slate-700 hover:text-white py-3 truncate"
@@ -87,6 +93,12 @@ export default function Search({ weather }: IProps) {
               </li>
             ))}
           </ul>
+        </div>
+      )}
+      {!hasSearchResults && finished && (
+        <div id={searchResultsId} className="p-4 bg-white mt-4 font-bold">
+          Typiskt, hittade inga sökresultat. Testa gärna att söka på något
+          annat.
         </div>
       )}
     </div>
