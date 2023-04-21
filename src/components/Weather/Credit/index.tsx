@@ -20,7 +20,7 @@ export default function Credit() {
             </a>
             .
           </p>
-          <p>Innehållet kan vara felaktigt så inget ansvar tas.</p>
+          <p>Inget ansvar tas kring innehållet.</p>
           <p>
             Appen är byggd av{' '}
             <a className="underline" href="mailto:patrik.hult@gmail.com">
