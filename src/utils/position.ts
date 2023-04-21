@@ -1,11 +1,11 @@
-import { GEO_POSITION_STORAGE_KEY } from 'config'
+import { POSITIONS_STORAGE_KEY } from 'config'
 import isEqual from 'lodash/isEqual'
 import { IPosition } from 'utils/types'
 
 export const getPositions = (): Array<IPosition> => {
   let result = []
 
-  const data = localStorage.getItem(GEO_POSITION_STORAGE_KEY)
+  const data = localStorage.getItem(POSITIONS_STORAGE_KEY)
 
   if (data) {
     try {
@@ -18,7 +18,7 @@ export const getPositions = (): Array<IPosition> => {
 
 export const savePositions = (positions: Array<IPosition>) => {
   localStorage.setItem(
-    GEO_POSITION_STORAGE_KEY,
+    POSITIONS_STORAGE_KEY,
     JSON.stringify(positions.filter((position) => position.city))
   )
 }
