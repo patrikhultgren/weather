@@ -1,7 +1,13 @@
 import { useMemo, useCallback, useEffect, useState } from 'react'
 import { SEARCH_API_KEY, SEARCH_API_URL } from 'config'
 import { addPosition } from 'utils/position'
-import { IPosition, ILocationIQPosition, ISearchHandler } from 'utils/types'
+import {
+  IPosition,
+  ILocationIQPosition,
+  ISearchHandler,
+  IQuery,
+  ISearchResults,
+} from 'utils/types'
 import useFetch from 'hooks/useFetch'
 
 const transformResponse = (
@@ -79,23 +85,32 @@ const useSearchHandler = (
     [searchTerm]
   )
 
-  const searchResultsByApi = useFetch<Array<IPosition>>({
+  const fetchedSearchResults = useFetch<Array<IPosition>>({
     url,
     run,
     reset,
     transformResponse,
   })
 
-  const searchResults = useMemo(
+  const searchResults: IQuery<ISearchResults> = useMemo(
     () =>
       searchTerm
-        ? searchResultsByApi
+        ? {
+            ...fetchedSearchResults,
+            response: {
+              type: 'searchResults',
+              positions: fetchedSearchResults.response,
+            },
+          }
         : {
             loading: false,
             error: null,
-            response: positions.filter((_position, index) => index > 0),
+            response: {
+              type: 'history',
+              positions: positions.filter((_position, index) => index > 0),
+            },
           },
-    [searchTerm, searchResultsByApi, positions]
+    [searchTerm, fetchedSearchResults, positions]
   )
 
   useEffect(() => {

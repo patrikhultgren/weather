@@ -13,6 +13,8 @@ export default function Search({ weather }: IProps) {
     status: { isFullscreen },
   } = weather
 
+  const { response } = searchHandler.searchResults
+
   return searchHandler.active ? (
     <div className="px-4">
       <div className="flex mt-4">
@@ -52,19 +54,26 @@ export default function Search({ weather }: IProps) {
           <Close title="Stäng sök" />
         </button>
       </div>
-      {searchHandler.searchResults.response && (
-        <ul className="overflow-auto mt-4">
-          {searchHandler.searchResults.response.map((searchResult) => (
-            <li
-              role="button"
-              className="px-4 odd:bg-white even:bg-slate-200 hover:bg-slate-700 hover:text-white py-3 truncate"
-              key={`${searchResult.latitude}_${searchResult.longitude}`}
-              onClick={() => searchHandler.onSelectSearchResult(searchResult)}
-            >
-              {searchResult.city}
-            </li>
-          ))}
-        </ul>
+      {response?.positions?.[0] && (
+        <>
+          <h2 className="p-4 py-2 bg-gray-300 mt-4 font-bold">
+            {response.type === 'searchResults'
+              ? 'Sökresultat'
+              : 'Tidigare platser'}
+          </h2>
+          <ul className="overflow-auto">
+            {response.positions.map((searchResult) => (
+              <li
+                role="button"
+                className="px-4 odd:bg-white even:bg-slate-200 hover:bg-slate-700 hover:text-white py-3 truncate"
+                key={`${searchResult.latitude}_${searchResult.longitude}`}
+                onClick={() => searchHandler.onSelectSearchResult(searchResult)}
+              >
+                {searchResult.city}
+              </li>
+            ))}
+          </ul>
+        </>
       )}
     </div>
   ) : (

@@ -177,7 +177,7 @@ export interface IAppStatus {
 }
 
 export interface ISearchHandler {
-  searchResults: IQuery<IPosition[]>
+  searchResults: IQuery<ISearchResults>
   searchTerm: string
   onSubmitSearch: (event: any) => void
   onChangeSearchTerm: React.ChangeEventHandler<HTMLInputElement>
@@ -201,4 +201,9 @@ export interface IWeather {
 export interface IGeoPosition {
   error: any
   loading: boolean
+}
+
+export interface ISearchResults {
+  positions: Array<IPosition> | null
+  type: 'searchResults' | 'history'
 }
