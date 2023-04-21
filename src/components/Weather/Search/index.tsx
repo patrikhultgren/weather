@@ -3,6 +3,7 @@ import SearchIcon from 'components/Icon/Search'
 import Close from 'components/Icon/Close'
 import { IWeather } from 'utils/types'
 import { useId } from 'react'
+import useIsScrollingDown from 'hooks/useIsScrollingDown'
 
 interface IProps {
   weather: IWeather
@@ -10,6 +11,7 @@ interface IProps {
 
 export default function Search({ weather }: IProps) {
   const searchResultsId = useId()
+  const isScrollingDown = useIsScrollingDown()
 
   const {
     searchHandler,
@@ -89,7 +91,12 @@ export default function Search({ weather }: IProps) {
       )}
     </div>
   ) : (
-    <div className="fixed md:static bottom-0 left-0 bg-gray-300 w-full z-10 bg-opacity-50">
+    <div
+      className={classNames(
+        'fixed md:static bottom-0 left-0 bg-gray-300 w-full z-10 bg-opacity-50 transition-all ease-in-out',
+        { '-bottom-[100px]': isScrollingDown }
+      )}
+    >
       <button
         type="button"
         className={classNames(
