@@ -1,4 +1,4 @@
-import { useCallback, useState, useEffect, useRef } from 'react'
+import { useCallback, useState, useEffect } from 'react'
 import { addPosition } from 'utils/position'
 import { IPosition, IGeoPosition } from 'utils/types'
 
@@ -19,8 +19,6 @@ const useGeoPosition = (
   positionsAreLoaded: boolean,
   positions: Array<IPosition>
 ): IGeoPosition => {
-  const positionsRef = useRef(positions)
-
   const [geoPosition, setGeoPosition] = useState<IGeoPosition>({
     ...initialState,
     loading: true,
@@ -32,7 +30,7 @@ const useGeoPosition = (
         ...initialState,
       })
 
-      if (allPositionsAreFoundByAllowingPosition(positionsRef)) {
+      if (allPositionsAreFoundByAllowingPosition(positions)) {
         setPositions((prev: Array<IPosition>) =>
           addPosition(prev, {
             latitude: parseFloat(coords.latitude.toFixed(4)),
@@ -43,7 +41,7 @@ const useGeoPosition = (
         )
       }
     },
-    [setPositions, positionsRef]
+    [setPositions, positions]
   )
 
   const onError = useCallback(
@@ -65,7 +63,7 @@ const useGeoPosition = (
     const watcher = navigator.geolocation.watchPosition(onChange, onError)
 
     return () => navigator.geolocation.clearWatch(watcher)
-  }, [positionsAreLoaded, positionsRef, onError, onChange])
+  }, [positionsAreLoaded, onError, onChange])
 
   return geoPosition
 }
