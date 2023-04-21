@@ -89,7 +89,7 @@ export default function Search({ weather }: IProps) {
       )}
     </div>
   ) : (
-    <div className="fixed md:static bottom-0 left-0 bg-gray-300 w-full z-10">
+    <div className="fixed md:static bottom-0 left-0 bg-gray-300 w-full z-10 bg-opacity-50">
       <button
         type="button"
         className={classNames(
