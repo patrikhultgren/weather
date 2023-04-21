@@ -1,12 +1,16 @@
 import { useEffect } from 'react'
 import { POSITIONS_STORAGE_KEY } from 'config'
+import { IPosition } from 'utils/types'
 
-const usePersistPositions = (positions: Array<any>) => {
+const usePersistPositions = (
+  positionsAreLoaded: boolean,
+  positions: Array<IPosition>
+) => {
   useEffect(() => {
-    if (positions.length) {
+    if (positionsAreLoaded) {
       localStorage.setItem(POSITIONS_STORAGE_KEY, JSON.stringify(positions))
     }
-  }, [positions])
+  }, [positionsAreLoaded, positions])
 }
 
 export default usePersistPositions

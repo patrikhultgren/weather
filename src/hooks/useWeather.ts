@@ -40,7 +40,7 @@ const useWeather = (): IWeather => {
     setPositionsAreLoaded(true)
   }, [])
 
-  usePersistPositions(positions)
+  usePersistPositions(positionsAreLoaded, positions)
 
   return useMemo(
     () => ({
