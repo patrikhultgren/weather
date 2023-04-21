@@ -25,6 +25,7 @@ export const addPosition = (
   position: IPosition
 ) => {
   let result = positions
+    .slice(0, 7)
     .filter((item) => !position.city || item.city !== position.city)
     .filter(
       (item) =>
