@@ -93,7 +93,7 @@ export default function Search({ weather }: IProps) {
   ) : (
     <div
       className={classNames(
-        'fixed md:static bottom-0 left-0 bg-gray-300 w-full z-10 bg-opacity-50 transition-all ease-in-out duration-300',
+        'fixed md:static left-0 bg-gray-300 w-full z-10 bg-opacity-50 transition-all ease-in-out duration-300',
         scrollDirection === 'down' ? '-bottom-36' : 'bottom-0'
       )}
     >
