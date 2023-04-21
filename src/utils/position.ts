@@ -27,29 +27,37 @@ export const addPosition = (
   positions: Array<IPosition>,
   position: IPosition
 ) => {
-  if (!position.city) {
+  const roundedPosition = {
+    ...position,
+    latitude: parseFloat(position.latitude.toFixed(4)),
+    longitude: parseFloat(position.longitude.toFixed(4)),
+  }
+
+  if (!roundedPosition.city) {
     const otherPositionWithCity = positions.find(
       (item) =>
-        item.latitude === position.latitude &&
-        item.longitude === position.longitude &&
+        item.latitude === roundedPosition.latitude &&
+        item.longitude === roundedPosition.longitude &&
         item.city
     )
 
     if (otherPositionWithCity) {
-      position.city = otherPositionWithCity.city
+      roundedPosition.city = otherPositionWithCity.city
     }
   }
 
   let result = positions
-    .filter((item) => !position.city || item.city !== position.city)
+    .filter(
+      (item) => !roundedPosition.city || item.city !== roundedPosition.city
+    )
     .filter(
       (item) =>
-        item.latitude !== position.latitude &&
-        item.longitude !== position.longitude
+        item.latitude !== roundedPosition.latitude &&
+        item.longitude !== roundedPosition.longitude
     )
     .slice(0, 7)
 
-  result.unshift(position)
+  result.unshift(roundedPosition)
 
   if (isEqual(positions, result)) {
     return positions

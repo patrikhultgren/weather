@@ -31,8 +31,8 @@ const useGeoPosition = (
       if (allPositionsAreFoundByAllowingPosition(positions)) {
         setPositions((prev: Array<IPosition>) =>
           addPosition(prev, {
-            latitude: parseFloat(coords.latitude.toFixed(4)),
-            longitude: parseFloat(coords.longitude.toFixed(4)),
+            latitude: coords.latitude,
+            longitude: coords.longitude,
             city: '',
             status: 'foundByAllowingPosition',
           })

@@ -30,8 +30,8 @@ const useWeather = (): IWeather => {
   })
 
   const forecast = useForecast({
-    latitude: parseFloat(position.latitude.toFixed(4)),
-    longitude: parseFloat(position.longitude.toFixed(4)),
+    latitude: position.latitude,
+    longitude: position.longitude,
   })
 
   useEffect(() => {
@@ -61,7 +61,7 @@ const useWeather = (): IWeather => {
           address.loading ||
           forecast.loading ||
           searchHandler.searchResults.loading,
-        type: forecast.response ? 'spinner' : 'placeholder',
+        type: searchHandler.active ? 'spinner' : 'placeholder',
       },
     }),
     [
