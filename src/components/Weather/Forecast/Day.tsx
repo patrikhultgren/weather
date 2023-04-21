@@ -78,6 +78,9 @@ export default function Day({ day }: IProps) {
             <th className="text-left border-y border-slate-300 px-2 py-1 text-center">
               Vind
             </th>
+            <th className="text-left border-y border-slate-300 px-2 py-1 text-center hidden md:table-cell">
+              Nederbörd
+            </th>
           </tr>
         </thead>
         <tbody className="">

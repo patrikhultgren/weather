@@ -10,7 +10,7 @@ export default function Container({ children, className }: IProps) {
   return (
     <div
       className={classNames(
-        'md:px-0 relative max-w-[450px] mx-auto',
+        'md:px-0 relative max-w-[600px] mx-auto',
         className
       )}
     >

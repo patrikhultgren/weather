@@ -39,13 +39,22 @@ interface IProps {
 }
 
 export default function Hour({ hour }: IProps) {
-  const nextOneHoursSymbolCode = hour.data?.next_1_hours?.summary?.symbol_code
+  const precipitationAmountByHours = {
+    1: hour.data?.next_1_hours?.details?.precipitation_amount,
+    6: hour.data?.next_6_hours?.details?.precipitation_amount,
+  }
 
-  const nextSixHoursSymbolCode = hour.data?.next_6_hours?.summary?.symbol_code
+  const precipitationAmount =
+    precipitationAmountByHours['1'] || precipitationAmountByHours['6']
+
+  const symbolCodeByHours = {
+    1: hour.data?.next_1_hours?.summary?.symbol_code,
+    6: hour.data?.next_6_hours?.summary?.symbol_code,
+  }
 
   const symbolCode = useMemo(
-    () => nextOneHoursSymbolCode || nextSixHoursSymbolCode,
-    [nextOneHoursSymbolCode, nextSixHoursSymbolCode]
+    () => symbolCodeByHours['1'] || symbolCodeByHours['6'],
+    [symbolCodeByHours]
   )
 
   const airTemperature = useMemo(
@@ -84,7 +93,11 @@ export default function Hour({ hour }: IProps) {
         </span>
       </td>
       <td className="border-y border-slate-300 px-2 py-1 text-center">
-        {windSpeed} {windSpeedOfGust ? `(${windSpeedOfGust})` : ''}
+        {windSpeed} {windSpeedOfGust ? `(${windSpeedOfGust})` : ''}{' '}
+        <span className="hidden md:inline">m/s</span>
+      </td>
+      <td className="border-y border-slate-300 px-2 py-1 text-center hidden md:table-cell">
+        {precipitationAmount > 0 && `${precipitationAmount} mm`}
       </td>
     </>
   )
