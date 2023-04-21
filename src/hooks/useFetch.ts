@@ -61,7 +61,7 @@ const useFetch = <TResponse>({
         setResult({
           response: null,
           loading: false,
-          finished: false,
+          finished: true,
           error,
         })
       }
