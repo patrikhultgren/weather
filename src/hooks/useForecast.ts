@@ -54,7 +54,7 @@ const useForecast = ({
 
   useEffect(() => {
     if (run) {
-      setForecasts((prev: any) => ({ ...prev, [key]: forecast }))
+      setForecasts((prev) => ({ ...prev, [key]: forecast }))
     }
   }, [forecast, run, key, setForecasts])
 
