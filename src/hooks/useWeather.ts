@@ -70,7 +70,7 @@ const useWeather = (): IWeather => {
     [
       geoPosition,
       address,
-      position.city,
+      position,
       forecast,
       online,
       isFullscreen,
