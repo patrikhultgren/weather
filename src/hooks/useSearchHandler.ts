@@ -1,6 +1,6 @@
 import { useMemo, useCallback, useEffect, useState } from 'react'
 import { SEARCH_API_KEY, SEARCH_API_URL } from 'config'
-import { savePosition } from 'utils/position'
+import { addPosition } from 'utils/position'
 import {
   IPosition,
   ILocationIQPosition,
@@ -48,7 +48,7 @@ const useSearchHandler = (
 
   const onSelectSearchResult = useCallback(
     (searchResult: IPosition) => {
-      setPositions((prev: Array<IPosition>) => savePosition(prev, searchResult))
+      setPositions((prev: Array<IPosition>) => addPosition(prev, searchResult))
       closeSearch()
     },
     [setPositions, closeSearch]

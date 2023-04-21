@@ -1,5 +1,5 @@
 import { useCallback, useState, useEffect } from 'react'
-import { savePosition } from 'utils/position'
+import { addPosition } from 'utils/position'
 import { IPosition, IGeoPosition } from 'utils/types'
 
 const allPositionsAreFoundByAllowingPosition = (positionsRef: any) =>
@@ -32,7 +32,7 @@ const useGeoPosition = (
 
       if (allPositionsAreFoundByAllowingPosition(positions)) {
         setPositions((prev: Array<IPosition>) =>
-          savePosition(prev, {
+          addPosition(prev, {
             latitude: parseFloat(coords.latitude.toFixed(4)),
             longitude: parseFloat(coords.longitude.toFixed(4)),
             city: '',

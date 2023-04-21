@@ -17,10 +17,13 @@ export const getPositions = (): Array<IPosition> => {
 }
 
 export const savePositions = (positions: Array<IPosition>) => {
-  localStorage.setItem(GEO_POSITION_STORAGE_KEY, JSON.stringify(positions))
+  localStorage.setItem(
+    GEO_POSITION_STORAGE_KEY,
+    JSON.stringify(positions.filter((position) => position.city))
+  )
 }
 
-export const savePosition = (
+export const addPosition = (
   positions: Array<IPosition>,
   position: IPosition
 ) => {

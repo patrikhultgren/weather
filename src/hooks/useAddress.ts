@@ -2,7 +2,7 @@ import { useEffect, useMemo } from 'react'
 import { IQuery } from 'utils/types'
 import { ADDRESS_API_URL } from 'config'
 import useFetch from 'hooks/useFetch'
-import { savePosition } from 'utils/position'
+import { addPosition } from 'utils/position'
 import { IPosition, IAddress } from 'utils/types'
 
 interface IProps {
@@ -29,7 +29,7 @@ const useAddress = ({ position, setPositions }: IProps): IQuery<IAddress> => {
   useEffect(() => {
     if (run && city && position.latitude && position.longitude) {
       setPositions((positions: Array<IPosition>) =>
-        savePosition(positions, { ...position, city })
+        addPosition(positions, { ...position, city })
       )
     }
   }, [run, city, position, setPositions])
