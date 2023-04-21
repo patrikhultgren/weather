@@ -51,11 +51,19 @@ const useWeather = (): IWeather => {
       days: forecast.response,
       geoPosition,
       searchHandler,
-      error: geoPosition.error || address.error || forecast.error,
+      error:
+        geoPosition.error ||
+        address.error ||
+        forecast.error ||
+        searchHandler.searchResults.error,
       status: {
         online,
         isFullscreen,
-        loading: geoPosition.loading || address.loading || forecast.loading,
+        loading:
+          geoPosition.loading ||
+          address.loading ||
+          forecast.loading ||
+          searchHandler.searchResults.loading,
         type: forecast.response ? 'spinner' : 'placeholder',
       },
     }),
