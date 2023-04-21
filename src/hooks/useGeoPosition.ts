@@ -2,10 +2,8 @@ import { useCallback, useState, useEffect } from 'react'
 import { addPosition } from 'utils/position'
 import { IPosition, IGeoPosition } from 'utils/types'
 
-const allPositionsAreFoundByAllowingPosition = (positionsRef: any) =>
-  positionsRef &&
-  positionsRef.current &&
-  positionsRef.current.every(
+const allPositionsAreFoundByAllowingPosition = (positions: Array<IPosition>) =>
+  positions.every(
     (position: IPosition) => position.status === 'foundByAllowingPosition'
   )
 
@@ -55,7 +53,7 @@ const useGeoPosition = (
     if (
       !navigator.geolocation ||
       !positionsAreLoaded ||
-      !allPositionsAreFoundByAllowingPosition(positions)
+      (positions.length && !allPositionsAreFoundByAllowingPosition(positions))
     ) {
       setGeoPosition({
         ...initialState,
@@ -67,7 +65,7 @@ const useGeoPosition = (
     const watcher = navigator.geolocation.watchPosition(onChange, onError)
 
     return () => navigator.geolocation.clearWatch(watcher)
-  }, [positions, positionsAreLoaded, onError, onChange])
+  }, [positions, positions, positionsAreLoaded, onError, onChange])
 
   return geoPosition
 }

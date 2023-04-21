@@ -37,10 +37,7 @@ const useWeather = (): IWeather => {
   useEffect(() => {
     const positionsFromLocalStorage = getPositions()
     setPositions(positionsFromLocalStorage)
-
-    if (!positionsFromLocalStorage.length) {
-      setPositionsAreLoaded(true)
-    }
+    setPositionsAreLoaded(true)
   }, [])
 
   usePersistPositions(positions)

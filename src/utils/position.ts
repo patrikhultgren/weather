@@ -27,6 +27,19 @@ export const addPosition = (
   positions: Array<IPosition>,
   position: IPosition
 ) => {
+  if (!position.city) {
+    const otherPositionWithCity = positions.find(
+      (item) =>
+        item.latitude === position.latitude &&
+        item.longitude === position.longitude &&
+        item.city
+    )
+
+    if (otherPositionWithCity) {
+      position.city = otherPositionWithCity.city
+    }
+  }
+
   let result = positions
     .filter((item) => !position.city || item.city !== position.city)
     .filter(
