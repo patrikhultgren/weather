@@ -25,13 +25,13 @@ export const addPosition = (
   position: IPosition
 ) => {
   let result = positions
-    .slice(0, 7)
     .filter((item) => !position.city || item.city !== position.city)
     .filter(
       (item) =>
         item.latitude !== position.latitude &&
         item.longitude !== position.longitude
     )
+    .slice(0, 7)
 
   result.unshift(position)
 
