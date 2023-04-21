@@ -100,7 +100,7 @@ export default function Search({ weather }: IProps) {
       <button
         type="button"
         className={classNames(
-          'mx-auto z-10 bg-gray-100 hover:bg-gray-200 text-black h-12 w-12 md:w-auto md:px-4 flex items-center justify-center',
+          'mx-auto z-10 shadow-md rounded md:rounded-none md:shadow-none bg-slate-600 md:bg-gray-100 md:hover:bg-white text-white md:text-black h-12 w-12 md:w-auto md:px-4 flex items-center justify-center',
           { 'mb-6': isFullscreen }
         )}
         onClick={searchHandler.openSearch}
