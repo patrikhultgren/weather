@@ -39,17 +39,23 @@ interface IProps {
 }
 
 export default function Hour({ hour }: IProps) {
-  const precipitationAmountByHours = {
-    1: hour.data?.next_1_hours?.details?.precipitation_amount,
-    6: hour.data?.next_6_hours?.details?.precipitation_amount,
-  }
+  const precipitationAmountByHours = useMemo(
+    () => ({
+      1: hour.data?.next_1_hours?.details?.precipitation_amount,
+      6: hour.data?.next_6_hours?.details?.precipitation_amount,
+    }),
+    [hour]
+  )
 
   const precipitationAmount = precipitationAmountByHours['1']
 
-  const symbolCodeByHours = {
-    1: hour.data?.next_1_hours?.summary?.symbol_code,
-    6: hour.data?.next_6_hours?.summary?.symbol_code,
-  }
+  const symbolCodeByHours = useMemo(
+    () => ({
+      1: hour.data?.next_1_hours?.summary?.symbol_code,
+      6: hour.data?.next_6_hours?.summary?.symbol_code,
+    }),
+    [hour]
+  )
 
   const symbolCode = useMemo(
     () => symbolCodeByHours['1'] || symbolCodeByHours['6'],
