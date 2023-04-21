@@ -2,6 +2,7 @@ import classNames from 'classnames'
 import SearchIcon from 'components/Icon/Search'
 import Close from 'components/Icon/Close'
 import { IWeather } from 'utils/types'
+import { useMemo } from 'react'
 
 interface IProps {
   weather: IWeather
@@ -15,15 +16,27 @@ export default function Search({ weather }: IProps) {
 
   const { response } = searchHandler.searchResults
 
+  const hasSearchResults = useMemo(
+    () => Boolean(response?.positions?.[0]),
+    [response]
+  )
+
   return searchHandler.active ? (
     <div className="px-4 max-w-[700px] mx-auto">
       <div className="flex mt-4">
         <form onSubmit={searchHandler.onSubmitSearch} className="flex w-full">
           <input
+            autoFocus
             type="text"
             placeholder="Sök efter en plats"
+            aria-label="Sök efter en plats"
             className="block px-4 py-3 w-full"
-            autoFocus
+            autoComplete="off"
+            autoCapitalize="off"
+            role="combobox"
+            name="search"
+            spellCheck={false}
+            aria-expanded={hasSearchResults}
             value={searchHandler.searchTerm}
             onChange={searchHandler.onChangeSearchTerm}
             onBlur={searchHandler.onSubmitSearch}
