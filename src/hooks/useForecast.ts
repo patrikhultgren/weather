@@ -22,8 +22,8 @@ const transformResponse = (response: IForecast): Array<Array<ITimeSerie>> => {
 }
 
 interface IProps {
-  latitude?: string
-  longitude?: string
+  latitude?: number
+  longitude?: number
 }
 
 const useForecast = ({

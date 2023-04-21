@@ -30,8 +30,8 @@ const useWeather = (): IWeather => {
   })
 
   const forecast = useForecast({
-    latitude: position.latitude?.toFixed(4),
-    longitude: position.longitude?.toFixed(4),
+    latitude: parseFloat(position.latitude?.toFixed(4)),
+    longitude: parseFloat(position.longitude?.toFixed(4)),
   })
 
   useEffect(() => {
