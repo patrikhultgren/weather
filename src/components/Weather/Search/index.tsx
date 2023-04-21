@@ -95,11 +95,11 @@ export default function Search({ weather }: IProps) {
           </ul>
         </div>
       )}
-      {!hasSearchResults && finished && (
-        <div id={searchResultsId} className="p-4 bg-white mt-4 font-bold">
+      {hasSearchResults && finished && (
+        <p id={searchResultsId} className="p-4 mt-4 bg-white font-bold">
           Typiskt, hittade inga sökresultat. Testa gärna att söka på något
           annat.
-        </div>
+        </p>
       )}
     </div>
   ) : (
