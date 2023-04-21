@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { IQuery, IForecast, ITimeSerie } from 'utils/types'
 import { FORECAST_API_URL } from 'config'
 import { format } from 'utils/date'
@@ -22,14 +22,18 @@ const transformResponse = (response: IForecast): Array<Array<ITimeSerie>> => {
 }
 
 interface IProps {
-  latitude?: number
-  longitude?: number
+  latitude: number
+  longitude: number
 }
 
 const useForecast = ({
   latitude,
   longitude,
 }: IProps): IQuery<Array<Array<ITimeSerie>>> => {
+  const [forecasts, setForecasts] = useState<{
+    [key: string]: IQuery<Array<Array<ITimeSerie>>>
+  }>({})
+
   const run = useMemo(
     () => Boolean(latitude && longitude),
     [latitude, longitude]
@@ -40,7 +44,21 @@ const useForecast = ({
     [latitude, longitude]
   )
 
-  return useFetch<Array<Array<ITimeSerie>>>({ url, run, transformResponse })
+  const forecast = useFetch<Array<Array<ITimeSerie>>>({
+    url,
+    run,
+    transformResponse,
+  })
+
+  const key = useMemo(() => `${latitude}_${longitude}`, [latitude, longitude])
+
+  useEffect(() => {
+    if (run) {
+      setForecasts((prev: any) => ({ ...prev, [key]: forecast }))
+    }
+  }, [forecast, run, key, setForecasts])
+
+  return forecasts[key] || { loading: true, response: null, error: null }
 }
 
 export default useForecast
