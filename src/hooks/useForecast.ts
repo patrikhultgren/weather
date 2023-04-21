@@ -40,7 +40,7 @@ const useForecast = ({
     [latitude, longitude]
   )
 
-  return useFetch<any>({ url, run, transformResponse })
+  return useFetch<Array<Array<ITimeSerie>>>({ url, run, transformResponse })
 }
 
 export default useForecast
