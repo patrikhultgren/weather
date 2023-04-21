@@ -6,15 +6,15 @@ import {
   Cloudy,
   FairDay,
   FairNight,
+  Fog,
+  LightSleet,
+  LightSnow,
 } from '@patrikhultgren/react-weather-icons'
 import { format } from 'utils/date'
 import { ITimeSerie } from 'utils/types'
 import PartlyCloudyNight from 'components/Icon/Weather/PartlyCloudyNight'
 import PartlyCloudyDay from 'components/Icon/Weather/PartlyCloudyDay'
-import LightSnow from 'components/Icon/Weather/LightSnow'
 import Snow from 'components/Icon/Weather/Snow'
-import Fog from 'components/Icon/Weather/Fog'
-import LightSleet from 'components/Icon/Weather/LightSleet'
 import Sleet from 'components/Icon/Weather/Sleet'
 import Rain from 'components/Icon/Weather/Rain'
 
@@ -25,10 +25,10 @@ const icons: { [key: string]: ReactNode } = {
   clearsky_day: <ClearSkyDay title="Soligt" />,
   partlycloudy_day: <PartlyCloudyDay />,
   cloudy: <Cloudy title="Monligt" />,
-  lightsnow: <LightSnow />,
+  lightsnow: <LightSnow title="Lite snö" />,
   snow: <Snow />,
-  fog: <Fog />,
-  lightsleet: <LightSleet />,
+  fog: <Fog title="Dimma" />,
+  lightsleet: <LightSleet title="Lätt snöblandat regn" />,
   fair_day: <FairDay />,
   sleet: <Sleet />,
   rain: <Rain />,
