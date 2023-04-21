@@ -65,7 +65,7 @@ const useGeoPosition = (
     const watcher = navigator.geolocation.watchPosition(onChange, onError)
 
     return () => navigator.geolocation.clearWatch(watcher)
-  }, [positions, positions, positionsAreLoaded, onError, onChange])
+  }, [positions, positionsAreLoaded, onError, onChange])
 
   return geoPosition
 }
