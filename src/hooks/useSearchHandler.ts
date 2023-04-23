@@ -1,4 +1,5 @@
-import { useMemo, useCallback, useEffect, useState } from 'react'
+import { useMemo, useCallback, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { SEARCH_API_KEY, SEARCH_API_URL } from 'config'
 import { addPosition } from 'utils/position'
 import {
@@ -24,6 +25,7 @@ const useSearchHandler = (
   positions: Array<IPosition>,
   setPositions: Function
 ): ISearchHandler => {
+  const navigate = useNavigate()
   const [run, setRun] = useState<boolean>(false)
   const [reset, setReset] = useState<boolean>(false)
   const [searchTerm, setSearchTerm] = useState<string>('')
@@ -38,7 +40,8 @@ const useSearchHandler = (
     setReset(true)
     setRun(false)
     setActive(false)
-  }, [])
+    navigate('/')
+  }, [navigate])
 
   const resetSearchTerm = useCallback(() => {
     setSearchTerm('')
@@ -115,16 +118,6 @@ const useSearchHandler = (
           },
     [searchTerm, fetchedSearchResults, positions]
   )
-
-  useEffect(() => {
-    document.body.style.backgroundColor = active ? '#475569' : '#fff'
-    document.body.style.overflow = active ? 'hidden' : 'auto'
-
-    return () => {
-      document.body.style.backgroundColor = '#fff'
-      document.body.style.overflow = 'auto'
-    }
-  }, [active])
 
   return useMemo(
     () => ({

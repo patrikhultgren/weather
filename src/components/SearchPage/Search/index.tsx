@@ -1,10 +1,9 @@
 import { useMemo } from 'react'
-import classNames from 'classnames'
+import { Link } from 'react-router-dom'
 import SearchIcon from 'components/Icon/Search'
 import Close from 'components/Icon/Close'
 import { IWeather } from 'utils/types'
 import { useId } from 'react'
-import useScrollDirection from 'hooks/useScrollDirection'
 
 interface IProps {
   weather: IWeather
@@ -12,12 +11,8 @@ interface IProps {
 
 export default function Search({ weather }: IProps) {
   const searchResultsId = useId()
-  const scrollDirection = useScrollDirection()
 
-  const {
-    searchHandler,
-    status: { isFullscreen },
-  } = weather
+  const { searchHandler } = weather
 
   const { response, finished } = searchHandler.searchResults
 
@@ -26,7 +21,7 @@ export default function Search({ weather }: IProps) {
     [response]
   )
 
-  return searchHandler.active ? (
+  return (
     <div className="px-4 max-w-[700px] mx-auto">
       <div className="flex mt-4">
         <form
@@ -65,14 +60,13 @@ export default function Search({ weather }: IProps) {
             <SearchIcon />
           </button>
         </form>
-        <button
-          type="button"
+        <Link
+          to="/"
           data-ref="close-search"
           className="text-black z-10 right-0 w-14 ml-2 text-xl bg-slate-100 py-2.5 flex items-center justify-center"
-          onClick={searchHandler.closeSearch}
         >
           <Close title="Stäng sök" />
-        </button>
+        </Link>
       </div>
       {hasSearchResults && (
         <div id={searchResultsId}>
@@ -101,25 +95,6 @@ export default function Search({ weather }: IProps) {
           annat.
         </p>
       )}
-    </div>
-  ) : (
-    <div
-      className={classNames(
-        'fixed md:static left-0 bg-gray-300 w-full z-10 bg-opacity-50 transition-all ease-in-out duration-300',
-        scrollDirection === 'down' ? '-bottom-36' : 'bottom-0'
-      )}
-    >
-      <button
-        type="button"
-        className={classNames(
-          'mx-auto z-10 shadow-md rounded md:rounded-none md:shadow-none bg-slate-600 md:bg-gray-100 md:hover:bg-white text-white md:text-black h-12 w-12 md:w-auto md:px-4 flex items-center justify-center',
-          { 'mb-6': isFullscreen }
-        )}
-        onClick={searchHandler.openSearch}
-      >
-        <SearchIcon className="md:mr-2" />
-        <span className="hidden md:inline">Sök efter plats</span>
-      </button>
     </div>
   )
 }

@@ -1,19 +1,17 @@
-import Weather from 'components/Weather'
-import Login from 'components/Login'
-import useAuthenticator from 'hooks/useAuthenticator'
+import WeatherPage from 'components/WeatherPage'
+import SearchPage from 'components/SearchPage'
+import { Route, Routes } from 'react-router-dom'
+import useWeather from 'hooks/useWeather'
 
 export default function App() {
-  const authenticator = useAuthenticator()
+  const weather = useWeather()
 
   return (
     <>
-      <main role="main">
-        {authenticator.isLoggedIn ? (
-          <Weather />
-        ) : (
-          <Login authenticator={authenticator} />
-        )}
-      </main>
+      <Routes>
+        <Route path="sok" element={<SearchPage weather={weather} />} />
+        <Route path="*" element={<WeatherPage weather={weather} />} />
+      </Routes>
     </>
   )
 }
