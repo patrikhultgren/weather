@@ -1,5 +1,5 @@
-import { useMemo, useCallback, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useMemo, useCallback, useState, useEffect } from 'react'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { SEARCH_API_KEY, SEARCH_API_URL } from 'config'
 import { addPosition } from 'utils/position'
 import {
@@ -31,6 +31,9 @@ const useSearchHandler = (
   const [searchTerm, setSearchTerm] = useState<string>('')
   const [active, setActive] = useState<boolean>(false)
 
+  const location = useLocation()
+  const locationFrom = location.state?.from
+
   const openSearch = useCallback(() => {
     setActive(true)
   }, [])
@@ -40,8 +43,8 @@ const useSearchHandler = (
     setReset(true)
     setRun(false)
     setActive(false)
-    navigate('/')
-  }, [navigate])
+    navigate(locationFrom || '/')
+  }, [navigate, locationFrom])
 
   const resetSearchTerm = useCallback(() => {
     setSearchTerm('')

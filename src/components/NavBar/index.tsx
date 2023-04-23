@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 import classNames from 'classnames'
 import SearchIcon from 'components/Icon/Search'
 import ChartIcon from 'components/Icon/Chart'
@@ -11,6 +11,7 @@ interface IProps {
 }
 
 export default function NavBar({ app }: IProps) {
+  const location = useLocation()
   const scrollDirection = useScrollDirection()
 
   const {
@@ -19,6 +20,7 @@ export default function NavBar({ app }: IProps) {
 
   return (
     <nav
+      aria-label="Huvudmeny"
       className={classNames(
         'fixed md:static left-0 bg-gray-300 w-full z-10 bg-opacity-50 transition-all ease-in-out duration-300 flex md:pt-3',
         scrollDirection === 'down' ? '-bottom-36' : 'bottom-0'
@@ -56,6 +58,7 @@ export default function NavBar({ app }: IProps) {
       </NavLink>
       <NavLink
         to="/search"
+        state={{ from: location.pathname }}
         className={({ isActive }) =>
           classNames(
             'mr-auto z-10 shadow-md rounded md:rounded-none md:shadow-none h-12 w-12 md:w-auto md:px-4 flex items-center justify-center',
