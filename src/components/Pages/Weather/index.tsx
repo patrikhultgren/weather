@@ -1,11 +1,11 @@
 import { useEffect } from 'react'
 import { IApp } from 'utils/types'
 import Loading from 'components/Loading'
+import NavBar from 'components/NavBar'
+import Header from 'components/Header'
 
-import Header from './Header'
 import Forecast from './Forecast'
 import Credit from './Credit'
-import NavBar from './NavBar'
 
 interface IProps {
   app: IApp
