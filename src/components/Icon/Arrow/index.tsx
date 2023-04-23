@@ -2,12 +2,14 @@ import classNames from 'classnames'
 import { FiChevronDown } from 'react-icons/fi'
 
 interface IProps {
-  direction: 'down' | 'up'
+  direction: 'down' | 'up' | 'left' | 'right'
 }
 
 const info = {
   down: { className: '', title: 'Pil ner' },
   up: { className: 'rotate-180', title: 'Pil upp' },
+  left: { className: 'rotate-90', title: 'Pil vänster' },
+  right: { className: 'rotate-[270deg]', title: 'Pil höger' },
 }
 
 const Arrow = ({ direction }: IProps) => (

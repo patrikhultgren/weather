@@ -5,7 +5,7 @@ import NavBar from 'components/NavBar'
 import Header from 'components/Header'
 import Credit from 'components/Credit'
 
-import Forecast from './Forecast'
+import Chart from './Chart'
 
 interface IProps {
   app: IApp
@@ -21,7 +21,7 @@ export default function ChartsPage({ app }: IProps) {
       <Loading status={app.status} error={app.error} />
       <Header app={app} />
       <NavBar app={app} />
-      <Forecast app={app} />
+      <Chart app={app} />
       <Credit />
     </main>
   )

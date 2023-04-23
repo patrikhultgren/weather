@@ -83,7 +83,7 @@ export default function Day({ day }: IProps) {
             </th>
           </tr>
         </thead>
-        <tbody className="">
+        <tbody>
           <Hours hours={hours} />
         </tbody>
       </table>
@@ -96,7 +96,7 @@ export default function Day({ day }: IProps) {
           <span className="mr-1">
             {showAll ? 'Visa färre timmar' : 'Visa alla timmar'}
           </span>
-          <Arrow direction={showAll ? 'up' : 'down'} />
+          <Arrow direction={showAll ? 'right' : 'down'} />
         </button>
       )}
     </article>

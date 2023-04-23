@@ -17,6 +17,7 @@ import PartlyCloudyDay from 'components/Icon/Weather/PartlyCloudyDay'
 import Snow from 'components/Icon/Weather/Snow'
 import Sleet from 'components/Icon/Weather/Sleet'
 import Rain from 'components/Icon/Weather/Rain'
+import LongArrow from 'components/Icon/LongArrow'
 
 const icons: { [key: string]: ReactNode } = {
   partlycloudy_night: <PartlyCloudyNight />,
@@ -77,6 +78,10 @@ export default function Hour({ hour }: IProps) {
     return speed ? Math.round(speed) : null
   }, [hour])
 
+  const windFromDirection = useMemo(() => {
+    return Math.round(hour.data.instant.details.wind_from_direction)
+  }, [hour])
+
   return (
     <>
       <td className="border-y border-slate-300 px-2 py-1 text-center">
@@ -98,8 +103,15 @@ export default function Hour({ hour }: IProps) {
         </span>
       </td>
       <td className="border-y border-slate-300 px-2 py-1 text-center">
-        {windSpeed} {windSpeedOfGust ? `(${windSpeedOfGust})` : ''}{' '}
-        <span className="hidden md:inline">m/s</span>
+        <div className="flex items-center justify-center">
+          <span className="mr-1.5">
+            {windSpeed} {windSpeedOfGust ? `(${windSpeedOfGust})` : ''}
+          </span>
+          <LongArrow
+            title={`Vindriktning ${windFromDirection.toLocaleString()} grader`}
+            degress={windFromDirection}
+          />
+        </div>
       </td>
       <td className="border-y border-slate-300 px-2 py-1 text-center hidden md:table-cell text-blue-700">
         {precipitationAmount > 0 &&
