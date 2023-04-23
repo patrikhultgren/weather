@@ -1,5 +1,5 @@
-import WeatherPage from 'components/WeatherPage'
-import SearchPage from 'components/SearchPage'
+import WeatherPage from 'components/Pages/Weather'
+import SearchPage from 'components/Pages/Search'
 import { Route, Routes } from 'react-router-dom'
 import useApp from 'hooks/useApp'
 
