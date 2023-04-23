@@ -89,7 +89,7 @@ export default function Search({ app }: IProps) {
           </ul>
         </div>
       )}
-      {!hasSearchResults && finished && (
+      {!hasSearchResults && finished && response?.type === 'searchResults' && (
         <p id={searchResultsId} className="p-4 mt-4 bg-white font-bold">
           Typiskt, hittade inga sökresultat. Testa gärna att söka på något
           annat.
