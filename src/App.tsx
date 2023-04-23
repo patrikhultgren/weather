@@ -9,7 +9,7 @@ export default function App() {
   return (
     <>
       <Routes>
-        <Route path="sok" element={<SearchPage app={app} />} />
+        <Route path="search" element={<SearchPage app={app} />} />
         <Route path="*" element={<WeatherPage app={app} />} />
       </Routes>
     </>
