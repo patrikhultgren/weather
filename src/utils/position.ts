@@ -29,8 +29,8 @@ export const addPosition = (
 ) => {
   const roundedPosition = {
     ...position,
-    latitude: parseFloat(position.latitude.toFixed(4)),
-    longitude: parseFloat(position.longitude.toFixed(4)),
+    latitude: parseFloat(position.latitude.toFixed(5)),
+    longitude: parseFloat(position.longitude.toFixed(5)),
   }
 
   if (!roundedPosition.city) {
