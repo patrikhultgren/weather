@@ -42,7 +42,7 @@ export default function NavBar({ app }: IProps) {
         <span className="hidden md:inline">Visa som tabeller</span>
       </NavLink>
       <NavLink
-        to="/chart"
+        to="/charts"
         className={({ isActive }) =>
           classNames(
             'mx-3 z-10 shadow-md rounded md:rounded-none md:shadow-none h-12 w-12 md:w-auto md:px-4 flex items-center justify-center',
