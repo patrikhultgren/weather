@@ -3,9 +3,9 @@ import { IApp } from 'utils/types'
 import Loading from 'components/Loading'
 import NavBar from 'components/NavBar'
 import Header from 'components/Header'
+import Credit from 'components/Credit'
 
 import Forecast from './Forecast'
-import Credit from './Credit'
 
 interface IProps {
   app: IApp
