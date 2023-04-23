@@ -24,11 +24,15 @@ export default function Forecast({ app }: IProps) {
       let currentDay = 0
 
       for (const day of app.days) {
+        let hourIndex = 0
+
         for (const hour of day) {
           hours.push({
             airTemperature: hour.data.instant.details.air_temperature,
-            hour: format(hour.time, 'HH'),
+            hour: format(hour.time, hourIndex === 0 ? 'dMMMMM' : 'HH'),
           })
+
+          hourIndex++
         }
 
         if (currentDay == 2) {
