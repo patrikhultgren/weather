@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { IApp } from 'utils/types'
 import Loading from 'components/Loading'
 
 import Header from './Header'
@@ -7,20 +8,20 @@ import Credit from './Credit'
 import NavBar from './NavBar'
 
 interface IProps {
-  weather: any
+  app: IApp
 }
 
-export default function WeatherPage({ weather }: IProps) {
+export default function WeatherPage({ app }: IProps) {
   useEffect(() => {
     document.body.style.backgroundColor = '#fff'
   }, [])
 
   return (
     <main role="main">
-      <Loading status={weather.status} error={weather.error} />
-      <Header weather={weather} />
-      <NavBar weather={weather} />
-      <Forecast weather={weather} />
+      <Loading status={app.status} error={app.error} />
+      <Header app={app} />
+      <NavBar app={app} />
+      <Forecast app={app} />
       <Credit />
     </main>
   )

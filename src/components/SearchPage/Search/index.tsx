@@ -2,17 +2,17 @@ import { useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import SearchIcon from 'components/Icon/Search'
 import Close from 'components/Icon/Close'
-import { IWeather } from 'utils/types'
+import { IApp } from 'utils/types'
 import { useId } from 'react'
 
 interface IProps {
-  weather: IWeather
+  app: IApp
 }
 
-export default function Search({ weather }: IProps) {
+export default function Search({ app }: IProps) {
   const searchResultsId = useId()
 
-  const { searchHandler } = weather
+  const { searchHandler } = app
 
   const { response, finished } = searchHandler.searchResults
 

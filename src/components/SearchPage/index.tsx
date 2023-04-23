@@ -1,21 +1,22 @@
 import { useEffect } from 'react'
+import { IApp } from 'utils/types'
 import Loading from 'components/Loading'
 
 import Search from './Search'
 
 interface IProps {
-  weather: any
+  app: IApp
 }
 
-export default function SearchPage({ weather }: IProps) {
+export default function SearchPage({ app }: IProps) {
   useEffect(() => {
     document.body.style.backgroundColor = '#475569'
   }, [])
 
   return (
     <main role="main">
-      <Loading status={weather.status} error={weather.error} />
-      <Search weather={weather} />
+      <Loading status={app.status} error={app.error} />
+      <Search app={app} />
     </main>
   )
 }

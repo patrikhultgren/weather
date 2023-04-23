@@ -1,20 +1,20 @@
 import { Link } from 'react-router-dom'
 import classNames from 'classnames'
 import SearchIcon from 'components/Icon/Search'
-import { IWeather } from 'utils/types'
+import { IApp } from 'utils/types'
 import useScrollDirection from 'hooks/useScrollDirection'
 
 interface IProps {
-  weather: IWeather
+  app: IApp
 }
 
-export default function NavBar({ weather }: IProps) {
+export default function NavBar({ app }: IProps) {
   const scrollDirection = useScrollDirection()
 
   const {
     searchHandler,
     status: { isFullscreen },
-  } = weather
+  } = app
 
   return (
     <nav

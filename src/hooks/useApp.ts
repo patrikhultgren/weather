@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { getPositions } from 'utils/position'
-import { IPosition, IWeather } from 'utils/types'
+import { IPosition, IApp } from 'utils/types'
 import useGeoPosition from 'hooks/useGeoPosition'
 import useAddress from 'hooks/useAddress'
 import useForecast from 'hooks/useForecast'
@@ -10,7 +10,7 @@ import useIsFullscreen from 'hooks/useIsFullscreen'
 import useOnline from 'hooks/useOnline'
 import useFirstPosition from './useFirstPosition'
 
-const useWeather = (): IWeather => {
+const useApp = (): IApp => {
   const online = useOnline()
   const isFullscreen = useIsFullscreen()
   const [positions, setPositions] = useState<Array<IPosition>>([])
@@ -76,4 +76,4 @@ const useWeather = (): IWeather => {
   )
 }
 
-export default useWeather
+export default useApp

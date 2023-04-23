@@ -190,7 +190,7 @@ export interface ISearchHandler {
   setActive: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-export interface IWeather {
+export interface IApp {
   city: string
   days: Array<Array<ITimeSerie>> | null
   status: IAppStatus

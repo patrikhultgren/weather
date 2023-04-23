@@ -1,14 +1,14 @@
 import { useMemo } from 'react'
 import classNames from 'classnames'
-import { IWeather } from 'utils/types'
+import { IApp } from 'utils/types'
 
 interface IProps {
-  weather: IWeather
+  app: IApp
   className?: string
 }
 
-export default function Header({ weather, className }: IProps) {
-  const { city } = weather
+export default function Header({ app, className }: IProps) {
+  const { city } = app
 
   const textSize = useMemo(
     () => (city.length > 40 ? 'text-2xl' : 'text-2xl md:text-3xl'),

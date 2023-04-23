@@ -1,16 +1,16 @@
 import WeatherPage from 'components/WeatherPage'
 import SearchPage from 'components/SearchPage'
 import { Route, Routes } from 'react-router-dom'
-import useWeather from 'hooks/useWeather'
+import useApp from 'hooks/useApp'
 
 export default function App() {
-  const weather = useWeather()
+  const app = useApp()
 
   return (
     <>
       <Routes>
-        <Route path="sok" element={<SearchPage weather={weather} />} />
-        <Route path="*" element={<WeatherPage weather={weather} />} />
+        <Route path="sok" element={<SearchPage app={app} />} />
+        <Route path="*" element={<WeatherPage app={app} />} />
       </Routes>
     </>
   )

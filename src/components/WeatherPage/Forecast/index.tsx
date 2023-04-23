@@ -1,17 +1,17 @@
 import classNames from 'classnames'
 import Container from 'components/Container'
-import { IWeather } from 'utils/types'
+import { IApp } from 'utils/types'
 import Day from './Day'
 import Placeholder from './Placeholder'
 
 const className = 'mb-10'
 
 interface IProps {
-  weather: IWeather
+  app: IApp
 }
 
-export default function Forecast({ weather }: IProps) {
-  const { days, status, geoPosition, searchHandler } = weather
+export default function Forecast({ app }: IProps) {
+  const { days, status, geoPosition, searchHandler } = app
 
   if (geoPosition.error && !days) {
     return (
