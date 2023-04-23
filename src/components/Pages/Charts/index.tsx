@@ -11,7 +11,7 @@ interface IProps {
   app: IApp
 }
 
-export default function WeatherPage({ app }: IProps) {
+export default function ChartsPage({ app }: IProps) {
   useEffect(() => {
     document.body.style.backgroundColor = '#fff'
   }, [])

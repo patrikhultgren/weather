@@ -11,7 +11,7 @@ interface IProps {
   app: IApp
 }
 
-export default function ChartPage({ app }: IProps) {
+export default function TablesPage({ app }: IProps) {
   useEffect(() => {
     document.body.style.backgroundColor = '#fff'
   }, [])
