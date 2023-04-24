@@ -49,7 +49,7 @@ export default function Wind({ app }: IProps) {
   return (
     <div className="">
       <h2 className="font-bold ml-4 md:text-2xl md:text-center">Vind</h2>
-      <ResponsiveContainer width="100%" aspect={3}>
+      <ResponsiveContainer width="100%" aspect={6}>
         <LineChart
           data={data}
           margin={{
@@ -64,7 +64,7 @@ export default function Wind({ app }: IProps) {
           <YAxis />
           <Tooltip />
           <Legend />
-          <Line type="monotone" name="Vind" dataKey="y" stroke="#dc2626" />
+          <Line type="monotone" name="Vind" dataKey="y" stroke="#c026d3" />
         </LineChart>
       </ResponsiveContainer>
     </div>

@@ -49,7 +49,7 @@ export default function Temperature({ app }: IProps) {
   return (
     <div className="mt-2 pb-4">
       <h2 className="font-bold ml-4 md:text-2xl md:text-center">Temperatur</h2>
-      <ResponsiveContainer width="100%" aspect={3}>
+      <ResponsiveContainer width="100%" aspect={4}>
         <LineChart
           data={data}
           margin={{

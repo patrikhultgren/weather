@@ -49,7 +49,7 @@ export default function Precipitation({ app }: IProps) {
   return (
     <div className="mt-2 pb-4">
       <h2 className="font-bold ml-4 md:text-2xl md:text-center">Nederbörd</h2>
-      <ResponsiveContainer width="100%" aspect={3}>
+      <ResponsiveContainer width="100%" aspect={6}>
         <LineChart
           data={data}
           margin={{
@@ -64,7 +64,7 @@ export default function Precipitation({ app }: IProps) {
           <YAxis />
           <Tooltip />
           <Legend />
-          <Line type="monotone" name="Nederbörd" dataKey="y" stroke="#0369a1" />
+          <Line type="monotone" name="Nederbörd" dataKey="y" stroke="#0284c7" />
         </LineChart>
       </ResponsiveContainer>
     </div>
