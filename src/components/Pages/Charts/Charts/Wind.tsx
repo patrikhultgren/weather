@@ -5,9 +5,7 @@ import {
   XAxis,
   YAxis,
   CartesianGrid,
-  CartesianAxis,
   Tooltip,
-  Legend,
   ResponsiveContainer,
 } from 'recharts'
 import { IApp } from 'utils/types'
