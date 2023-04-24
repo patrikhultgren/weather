@@ -41,8 +41,8 @@ export default function Charts({ app }: IProps) {
   }, [app])
 
   return (
-    <div className="overflow-x-scroll">
-      <div className="w-[1000px] mx-auto">
+    <div className="overflow-x-scroll pb-10 pt-4">
+      <div className="w-[1200px] mx-auto">
         <Temperature app={app} />
         <Precipitation app={app} />
         <Wind app={app} />

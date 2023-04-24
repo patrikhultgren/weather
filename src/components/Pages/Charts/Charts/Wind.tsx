@@ -1,16 +1,18 @@
 import { useMemo } from 'react'
-import { IApp } from 'utils/types'
-import { format } from 'utils/date'
 import {
   LineChart,
   Line,
   XAxis,
   YAxis,
   CartesianGrid,
+  CartesianAxis,
   Tooltip,
   Legend,
   ResponsiveContainer,
 } from 'recharts'
+import { IApp } from 'utils/types'
+import { format } from 'utils/date'
+import AxisTickHour from 'components/AxisTickHour'
 
 interface IProps {
   app: IApp
@@ -28,7 +30,7 @@ export default function Wind({ app }: IProps) {
 
         for (const hour of day) {
           hours.push({
-            x: format(hour.time, hourIndex === 0 ? 'dMMMMM' : 'HH'),
+            x: format(hour.time, 'd MMM HH').replace('.', ' kl '),
             y: hour.data.instant.details.wind_speed,
           })
 
@@ -47,23 +49,22 @@ export default function Wind({ app }: IProps) {
   }, [app])
 
   return (
-    <div className="">
-      <h2 className="font-bold ml-4 md:text-2xl md:text-center">Vind</h2>
+    <div className="mt-4">
+      <h2 className="font-bold ml-4 md:text-2xl md:text-center">Vind (m/s)</h2>
       <ResponsiveContainer width="100%" aspect={6}>
         <LineChart
           data={data}
           margin={{
             top: 10,
             right: 10,
-            left: -20,
-            bottom: 0,
+            left: 0,
+            bottom: 30,
           }}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="x" />
+          <XAxis interval={1} dataKey="x" tick={<AxisTickHour />} />
           <YAxis />
           <Tooltip />
-          <Legend />
           <Line type="monotone" name="Vind" dataKey="y" stroke="#c026d3" />
         </LineChart>
       </ResponsiveContainer>
