@@ -19,6 +19,7 @@ const CustomizedLabel = (props: {
   value: number
 }) => {
   const { x, y, value } = props
+  const windSpeed = Math.round(value)
 
   return (
     <text
@@ -26,11 +27,11 @@ const CustomizedLabel = (props: {
       y={y - 8}
       dy={-4}
       fill="#000"
-      fontSize={12}
+      fontSize="0.9rem"
       fontWeight="bold"
       textAnchor="middle"
     >
-      {value.toLocaleString()}
+      {windSpeed.toLocaleString()}
     </text>
   )
 }
@@ -75,8 +76,8 @@ export default function Wind({ app }: IProps) {
           margin={{
             top: 25,
             right: 10,
-            left: 0,
-            bottom: 35,
+            left: 5,
+            bottom: 38,
           }}
         >
           <CartesianGrid strokeDasharray="3 3" />

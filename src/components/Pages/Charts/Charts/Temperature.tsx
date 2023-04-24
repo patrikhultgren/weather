@@ -11,7 +11,7 @@ import {
 import { IApp } from 'utils/types'
 import { format } from 'utils/date'
 import AxisTickHour from 'components/AxisTickHour'
-import PartlyCloudyDay from 'components/Icon/Weather/PartlyCloudyDay'
+// import PartlyCloudyDay from 'components/Icon/Weather/PartlyCloudyDay'
 
 const CustomizedLabel = (props: {
   x: number
@@ -21,6 +21,7 @@ const CustomizedLabel = (props: {
   index: number
 }) => {
   const { x, y, value, index } = props
+  const temperature = Math.round(value)
 
   return (
     <>
@@ -28,12 +29,12 @@ const CustomizedLabel = (props: {
         x={x}
         y={y - 8}
         dy={-4}
-        fill={value > 0 ? '#b91c1c' : '#1d4ed8'}
-        fontSize={12}
+        fill={temperature > 0 ? '#b91c1c' : '#1d4ed8'}
+        fontSize="0.9rem"
         fontWeight="bold"
         textAnchor="middle"
       >
-        {value.toLocaleString()}
+        {temperature.toLocaleString()}
       </text>
       {/* {index % 2 !== 0 && <PartlyCloudyDay x={x + -15} y={y - 50} size={30} />} */}
     </>
@@ -82,8 +83,8 @@ export default function Temperature({ app }: IProps) {
           margin={{
             top: 70,
             right: 10,
-            left: 0,
-            bottom: 35,
+            left: 5,
+            bottom: 38,
           }}
         >
           <CartesianGrid strokeDasharray="3 3" />

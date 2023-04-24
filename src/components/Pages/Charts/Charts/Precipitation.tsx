@@ -26,7 +26,7 @@ const CustomizedLabel = (props: {
       y={y - 8}
       dy={-4}
       fill="#000"
-      fontSize={12}
+      fontSize="0.9rem"
       fontWeight="bold"
       textAnchor="middle"
     >
@@ -77,8 +77,8 @@ export default function Precipitation({ app }: IProps) {
           margin={{
             top: 25,
             right: 10,
-            left: 0,
-            bottom: 35,
+            left: 5,
+            bottom: 38,
           }}
         >
           <CartesianGrid strokeDasharray="3 3" />

@@ -10,7 +10,7 @@ const AxisTickHour = ({ x, y, stroke, payload, index, data }: any) => {
         textAnchor="end"
         fill="#212121"
         transform="rotate(-35)"
-        fontSize="0.9rem"
+        fontSize="1rem"
         fontWeight={
           index === 0 ||
           (data &&
