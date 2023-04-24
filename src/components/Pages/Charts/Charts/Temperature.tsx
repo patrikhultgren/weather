@@ -56,7 +56,7 @@ export default function Temperature({ app }: IProps) {
         for (const hour of day) {
           hours.push({
             time: hour.time,
-            x: format(hour.time, 'd MMM HH').replace('.', ' kl '),
+            x: format(hour.time, 'HH'),
             y: hour.data.instant.details.air_temperature,
           })
         }

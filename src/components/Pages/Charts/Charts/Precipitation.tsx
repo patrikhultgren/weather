@@ -50,7 +50,7 @@ export default function Precipitation({ app }: IProps) {
         for (const hour of day) {
           hours.push({
             time: hour.time,
-            x: format(hour.time, 'd MMM HH').replace('.', ' kl '),
+            x: format(hour.time, 'HH'),
             y: hour.data?.next_1_hours?.details?.precipitation_amount,
           })
         }
