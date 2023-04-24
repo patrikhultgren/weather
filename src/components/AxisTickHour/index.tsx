@@ -1,6 +1,4 @@
 const AxisTickHour = ({ x, y, stroke, payload }: any) => {
-  console.log('pau', payload)
-
   return (
     <g transform={`translate(${x},${y})`}>
       <text

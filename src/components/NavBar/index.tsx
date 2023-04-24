@@ -32,7 +32,7 @@ export default function NavBar({ app, activeMenuItem }: IProps) {
         className={classNames(
           'ml-auto z-10 shadow-md rounded md:rounded-none md:shadow-none h-12 w-12 md:w-auto md:px-4 flex items-center justify-center',
           activeMenuItem === 'tables'
-            ? 'bg-white text-black hover:bg-slate-600 hover:text-white'
+            ? 'bg-white text-black'
             : 'bg-slate-600 text-white md:bg-gray-200 md:hover:bg-white md:text-black',
           { 'mb-6': isFullscreen }
         )}
@@ -45,7 +45,7 @@ export default function NavBar({ app, activeMenuItem }: IProps) {
         className={classNames(
           'mx-3 z-10 shadow-md rounded md:rounded-none md:shadow-none h-12 w-12 md:w-auto md:px-4 flex items-center justify-center',
           activeMenuItem === 'charts'
-            ? 'bg-white text-black hover:bg-slate-600 hover:text-white'
+            ? 'bg-white text-black'
             : 'bg-slate-600 text-white md:bg-gray-200 md:hover:bg-white md:text-black',
           { 'mb-6': isFullscreen }
         )}
