@@ -14,18 +14,18 @@ const AxisTickHour = ({ x, y, stroke, payload, index, data }: any) => {
       <text
         x={0}
         y={0}
-        dy={16}
+        dy={0}
         textAnchor="middle"
         fill="#212121"
         transform="rotate(0)"
         fontSize="1rem"
         fontWeight={markVisually ? 'bold' : ''}
       >
-        <tspan x="0" dy="1.1rem">
+        <tspan x="0" dy="18">
           {payload.value}
         </tspan>
         {markVisually && (
-          <tspan x="0" dy="1.3rem">
+          <tspan x="0" dy="22">
             {format(data[index * 2].time, 'd MMM')}
           </tspan>
         )}

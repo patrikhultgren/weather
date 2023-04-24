@@ -83,8 +83,8 @@ export default function Temperature({ app }: IProps) {
           margin={{
             top: 70,
             right: 10,
-            left: 5,
-            bottom: 38,
+            left: -30,
+            bottom: 25,
           }}
         >
           <CartesianGrid strokeDasharray="3 3" />
