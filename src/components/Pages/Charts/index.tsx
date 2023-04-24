@@ -23,7 +23,7 @@ export default function ChartsPage({ app }: IProps) {
     <main role="main">
       <Loading status={app.status} error={app.error} />
       <Header app={app} />
-      <NavBar app={app} activeMenuItem="charts" />
+      <NavBar app={app} activeMenuItem="charts" key="charts" />
       {appState === 'show-forecast' ? (
         <Charts app={app} />
       ) : (
