@@ -68,7 +68,7 @@ export default function Precipitation({ app }: IProps) {
 
   return (
     <div className="mt-4">
-      <h2 className="font-bold ml-4 md:text-2xl md:text-center">
+      <h2 className="font-bold ml-4 text-xl md:text-2xl md:text-center">
         Nederbörd (mm)
       </h2>
       <ResponsiveContainer width="100%" aspect={6}>
