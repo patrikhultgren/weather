@@ -52,7 +52,7 @@ export default function Wind({ app }: IProps) {
             top: 10,
             right: 10,
             left: 0,
-            bottom: 30,
+            bottom: 35,
           }}
         >
           <CartesianGrid strokeDasharray="3 3" />
