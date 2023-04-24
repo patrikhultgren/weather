@@ -10,6 +10,7 @@ const allPositionsAreFoundByAllowingPosition = (positions: Array<IPosition>) =>
 const initialState: IGeoPosition = {
   error: null,
   loading: false,
+  finished: false,
 }
 
 const useGeoPosition = (
@@ -26,6 +27,7 @@ const useGeoPosition = (
     ({ coords }: GeolocationPosition) => {
       setGeoPosition({
         ...initialState,
+        finished: true,
       })
 
       if (allPositionsAreFoundByAllowingPosition(positions)) {
@@ -44,7 +46,12 @@ const useGeoPosition = (
 
   const onError = useCallback(
     (error: any) => {
-      setGeoPosition((prev) => ({ ...prev, loading: false, error }))
+      setGeoPosition((prev) => ({
+        ...prev,
+        loading: false,
+        finished: true,
+        error,
+      }))
     },
     [setGeoPosition]
   )
@@ -57,6 +64,7 @@ const useGeoPosition = (
     ) {
       setGeoPosition({
         ...initialState,
+        finished: true,
       })
 
       return

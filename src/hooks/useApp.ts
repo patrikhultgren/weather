@@ -61,6 +61,11 @@ const useApp = (): IApp => {
           address.loading ||
           forecast.loading ||
           searchHandler.searchResults.loading,
+        finished:
+          geoPosition.finished &&
+          address.finished &&
+          forecast.finished &&
+          searchHandler.searchResults.finished,
         type: searchHandler.active ? 'spinner' : 'placeholder',
       },
     }),

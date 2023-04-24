@@ -73,7 +73,7 @@ export default function ForecastNotReady({ app, appState }: IProps) {
         </div>
       </Container>
     )
-  } else if (!app.status.loading) {
+  } else if (app.status.finished) {
     return (
       <Container
         className={classNames(

@@ -174,6 +174,7 @@ export interface IAppStatus {
   online: boolean
   isFullscreen: boolean
   loading: boolean
+  finished: boolean
   type: 'spinner' | 'placeholder'
 }
 
@@ -202,6 +203,7 @@ export interface IApp {
 export interface IGeoPosition {
   error: any
   loading: boolean
+  finished: boolean
 }
 
 export interface ISearchResults {
