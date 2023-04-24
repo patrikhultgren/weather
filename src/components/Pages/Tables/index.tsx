@@ -24,7 +24,6 @@ export default function TablesPage({ app }: IProps) {
       <Loading status={app.status} error={app.error} />
       <Header app={app} />
       <NavBar app={app} activeMenuItem="tables" />
-      <Forecast app={app} />
       {appState === 'show-forecast' ? (
         <Forecast app={app} />
       ) : (
