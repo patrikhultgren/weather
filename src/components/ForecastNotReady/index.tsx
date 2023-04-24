@@ -1,3 +1,4 @@
+import { Link, useLocation } from 'react-router-dom'
 import classNames from 'classnames'
 import Container from 'components/Container'
 import ForecastPlaceholder from 'components/ForecastPlaceholder'
@@ -11,6 +12,8 @@ interface IProps {
 }
 
 export default function ForecastNotReady({ app, appState }: IProps) {
+  const location = useLocation()
+
   if (appState === 'geo-error') {
     return (
       <Container
@@ -28,13 +31,13 @@ export default function ForecastNotReady({ app, appState }: IProps) {
           </p>
           <p className="mt-4 text-xl">
             Använd{' '}
-            <button
-              type="button"
+            <Link
+              to="/search"
               className="underline py-2"
-              onClick={app.searchHandler.openSearch}
+              state={{ from: location.pathname }}
             >
               sökfunktionen
-            </button>{' '}
+            </Link>{' '}
             istället.
           </p>
         </div>
@@ -86,13 +89,13 @@ export default function ForecastNotReady({ app, appState }: IProps) {
         <p className="text-2xl font-bold">Se väderprognoser</p>
         <p className="mt-4 text-xl">
           Använd{' '}
-          <button
-            type="button"
+          <Link
+            to="/search"
             className="underline py-2"
-            onClick={app.searchHandler.openSearch}
+            state={{ from: location.pathname }}
           >
             sökfunktionen
-          </button>
+          </Link>
           .
         </p>
       </div>
