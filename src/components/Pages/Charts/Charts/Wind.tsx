@@ -83,7 +83,7 @@ export default function Wind({ app }: IProps) {
           }}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis interval={1} dataKey="x" tick={<AxisTickHour data={data} />} />
+          <XAxis interval={0} dataKey="x" tick={<AxisTickHour data={data} />} />
           <YAxis />
           <Tooltip wrapperClassName="hidden md:block" />
           <Line
