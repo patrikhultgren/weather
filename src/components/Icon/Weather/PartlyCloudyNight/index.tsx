@@ -5,7 +5,12 @@ interface IProps {
   size?: string | number
 }
 
-const PartlyCloudyNight = ({ className = 'w-10 h-10', x, y, size }: IProps) => (
+const PartlyCloudyNight = ({
+  className = 'w-10 h-10',
+  x = 0,
+  y = 0,
+  size,
+}: IProps) => (
   <svg
     x={x}
     y={y}

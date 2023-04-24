@@ -1,4 +1,4 @@
-import { useMemo, ReactNode } from 'react'
+import { useMemo } from 'react'
 import {
   CartesianGrid,
   LineChart,
