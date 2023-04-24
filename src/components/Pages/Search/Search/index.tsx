@@ -1,5 +1,4 @@
 import { useMemo } from 'react'
-import { Link } from 'react-router-dom'
 import SearchIcon from 'components/Icon/Search'
 import Close from 'components/Icon/Close'
 import { IApp } from 'utils/types'

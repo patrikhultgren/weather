@@ -24,18 +24,14 @@ export default function Precipitation({ app }: IProps) {
       let currentDay = 0
 
       for (const day of app.days) {
-        let hourIndex = 0
-
         for (const hour of day) {
           hours.push({
             x: format(hour.time, 'd MMM HH').replace('.', ' kl '),
             y: hour.data?.next_1_hours?.details?.precipitation_amount,
           })
-
-          hourIndex++
         }
 
-        if (currentDay == 2) {
+        if (currentDay === 2) {
           break
         }
 

@@ -24,18 +24,14 @@ export default function Wind({ app }: IProps) {
       let currentDay = 0
 
       for (const day of app.days) {
-        let hourIndex = 0
-
         for (const hour of day) {
           hours.push({
             x: format(hour.time, 'd MMM HH').replace('.', ' kl '),
             y: hour.data.instant.details.wind_speed,
           })
-
-          hourIndex++
         }
 
-        if (currentDay == 2) {
+        if (currentDay === 2) {
           break
         }
 
