@@ -73,32 +73,34 @@ export default function ForecastNotReady({ app, appState }: IProps) {
         </div>
       </Container>
     )
+  } else if (!app.status.loading) {
+    return (
+      <Container
+        className={classNames(
+          'min-h-[40vh]',
+          'flex',
+          'items-center',
+          'text-center',
+          className
+        )}
+      >
+        <div className="px-4 mt-6 w-full">
+          <p className="text-2xl font-bold">Se väderprognoser</p>
+          <p className="mt-4 text-xl">
+            Använd{' '}
+            <Link
+              to="/search"
+              className="underline py-2"
+              state={{ from: location.pathname }}
+            >
+              sökfunktionen
+            </Link>
+            .
+          </p>
+        </div>
+      </Container>
+    )
   }
 
-  return (
-    <Container
-      className={classNames(
-        'min-h-[40vh]',
-        'flex',
-        'items-center',
-        'text-center',
-        className
-      )}
-    >
-      <div className="px-4 mt-6 w-full">
-        <p className="text-2xl font-bold">Se väderprognoser</p>
-        <p className="mt-4 text-xl">
-          Använd{' '}
-          <Link
-            to="/search"
-            className="underline py-2"
-            state={{ from: location.pathname }}
-          >
-            sökfunktionen
-          </Link>
-          .
-        </p>
-      </div>
-    </Container>
-  )
+  return null
 }
