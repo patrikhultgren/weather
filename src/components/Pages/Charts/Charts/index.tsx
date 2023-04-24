@@ -4,6 +4,7 @@ import { format } from 'utils/date'
 
 import Temperature from './Temperature'
 import Precipitation from './Precipitation'
+import Wind from './Wind'
 
 interface IProps {
   app: IApp
@@ -40,9 +41,12 @@ export default function Charts({ app }: IProps) {
   }, [app])
 
   return (
-    <div className="md:ml-10 md:mr-20 md:my-10 md:mb-20">
-      <Temperature app={app} />
-      <Precipitation app={app} />
+    <div className="overflow-x-scroll">
+      <div className="w-[1000px] mx-auto">
+        <Temperature app={app} />
+        <Precipitation app={app} />
+        <Wind app={app} />
+      </div>
     </div>
   )
 }

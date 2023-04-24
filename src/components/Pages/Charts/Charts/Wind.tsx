@@ -16,7 +16,7 @@ interface IProps {
   app: IApp
 }
 
-export default function Precipitation({ app }: IProps) {
+export default function Wind({ app }: IProps) {
   const data = useMemo(() => {
     let hours = []
 
@@ -29,7 +29,7 @@ export default function Precipitation({ app }: IProps) {
         for (const hour of day) {
           hours.push({
             x: format(hour.time, hourIndex === 0 ? 'dMMMMM' : 'HH'),
-            y: hour.data?.next_1_hours?.details?.precipitation_amount,
+            y: hour.data.instant.details.wind_speed,
           })
 
           hourIndex++
@@ -47,15 +47,15 @@ export default function Precipitation({ app }: IProps) {
   }, [app])
 
   return (
-    <div className="mt-2 pb-4">
-      <h2 className="font-bold ml-4 md:text-2xl md:text-center">Nederbörd</h2>
+    <div className="">
+      <h2 className="font-bold ml-4 md:text-2xl md:text-center">Vind</h2>
       <ResponsiveContainer width="100%" aspect={3}>
         <LineChart
           data={data}
           margin={{
             top: 10,
-            right: 0,
-            left: 0,
+            right: 10,
+            left: -20,
             bottom: 0,
           }}
         >
@@ -64,7 +64,7 @@ export default function Precipitation({ app }: IProps) {
           <YAxis />
           <Tooltip />
           <Legend />
-          <Line type="monotone" name="Nederbörd" dataKey="y" stroke="#0369a1" />
+          <Line type="monotone" name="Vind" dataKey="y" stroke="#dc2626" />
         </LineChart>
       </ResponsiveContainer>
     </div>
