@@ -4,7 +4,6 @@ import {
   Line,
   XAxis,
   YAxis,
-  CartesianGrid,
   Tooltip,
   ResponsiveContainer,
 } from 'recharts'
@@ -20,11 +19,10 @@ const CustomizedLabel = (props: {
   value: number
   index: number
 }) => {
-  const { x, y, stroke, value, index } = props
+  const { x, y, value, index } = props
 
   return (
     <>
-      {index % 2 !== 0 && <PartlyCloudyDay x={x + -15} y={y - 50} size={30} />}
       <text
         x={x}
         y={y - 8}
@@ -36,6 +34,7 @@ const CustomizedLabel = (props: {
       >
         {value.toLocaleString()}
       </text>
+      {index % 2 !== 0 && <PartlyCloudyDay x={x + -15} y={y - 50} size={30} />}
     </>
   )
 }
@@ -79,13 +78,12 @@ export default function Temperature({ app }: IProps) {
         <LineChart
           data={data}
           margin={{
-            top: 10,
+            top: 70,
             right: 10,
             left: 0,
             bottom: 35,
           }}
         >
-          <CartesianGrid strokeDasharray="3 3" />
           <XAxis interval={1} dataKey="x" tick={<AxisTickHour />} />
           <YAxis />
           <Tooltip />
