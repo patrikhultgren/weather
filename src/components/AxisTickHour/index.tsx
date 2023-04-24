@@ -5,7 +5,7 @@ const AxisTickHour = ({ x, y, stroke, payload, index, data }: any) => {
     index === 0 ||
       (data &&
         format(data[index * 2].time, 'd') !==
-          format(data[index * 2 - (index === 1 ? 1 : 2)].time, 'd'))
+          format(data[index * 2 - 2].time, 'd'))
   )
 
   return (
