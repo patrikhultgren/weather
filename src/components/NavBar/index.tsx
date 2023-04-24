@@ -23,7 +23,7 @@ export default function NavBar({ app, activeMenuItem }: IProps) {
     <nav
       aria-label="Huvudmeny"
       className={classNames(
-        'fixed md:static left-0 bg-gray-200 w-full z-10 bg-opacity-50 md:bg-opacity-100 transition-all ease-in-out duration-300 flex md:pt-3',
+        'fixed md:static left-0 bg-gray-300 w-full z-10 bg-opacity-50 md:bg-opacity-100 transition-all ease-in-out duration-300 flex md:pt-3',
         scrollDirection === 'down' ? '-bottom-36' : 'bottom-0'
       )}
     >
@@ -57,7 +57,7 @@ export default function NavBar({ app, activeMenuItem }: IProps) {
         to="/search"
         state={{ from: location.pathname }}
         className={classNames(
-          'mr-auto z-10 shadow-md rounded md:rounded-none md:shadow-none h-12 w-12 md:w-auto md:px-4 flex items-center justify-center bg-slate-600 text-white md:bg-gray-200 md:hover:bg-white md:text-black',
+          'mr-auto z-10 shadow-md rounded md:rounded-none md:shadow-none h-12 w-12 md:w-auto md:px-4 flex items-center justify-center bg-white text-black md:bg-gray-200 md:hover:bg-white md:text-black',
           { 'mb-6': isFullscreen }
         )}
       >

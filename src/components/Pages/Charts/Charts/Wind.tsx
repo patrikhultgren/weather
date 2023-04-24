@@ -60,6 +60,7 @@ export default function Wind({ app }: IProps) {
           <YAxis />
           <Tooltip />
           <Line
+            isAnimationActive={false}
             type="monotone"
             name="Vind"
             dataKey="y"

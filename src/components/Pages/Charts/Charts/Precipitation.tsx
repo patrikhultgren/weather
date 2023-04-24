@@ -62,6 +62,7 @@ export default function Precipitation({ app }: IProps) {
           <YAxis />
           <Tooltip />
           <Line
+            isAnimationActive={false}
             type="monotone"
             name="Nederbörd"
             dataKey="y"

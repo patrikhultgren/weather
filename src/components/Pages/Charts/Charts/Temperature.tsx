@@ -88,6 +88,7 @@ export default function Temperature({ app }: IProps) {
           <YAxis />
           <Tooltip />
           <Line
+            isAnimationActive={false}
             type="monotone"
             name="Temperatur"
             dataKey="y"
