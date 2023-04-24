@@ -54,8 +54,8 @@ export default function Precipitation({ app }: IProps) {
           data={data}
           margin={{
             top: 10,
-            right: 0,
-            left: 0,
+            right: 10,
+            left: -20,
             bottom: 0,
           }}
         >
