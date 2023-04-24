@@ -11,6 +11,34 @@ import {
 import { IApp } from 'utils/types'
 import { format } from 'utils/date'
 import AxisTickHour from 'components/AxisTickHour'
+import PartlyCloudyDay from 'components/Icon/Weather/PartlyCloudyDay'
+
+const CustomizedLabel = (props: {
+  x: number
+  y: number
+  stroke: string
+  value: number
+  index: number
+}) => {
+  const { x, y, stroke, value, index } = props
+
+  return (
+    <>
+      {index % 2 !== 0 && <PartlyCloudyDay x={x + -15} y={y - 50} size={30} />}
+      <text
+        x={x}
+        y={y - 8}
+        dy={-4}
+        fill={value > 0 ? '#b91c1c' : '#1d4ed8'}
+        fontSize={12}
+        fontWeight="bold"
+        textAnchor="middle"
+      >
+        {value.toLocaleString()}
+      </text>
+    </>
+  )
+}
 
 interface IProps {
   app: IApp
@@ -67,6 +95,7 @@ export default function Temperature({ app }: IProps) {
             dataKey="y"
             stroke="#dc2626"
             strokeWidth={2}
+            label={CustomizedLabel}
           />
         </LineChart>
       </ResponsiveContainer>
