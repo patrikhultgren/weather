@@ -208,3 +208,10 @@ export interface ISearchResults {
   positions: Array<IPosition> | null
   type: 'searchResults' | 'history'
 }
+
+export type IAppState =
+  | 'geo-error'
+  | 'placeholder'
+  | 'show-forecast'
+  | 'offline'
+  | 'go-to-search-info'
