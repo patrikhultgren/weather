@@ -49,6 +49,7 @@ export default function Wind({ app }: IProps) {
       for (const day of app.days) {
         for (const hour of day) {
           hours.push({
+            time: hour.time,
             x: format(hour.time, 'd MMM HH').replace('.', ' kl '),
             y: hour.data.instant.details.wind_speed,
           })
@@ -79,7 +80,7 @@ export default function Wind({ app }: IProps) {
           }}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis interval={1} dataKey="x" tick={<AxisTickHour />} />
+          <XAxis interval={1} dataKey="x" tick={<AxisTickHour data={data} />} />
           <YAxis />
           <Tooltip />
           <Line

@@ -49,6 +49,7 @@ export default function Precipitation({ app }: IProps) {
       for (const day of app.days) {
         for (const hour of day) {
           hours.push({
+            time: hour.time,
             x: format(hour.time, 'd MMM HH').replace('.', ' kl '),
             y: hour.data?.next_1_hours?.details?.precipitation_amount,
           })
@@ -81,7 +82,7 @@ export default function Precipitation({ app }: IProps) {
           }}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis interval={1} dataKey="x" tick={<AxisTickHour />} />
+          <XAxis interval={1} dataKey="x" tick={<AxisTickHour data={data} />} />
           <YAxis />
           <Tooltip />
           <Line

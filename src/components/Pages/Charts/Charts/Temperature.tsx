@@ -35,7 +35,7 @@ const CustomizedLabel = (props: {
       >
         {value.toLocaleString()}
       </text>
-      {index % 2 !== 0 && <PartlyCloudyDay x={x + -15} y={y - 50} size={30} />}
+      {/* {index % 2 !== 0 && <PartlyCloudyDay x={x + -15} y={y - 50} size={30} />} */}
     </>
   )
 }
@@ -54,6 +54,7 @@ export default function Temperature({ app }: IProps) {
       for (const day of app.days) {
         for (const hour of day) {
           hours.push({
+            time: hour.time,
             x: format(hour.time, 'd MMM HH').replace('.', ' kl '),
             y: hour.data.instant.details.air_temperature,
           })
@@ -86,7 +87,7 @@ export default function Temperature({ app }: IProps) {
           }}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis interval={1} dataKey="x" tick={<AxisTickHour />} />
+          <XAxis interval={1} dataKey="x" tick={<AxisTickHour data={data} />} />
           <YAxis />
           <Tooltip />
           <Line
