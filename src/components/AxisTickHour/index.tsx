@@ -6,7 +6,7 @@ const AxisTickHour = ({ x, y, stroke, payload }: any) => {
         y={0}
         dy={16}
         textAnchor="end"
-        fill="#666"
+        fill="#212121"
         transform="rotate(-35)"
         fontSize="0.9rem"
       >

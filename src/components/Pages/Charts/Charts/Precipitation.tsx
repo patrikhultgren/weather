@@ -4,13 +4,35 @@ import {
   Line,
   XAxis,
   YAxis,
-  CartesianGrid,
   Tooltip,
   ResponsiveContainer,
 } from 'recharts'
 import { IApp } from 'utils/types'
 import { format } from 'utils/date'
 import AxisTickHour from 'components/AxisTickHour'
+
+const CustomizedLabel = (props: {
+  x: number
+  y: number
+  stroke: string
+  value: number
+}) => {
+  const { x, y, value } = props
+
+  return (
+    <text
+      x={x}
+      y={y - 8}
+      dy={-4}
+      fill="#000"
+      fontSize={12}
+      fontWeight="bold"
+      textAnchor="middle"
+    >
+      {value && value.toLocaleString()}
+    </text>
+  )
+}
 
 interface IProps {
   app: IApp
@@ -51,13 +73,12 @@ export default function Precipitation({ app }: IProps) {
         <LineChart
           data={data}
           margin={{
-            top: 10,
+            top: 25,
             right: 10,
             left: 0,
             bottom: 35,
           }}
         >
-          <CartesianGrid strokeDasharray="3 3" />
           <XAxis interval={1} dataKey="x" tick={<AxisTickHour />} />
           <YAxis />
           <Tooltip />
@@ -68,6 +89,7 @@ export default function Precipitation({ app }: IProps) {
             dataKey="y"
             stroke="#0284c7"
             strokeWidth={2}
+            label={CustomizedLabel}
           />
         </LineChart>
       </ResponsiveContainer>
