@@ -8,9 +8,10 @@ import useScrollDirection from 'hooks/useScrollDirection'
 
 interface IProps {
   app: IApp
+  activeMenuItem?: 'tables' | 'charts'
 }
 
-export default function NavBar({ app }: IProps) {
+export default function NavBar({ app, activeMenuItem }: IProps) {
   const location = useLocation()
   const scrollDirection = useScrollDirection()
 
@@ -28,30 +29,26 @@ export default function NavBar({ app }: IProps) {
     >
       <NavLink
         to="/"
-        className={({ isActive }) =>
-          classNames(
-            'ml-auto z-10 shadow-md rounded md:rounded-none md:shadow-none h-12 w-12 md:w-auto md:px-4 flex items-center justify-center',
-            isActive
-              ? 'bg-white text-black hover:bg-slate-600 hover:text-white'
-              : 'bg-slate-600 text-white md:bg-gray-200 md:hover:bg-white md:text-black',
-            { 'mb-6': isFullscreen }
-          )
-        }
+        className={classNames(
+          'ml-auto z-10 shadow-md rounded md:rounded-none md:shadow-none h-12 w-12 md:w-auto md:px-4 flex items-center justify-center',
+          activeMenuItem === 'tables'
+            ? 'bg-white text-black hover:bg-slate-600 hover:text-white'
+            : 'bg-slate-600 text-white md:bg-gray-200 md:hover:bg-white md:text-black',
+          { 'mb-6': isFullscreen }
+        )}
       >
         <TableIcon className="md:mr-2" title="Visa som tabeller" />
         <span className="hidden md:inline">Visa som tabeller</span>
       </NavLink>
       <NavLink
         to="/charts"
-        className={({ isActive }) =>
-          classNames(
-            'mx-3 z-10 shadow-md rounded md:rounded-none md:shadow-none h-12 w-12 md:w-auto md:px-4 flex items-center justify-center',
-            isActive
-              ? 'bg-white text-black hover:bg-slate-600 hover:text-white'
-              : 'bg-slate-600 text-white md:bg-gray-200 md:hover:bg-white md:text-black',
-            { 'mb-6': isFullscreen }
-          )
-        }
+        className={classNames(
+          'mx-3 z-10 shadow-md rounded md:rounded-none md:shadow-none h-12 w-12 md:w-auto md:px-4 flex items-center justify-center',
+          activeMenuItem === 'charts'
+            ? 'bg-white text-black hover:bg-slate-600 hover:text-white'
+            : 'bg-slate-600 text-white md:bg-gray-200 md:hover:bg-white md:text-black',
+          { 'mb-6': isFullscreen }
+        )}
       >
         <ChartIcon className="md:mr-2" title="Visa som diagram" />
         <span className="hidden md:inline">Visa som diagram</span>
