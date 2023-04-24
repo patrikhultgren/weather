@@ -4,9 +4,8 @@ const AxisTickHour = ({ x, y, stroke, payload, index, data }: any) => {
   const markVisually = Boolean(
     index === 0 ||
       (data &&
-        index > 1 &&
         format(data[index * 2].time, 'd') !==
-          format(data[index * 2 - 2].time, 'd'))
+          format(data[index * 2 - (index === 1 ? 1 : 2)].time, 'd'))
   )
 
   return (
