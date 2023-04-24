@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { useMemo, ReactNode } from 'react'
 import {
   CartesianGrid,
   LineChart,
@@ -11,17 +11,42 @@ import {
 import { IApp } from 'utils/types'
 import { format } from 'utils/date'
 import AxisTickHour from 'components/AxisTickHour'
-// import PartlyCloudyDay from 'components/Icon/Weather/PartlyCloudyDay'
+import PartlyCloudyNight from 'components/Icon/Weather/PartlyCloudyNight'
+import PartlyCloudyDay from 'components/Icon/Weather/PartlyCloudyDay'
+import Snow from 'components/Icon/Weather/Snow'
+import Sleet from 'components/Icon/Weather/Sleet'
+import Rain from 'components/Icon/Weather/Rain'
+import {
+  ClearSkyDay,
+  ClearSkyNight,
+  Cloudy,
+  FairDay,
+  FairNight,
+  Fog,
+  LightSleet,
+  LightSnow,
+} from '@patrikhultgren/react-weather-icons'
 
-const CustomizedLabel = (props: {
-  x: number
-  y: number
-  stroke: string
-  value: number
-  index: number
-}) => {
-  const { x, y, value, index } = props
+const icons: { [key: string]: any } = {
+  partlycloudy_night: PartlyCloudyNight,
+  fair_night: FairNight,
+  clearsky_night: ClearSkyNight,
+  clearsky_day: ClearSkyDay,
+  partlycloudy_day: PartlyCloudyDay,
+  cloudy: Cloudy,
+  lightsnow: LightSnow,
+  snow: Snow,
+  fog: Fog,
+  lightsleet: LightSleet,
+  fair_day: FairDay,
+  sleet: Sleet,
+  rain: Rain,
+}
+
+const CustomizedLabel = (props: any) => {
+  const { x, y, value, index, data } = props
   const temperature = Math.round(value)
+  const Icon = icons[data?.[index]?.symbolCode]
 
   return (
     <>
@@ -36,7 +61,7 @@ const CustomizedLabel = (props: {
       >
         {temperature}
       </text>
-      {/* {index % 2 !== 0 && <PartlyCloudyDay x={x + -15} y={y - 50} size={30} />} */}
+      {index % 2 !== 0 && Icon && <Icon x={x + -15} y={y - 60} size={30} />}
     </>
   )
 }
@@ -56,6 +81,7 @@ export default function Temperature({ app }: IProps) {
         for (const hour of day) {
           hours.push({
             time: hour.time,
+            symbolCode: hour.data?.next_1_hours?.summary?.symbol_code,
             x: format(hour.time, 'HH'),
             y: hour.data.instant.details.air_temperature,
           })
@@ -98,7 +124,7 @@ export default function Temperature({ app }: IProps) {
             dataKey="y"
             stroke="#dc2626"
             strokeWidth={2}
-            label={CustomizedLabel}
+            label={<CustomizedLabel data={data} />}
           />
         </LineChart>
       </ResponsiveContainer>

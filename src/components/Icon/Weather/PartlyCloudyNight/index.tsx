@@ -1,14 +1,19 @@
 interface IProps {
   className?: string
+  x?: string | number
+  y?: string | number
+  size?: string | number
 }
 
-const PartlyCloudyNight = ({ className = 'w-10 h-10' }: IProps) => (
+const PartlyCloudyNight = ({ className = 'w-10 h-10', x, y, size }: IProps) => (
   <svg
-    x="0"
-    y="0"
+    x={x}
+    y={y}
     viewBox="0 0 100 100"
     xmlns="http://www.w3.org/2000/svg"
     xmlnsXlink="http://www.w3.org/1999/xlink"
+    width={size}
+    height={size}
     className={className}
   >
     <title>Delvis monlig natt</title>
