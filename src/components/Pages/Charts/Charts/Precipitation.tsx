@@ -66,7 +66,13 @@ export default function Precipitation({ app }: IProps) {
           <XAxis interval={1} dataKey="x" tick={<AxisTickHour />} />
           <YAxis />
           <Tooltip />
-          <Line type="monotone" name="Nederbörd" dataKey="y" stroke="#0284c7" />
+          <Line
+            type="monotone"
+            name="Nederbörd"
+            dataKey="y"
+            stroke="#0284c7"
+            strokeWidth={2}
+          />
         </LineChart>
       </ResponsiveContainer>
     </div>

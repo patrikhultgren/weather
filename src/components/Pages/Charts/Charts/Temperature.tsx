@@ -70,6 +70,7 @@ export default function Temperature({ app }: IProps) {
             name="Temperatur"
             dataKey="y"
             stroke="#dc2626"
+            strokeWidth={2}
           />
         </LineChart>
       </ResponsiveContainer>

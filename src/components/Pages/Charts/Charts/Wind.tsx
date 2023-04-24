@@ -65,7 +65,13 @@ export default function Wind({ app }: IProps) {
           <XAxis interval={1} dataKey="x" tick={<AxisTickHour />} />
           <YAxis />
           <Tooltip />
-          <Line type="monotone" name="Vind" dataKey="y" stroke="#c026d3" />
+          <Line
+            type="monotone"
+            name="Vind"
+            dataKey="y"
+            stroke="#c026d3"
+            strokeWidth={2}
+          />
         </LineChart>
       </ResponsiveContainer>
     </div>
