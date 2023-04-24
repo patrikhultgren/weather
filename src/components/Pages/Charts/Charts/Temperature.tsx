@@ -34,7 +34,7 @@ const CustomizedLabel = (props: {
         fontWeight="bold"
         textAnchor="middle"
       >
-        {temperature.toLocaleString()}
+        {temperature}
       </text>
       {/* {index % 2 !== 0 && <PartlyCloudyDay x={x + -15} y={y - 50} size={30} />} */}
     </>
