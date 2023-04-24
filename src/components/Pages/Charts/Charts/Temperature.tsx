@@ -1,5 +1,6 @@
 import { useMemo } from 'react'
 import {
+  CartesianGrid,
   LineChart,
   Line,
   XAxis,
@@ -84,6 +85,7 @@ export default function Temperature({ app }: IProps) {
             bottom: 35,
           }}
         >
+          <CartesianGrid strokeDasharray="3 3" />
           <XAxis interval={1} dataKey="x" tick={<AxisTickHour />} />
           <YAxis />
           <Tooltip />
