@@ -83,7 +83,7 @@ export default function Wind({ app }: IProps) {
         <LineChart
           data={data}
           margin={{
-            top: 30,
+            top: 35,
             right: 20,
             left: -20,
             bottom: 25,
