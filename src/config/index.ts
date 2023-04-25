@@ -26,22 +26,22 @@ export const SEARCH_API_KEY = process.env.REACT_APP_SEARCH_API_KEY || ''
 export const POSITIONS_STORAGE_KEY = 'positions_v4'
 
 export const weathers: { [key: string]: { Icon: any; title: string } } = {
-  partlycloudy_night: { Icon: PartlyCloudyNight, title: 'Delvis monlig natt' },
   fair_night: { Icon: FairNight, title: 'Delvis monlig natt' },
   clearsky_night: { Icon: ClearSkyNight, title: 'Klar natt' },
   clearsky_day: { Icon: ClearSkyDay, title: 'Soligt' },
-  partlycloudy_day: { Icon: PartlyCloudyDay, title: 'Delvis monligt' },
   cloudy: { Icon: Cloudy, title: 'Monligt' },
-  lightsnow: { Icon: LightSnow, title: 'Lite snö' },
-  lightrain: { Icon: LightRain, title: 'Duggregn' },
-  snow: { Icon: Snow, title: 'Snö' },
-  fog: { Icon: Fog, title: 'Dimma' },
-  lightsleet: { Icon: LightSleet, title: 'Lätt snöblandat regn' },
   fair_day: { Icon: FairDay, title: 'Delvis monligt' },
-  sleet: { Icon: Sleet, title: 'Snöblandet regn' },
-  rain: { Icon: Rain, title: 'Regn' },
+  fog: { Icon: Fog, title: 'Dimma' },
   heavysnowshowers_polartwilight: {
     Icon: HeavySnowShowersPolarTwilight,
     title: 'Kraftiga snöskurar under polarskymning',
   },
+  partlycloudy_day: { Icon: PartlyCloudyDay, title: 'Delvis monligt' },
+  partlycloudy_night: { Icon: PartlyCloudyNight, title: 'Delvis monlig natt' },
+  lightsnow: { Icon: LightSnow, title: 'Lite snö' },
+  lightrain: { Icon: LightRain, title: 'Duggregn' },
+  lightsleet: { Icon: LightSleet, title: 'Lätt snöblandat regn' },
+  sleet: { Icon: Sleet, title: 'Snöblandet regn' },
+  snow: { Icon: Snow, title: 'Snö' },
+  rain: { Icon: Rain, title: 'Regn' },
 }
