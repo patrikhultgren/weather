@@ -13,7 +13,7 @@ import { format } from 'utils/date'
 import AxisTickHour from 'components/AxisTickHour'
 import { weathers } from 'config'
 
-const TOP = 25
+const LINE_CHART_TOP = 25
 const ICON_SIZE = 30
 
 const CustomizedLabel = (props: any) => {
@@ -38,7 +38,7 @@ const CustomizedLabel = (props: any) => {
       {index % 2 !== 0 && WeatherIcon && (
         <WeatherIcon
           x={x + -15}
-          y={y < TOP + ICON_SIZE + 5 ? y + 10 : y - 60}
+          y={y < LINE_CHART_TOP + ICON_SIZE + 5 ? y + 10 : y - 60}
           size={ICON_SIZE}
           title={weather?.title}
         />
@@ -88,7 +88,7 @@ export default function Temperature({ app }: IProps) {
         <LineChart
           data={data}
           margin={{
-            top: TOP,
+            top: LINE_CHART_TOP,
             right: 20,
             left: -20,
             bottom: 25,
