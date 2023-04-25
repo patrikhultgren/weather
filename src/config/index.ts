@@ -1,9 +1,11 @@
 import {
   ClearSkyDay,
   ClearSkyNight,
+  ClearSkyPolarTwilight,
   Cloudy,
   FairDay,
   FairNight,
+  FairPolarTwilight,
   Fog,
   HeavyRain,
   HeavyRainShowersDay,
@@ -29,11 +31,19 @@ export const SEARCH_API_KEY = process.env.REACT_APP_SEARCH_API_KEY || ''
 export const POSITIONS_STORAGE_KEY = 'positions_v4'
 
 export const weathers: { [key: string]: { Icon: any; title: string } } = {
-  fair_night: { Icon: FairNight, title: 'Delvis monlig natt' },
-  clearsky_night: { Icon: ClearSkyNight, title: 'Klar natt' },
   clearsky_day: { Icon: ClearSkyDay, title: 'Soligt' },
+  clearsky_night: { Icon: ClearSkyNight, title: 'Klar natt' },
+  clearsky_polartwilight: {
+    Icon: ClearSkyPolarTwilight,
+    title: 'Klar natt med polarskymning',
+  },
   cloudy: { Icon: Cloudy, title: 'Monligt' },
   fair_day: { Icon: FairDay, title: 'Delvis monligt' },
+  fair_night: { Icon: FairNight, title: 'Delvis monlig natt' },
+  fair_polartwilight: {
+    Icon: FairPolarTwilight,
+    title: 'Delvis monlig natt med polarskymning',
+  },
   fog: { Icon: Fog, title: 'Dimma' },
   heavyrain: { Icon: HeavyRain, title: 'Mycket regn' },
   heavyrainshowers_day: { Icon: HeavyRainShowersDay, title: 'Mycket regn' },
