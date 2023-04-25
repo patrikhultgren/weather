@@ -68,7 +68,7 @@ const CustomizedLabel = (props: any) => {
   )
 }
 
-const TOP = 60
+const TOP = 25
 
 interface IProps {
   app: IApp
