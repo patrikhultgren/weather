@@ -61,10 +61,14 @@ const CustomizedLabel = (props: any) => {
       >
         {temperature}
       </text>
-      {index % 2 !== 0 && Icon && <Icon x={x + -15} y={y - 60} size={30} />}
+      {index % 2 !== 0 && Icon && (
+        <Icon x={x + -15} y={y === TOP ? y + 5 : y - 60} size={30} />
+      )}
     </>
   )
 }
+
+const TOP = 60
 
 interface IProps {
   app: IApp
@@ -107,7 +111,7 @@ export default function Temperature({ app }: IProps) {
         <LineChart
           data={data}
           margin={{
-            top: 30,
+            top: TOP,
             right: 10,
             left: -30,
             bottom: 25,
