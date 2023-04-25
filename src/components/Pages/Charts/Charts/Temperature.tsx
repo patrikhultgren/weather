@@ -27,6 +27,8 @@ import {
   LightSnow,
 } from '@patrikhultgren/react-weather-icons'
 
+const ICON_SIZE = 30
+
 const icons: { [key: string]: any } = {
   partlycloudy_night: PartlyCloudyNight,
   fair_night: FairNight,
@@ -62,7 +64,11 @@ const CustomizedLabel = (props: any) => {
         {temperature}
       </text>
       {index % 2 !== 0 && Icon && (
-        <Icon x={x + -15} y={y < TOP + 25 ? y + 10 : y - 60} size={30} />
+        <Icon
+          x={x + -15}
+          y={y < TOP + ICON_SIZE ? y + 10 : y - 60}
+          size={ICON_SIZE}
+        />
       )}
     </>
   )
