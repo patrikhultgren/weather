@@ -8,6 +8,7 @@ import {
   FairPolarTwilight,
   Fog,
   HeavyRain,
+  HeavyRainAndThunder,
   HeavyRainShowersDay,
   HeavySnowShowersPolarTwilight,
   LightRain,
@@ -46,6 +47,10 @@ export const weathers: { [key: string]: { Icon: any; title: string } } = {
   },
   fog: { Icon: Fog, title: 'Dimma' },
   heavyrain: { Icon: HeavyRain, title: 'Mycket regn' },
+  heavyrainandthunder: {
+    Icon: HeavyRainAndThunder,
+    title: 'Mycket regn och åska',
+  },
   heavyrainshowers_day: { Icon: HeavyRainShowersDay, title: 'Mycket regn' },
   heavysnowshowers_polartwilight: {
     Icon: HeavySnowShowersPolarTwilight,
