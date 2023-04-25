@@ -66,7 +66,7 @@ const CustomizedLabel = (props: any) => {
       {index % 2 !== 0 && Icon && (
         <Icon
           x={x + -15}
-          y={y < TOP + ICON_SIZE ? y + 10 : y - 60}
+          y={y < TOP + ICON_SIZE + 5 ? y + 10 : y - 60}
           size={ICON_SIZE}
         />
       )}
