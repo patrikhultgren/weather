@@ -11,8 +11,6 @@ import {
 import { IApp } from 'utils/types'
 import { format } from 'utils/date'
 import AxisTickHour from 'components/AxisTickHour'
-import Snow from 'components/Icon/Weather/Snow'
-import Sleet from 'components/Icon/Weather/Sleet'
 import {
   ClearSkyDay,
   ClearSkyNight,
@@ -25,6 +23,8 @@ import {
   PartlyCloudyDay,
   PartlyCloudyNight,
   Rain,
+  Sleet,
+  Snow,
 } from '@patrikhultgren/react-weather-icons'
 
 const ICON_SIZE = 30

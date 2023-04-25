@@ -12,11 +12,11 @@ import {
   PartlyCloudyDay,
   PartlyCloudyNight,
   Rain,
+  Sleet,
+  Snow,
 } from '@patrikhultgren/react-weather-icons'
 import { format } from 'utils/date'
 import { ITimeSerie } from 'utils/types'
-import Snow from 'components/Icon/Weather/Snow'
-import Sleet from 'components/Icon/Weather/Sleet'
 import LongArrow from 'components/Icon/LongArrow'
 
 const icons: { [key: string]: ReactNode } = {
