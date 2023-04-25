@@ -4,7 +4,7 @@ interface IProps {
   className?: string
 }
 
-export default function ForecastPlaceholder({ className }: IProps) {
+export default function TablesPlaceholder({ className }: IProps) {
   return (
     <div className={className}>
       <div className={classNames('placeholder', 'h-[230px]')}>

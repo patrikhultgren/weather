@@ -1,7 +1,8 @@
 import { Link, useLocation } from 'react-router-dom'
 import classNames from 'classnames'
 import Container from 'components/Container'
-import ForecastPlaceholder from 'components/ForecastPlaceholder'
+import TablesPlaceholder from 'components/TablesPlaceholder'
+import ChartPlaceholder from 'components/ChartPlaceholder'
 import { IApp, IAppState } from 'utils/types'
 
 const className = 'mb-10'
@@ -9,9 +10,14 @@ const className = 'mb-10'
 interface IProps {
   app: IApp
   appState: IAppState
+  activeMenuItem: 'tables' | 'charts'
 }
 
-export default function ForecastNotReady({ app, appState }: IProps) {
+export default function ForecastNotReady({
+  app,
+  appState,
+  activeMenuItem,
+}: IProps) {
   const location = useLocation()
 
   if (appState === 'geo-error') {
@@ -43,16 +49,35 @@ export default function ForecastNotReady({ app, appState }: IProps) {
         </div>
       </Container>
     )
-  } else if (app.status.loading && app.status.type === 'placeholder') {
+  } else if (
+    app.status.loading &&
+    app.status.type === 'placeholder' &&
+    activeMenuItem === 'tables'
+  ) {
     return (
       <Container className={className}>
         {[0, 1, 2, 4, 5, 6, 7, 8, 9].map((placeholderIndex: number) => (
-          <ForecastPlaceholder
+          <TablesPlaceholder
             key={placeholderIndex}
             className="mt-6 first:mt-0 md:first:mt-4"
           />
         ))}
       </Container>
+    )
+  } else if (
+    app.status.loading &&
+    app.status.type === 'placeholder' &&
+    activeMenuItem === 'charts'
+  ) {
+    return (
+      <div className={className}>
+        {[0, 1, 2].map((placeholderIndex: number) => (
+          <ChartPlaceholder
+            key={placeholderIndex}
+            className="mt-6 first:mt-0 md:first:mt-4"
+          />
+        ))}
+      </div>
     )
   } else if (!app.status.online) {
     return (

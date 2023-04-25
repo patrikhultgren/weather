@@ -8,6 +8,8 @@ import ForecastNotReady from 'components/ForecastNotReady'
 import { getAppState } from 'utils/app'
 import Charts from './Charts'
 
+const ACTIVE_MENU_ITEM = 'charts'
+
 interface IProps {
   app: IApp
 }
@@ -23,11 +25,15 @@ export default function ChartsPage({ app }: IProps) {
     <main role="main">
       <Loading status={app.status} error={app.error} />
       <Header app={app} />
-      <NavBar app={app} activeMenuItem="charts" />
+      <NavBar app={app} activeMenuItem={ACTIVE_MENU_ITEM} />
       {appState === 'show-forecast' ? (
         <Charts app={app} />
       ) : (
-        <ForecastNotReady app={app} appState={appState} />
+        <ForecastNotReady
+          app={app}
+          appState={appState}
+          activeMenuItem={ACTIVE_MENU_ITEM}
+        />
       )}
       <Credit />
     </main>
