@@ -7,7 +7,6 @@ import {
   YAxis,
   Tooltip,
   ResponsiveContainer,
-  PartlyCloudyDay,
 } from 'recharts'
 import { IApp } from 'utils/types'
 import { format } from 'utils/date'
@@ -25,6 +24,7 @@ import {
   Fog,
   LightSleet,
   LightSnow,
+  PartlyCloudyDay,
 } from '@patrikhultgren/react-weather-icons'
 
 const ICON_SIZE = 30
