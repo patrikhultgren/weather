@@ -20,19 +20,19 @@ import Rain from 'components/Icon/Weather/Rain'
 import LongArrow from 'components/Icon/LongArrow'
 
 const icons: { [key: string]: ReactNode } = {
-  partlycloudy_night: <PartlyCloudyNight />,
+  partlycloudy_night: <PartlyCloudyNight title="Delvis monlig natt" />,
   fair_night: <FairNight title="Delvis molnig natt" />,
   clearsky_night: <ClearSkyNight title="Klar natt" />,
   clearsky_day: <ClearSkyDay title="Soligt" />,
-  partlycloudy_day: <PartlyCloudyDay />,
+  partlycloudy_day: <PartlyCloudyDay title="Delvis monligt" />,
   cloudy: <Cloudy title="Monligt" />,
   lightsnow: <LightSnow title="Lite snö" />,
-  snow: <Snow />,
+  snow: <Snow title="Snö" />,
   fog: <Fog title="Dimma" />,
   lightsleet: <LightSleet title="Lätt snöblandat regn" />,
-  fair_day: <FairDay />,
-  sleet: <Sleet />,
-  rain: <Rain />,
+  fair_day: <FairDay title="Delvis monligt" />,
+  sleet: <Sleet title="Snöblandet regn" />,
+  rain: <Rain title="Regn" />,
 }
 
 interface IProps {

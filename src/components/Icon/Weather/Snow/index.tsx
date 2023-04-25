@@ -1,11 +1,18 @@
-interface IProps {
-  className?: string
+type IProps = React.SVGProps<SVGSVGElement> & {
+  title: string
+  size?: number
   x?: string | number
   y?: string | number
-  size?: string | number
 }
 
-const Snow = ({ className = 'w-10 h-10', x = 0, y = 0, size }: IProps) => (
+const Snow = ({
+  className = 'w-10 h-10',
+  x = 0,
+  y = 0,
+  size,
+  title,
+  ...rest
+}: IProps) => (
   <svg
     x={x}
     y={y}
@@ -15,8 +22,9 @@ const Snow = ({ className = 'w-10 h-10', x = 0, y = 0, size }: IProps) => (
     width={size}
     height={size}
     className={className}
+    {...rest}
   >
-    <title>Snö</title>
+    {title && <title>{title}</title>}
     <symbol id="snowflake">
       <path
         fill="#47c0e3"

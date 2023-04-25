@@ -1,8 +1,8 @@
-interface IProps {
-  className?: string
+type IProps = React.SVGProps<SVGSVGElement> & {
+  title: string
+  size?: number
   x?: string | number
   y?: string | number
-  size?: string | number
 }
 
 const PartlyCloudyNight = ({
@@ -10,6 +10,7 @@ const PartlyCloudyNight = ({
   x = 0,
   y = 0,
   size,
+  ...rest
 }: IProps) => (
   <svg
     x={x}
@@ -20,6 +21,7 @@ const PartlyCloudyNight = ({
     width={size}
     height={size}
     className={className}
+    {...rest}
   >
     <title>Delvis monlig natt</title>
     <symbol id="cloud">
