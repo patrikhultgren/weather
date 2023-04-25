@@ -1,39 +1,9 @@
-import { ReactNode, useMemo } from 'react'
+import { useMemo } from 'react'
 import classNames from 'classnames'
-import {
-  ClearSkyDay,
-  ClearSkyNight,
-  Cloudy,
-  FairDay,
-  FairNight,
-  Fog,
-  LightSleet,
-  LightSnow,
-  PartlyCloudyDay,
-  PartlyCloudyNight,
-  Rain,
-  Sleet,
-  Snow,
-} from '@patrikhultgren/react-weather-icons'
 import { format } from 'utils/date'
 import { ITimeSerie } from 'utils/types'
+import { weathers } from 'config'
 import LongArrow from 'components/Icon/LongArrow'
-
-const icons: { [key: string]: ReactNode } = {
-  partlycloudy_night: <PartlyCloudyNight title="Delvis monlig natt" />,
-  fair_night: <FairNight title="Delvis molnig natt" />,
-  clearsky_night: <ClearSkyNight title="Klar natt" />,
-  clearsky_day: <ClearSkyDay title="Soligt" />,
-  partlycloudy_day: <PartlyCloudyDay title="Delvis monligt" />,
-  cloudy: <Cloudy title="Monligt" />,
-  lightsnow: <LightSnow title="Lite snö" />,
-  snow: <Snow title="Snö" />,
-  fog: <Fog title="Dimma" />,
-  lightsleet: <LightSleet title="Lätt snöblandat regn" />,
-  fair_day: <FairDay title="Delvis monligt" />,
-  sleet: <Sleet title="Snöblandet regn" />,
-  rain: <Rain title="Regn" />,
-}
 
 interface IProps {
   hour: ITimeSerie
@@ -63,6 +33,9 @@ export default function Hour({ hour }: IProps) {
     [symbolCodeByHours]
   )
 
+  const weather = useMemo(() => weathers?.[symbolCode], [symbolCode])
+  const WeatherIcon = useMemo(() => weather?.Icon, [weather])
+
   const airTemperature = useMemo(
     () => Math.round(hour.data.instant.details.air_temperature),
     [hour]
@@ -89,7 +62,7 @@ export default function Hour({ hour }: IProps) {
       </td>
       <td className="border-y border-slate-300 px-2 py-1">
         <div className="flex justify-center">
-          {icons[symbolCode] ? icons[symbolCode] : symbolCode}
+          {WeatherIcon ? <WeatherIcon title={weather?.title} /> : symbolCode}
         </div>
       </td>
       <td className="border-y border-slate-300 px-2 py-1 text-center">

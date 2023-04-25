@@ -11,44 +11,16 @@ import {
 import { IApp } from 'utils/types'
 import { format } from 'utils/date'
 import AxisTickHour from 'components/AxisTickHour'
-import {
-  ClearSkyDay,
-  ClearSkyNight,
-  Cloudy,
-  FairDay,
-  FairNight,
-  Fog,
-  LightSleet,
-  LightSnow,
-  PartlyCloudyDay,
-  PartlyCloudyNight,
-  Rain,
-  Sleet,
-  Snow,
-} from '@patrikhultgren/react-weather-icons'
+import { weathers } from 'config'
 
+const TOP = 25
 const ICON_SIZE = 30
-
-const icons: { [key: string]: any } = {
-  partlycloudy_night: PartlyCloudyNight,
-  fair_night: FairNight,
-  clearsky_night: ClearSkyNight,
-  clearsky_day: ClearSkyDay,
-  partlycloudy_day: PartlyCloudyDay,
-  cloudy: Cloudy,
-  lightsnow: LightSnow,
-  snow: Snow,
-  fog: Fog,
-  lightsleet: LightSleet,
-  fair_day: FairDay,
-  sleet: Sleet,
-  rain: Rain,
-}
 
 const CustomizedLabel = (props: any) => {
   const { x, y, value, index, data } = props
   const temperature = Math.round(value)
-  const Icon = icons[data?.[index]?.symbolCode]
+  const weather = weathers[data?.[index]?.symbolCode]
+  const WeatherIcon = weather?.Icon
 
   return (
     <>
@@ -63,18 +35,17 @@ const CustomizedLabel = (props: any) => {
       >
         {temperature}
       </text>
-      {index % 2 !== 0 && Icon && (
-        <Icon
+      {index % 2 !== 0 && WeatherIcon && (
+        <WeatherIcon
           x={x + -15}
           y={y < TOP + ICON_SIZE + 5 ? y + 10 : y - 60}
           size={ICON_SIZE}
+          title={weather?.title}
         />
       )}
     </>
   )
 }
-
-const TOP = 25
 
 interface IProps {
   app: IApp
