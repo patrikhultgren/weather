@@ -70,7 +70,7 @@ export default function Search({ app }: IProps) {
       </div>
       {hasSearchResults && (
         <div id={searchResultsId}>
-          <h2 className="p-4 py-2 bg-gray-300 mt-4 font-bold">
+          <h2 className="p-4 py-2 bg-gray-300 mt-4 font-bold tracking-wide">
             {response?.type === 'searchResults'
               ? 'Sökresultat'
               : 'Tidigare platser'}
