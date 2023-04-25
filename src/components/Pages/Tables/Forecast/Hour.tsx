@@ -79,7 +79,7 @@ export default function Hour({ hour }: IProps) {
   }, [hour])
 
   const windFromDirection = useMemo(() => {
-    return Math.round(hour.data.instant.details.wind_from_direction)
+    return hour.data.instant.details.wind_from_direction
   }, [hour])
 
   return (

@@ -11,28 +11,36 @@ import {
 import { IApp } from 'utils/types'
 import { format } from 'utils/date'
 import AxisTickHour from 'components/AxisTickHour'
+import LongArrow from 'components/Icon/LongArrow'
 
-const CustomizedLabel = (props: {
-  x: number
-  y: number
-  stroke: string
-  value: number
-}) => {
-  const { x, y, value } = props
+const CustomizedLabel = (props: any) => {
+  const { x, y, value, index, data } = props
   const windSpeed = Math.round(value)
+  const windDirection = data?.[index]?.windDirection
 
   return (
-    <text
-      x={x}
-      y={y - 8}
-      dy={-4}
-      fill="#000"
-      fontSize="0.9rem"
-      fontWeight="bold"
-      textAnchor="middle"
-    >
-      {windSpeed.toLocaleString()}
-    </text>
+    <>
+      <text
+        x={x}
+        y={y - 8}
+        dy={-4}
+        fill="#000"
+        fontSize="0.9rem"
+        fontWeight="bold"
+        textAnchor="middle"
+      >
+        {windSpeed}
+      </text>
+      {typeof windDirection !== 'undefined' && (
+        <LongArrow
+          degress={windDirection}
+          title=""
+          x={x - 8}
+          y={y - 46}
+          size={15}
+        />
+      )}
+    </>
   )
 }
 
@@ -53,6 +61,7 @@ export default function Wind({ app }: IProps) {
             time: hour.time,
             x: format(hour.time, 'HH'),
             y: hour.data.instant.details.wind_speed,
+            windDirection: hour.data.instant.details.wind_from_direction,
           })
         }
 
@@ -91,7 +100,7 @@ export default function Wind({ app }: IProps) {
             dataKey="y"
             stroke="#c026d3"
             strokeWidth={2}
-            label={CustomizedLabel}
+            label={<CustomizedLabel data={data} />}
           />
         </LineChart>
       </ResponsiveContainer>
