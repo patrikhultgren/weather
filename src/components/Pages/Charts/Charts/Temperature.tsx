@@ -112,8 +112,8 @@ export default function Temperature({ app }: IProps) {
           data={data}
           margin={{
             top: TOP,
-            right: 10,
-            left: -30,
+            right: 20,
+            left: -20,
             bottom: 25,
           }}
         >

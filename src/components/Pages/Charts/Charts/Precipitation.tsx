@@ -68,15 +68,15 @@ export default function Precipitation({ app }: IProps) {
   }, [app])
 
   return (
-    <div className="mt-4">
+    <div className="mt-4 border-t pt-4 border-slate-300">
       <h2 className="font-bold ml-4 text-xl md:text-2xl">Nederbörd (mm)</h2>
       <ResponsiveContainer width="100%" aspect={8}>
         <AreaChart
           data={data}
           margin={{
             top: 30,
-            right: 10,
-            left: -30,
+            right: 20,
+            left: -20,
             bottom: 25,
           }}
         >
@@ -89,7 +89,8 @@ export default function Precipitation({ app }: IProps) {
             type="monotone"
             name="Nederbörd"
             dataKey="y"
-            stroke="#075985"
+            stroke="#0ea5e9"
+            fill="#38bdf8"
             strokeWidth={1}
             label={CustomizedLabel}
           />

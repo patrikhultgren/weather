@@ -9,7 +9,7 @@ interface IProps {
 
 export default function Charts({ app }: IProps) {
   return (
-    <div className="overflow-x-scroll pb-10 pt-4 px-2">
+    <div className="overflow-x-scroll pb-10 pt-4">
       <div className="w-[1500px] mx-auto">
         <Temperature app={app} />
         <Precipitation app={app} />
