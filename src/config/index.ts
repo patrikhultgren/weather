@@ -13,6 +13,7 @@ import {
   PartlyCloudyDay,
   PartlyCloudyNight,
   Rain,
+  RainShowersNight,
   Sleet,
   Snow,
 } from '@patrikhultgren/react-weather-icons'
@@ -46,4 +47,5 @@ export const weathers: { [key: string]: { Icon: any; title: string } } = {
   sleet: { Icon: Sleet, title: 'Snöblandet regn' },
   snow: { Icon: Snow, title: 'Snö' },
   rain: { Icon: Rain, title: 'Regn' },
+  rainshowers_night: { Icon: RainShowersNight, title: 'Regnig natt' },
 }
