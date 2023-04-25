@@ -7,11 +7,11 @@ import {
   YAxis,
   Tooltip,
   ResponsiveContainer,
+  PartlyCloudyNight,
 } from 'recharts'
 import { IApp } from 'utils/types'
 import { format } from 'utils/date'
 import AxisTickHour from 'components/AxisTickHour'
-import PartlyCloudyNight from 'components/Icon/Weather/PartlyCloudyNight'
 import Snow from 'components/Icon/Weather/Snow'
 import Sleet from 'components/Icon/Weather/Sleet'
 import Rain from 'components/Icon/Weather/Rain'

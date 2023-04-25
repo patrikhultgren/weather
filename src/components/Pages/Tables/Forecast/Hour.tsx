@@ -10,10 +10,10 @@ import {
   LightSleet,
   LightSnow,
   PartlyCloudyDay,
+  PartlyCloudyNight,
 } from '@patrikhultgren/react-weather-icons'
 import { format } from 'utils/date'
 import { ITimeSerie } from 'utils/types'
-import PartlyCloudyNight from 'components/Icon/Weather/PartlyCloudyNight'
 import Snow from 'components/Icon/Weather/Snow'
 import Sleet from 'components/Icon/Weather/Sleet'
 import Rain from 'components/Icon/Weather/Rain'
