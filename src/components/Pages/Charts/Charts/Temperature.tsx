@@ -62,7 +62,7 @@ const CustomizedLabel = (props: any) => {
         {temperature}
       </text>
       {index % 2 !== 0 && Icon && (
-        <Icon x={x + -15} y={y < TOP + 20 ? y + 10 : y - 60} size={30} />
+        <Icon x={x + -15} y={y < TOP + 25 ? y + 10 : y - 60} size={30} />
       )}
     </>
   )
