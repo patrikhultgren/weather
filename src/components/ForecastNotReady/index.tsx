@@ -1,8 +1,8 @@
 import { Link, useLocation } from 'react-router-dom'
 import classNames from 'classnames'
 import Container from 'components/Container'
-import TablesPlaceholder from 'components/TablesPlaceholder'
-import ChartPlaceholder from 'components/ChartPlaceholder'
+import TablePlaceholder from 'components/Placeholder/Table'
+import ChartPlaceholder from 'components/Placeholder/Chart'
 import { IApp, IAppState } from 'utils/types'
 
 const className = 'mb-10'
@@ -57,7 +57,7 @@ export default function ForecastNotReady({
     return (
       <Container className={className}>
         {[0, 1, 2, 4, 5, 6, 7, 8, 9].map((placeholderIndex: number) => (
-          <TablesPlaceholder
+          <TablePlaceholder
             key={placeholderIndex}
             className="mt-6 first:mt-0 md:first:mt-4"
           />
