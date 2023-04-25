@@ -1,4 +1,4 @@
-interface IProps {
+type IProps = React.SVGProps<SVGSVGElement> & {
   degress: number
   title: string
   size?: number
@@ -6,7 +6,14 @@ interface IProps {
   y?: string | number
 }
 
-const LongArrow = ({ degress, title, x = 0, y = 0, size = 18 }: IProps) => (
+const LongArrow = ({
+  degress,
+  title,
+  x = 0,
+  y = 0,
+  size = 18,
+  ...rest
+}: IProps) => (
   <svg
     stroke="currentColor"
     fill="none"
@@ -17,6 +24,7 @@ const LongArrow = ({ degress, title, x = 0, y = 0, size = 18 }: IProps) => (
     height={size}
     width={size}
     xmlns="http://www.w3.org/2000/svg"
+    {...rest}
   >
     {title && <title>{title}</title>}
     <path
