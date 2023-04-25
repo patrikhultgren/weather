@@ -3,7 +3,6 @@ import {
   CartesianGrid,
   AreaChart,
   Area,
-  Line,
   XAxis,
   YAxis,
   Tooltip,
