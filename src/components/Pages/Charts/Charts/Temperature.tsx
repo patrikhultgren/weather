@@ -103,11 +103,11 @@ export default function Temperature({ app }: IProps) {
       <h2 className="font-bold ml-4 text-xl md:text-2xl">
         Väder och temperatur (grader)
       </h2>
-      <ResponsiveContainer width="100%" aspect={4}>
+      <ResponsiveContainer width="100%" aspect={6}>
         <LineChart
           data={data}
           margin={{
-            top: 70,
+            top: 30,
             right: 10,
             left: -30,
             bottom: 25,

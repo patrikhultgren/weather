@@ -1,7 +1,8 @@
 import { useMemo } from 'react'
 import {
   CartesianGrid,
-  LineChart,
+  AreaChart,
+  Area,
   Line,
   XAxis,
   YAxis,
@@ -70,10 +71,10 @@ export default function Precipitation({ app }: IProps) {
     <div className="mt-4">
       <h2 className="font-bold ml-4 text-xl md:text-2xl">Nederbörd (mm)</h2>
       <ResponsiveContainer width="100%" aspect={8}>
-        <LineChart
+        <AreaChart
           data={data}
           margin={{
-            top: 25,
+            top: 30,
             right: 10,
             left: -30,
             bottom: 25,
@@ -83,16 +84,16 @@ export default function Precipitation({ app }: IProps) {
           <XAxis interval={0} dataKey="x" tick={<AxisTickHour data={data} />} />
           <YAxis />
           <Tooltip wrapperClassName="hidden md:block" />
-          <Line
+          <Area
             isAnimationActive={false}
             type="monotone"
             name="Nederbörd"
             dataKey="y"
-            stroke="#0284c7"
-            strokeWidth={2}
+            stroke="#075985"
+            strokeWidth={1}
             label={CustomizedLabel}
           />
-        </LineChart>
+        </AreaChart>
       </ResponsiveContainer>
     </div>
   )
