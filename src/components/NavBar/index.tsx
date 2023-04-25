@@ -37,8 +37,8 @@ export default function NavBar({ app, activeMenuItem }: IProps) {
             : 'bg-slate-600 text-white md:bg-gray-200 md:hover:bg-white md:text-black'
         )}
       >
-        <TableIcon className="md:mr-2" title="Visa som tabeller" />
-        <span className="hidden md:inline">Visa som tabeller</span>
+        <TableIcon className="md:mr-2" title="Tabeller" />
+        <span className="hidden md:inline">Tabeller</span>
       </Link>
       <Link
         to="/charts"
@@ -49,8 +49,8 @@ export default function NavBar({ app, activeMenuItem }: IProps) {
             : 'bg-slate-600 text-white md:bg-gray-200 md:hover:bg-white md:text-black'
         )}
       >
-        <ChartIcon className="md:mr-2" title="Visa som diagram" />
-        <span className="hidden md:inline">Visa som diagram</span>
+        <ChartIcon className="md:mr-2" title="Diagram" />
+        <span className="hidden md:inline">Diagram</span>
       </Link>
       <Link
         to="/search"
@@ -60,7 +60,7 @@ export default function NavBar({ app, activeMenuItem }: IProps) {
         )}
       >
         <SearchIcon className="md:mr-2" />
-        <span className="hidden md:inline">Sök efter plats</span>
+        <span className="hidden md:inline">Sök</span>
       </Link>
     </nav>
   )
