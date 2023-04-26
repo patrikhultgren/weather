@@ -11,7 +11,7 @@ import {
 import { IApp } from 'utils/types'
 import { format } from 'utils/date'
 import AxisTickHour from 'components/AxisTickHour'
-import { weathers } from 'config'
+import weatherIcons from 'config/weatherIcons'
 
 const LINE_CHART_TOP = 25
 const ICON_SIZE = 30
@@ -19,7 +19,7 @@ const ICON_SIZE = 30
 const CustomizedLabel = (props: any) => {
   const { x, y, value, index, data } = props
   const temperature = Math.round(value)
-  const weather = weathers[data?.[index]?.symbolCode]
+  const weather = weatherIcons[data?.[index]?.symbolCode]
   const WeatherIcon = weather?.Icon
 
   return (
