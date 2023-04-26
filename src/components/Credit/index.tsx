@@ -10,7 +10,7 @@ export default function Credit() {
   }, [])
 
   return (
-    <footer className="my-10 mb-[90px] md:mb-6 border-t border-slate-300 pt-6">
+    <footer className="my-10 mb-[90px] md:mb-6 border-t border-slate-300 pt-10">
       <Container className="text-sm text-slate-900">
         <button
           type="button"
