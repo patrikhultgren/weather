@@ -21,22 +21,24 @@ export default function ChartsPage({ app }: IProps) {
   useSetBodyBackgroundColor('#fff')
 
   return (
-    <main role="main">
-      <ErrorBoundaryEveryChild>
-        {app.error && <Error error={app.error} />}
-        <Header app={app} />
-        <NavBar app={app} activeMenuItem={ACTIVE_MENU_ITEM} />
-        {appState === 'show-forecast' ? (
-          <Charts app={app} />
-        ) : (
-          <ForecastNotReady
-            app={app}
-            appState={appState}
-            activeMenuItem={ACTIVE_MENU_ITEM}
-          />
-        )}
-        <Credit />
-      </ErrorBoundaryEveryChild>
-    </main>
+    <>
+      <main role="main">
+        <ErrorBoundaryEveryChild>
+          {app.error && <Error error={app.error} />}
+          <Header app={app} />
+          <NavBar app={app} activeMenuItem={ACTIVE_MENU_ITEM} />
+          {appState === 'show-forecast' ? (
+            <Charts app={app} />
+          ) : (
+            <ForecastNotReady
+              app={app}
+              appState={appState}
+              activeMenuItem={ACTIVE_MENU_ITEM}
+            />
+          )}
+        </ErrorBoundaryEveryChild>
+      </main>
+      <Credit />
+    </>
   )
 }
