@@ -5,6 +5,7 @@ import NavBar from 'components/NavBar'
 import Header from 'components/Header'
 import Credit from 'components/Credit'
 import ForecastNotReady from 'components/ForecastNotReady'
+import ErrorBoundaryEveryChild from 'components/ErrorBoundaryEveryChild'
 import { getAppState } from 'utils/app'
 import Forecast from './Forecast'
 
@@ -23,19 +24,21 @@ export default function TablesPage({ app }: IProps) {
 
   return (
     <main role="main">
-      <Loading status={app.status} error={app.error} />
-      <Header app={app} />
-      <NavBar app={app} activeMenuItem={ACTIVE_MENU_ITEM} />
-      {appState === 'show-forecast' ? (
-        <Forecast app={app} />
-      ) : (
-        <ForecastNotReady
-          app={app}
-          appState={appState}
-          activeMenuItem={ACTIVE_MENU_ITEM}
-        />
-      )}
-      <Credit />
+      <ErrorBoundaryEveryChild>
+        <Loading status={app.status} error={app.error} />
+        <Header app={app} />
+        <NavBar app={app} activeMenuItem={ACTIVE_MENU_ITEM} />
+        {appState === 'show-forecast' ? (
+          <Forecast app={app} />
+        ) : (
+          <ForecastNotReady
+            app={app}
+            appState={appState}
+            activeMenuItem={ACTIVE_MENU_ITEM}
+          />
+        )}
+        <Credit />
+      </ErrorBoundaryEveryChild>
     </main>
   )
 }

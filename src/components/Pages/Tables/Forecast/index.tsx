@@ -1,4 +1,5 @@
 import Container from 'components/Container'
+import ErrorBoundary from 'components/ErrorBoundary'
 import { IApp } from 'utils/types'
 import Day from './Day'
 
@@ -15,7 +16,9 @@ export default function Forecast({ app }: IProps) {
     return (
       <Container className={className}>
         {days.map((day) => (
-          <Day day={day} key={day[0].time} />
+          <ErrorBoundary>
+            <Day day={day} key={day[0].time} />
+          </ErrorBoundary>
         ))}
       </Container>
     )

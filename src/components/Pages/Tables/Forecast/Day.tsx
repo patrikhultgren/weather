@@ -1,6 +1,7 @@
 import { useCallback, useState, useMemo } from 'react'
 import { format } from 'utils/date'
 import Arrow from 'components/Icon/Arrow'
+import ErrorBoundary from 'components/ErrorBoundary'
 import classNames from 'classnames'
 import { isToday, isTomorrow } from 'date-fns'
 import { ITimeSerie } from 'utils/types'
@@ -84,7 +85,9 @@ export default function Day({ day }: IProps) {
           </tr>
         </thead>
         <tbody>
-          <Hours hours={hours} />
+          <ErrorBoundary>
+            <Hours hours={hours} />
+          </ErrorBoundary>
         </tbody>
       </table>
       {showAllEnabled && (

@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { IApp } from 'utils/types'
 import Loading from 'components/Loading'
+import ErrorBoundaryEveryChild from 'components/ErrorBoundaryEveryChild'
 
 import Search from './Search'
 
@@ -15,8 +16,10 @@ export default function SearchPage({ app }: IProps) {
 
   return (
     <main role="main">
-      <Loading status={app.status} error={app.error} />
-      <Search app={app} />
+      <ErrorBoundaryEveryChild>
+        <Loading status={app.status} error={app.error} />
+        <Search app={app} />
+      </ErrorBoundaryEveryChild>
     </main>
   )
 }

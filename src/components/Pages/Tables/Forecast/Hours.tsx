@@ -1,5 +1,6 @@
 import classNames from 'classnames'
 import { ITimeSerie } from 'utils/types'
+import ErrorBoundary from 'components/ErrorBoundary'
 import Hour from './Hour'
 
 interface IProps {
@@ -14,7 +15,9 @@ export default function Hours({ hours }: IProps) {
           key={hour.time}
           className={classNames({ 'bg-slate-50': index % 2 === 0 })}
         >
-          <Hour hour={hour} />
+          <ErrorBoundary>
+            <Hour hour={hour} />
+          </ErrorBoundary>
         </tr>
       ))}
     </>
