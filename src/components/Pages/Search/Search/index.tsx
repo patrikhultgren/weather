@@ -2,17 +2,15 @@ import { useMemo } from 'react'
 import SearchIcon from 'components/Icon/Search'
 import Close from 'components/Icon/Close'
 import classNames from 'classnames'
-import { IApp } from 'utils/types'
+import { ISearchHandler } from 'utils/types'
 import { useId } from 'react'
 
 interface IProps {
-  app: IApp
+  searchHandler: ISearchHandler
 }
 
-export default function Search({ app }: IProps) {
+export default function Search({ searchHandler }: IProps) {
   const searchResultsId = useId()
-
-  const { searchHandler } = app
 
   const { response, finished } = searchHandler.searchResults
 

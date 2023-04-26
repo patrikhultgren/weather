@@ -4,7 +4,6 @@ import { IPosition, IApp } from 'utils/types'
 import useGeoPosition from 'hooks/useGeoPosition'
 import useAddress from 'hooks/useAddress'
 import useForecast from 'hooks/useForecast'
-import useSearchHandler from 'hooks/useSearchHandler'
 import usePersistPositions from 'hooks/usePersistPositions'
 import useIsFullscreen from 'hooks/useIsFullscreen'
 import useOnline from 'hooks/useOnline'
@@ -15,7 +14,6 @@ const useApp = (): IApp => {
   const isFullscreen = useIsFullscreen()
   const [positions, setPositions] = useState<Array<IPosition>>([])
   const position = useFirstPosition(positions)
-  const searchHandler = useSearchHandler(positions, setPositions)
   const [positionsAreLoaded, setPositionsAreLoaded] = useState<boolean>(false)
 
   const geoPosition = useGeoPosition(
@@ -47,7 +45,8 @@ const useApp = (): IApp => {
       city: position.city,
       days: forecast.response,
       geoPosition,
-      searchHandler,
+      positions,
+      setPositions,
       error: geoPosition.error || address.error || forecast.error,
       status: {
         online,
@@ -60,10 +59,11 @@ const useApp = (): IApp => {
       geoPosition,
       address,
       position,
+      positions,
+      setPositions,
       forecast,
       online,
       isFullscreen,
-      searchHandler,
     ]
   )
 }

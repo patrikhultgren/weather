@@ -3,6 +3,7 @@ import Loading from 'components/Loading'
 import ErrorBoundaryEveryChild from 'components/ErrorBoundaryEveryChild'
 import useCallOnEscape from 'hooks/useCallOnEscape'
 import useSetBodyBackgroundColor from 'hooks/useSetBodyBackgroundColor'
+import useSearchHandler from 'hooks/useSearchHandler'
 
 import Search from './Search'
 
@@ -11,17 +12,19 @@ interface IProps {
 }
 
 export default function SearchPage({ app }: IProps) {
-  useCallOnEscape(app.searchHandler.closeSearch)
+  const searchHandler = useSearchHandler(app.positions, app.setPositions)
+
+  useCallOnEscape(searchHandler.closeSearch)
   useSetBodyBackgroundColor('#475569')
 
   return (
     <main role="main">
       <ErrorBoundaryEveryChild>
         <Loading
-          loading={app.searchHandler.searchResults.loading}
-          error={app.searchHandler.searchResults.error}
+          loading={searchHandler.searchResults.loading}
+          error={searchHandler.searchResults.error}
         />
-        <Search app={app} />
+        <Search searchHandler={searchHandler} />
       </ErrorBoundaryEveryChild>
     </main>
   )

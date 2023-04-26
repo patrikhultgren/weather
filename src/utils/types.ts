@@ -194,8 +194,9 @@ export interface IApp {
   days: Array<Array<ITimeSerie>> | null
   status: IAppStatus
   error: any
-  searchHandler: ISearchHandler
   geoPosition: IGeoPosition
+  positions: Array<IPosition>
+  setPositions: Function
 }
 
 export interface IGeoPosition {
