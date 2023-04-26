@@ -35,21 +35,15 @@ const useSearchHandler = (
   const [run, setRun] = useState<boolean>(false)
   const [reset, setReset] = useState<boolean>(false)
   const [searchTerm, setSearchTerm] = useState<string>('')
-  const [active, setActive] = useState<boolean>(false)
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null)
 
   const location = useLocation()
   const locationFrom = location.state?.from
 
-  const openSearch = useCallback(() => {
-    setActive(true)
-  }, [])
-
   const closeSearch = useCallback(() => {
     setSearchTerm('')
     setReset(true)
     setRun(false)
-    setActive(false)
     navigate(locationFrom || '/')
     setSelectedIndex(null)
   }, [navigate, locationFrom, setSelectedIndex])
@@ -212,11 +206,8 @@ const useSearchHandler = (
       onChangeSearchTerm,
       onSelectSearchResult,
       onKeyDown,
-      openSearch,
       closeSearch,
       resetSearchTerm,
-      active,
-      setActive,
     }),
     [
       searchResults,
@@ -226,11 +217,8 @@ const useSearchHandler = (
       onChangeSearchTerm,
       onSelectSearchResult,
       onKeyDown,
-      openSearch,
       closeSearch,
       resetSearchTerm,
-      active,
-      setActive,
     ]
   )
 }

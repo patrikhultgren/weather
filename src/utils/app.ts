@@ -5,7 +5,7 @@ export const getAppState = (app: IApp): IAppState => {
 
   if (geoPosition.error && !days) {
     return 'geo-error'
-  } else if (status.loading && status.type === 'placeholder') {
+  } else if (status.loading) {
     return 'placeholder'
   } else if (days) {
     return 'show-forecast'

@@ -175,22 +175,18 @@ export interface IAppStatus {
   isFullscreen: boolean
   loading: boolean
   finished: boolean
-  type: 'spinner' | 'placeholder'
 }
 
 export interface ISearchHandler {
   searchResults: IQuery<ISearchResults>
   searchTerm: string
   selectedIndex: number | null
-  active: boolean
   onSubmitSearch: (event: any) => void
   onChangeSearchTerm: React.ChangeEventHandler<HTMLInputElement>
   onSelectSearchResult: (searchResult: IPosition) => void
-  openSearch: () => void
   closeSearch: () => void
   resetSearchTerm: () => void
   onKeyDown: (event: React.KeyboardEvent<HTMLInputElement>) => void
-  setActive: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export interface IApp {

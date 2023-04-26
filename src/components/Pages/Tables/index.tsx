@@ -1,5 +1,5 @@
 import { IApp } from 'utils/types'
-import Loading from 'components/Loading'
+import Error from 'components/Error'
 import NavBar from 'components/NavBar'
 import Header from 'components/Header'
 import Credit from 'components/Credit'
@@ -23,7 +23,7 @@ export default function TablesPage({ app }: IProps) {
   return (
     <main role="main">
       <ErrorBoundaryEveryChild>
-        <Loading status={app.status} error={app.error} />
+        {app.error && <Error error={app.error} />}
         <Header app={app} />
         <NavBar app={app} activeMenuItem={ACTIVE_MENU_ITEM} />
         {appState === 'show-forecast' ? (

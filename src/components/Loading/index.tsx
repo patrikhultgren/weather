@@ -1,16 +1,16 @@
 import Spinner from 'components/Icon/Spinner'
 import Error from 'components/Error'
-import { IError, IAppStatus } from 'utils/types'
+import { IError } from 'utils/types'
 
 export interface IProps {
   error?: IError
-  status: IAppStatus
+  loading: boolean
 }
 
-const Loading = ({ error, status }: IProps) => {
+const Loading = ({ error, loading }: IProps) => {
   if (error) {
     return <Error error={error} />
-  } else if (status.loading && status.type === 'spinner') {
+  } else if (loading) {
     return <Spinner />
   }
 

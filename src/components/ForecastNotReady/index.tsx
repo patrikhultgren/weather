@@ -49,11 +49,7 @@ export default function ForecastNotReady({
         </div>
       </Container>
     )
-  } else if (
-    app.status.loading &&
-    app.status.type === 'placeholder' &&
-    activeMenuItem === 'tables'
-  ) {
+  } else if (appState === 'placeholder' && activeMenuItem === 'tables') {
     return (
       <Container className={className}>
         {[0, 1, 2, 4, 5, 6, 7, 8, 9].map((placeholderIndex: number) => (
@@ -64,11 +60,7 @@ export default function ForecastNotReady({
         ))}
       </Container>
     )
-  } else if (
-    app.status.loading &&
-    app.status.type === 'placeholder' &&
-    activeMenuItem === 'charts'
-  ) {
+  } else if (appState === 'placeholder' && activeMenuItem === 'charts') {
     return (
       <div className={className}>
         {[0, 1, 2].map((placeholderIndex: number) => (

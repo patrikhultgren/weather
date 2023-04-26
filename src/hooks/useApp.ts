@@ -66,7 +66,6 @@ const useApp = (): IApp => {
           address.finished &&
           forecast.finished &&
           searchHandler.searchResults.finished,
-        type: searchHandler.active ? 'spinner' : 'placeholder',
       },
     }),
     [

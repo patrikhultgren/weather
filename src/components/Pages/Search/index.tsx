@@ -17,7 +17,7 @@ export default function SearchPage({ app }: IProps) {
   return (
     <main role="main">
       <ErrorBoundaryEveryChild>
-        <Loading status={app.status} error={app.error} />
+        <Loading loading={app.status.loading} error={app.error} />
         <Search app={app} />
       </ErrorBoundaryEveryChild>
     </main>
