@@ -1,9 +1,9 @@
-import { useMemo } from 'react'
-import SearchIcon from 'components/Icon/Search'
+import { useCallback, useMemo, useId } from 'react'
 import Close from 'components/Icon/Close'
-import classNames from 'classnames'
 import { ISearchHandler } from 'utils/types'
-import { useId } from 'react'
+import SearchForm from './SearchForm'
+import SearchResults from './SearchResults'
+import NoSearchResults from './NoSearchResults'
 
 interface IProps {
   searchHandler: ISearchHandler
@@ -19,48 +19,16 @@ export default function Search({ searchHandler }: IProps) {
     [response]
   )
 
+  const closeSearch = useCallback(() => {
+    searchHandler.closeSearch()
+  }, [searchHandler])
+
   return (
     <div className="px-4 max-w-[700px] mx-auto">
       <div className="flex mt-4">
-        <form
-          role="search"
-          className="flex w-full"
-          onSubmit={searchHandler.onSubmitSearch}
-        >
-          <input
-            autoFocus
-            type="text"
-            placeholder="Sök efter en plats"
-            aria-label="Sök efter en plats"
-            className="block px-4 py-3 w-full"
-            autoComplete="off"
-            autoCapitalize="off"
-            name="search"
-            spellCheck={false}
-            value={searchHandler.searchTerm}
-            onChange={searchHandler.onChangeSearchTerm}
-            onBlur={searchHandler.onSubmitSearch}
-            onKeyDown={searchHandler.onKeyDown}
-          />
-          {searchHandler.searchTerm && (
-            <button
-              type="button"
-              data-ref="reset-search-term"
-              className="bg-slate-100 py-2 px-4 hover:bg-slate-200 border-r border-r-slate-300"
-              onClick={searchHandler.resetSearchTerm}
-            >
-              <Close title="Rensa sökning" />
-            </button>
-          )}
-          <button
-            type="submit"
-            className="bg-slate-100 py-2 px-4 hover:bg-slate-200"
-          >
-            <SearchIcon />
-          </button>
-        </form>
+        <SearchForm searchHandler={searchHandler} />
         <button
-          onClick={() => searchHandler.closeSearch()}
+          onClick={closeSearch}
           type="button"
           data-ref="close-search"
           className="text-black z-10 right-0 w-14 ml-2 text-xl bg-slate-100 py-2.5 flex items-center justify-center"
@@ -69,40 +37,13 @@ export default function Search({ searchHandler }: IProps) {
         </button>
       </div>
       {hasSearchResults && (
-        <div id={searchResultsId}>
-          <h2 className="p-4 py-2 bg-gray-300 mt-4 font-bold tracking-wide">
-            {response?.type === 'searchResults'
-              ? 'Sökresultat'
-              : 'Tidigare platser'}
-          </h2>
-          <ul className="overflow-auto">
-            {response?.positions?.map((searchResult, index) => (
-              <li
-                role="button"
-                className={classNames(
-                  'px-4',
-                  'hover:bg-slate-700',
-                  'hover:text-white',
-                  'py-3',
-                  'truncate',
-                  searchHandler.selectedIndex === index
-                    ? 'bg-slate-900 text-white'
-                    : 'odd:bg-white even:bg-slate-200'
-                )}
-                key={`${searchResult.latitude}_${searchResult.longitude}`}
-                onClick={() => searchHandler.onSelectSearchResult(searchResult)}
-              >
-                {searchResult.city}
-              </li>
-            ))}
-          </ul>
-        </div>
+        <SearchResults
+          searchHandler={searchHandler}
+          searchResultsId={searchResultsId}
+        />
       )}
       {!hasSearchResults && finished && response?.type === 'searchResults' && (
-        <p id={searchResultsId} className="p-4 mt-4 bg-white font-bold">
-          Typiskt, hittade inga sökresultat. Testa gärna att söka på något
-          annat.
-        </p>
+        <NoSearchResults searchResultsId={searchResultsId} />
       )}
     </div>
   )
