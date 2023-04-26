@@ -1,4 +1,5 @@
 import { useEffect, useCallback, useState } from 'react'
+import { useLocation } from 'react-router-dom'
 import { IQuery } from 'utils/types'
 import request from 'utils/request'
 import useVisibilityChange from 'hooks/useVisibilityChange'
@@ -23,6 +24,7 @@ const useFetch = <TResponse>({
   reset,
   transformResponse,
 }: IProps): IQuery<TResponse> => {
+  const location = useLocation()
   const [count, setCount] = useState<number>(1)
 
   const onVisibilityChange = useCallback(() => {
@@ -77,6 +79,10 @@ const useFetch = <TResponse>({
       setResult({ ...initialState })
     }
   }, [reset])
+
+  useEffect(() => {
+    setResult((prev) => (prev.error ? { ...prev, error: null } : prev))
+  }, [location])
 
   return result
 }
