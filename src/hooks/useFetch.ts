@@ -82,7 +82,7 @@ const useFetch = <TResponse>({
 
   useEffect(() => {
     setResult((prev) => (prev.error ? { ...prev, error: null } : prev))
-  }, [location])
+  }, [location.pathname])
 
   return result
 }
