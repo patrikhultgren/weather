@@ -213,4 +213,4 @@ export type IActiveAction =
   | 'geo-error'
   | 'show-forecast'
   | 'offline'
-  | 'go-to-search-info'
+  | 'show-go-to-search-info'

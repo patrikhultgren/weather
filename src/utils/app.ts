@@ -11,5 +11,5 @@ export const getActiveAction = (app: IApp): IActiveAction => {
     return 'offline'
   }
 
-  return 'go-to-search-info'
+  return 'show-go-to-search-info'
 }
