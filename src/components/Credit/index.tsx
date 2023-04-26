@@ -10,7 +10,7 @@ export default function Credit() {
   }, [])
 
   return (
-    <footer className="my-10 mb-[90px] md:mb-6 border-t border-slate-300 pt-10">
+    <footer className="my-10 mb-[90px] md:mb-10 border-t border-slate-300 pt-10">
       <Container className="text-sm text-slate-900">
         <button
           type="button"
@@ -21,7 +21,7 @@ export default function Credit() {
           <Arrow direction={show ? 'up' : 'down'} />
         </button>
         {show && (
-          <div className="px-4 [&>p]:mt-4 first:[&>p]:mt-0 mt-4">
+          <div className="px-4 [&>p]:mt-4 first:[&>p]:mt-0 mt-8">
             <p>Väderappen är till för att enkelt kunna se väderprognoser.</p>
             <p>
               Prognosdatan tillhandahålls av MET Norge och är licenserad under{' '}
