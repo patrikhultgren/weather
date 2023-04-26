@@ -6,7 +6,6 @@ import Footer from 'components/Footer'
 import ForecastNotReady from 'components/ForecastNotReady'
 import ErrorBoundaryEveryChild from 'components/ErrorBoundaryEveryChild'
 import useSetBodyBackgroundColor from 'hooks/useSetBodyBackgroundColor'
-import { getActiveAction } from 'utils/app'
 import Forecast from './Forecast'
 
 const ACTIVE_MENU_ITEM = 'tables'
@@ -16,8 +15,6 @@ interface IProps {
 }
 
 export default function TablesPage({ app }: IProps) {
-  const activeAction = getActiveAction(app)
-
   useSetBodyBackgroundColor('#fff')
 
   return (
@@ -27,14 +24,10 @@ export default function TablesPage({ app }: IProps) {
           {app.error && <Error error={app.error} />}
           <Header app={app} />
           <NavBar app={app} activeMenuItem={ACTIVE_MENU_ITEM} />
-          {activeAction === 'show-forecast' ? (
+          {app.days ? (
             <Forecast app={app} />
           ) : (
-            <ForecastNotReady
-              app={app}
-              activeAction={activeAction}
-              activeMenuItem={ACTIVE_MENU_ITEM}
-            />
+            <ForecastNotReady app={app} activeMenuItem={ACTIVE_MENU_ITEM} />
           )}
         </ErrorBoundaryEveryChild>
       </main>

@@ -3,24 +3,19 @@ import classNames from 'classnames'
 import Container from 'components/Container'
 import TablePlaceholder from 'components/Placeholder/Table'
 import ChartPlaceholder from 'components/Placeholder/Chart'
-import { IApp, IActiveAction } from 'utils/types'
+import { IApp } from 'utils/types'
 
 const className = 'mb-10'
 
 interface IProps {
   app: IApp
-  activeAction: IActiveAction
   activeMenuItem: 'tables' | 'charts'
 }
 
-export default function ForecastNotReady({
-  app,
-  activeAction,
-  activeMenuItem,
-}: IProps) {
+export default function ForecastNotReady({ app, activeMenuItem }: IProps) {
   const location = useLocation()
 
-  if (activeAction === 'geo-error') {
+  if (app.geoPosition.error && !app.days) {
     return (
       <Container
         className={classNames(

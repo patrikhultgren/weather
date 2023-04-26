@@ -208,9 +208,3 @@ export interface ISearchResults {
   positions: Array<IPosition> | null
   type: 'searchResults' | 'history'
 }
-
-export type IActiveAction =
-  | 'geo-error'
-  | 'show-forecast'
-  | 'offline'
-  | 'show-go-to-search-info'
