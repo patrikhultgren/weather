@@ -1,4 +1,5 @@
 import { useCallback, useState, useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
 import { addPosition } from 'utils/position'
 import { IPosition, IGeoPosition } from 'utils/types'
 
@@ -18,6 +19,8 @@ const useGeoPosition = (
   positionsAreLoaded: boolean,
   positions: Array<IPosition>
 ): IGeoPosition => {
+  const location = useLocation()
+
   const [geoPosition, setGeoPosition] = useState<IGeoPosition>({
     ...initialState,
     loading: true,
@@ -74,6 +77,10 @@ const useGeoPosition = (
 
     return () => navigator.geolocation.clearWatch(watcher)
   }, [positions, positionsAreLoaded, onError, onChange])
+
+  useEffect(() => {
+    setGeoPosition((prev) => (prev.error ? { ...prev, error: null } : prev))
+  }, [location.pathname])
 
   return geoPosition
 }
