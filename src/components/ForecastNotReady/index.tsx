@@ -38,7 +38,7 @@ export default function ForecastNotReady({
           <p className="mt-4 text-xl">
             Använd{' '}
             <Link
-              to="/search"
+              to="/weather/search"
               className="underline py-2"
               state={{ from: location.pathname }}
             >
@@ -114,7 +114,7 @@ export default function ForecastNotReady({
           <p className="mt-4 text-xl">
             Använd{' '}
             <Link
-              to="/search"
+              to="/weather/search"
               className="underline py-2"
               state={{ from: location.pathname }}
             >
