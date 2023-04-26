@@ -8,7 +8,7 @@ export default function Credit() {
 
   const onClick = useCallback(() => {
     setShow((prev) => !prev)
-  }, [show])
+  }, [])
 
   useEffect(() => {
     if (show && messageRef?.current) {
