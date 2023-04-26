@@ -24,7 +24,7 @@ export default function Credit() {
           className="py-2 block flex mx-auto items-center bg-slate-50 px-4 rounded hover:bg-slate-600 border border-slate-300 shadow hover:text-white"
           onClick={onClick}
         >
-          <span className="mr-1">Om väderappen</span>
+          <span className="mr-1">Om sajten</span>
           <Arrow direction={show ? 'up' : 'down'} />
         </button>
         {show && (
@@ -32,8 +32,7 @@ export default function Credit() {
             ref={messageRef}
             className="px-4 [&>p]:mt-4 first:[&>p]:mt-0 mt-8"
           >
-            <p>Väderappen är till för att enkelt kunna se väderprognoser.</p>
-            <p>Inga kakor används i väderappen.</p>
+            <p>Denna sajt är till för att enkelt kunna se väderprognoser.</p>
             <p>
               Prognosdatan tillhandahålls av MET Norge och är licenserad under{' '}
               <a className="underline" href="https://data.norge.no/nlod/en/2.0">
@@ -57,22 +56,22 @@ export default function Credit() {
               <a className="underline" href="https://locationiq.com/">
                 LoqationIQ
               </a>{' '}
-              används vid sökningar.
+              anropas vid sökningar.
             </p>
             <p>
-              Om du tillåter att din position används så anropas{' '}
+              Om du tillåter att dela din position så anropas{' '}
               <a className="underline" href="https://www.bigdatacloud.com">
                 Big Data Cloud
               </a>{' '}
               för att ta fram aktuell adress. Latitud och longitud avrundas till
-              två decimaler för att inte vara exakt.
+              två decimaler för att inte exakt ange din position.
+            </p>
+            <p>Inga kakor används på sajten.</p>
+            <p>
+              Innehållet kan vara felaktigt. Inget ansvar tas kring innehållet.
             </p>
             <p>
-              Innehållet i väderappen kan vara felaktigt. Inget ansvar tas kring
-              innehållet.
-            </p>
-            <p>
-              Väderappen är byggd av mig{' '}
+              Sidan är byggd av mig{' '}
               <a className="underline" href="mailto:patrik.hult@gmail.com">
                 Patrik Hultgren.
               </a>
