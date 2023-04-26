@@ -1,4 +1,5 @@
 import { useMemo } from 'react'
+import { Link } from 'react-router-dom'
 import classNames from 'classnames'
 import { IApp } from 'utils/types'
 
@@ -29,7 +30,9 @@ export default function Header({ app, className }: IProps) {
       )}
     >
       <h1 className="truncate max-w-[700px]">
-        <span className="font-bold">Vädret i</span> {city ? city : '...'}
+        <Link to="/weather">
+          <span className="font-bold">Vädret i</span> {city ? city : '...'}
+        </Link>
       </h1>
     </header>
   )
