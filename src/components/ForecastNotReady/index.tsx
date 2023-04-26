@@ -9,18 +9,18 @@ const className = 'mb-10'
 
 interface IProps {
   app: IApp
-  appState: IAppState
+  activeAction: IAppState
   activeMenuItem: 'tables' | 'charts'
 }
 
 export default function ForecastNotReady({
   app,
-  appState,
+  activeAction,
   activeMenuItem,
 }: IProps) {
   const location = useLocation()
 
-  if (appState === 'geo-error') {
+  if (activeAction === 'geo-error') {
     return (
       <Container
         className={classNames(
@@ -49,7 +49,7 @@ export default function ForecastNotReady({
         </div>
       </Container>
     )
-  } else if (appState === 'placeholder' && activeMenuItem === 'tables') {
+  } else if (activeAction === 'placeholder' && activeMenuItem === 'tables') {
     return (
       <Container className={className}>
         {[0, 1, 2, 4, 5, 6, 7, 8, 9].map((placeholderIndex: number) => (
@@ -60,7 +60,7 @@ export default function ForecastNotReady({
         ))}
       </Container>
     )
-  } else if (appState === 'placeholder' && activeMenuItem === 'charts') {
+  } else if (activeAction === 'placeholder' && activeMenuItem === 'charts') {
     return (
       <div className={className}>
         {[0, 1, 2].map((placeholderIndex: number) => (

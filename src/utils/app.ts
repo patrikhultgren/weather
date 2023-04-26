@@ -1,6 +1,6 @@
 import { IApp, IAppState } from 'utils/types'
 
-export const getAppState = (app: IApp): IAppState => {
+export const getActiveAction = (app: IApp): IAppState => {
   const { days, status, geoPosition } = app
 
   if (geoPosition.error && !days) {
