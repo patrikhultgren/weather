@@ -9,8 +9,8 @@ export default function App() {
 
   return (
     <Routes>
-      <Route path="charts" element={<ChartsPage app={app} />} />
-      <Route path="search" element={<SearchPage app={app} />} />
+      <Route path="weather/charts" element={<ChartsPage app={app} />} />
+      <Route path="weather/search" element={<SearchPage app={app} />} />
       <Route path="*" element={<TablesPage app={app} />} />
     </Routes>
   )

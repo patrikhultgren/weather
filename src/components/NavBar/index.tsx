@@ -41,7 +41,7 @@ export default function NavBar({ app, activeMenuItem }: IProps) {
         <span className="hidden md:inline">Tabeller</span>
       </Link>
       <Link
-        to="/charts"
+        to="/weather/charts"
         className={classNames(
           'mx-3 z-10 shadow border rounded md:rounded-none md:shadow-none h-12 w-12 md:w-auto md:px-4 flex items-center justify-center md:mb-0 md:border-0',
           activeMenuItem === 'charts'
@@ -53,7 +53,7 @@ export default function NavBar({ app, activeMenuItem }: IProps) {
         <span className="hidden md:inline">Diagram</span>
       </Link>
       <Link
-        to="/search"
+        to="/weather/search"
         state={{ from: location.pathname }}
         className={classNames(
           'mr-auto z-10 shadow rounded md:rounded-none md:shadow-none h-12 w-12 md:w-auto md:px-4 flex items-center justify-center bg-slate-600 text-white md:bg-gray-200 md:hover:bg-white md:text-black  md:mb-0'
