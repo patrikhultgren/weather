@@ -99,7 +99,7 @@ export default function Day({ day }: IProps) {
           <span className="mr-1">
             {showAll ? 'Visa färre timmar' : 'Visa alla timmar'}
           </span>
-          <Arrow direction={showAll ? 'right' : 'down'} />
+          <Arrow direction={showAll ? 'up' : 'down'} />
         </button>
       )}
     </article>

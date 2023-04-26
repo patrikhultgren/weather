@@ -1,33 +1,68 @@
+import { useState, useCallback } from 'react'
 import Container from 'components/Container'
+import Arrow from 'components/Icon/Arrow'
 
 export default function Credit() {
+  const [show, setShow] = useState(false)
+
+  const onClick = useCallback(() => {
+    setShow((prev) => !prev)
+  }, [])
+
   return (
     <footer className="my-10 mb-[90px] md:mb-6 border-t border-slate-300 pt-6">
       <Container className="text-sm text-slate-900">
-        <div className="px-4 [&>p]:mt-4 first:[&>p]:mt-0">
-          <p>Denna app är till för att se väderprognoser.</p>
-          <p>
-            Prognosdatan tillhandahålls av MET Norge och är licenserad under{' '}
-            <a className="underline" href="https://data.norge.no/nlod/en/2.0">
-              Norwegian Licence for Open Government Data (NLOD) 2.0
-            </a>{' '}
-            och{' '}
-            <a
-              className="underline"
-              href="https://creativecommons.org/licenses/by/4.0/"
-            >
-              Creative Commons 4.0 BY International
-            </a>
-            .
-          </p>
-          <p>Inget ansvar tas kring innehållet.</p>
-          <p>
-            Appen är byggd av{' '}
-            <a className="underline" href="mailto:patrik.hult@gmail.com">
-              Patrik Hultgren.
-            </a>
-          </p>
-        </div>
+        <button
+          type="button"
+          className="py-2 block flex mx-auto items-center bg-slate-50 px-4 rounded hover:bg-slate-600 border border-slate-300 shadow hover:text-white"
+          onClick={onClick}
+        >
+          <span className="mr-1">Om väderappen</span>
+          <Arrow direction={show ? 'up' : 'down'} />
+        </button>
+        {show && (
+          <div className="px-4 [&>p]:mt-4 first:[&>p]:mt-0 mt-4">
+            <p>Väderappen är till för att enkelt kunna se väderprognoser.</p>
+            <p>
+              Prognosdatan tillhandahålls av MET Norge och är licenserad under{' '}
+              <a className="underline" href="https://data.norge.no/nlod/en/2.0">
+                Norwegian Licence for Open Government Data (NLOD) 2.0
+              </a>{' '}
+              och{' '}
+              <a
+                className="underline"
+                href="https://creativecommons.org/licenses/by/4.0/"
+              >
+                Creative Commons 4.0 BY International
+              </a>
+              .
+            </p>
+            <p>
+              Tjänsten{' '}
+              <a className="underline" href="https://locationiq.com/">
+                LoqationIQ
+              </a>{' '}
+              används vid sökningar.
+            </p>
+            <p>
+              Om du tillåter att din position används så anropas{' '}
+              <a className="underline" href="https://www.bigdatacloud.com">
+                Big Data Cloud
+              </a>{' '}
+              för att ta fram aktuell adress.
+            </p>
+            <p>
+              Innehållet kan vara felaktigt. Inget ansvar tas kring innehållet.
+            </p>
+            <p>
+              Väderappen är byggd av mig{' '}
+              <a className="underline" href="mailto:patrik.hult@gmail.com">
+                Patrik Hultgren.
+              </a>
+              .
+            </p>
+          </div>
+        )}
       </Container>
     </footer>
   )
