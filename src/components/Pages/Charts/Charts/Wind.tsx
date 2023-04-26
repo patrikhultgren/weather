@@ -1,4 +1,3 @@
-import { useMemo } from 'react'
 import {
   CartesianGrid,
   LineChart,
@@ -7,10 +6,18 @@ import {
   YAxis,
   ResponsiveContainer,
 } from 'recharts'
-import { IApp } from 'utils/types'
+import { IApp, ITimeSerie } from 'utils/types'
 import { format } from 'utils/date'
 import AxisTickHour from 'components/AxisTickHour'
 import LongArrow from 'components/Icon/LongArrow'
+import usePrepareChartData from 'hooks/usePrepareChartData'
+
+const prepareChartData = (hour: ITimeSerie) => ({
+  time: hour.time,
+  x: format(hour.time, 'HH'),
+  y: hour.data.instant.details.wind_speed,
+  windDirection: hour.data.instant.details.wind_from_direction,
+})
 
 const CustomizedLabel = (props: any) => {
   const { x, y, value, index, data } = props
@@ -48,32 +55,10 @@ interface IProps {
 }
 
 export default function Wind({ app }: IProps) {
-  const data = useMemo(() => {
-    let hours = []
-
-    if (app.days) {
-      let currentDay = 0
-
-      for (const day of app.days) {
-        for (const hour of day) {
-          hours.push({
-            time: hour.time,
-            x: format(hour.time, 'HH'),
-            y: hour.data.instant.details.wind_speed,
-            windDirection: hour.data.instant.details.wind_from_direction,
-          })
-        }
-
-        if (currentDay === 2) {
-          break
-        }
-
-        currentDay++
-      }
-    }
-
-    return hours
-  }, [app])
+  const data = usePrepareChartData({
+    days: app.days,
+    prepare: prepareChartData,
+  })
 
   return (
     <div className="mt-4 border-t pt-4 border-slate-300">

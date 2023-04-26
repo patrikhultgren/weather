@@ -1,4 +1,3 @@
-import { useMemo } from 'react'
 import {
   CartesianGrid,
   LineChart,
@@ -7,13 +6,21 @@ import {
   YAxis,
   ResponsiveContainer,
 } from 'recharts'
-import { IApp } from 'utils/types'
+import { IApp, ITimeSerie } from 'utils/types'
 import { format } from 'utils/date'
 import AxisTickHour from 'components/AxisTickHour'
 import weatherIcons from 'config/weatherIcons'
+import usePrepareChartData from 'hooks/usePrepareChartData'
 
 const LINE_CHART_TOP = 25
 const ICON_SIZE = 30
+
+const prepareChartData = (hour: ITimeSerie) => ({
+  time: hour.time,
+  symbolCode: hour.data?.next_1_hours?.summary?.symbol_code,
+  x: format(hour.time, 'HH'),
+  y: hour.data.instant.details.air_temperature,
+})
 
 const CustomizedLabel = (props: any) => {
   const { x, y, value, index, data } = props
@@ -51,32 +58,10 @@ interface IProps {
 }
 
 export default function Temperature({ app }: IProps) {
-  const data = useMemo(() => {
-    let hours = []
-
-    if (app.days) {
-      let currentDay = 0
-
-      for (const day of app.days) {
-        for (const hour of day) {
-          hours.push({
-            time: hour.time,
-            symbolCode: hour.data?.next_1_hours?.summary?.symbol_code,
-            x: format(hour.time, 'HH'),
-            y: hour.data.instant.details.air_temperature,
-          })
-        }
-
-        if (currentDay === 2) {
-          break
-        }
-
-        currentDay++
-      }
-    }
-
-    return hours
-  }, [app])
+  const data = usePrepareChartData({
+    days: app.days,
+    prepare: prepareChartData,
+  })
 
   return (
     <div>
