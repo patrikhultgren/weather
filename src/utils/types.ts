@@ -209,9 +209,8 @@ export interface ISearchResults {
   type: 'searchResults' | 'history'
 }
 
-export type IAppState =
+export type IActiveAction =
   | 'geo-error'
-  | 'placeholder'
   | 'show-forecast'
   | 'offline'
   | 'go-to-search-info'

@@ -3,13 +3,13 @@ import classNames from 'classnames'
 import Container from 'components/Container'
 import TablePlaceholder from 'components/Placeholder/Table'
 import ChartPlaceholder from 'components/Placeholder/Chart'
-import { IApp, IAppState } from 'utils/types'
+import { IApp, IActiveAction } from 'utils/types'
 
 const className = 'mb-10'
 
 interface IProps {
   app: IApp
-  activeAction: IAppState
+  activeAction: IActiveAction
   activeMenuItem: 'tables' | 'charts'
 }
 
@@ -49,7 +49,7 @@ export default function ForecastNotReady({
         </div>
       </Container>
     )
-  } else if (activeAction === 'placeholder' && activeMenuItem === 'tables') {
+  } else if (app.status.loading && activeMenuItem === 'tables') {
     return (
       <Container className={className}>
         {[0, 1, 2, 4, 5, 6, 7, 8, 9].map((placeholderIndex: number) => (
@@ -60,7 +60,7 @@ export default function ForecastNotReady({
         ))}
       </Container>
     )
-  } else if (activeAction === 'placeholder' && activeMenuItem === 'charts') {
+  } else if (app.status.loading && activeMenuItem === 'charts') {
     return (
       <div className={className}>
         {[0, 1, 2].map((placeholderIndex: number) => (
