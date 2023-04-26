@@ -5,7 +5,6 @@ import {
   Area,
   XAxis,
   YAxis,
-  Tooltip,
   ResponsiveContainer,
 } from 'recharts'
 import { IApp } from 'utils/types'
