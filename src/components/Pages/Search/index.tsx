@@ -5,7 +5,6 @@ import ErrorBoundaryEveryChild from 'components/ErrorBoundaryEveryChild'
 import useCallOnEscape from 'hooks/useCallOnEscape'
 import useSetBodyBackgroundColor from 'hooks/useSetBodyBackgroundColor'
 import useSearchHandler from 'hooks/useSearchHandler'
-import { StatusError } from 'utils/request'
 
 import Search from './Search'
 
