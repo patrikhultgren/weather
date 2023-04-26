@@ -31,7 +31,7 @@ export default function ForecastNotReady({
           className
         )}
       >
-        <div className="px-4 mt-6">
+        <div className="mx-auto px-4 mt-6">
           <p className="text-2xl font-bold">
             Ops... det gick inte att hitta din plats.
           </p>
@@ -90,7 +90,7 @@ export default function ForecastNotReady({
           className
         )}
       >
-        <div className="px-4 mt-6 w-full">
+        <div className="mx-auto px-4 mt-6 w-full">
           <p className="text-2xl font-bold">Tappat uppkopplingen?</p>
           <p className="mt-4 text-xl">
             Väderprognosen finns tyvärr inte sparad i offline läge.
@@ -109,7 +109,7 @@ export default function ForecastNotReady({
           className
         )}
       >
-        <div className="px-4 mt-6 w-full">
+        <div className="mx-auto px-4 mt-6 w-full">
           <p className="text-2xl font-bold">Se väderprognoser</p>
           <p className="mt-4 text-xl">
             Använd{' '}
