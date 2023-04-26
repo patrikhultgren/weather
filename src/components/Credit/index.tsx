@@ -47,7 +47,7 @@ export default function Credit() {
               >
                 Creative Commons 4.0 BY International
               </a>
-              . Väderikonerna tillhandahålls av{' '}
+              . Väderikonerna är skapade av{' '}
               <a href="https://www.yr.no" className="underline">
                 Yr
               </a>{' '}
