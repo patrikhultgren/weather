@@ -48,24 +48,12 @@ const useApp = (): IApp => {
       days: forecast.response,
       geoPosition,
       searchHandler,
-      error:
-        geoPosition.error ||
-        address.error ||
-        forecast.error ||
-        searchHandler.searchResults.error,
+      error: geoPosition.error || address.error || forecast.error,
       status: {
         online,
         isFullscreen,
-        loading:
-          geoPosition.loading ||
-          address.loading ||
-          forecast.loading ||
-          searchHandler.searchResults.loading,
-        finished:
-          geoPosition.finished &&
-          address.finished &&
-          forecast.finished &&
-          searchHandler.searchResults.finished,
+        loading: geoPosition.loading || address.loading || forecast.loading,
+        finished: geoPosition.finished && address.finished && forecast.finished,
       },
     }),
     [
