@@ -16,8 +16,8 @@ export default function Forecast({ app }: IProps) {
     return (
       <Container className={className}>
         {days.map((day) => (
-          <ErrorBoundary>
-            <Day day={day} key={day[0].time} />
+          <ErrorBoundary key={day[0].time}>
+            <Day day={day} />
           </ErrorBoundary>
         ))}
       </Container>
