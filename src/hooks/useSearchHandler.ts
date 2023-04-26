@@ -130,7 +130,10 @@ const useSearchHandler = (
     [searchTerm, fetchedSearchResults, positions]
   )
 
-  const searchResultpositions = searchResults.response?.positions || []
+  const searchResultpositions = useMemo(
+    () => searchResults.response?.positions || [],
+    [searchResults.response]
+  )
 
   const handleUpArrowKeydown = useCallback(
     (selectedIndex: number) => {
@@ -194,6 +197,7 @@ const useSearchHandler = (
       setSelectedIndex,
       searchResults,
       onSelectSearchResult,
+      handleUpArrowKeydown,
       handleDownArrowKeydown,
       closeSearch,
     ]
