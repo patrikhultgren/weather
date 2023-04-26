@@ -23,6 +23,7 @@ export default function Credit() {
         {show && (
           <div className="px-4 [&>p]:mt-4 first:[&>p]:mt-0 mt-8">
             <p>Väderappen är till för att enkelt kunna se väderprognoser.</p>
+            <p>Inga kakor används i väderappen.</p>
             <p>
               Prognosdatan tillhandahålls av MET Norge och är licenserad under{' '}
               <a className="underline" href="https://data.norge.no/nlod/en/2.0">
@@ -39,7 +40,7 @@ export default function Credit() {
               <a href="https://www.yr.no" className="underline">
                 Yr
               </a>{' '}
-              och är licensierade under MIT licensen.
+              och är licensierade under MIT.
             </p>
             <p>
               Tjänsten{' '}
@@ -53,10 +54,12 @@ export default function Credit() {
               <a className="underline" href="https://www.bigdatacloud.com">
                 Big Data Cloud
               </a>{' '}
-              för att ta fram aktuell adress.
+              för att ta fram aktuell adress. Latitud och longitud avrundas till
+              två decimaler för att inte vara exakt.
             </p>
             <p>
-              Innehållet kan vara felaktigt. Inget ansvar tas kring innehållet.
+              Innehållet i väderappen kan vara felaktigt. Inget ansvar tas kring
+              innehållet.
             </p>
             <p>
               Väderappen är byggd av mig{' '}
