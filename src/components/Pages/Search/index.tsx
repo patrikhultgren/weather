@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { IApp } from 'utils/types'
 import Loading from 'components/Loading'
 import ErrorBoundaryEveryChild from 'components/ErrorBoundaryEveryChild'
+import useCallOnEscape from 'hooks/useCallOnEscape'
 
 import Search from './Search'
 
@@ -10,6 +11,8 @@ interface IProps {
 }
 
 export default function SearchPage({ app }: IProps) {
+  useCallOnEscape(app.searchHandler.closeSearch)
+
   useEffect(() => {
     document.body.style.backgroundColor = '#475569'
   }, [])
