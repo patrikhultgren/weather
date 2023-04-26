@@ -1,13 +1,20 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useRef, useEffect } from 'react'
 import Container from 'components/Container'
 import Arrow from 'components/Icon/Arrow'
 
 export default function Credit() {
+  const messageRef = useRef<null | HTMLDivElement>(null)
   const [show, setShow] = useState(false)
 
   const onClick = useCallback(() => {
     setShow((prev) => !prev)
-  }, [])
+  }, [show])
+
+  useEffect(() => {
+    if (show && messageRef?.current) {
+      messageRef.current?.scrollIntoView({ behavior: 'smooth' })
+    }
+  }, [show, messageRef])
 
   return (
     <footer className="my-10 mb-[90px] md:mb-10 border-t border-slate-300 pt-10">
@@ -21,7 +28,10 @@ export default function Credit() {
           <Arrow direction={show ? 'up' : 'down'} />
         </button>
         {show && (
-          <div className="px-4 [&>p]:mt-4 first:[&>p]:mt-0 mt-8">
+          <div
+            ref={messageRef}
+            className="px-4 [&>p]:mt-4 first:[&>p]:mt-0 mt-8"
+          >
             <p>Väderappen är till för att enkelt kunna se väderprognoser.</p>
             <p>Inga kakor används i väderappen.</p>
             <p>
