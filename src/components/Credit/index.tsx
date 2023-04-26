@@ -32,7 +32,9 @@ export default function Credit() {
             ref={messageRef}
             className="px-4 [&>p]:mt-4 first:[&>p]:mt-0 mt-8"
           >
-            <p>Denna sajt är till för att enkelt kunna se väderprognoser.</p>
+            <h2 className="text-lg">
+              Denna sajt är till för att enkelt kunna se väderprognoser
+            </h2>
             <p>
               Prognosdatan tillhandahålls av MET Norge och är licenserad under{' '}
               <a className="underline" href="https://data.norge.no/nlod/en/2.0">
