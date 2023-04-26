@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import { IApp } from 'utils/types'
 import Loading from 'components/Loading'
 import NavBar from 'components/NavBar'
