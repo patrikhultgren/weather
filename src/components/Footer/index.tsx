@@ -2,7 +2,7 @@ import { useState, useCallback, useRef, useEffect } from 'react'
 import Container from 'components/Container'
 import Arrow from 'components/Icon/Arrow'
 
-export default function Credit() {
+export default function Footer() {
   const messageRef = useRef<null | HTMLDivElement>(null)
   const [show, setShow] = useState(false)
 

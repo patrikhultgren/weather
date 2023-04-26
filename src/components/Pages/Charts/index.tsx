@@ -1,7 +1,7 @@
 import { IApp } from 'utils/types'
 import NavBar from 'components/NavBar'
 import Header from 'components/Header'
-import Credit from 'components/Credit'
+import Footer from 'components/Footer'
 import Error from 'components/Error'
 import ForecastNotReady from 'components/ForecastNotReady'
 import ErrorBoundaryEveryChild from 'components/ErrorBoundaryEveryChild'
@@ -38,7 +38,7 @@ export default function ChartsPage({ app }: IProps) {
           )}
         </ErrorBoundaryEveryChild>
       </main>
-      <Credit />
+      <Footer />
     </>
   )
 }
