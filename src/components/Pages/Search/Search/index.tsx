@@ -1,6 +1,7 @@
 import { useMemo } from 'react'
 import SearchIcon from 'components/Icon/Search'
 import Close from 'components/Icon/Close'
+import classNames from 'classnames'
 import { IApp } from 'utils/types'
 import { useId } from 'react'
 
@@ -41,6 +42,7 @@ export default function Search({ app }: IProps) {
             value={searchHandler.searchTerm}
             onChange={searchHandler.onChangeSearchTerm}
             onBlur={searchHandler.onSubmitSearch}
+            onKeyDown={searchHandler.onKeyDown}
           />
           {searchHandler.searchTerm && (
             <button
@@ -76,10 +78,19 @@ export default function Search({ app }: IProps) {
               : 'Tidigare platser'}
           </h2>
           <ul className="overflow-auto">
-            {response?.positions?.map((searchResult) => (
+            {response?.positions?.map((searchResult, index) => (
               <li
                 role="button"
-                className="px-4 odd:bg-white even:bg-slate-200 hover:bg-slate-700 hover:text-white py-3 truncate"
+                className={classNames(
+                  'px-4',
+                  'hover:bg-slate-700',
+                  'hover:text-white',
+                  'py-3',
+                  'truncate',
+                  searchHandler.selectedIndex === index
+                    ? 'bg-slate-900 text-white'
+                    : 'odd:bg-white even:bg-slate-200'
+                )}
                 key={`${searchResult.latitude}_${searchResult.longitude}`}
                 onClick={() => searchHandler.onSelectSearchResult(searchResult)}
               >

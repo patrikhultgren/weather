@@ -9,6 +9,12 @@ import {
   IQuery,
   ISearchResults,
 } from 'utils/types'
+import {
+  ARROW_UP_KEY_CODE,
+  ARROW_DOWN_KEY_CODE,
+  ENTER_KEY_CODE,
+  ESC_KEY_CODE,
+} from 'utils/keyCodes'
 import useFetch from 'hooks/useFetch'
 
 const transformResponse = (
@@ -30,6 +36,7 @@ const useSearchHandler = (
   const [reset, setReset] = useState<boolean>(false)
   const [searchTerm, setSearchTerm] = useState<string>('')
   const [active, setActive] = useState<boolean>(false)
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null)
 
   const location = useLocation()
   const locationFrom = location.state?.from
@@ -44,7 +51,8 @@ const useSearchHandler = (
     setRun(false)
     setActive(false)
     navigate(locationFrom || '/')
-  }, [navigate, locationFrom])
+    setSelectedIndex(null)
+  }, [navigate, locationFrom, setSelectedIndex])
 
   const resetSearchTerm = useCallback(() => {
     setSearchTerm('')
@@ -122,13 +130,84 @@ const useSearchHandler = (
     [searchTerm, fetchedSearchResults, positions]
   )
 
+  const searchResultpositions = searchResults.response?.positions || []
+
+  const handleUpArrowKeydown = useCallback(
+    (selectedIndex: number) => {
+      if (selectedIndex === 0) {
+        if (searchResultpositions.length) {
+          setSelectedIndex(searchResultpositions.length - 1)
+        }
+      } else if (selectedIndex > 0) {
+        setSelectedIndex((prev) => (prev === null ? prev : prev - 1))
+      }
+    },
+    [searchResultpositions]
+  )
+
+  const handleDownArrowKeydown = useCallback(
+    (selectedIndex: number) => {
+      if (searchResultpositions.length) {
+        if (selectedIndex < searchResultpositions.length - 1) {
+          setSelectedIndex((prev) => (prev === null ? prev : prev + 1))
+        } else if (selectedIndex === searchResultpositions.length - 1) {
+          setSelectedIndex(0)
+        }
+      }
+    },
+    [searchResultpositions]
+  )
+
+  const onKeyDown = useCallback(
+    ({ keyCode }: { keyCode: number }) => {
+      if ([ARROW_UP_KEY_CODE, ARROW_DOWN_KEY_CODE].includes(keyCode)) {
+        if (selectedIndex === null) {
+          const numberOfPositions = searchResults.response?.positions?.length
+
+          if (numberOfPositions) {
+            setSelectedIndex(
+              keyCode === ARROW_UP_KEY_CODE ? numberOfPositions - 1 : 0
+            )
+          }
+        } else {
+          if (keyCode === ARROW_UP_KEY_CODE) {
+            handleUpArrowKeydown(selectedIndex)
+          } else if (keyCode === ARROW_DOWN_KEY_CODE) {
+            handleDownArrowKeydown(selectedIndex)
+          }
+        }
+      } else if (keyCode === ENTER_KEY_CODE && selectedIndex !== null) {
+        const position = searchResults.response?.positions?.[selectedIndex]
+
+        if (position) {
+          onSelectSearchResult(position)
+        }
+      } else if (keyCode === ESC_KEY_CODE) {
+        closeSearch()
+        setSelectedIndex(null)
+      } else {
+        setSelectedIndex(null)
+      }
+    },
+    [
+      selectedIndex,
+      setSelectedIndex,
+      searchResults,
+      onSelectSearchResult,
+      handleDownArrowKeydown,
+      closeSearch,
+    ]
+  )
+
   return useMemo(
     () => ({
       searchResults,
       searchTerm,
+      selectedIndex,
       onSubmitSearch,
       onChangeSearchTerm,
       onSelectSearchResult,
+      onKeyDown,
       openSearch,
       closeSearch,
       resetSearchTerm,
@@ -138,9 +217,11 @@ const useSearchHandler = (
     [
       searchResults,
       searchTerm,
+      selectedIndex,
       onSubmitSearch,
       onChangeSearchTerm,
       onSelectSearchResult,
+      onKeyDown,
       openSearch,
       closeSearch,
       resetSearchTerm,

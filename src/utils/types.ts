@@ -181,13 +181,15 @@ export interface IAppStatus {
 export interface ISearchHandler {
   searchResults: IQuery<ISearchResults>
   searchTerm: string
+  selectedIndex: number | null
+  active: boolean
   onSubmitSearch: (event: any) => void
   onChangeSearchTerm: React.ChangeEventHandler<HTMLInputElement>
   onSelectSearchResult: (searchResult: IPosition) => void
   openSearch: () => void
   closeSearch: () => void
   resetSearchTerm: () => void
-  active: boolean
+  onKeyDown: (event: React.KeyboardEvent<HTMLInputElement>) => void
   setActive: React.Dispatch<React.SetStateAction<boolean>>
 }
 
