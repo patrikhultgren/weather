@@ -24,7 +24,7 @@ export default function ForecastNotReady({
     return (
       <Container
         className={classNames(
-          'min-h-[40vh]',
+          'min-h-[65vh]',
           'flex',
           'items-center',
           'text-center',
@@ -83,7 +83,7 @@ export default function ForecastNotReady({
     return (
       <Container
         className={classNames(
-          'min-h-[40vh]',
+          'min-h-[65vh]',
           'flex',
           'items-center',
           'text-center',
@@ -102,7 +102,7 @@ export default function ForecastNotReady({
     return (
       <Container
         className={classNames(
-          'min-h-[40vh]',
+          'min-h-[65vh]',
           'flex',
           'items-center',
           'text-center',
