@@ -97,7 +97,6 @@ export default function Temperature({ app }: IProps) {
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis interval={0} dataKey="x" tick={<AxisTickHour data={data} />} />
           <YAxis />
-          <Tooltip wrapperClassName="hidden md:block" />
           <Line
             isAnimationActive={false}
             type="monotone"
