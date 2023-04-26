@@ -28,7 +28,7 @@ export default function Header({ app, className }: IProps) {
         className
       )}
     >
-      <h1 className="truncate">
+      <h1 className="truncate max-w-[700px]">
         <span className="font-bold">Vädret i</span> {city ? city : '...'}
       </h1>
     </header>
