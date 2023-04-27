@@ -60,7 +60,10 @@ export default function Hour({ hour }: IProps) {
 
   return (
     <>
-      <td className="border-y border-slate-300 px-2 py-1 text-center">
+      <td
+        scope="row"
+        className="border-y border-slate-300 px-2 py-1 text-center"
+      >
         {format(hour.time, 'HH')}
       </td>
       <td className="border-y border-slate-300 px-2 py-1">

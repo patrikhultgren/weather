@@ -44,17 +44,6 @@ export default function Day({ day }: IProps) {
 
   return (
     <article className="mt-6 first:mt-0 md:first:mt-4" key={dateStr}>
-      <div className="font-bold text-xl bg-slate-200 border-t border-slate-300 flex items-center py-2">
-        <h2 className="font-bold text-xl px-3">
-          <span className="capitalize">{format(dateStr, 'EEEE')}</span>{' '}
-          {format(dateStr, 'd MMMM')}
-        </h2>
-        {(isToday(date) || isTomorrow(date)) && (
-          <div className="ml-auto border-l border-slate-300 px-3 basis-1/4 text-center">
-            {isToday(date) ? 'Idag' : 'Imorgon'}
-          </div>
-        )}
-      </div>
       <table
         className={classNames(
           'w-full',
@@ -66,21 +55,49 @@ export default function Day({ day }: IProps) {
           'duration-700'
         )}
       >
+        <caption className="font-bold text-xl bg-slate-200 border-t border-slate-300 py-2">
+          <span className="flex">
+            <span className="font-bold text-xl px-3">
+              <span className="capitalize">{format(dateStr, 'EEEE')}</span>{' '}
+              {format(dateStr, 'd MMMM')}
+            </span>
+            {(isToday(date) || isTomorrow(date)) && (
+              <span className="ml-auto border-l border-slate-300 px-3 basis-1/4 text-center">
+                {isToday(date) ? 'Idag' : 'Imorgon'}
+              </span>
+            )}
+          </span>
+        </caption>
         <thead>
           <tr>
-            <th className="text-left border-y border-slate-300 px-2 py-1 text-center">
+            <th
+              scope="col"
+              className="text-left border-y border-slate-300 px-2 py-1 text-center"
+            >
               Tid
             </th>
-            <th className="text-left border-y border-slate-300 px-2 py-1 text-center">
+            <th
+              scope="col"
+              className="text-left border-y border-slate-300 px-2 py-1 text-center"
+            >
               Väder
             </th>
-            <th className="text-left border-y border-slate-300 px-2 py-1 text-center">
+            <th
+              scope="col"
+              className="text-left border-y border-slate-300 px-2 py-1 text-center"
+            >
               Temp
             </th>
-            <th className="text-left border-y border-slate-300 px-2 py-1 text-center">
+            <th
+              scope="col"
+              className="text-left border-y border-slate-300 px-2 py-1 text-center"
+            >
               Vind
             </th>
-            <th className="text-left border-y border-slate-300 px-2 py-1 text-center hidden md:table-cell">
+            <th
+              scope="col"
+              className="text-left border-y border-slate-300 px-2 py-1 text-center hidden md:table-cell"
+            >
               Nederbörd
             </th>
           </tr>
