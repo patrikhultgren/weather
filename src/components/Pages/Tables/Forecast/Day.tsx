@@ -92,7 +92,11 @@ export default function Day({ day }: IProps) {
         </tbody>
       </table>
       {showAllEnabled && (
-        <Button onClick={onClick} className="mt-6 mx-auto">
+        <Button
+          onClick={onClick}
+          ariaPressed={showAll}
+          className="mt-6 mx-auto"
+        >
           <span className="mr-1">
             {showAll ? 'Visa färre timmar' : 'Visa alla timmar'}
           </span>

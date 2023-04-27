@@ -17,6 +17,7 @@ interface IProps {
   children: ReactNode
   ariaControls?: string
   ariaExpanded?: boolean
+  ariaPressed?: boolean
   onClick: MouseEventHandler<HTMLButtonElement>
   variant?: 'primary' | 'secondary'
 }
@@ -27,6 +28,7 @@ export default function Button({
   children,
   ariaControls,
   ariaExpanded,
+  ariaPressed,
   variant = 'primary',
   onClick,
 }: IProps) {
@@ -35,6 +37,7 @@ export default function Button({
       id={id}
       aria-controls={ariaControls}
       aria-expanded={ariaExpanded}
+      aria-pressed={ariaPressed}
       onClick={onClick}
       type="button"
       className={classNames(
