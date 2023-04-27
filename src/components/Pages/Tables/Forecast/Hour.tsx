@@ -10,15 +10,10 @@ interface IProps {
 }
 
 export default function Hour({ hour }: IProps) {
-  const precipitationAmountByHours = useMemo(
-    () => ({
-      1: hour.data?.next_1_hours?.details?.precipitation_amount,
-      6: hour.data?.next_6_hours?.details?.precipitation_amount,
-    }),
+  const precipitationAmount = useMemo(
+    () => hour.data?.next_1_hours?.details?.precipitation_amount || 0,
     [hour]
   )
-
-  const precipitationAmount = precipitationAmountByHours['1']
 
   const symbolCodeByHours = useMemo(
     () => ({
@@ -94,8 +89,7 @@ export default function Hour({ hour }: IProps) {
         </div>
       </td>
       <td className="border-y border-slate-300 px-2 py-1 text-center hidden md:table-cell text-blue-700">
-        {precipitationAmount &&
-          precipitationAmount > 0 &&
+        {precipitationAmount > 0 &&
           `${precipitationAmount.toLocaleString('sv-SE')} mm`}
       </td>
     </>
