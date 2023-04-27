@@ -80,7 +80,16 @@ export default function ForecastNotReady({ app, activeMenuItem }: IProps) {
         <div className="mx-auto px-4 mt-6 w-full">
           <p className="text-2xl font-bold">Tappat uppkopplingen?</p>
           <p className="mt-4 text-xl">
-            Väderprognosen finns tyvärr inte sparad i offline läge.
+            Väderprognosen finns tyvärr inte sparad i offline läge. Testa att
+            besöka någon av dina tidigare platser via{' '}
+            <Link
+              to="/weather/search"
+              className="underline py-2"
+              state={{ from: location.pathname }}
+            >
+              sökfunktionen
+            </Link>
+            .
           </p>
         </div>
       </Container>

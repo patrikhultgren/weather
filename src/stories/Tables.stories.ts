@@ -4,6 +4,7 @@ import { withRouter } from 'storybook-addon-react-router-v6'
 import forecastLoaded from '__fixtures__/app/forecast/finished'
 import forecastUserDeniedGeo from '__fixtures__/app/forecast/userDeniedGeo'
 import forecastLoading from '__fixtures__/app/forecast/loading'
+import offline from '__fixtures__/app/forecast/offline'
 import Tables from 'components/Pages/Tables'
 
 const meta = {
@@ -27,6 +28,12 @@ export const Loading: Story = {
 export const Success: Story = {
   args: {
     app: forecastLoaded,
+  },
+}
+
+export const Offline: Story = {
+  args: {
+    app: offline,
   },
 }
 

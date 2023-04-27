@@ -4,7 +4,7 @@ const forecastLoaded: IApp = {
   setPositions: () => null,
   city: 'Stockholm, Vårdö, Ålands skärgård, Landskapet Åland, Finland',
   days: null,
-  geoPosition: { error: null, loading: true, finished: true },
+  geoPosition: { error: null, loading: false, finished: true },
   positions: [
     {
       latitude: 60.16,
@@ -39,9 +39,9 @@ const forecastLoaded: IApp = {
   ],
   error: null,
   status: {
-    online: true,
+    online: false,
     isFullscreen: false,
-    loading: true,
+    loading: false,
     finished: false,
   },
 }
