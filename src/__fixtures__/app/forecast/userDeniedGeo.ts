@@ -2,7 +2,7 @@ import { IApp } from 'utils/types'
 
 const forecastLoaded: IApp = {
   setPositions: () => null,
-  city: 'Stockholm, Vårdö, Ålands skärgård, Landskapet Åland, Finland',
+  city: '',
   days: null,
   geoPosition: {
     error: new Error('User denied to user their position'),

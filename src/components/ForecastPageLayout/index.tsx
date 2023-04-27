@@ -26,7 +26,7 @@ export default function ForecastPageLayout({
       <main role="main">
         <ErrorBoundaryEveryChild>
           {app.error && <Error error={app.error} />}
-          <Header app={app} />
+          <Header city={app.city} />
           <NavBar
             isFullscreen={app.status.isFullscreen}
             activeMenuItem={activeMenuItem}

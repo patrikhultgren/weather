@@ -1,16 +1,13 @@
 import { useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import classNames from 'classnames'
-import { IApp } from 'utils/types'
 
 interface IProps {
-  app: IApp
+  city: string
   className?: string
 }
 
-export default function Header({ app, className }: IProps) {
-  const { city } = app
-
+export default function Header({ city, className }: IProps) {
   const textSize = useMemo(
     () => (city.length > 40 ? 'text-2xl' : 'text-2xl md:text-3xl'),
     [city]
