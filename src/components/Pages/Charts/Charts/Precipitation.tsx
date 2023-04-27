@@ -68,7 +68,7 @@ export default function Precipitation({ app }: IProps) {
           <YAxis />
           <Area
             isAnimationActive={false}
-            type="monotone"
+            type="step"
             name="Nederbörd"
             dataKey="y"
             stroke="#0ea5e9"

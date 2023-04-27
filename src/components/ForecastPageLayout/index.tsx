@@ -28,7 +28,7 @@ export default function ForecastPageLayout({
         isFullscreen={app.status.isFullscreen}
         activeMenuItem={activeMenuItem}
       />
-      <main role="main">
+      <main>
         <ErrorBoundary>
           {app.days ? (
             <>{children}</>
