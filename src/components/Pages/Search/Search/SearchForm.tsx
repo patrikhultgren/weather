@@ -41,7 +41,6 @@ export default function Search({ searchHandler }: IProps) {
       )}
       <button
         type="submit"
-        arial-label="Sök"
         className="bg-slate-100 py-2 px-4 hover:bg-slate-200"
       >
         <SearchIcon />
