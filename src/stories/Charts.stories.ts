@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { withRouter } from 'storybook-addon-react-router-v6'
 
-import forecastLoaded from '__fixtures__/app/forecast/loaded'
+import forecastLoaded from '__fixtures__/app/forecast/finished'
 import forecastUserDeniedGeo from '__fixtures__/app/forecast/userDeniedGeo'
 import Charts from 'components/Pages/Charts'
 
@@ -17,7 +17,7 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Loaded: Story = {
+export const Finished: Story = {
   args: {
     app: forecastLoaded,
   },
