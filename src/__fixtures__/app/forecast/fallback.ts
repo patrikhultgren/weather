@@ -1,6 +1,6 @@
 import { IApp } from 'utils/types'
 
-const fallback: IApp = {
+const data: IApp = {
   setPositions: () => null,
   city: '',
   days: null,
@@ -46,4 +46,4 @@ const fallback: IApp = {
   },
 }
 
-export default fallback
+export default data

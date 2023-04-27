@@ -1,6 +1,6 @@
 import { IApp } from 'utils/types'
 
-const forecastLoaded: IApp = {
+const data: IApp = {
   setPositions: () => null,
   city: 'Stockholm, Vårdö, Ålands skärgård, Landskapet Åland, Finland',
   days: [
@@ -4033,4 +4033,4 @@ const forecastLoaded: IApp = {
   },
 }
 
-export default forecastLoaded
+export default data

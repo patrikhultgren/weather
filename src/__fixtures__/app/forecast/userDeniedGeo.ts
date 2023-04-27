@@ -1,6 +1,6 @@
 import { IApp } from 'utils/types'
 
-const forecastLoaded: IApp = {
+const data: IApp = {
   setPositions: () => null,
   city: '',
   days: null,
@@ -50,4 +50,4 @@ const forecastLoaded: IApp = {
   },
 }
 
-export default forecastLoaded
+export default data

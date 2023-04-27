@@ -33,7 +33,10 @@ export default function Hour({ hour }: IProps) {
     [symbolCodeByHours]
   )
 
-  const weatherIcon = useMemo(() => weatherIcons?.[symbolCode], [symbolCode])
+  const weatherIcon = useMemo(
+    () => weatherIcons?.[symbolCode || ''],
+    [symbolCode]
+  )
   const WeatherIcon = useMemo(() => weatherIcon?.Icon, [weatherIcon])
 
   const airTemperature = useMemo(
@@ -91,7 +94,8 @@ export default function Hour({ hour }: IProps) {
         </div>
       </td>
       <td className="border-y border-slate-300 px-2 py-1 text-center hidden md:table-cell text-blue-700">
-        {precipitationAmount > 0 &&
+        {precipitationAmount &&
+          precipitationAmount > 0 &&
           `${precipitationAmount.toLocaleString('sv-SE')} mm`}
       </td>
     </>

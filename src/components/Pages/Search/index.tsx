@@ -15,6 +15,8 @@ interface IProps {
 export default function SearchPage({ app }: IProps) {
   const searchHandler = useSearchHandler(app.positions, app.setPositions)
 
+  console.log('searchHandler', JSON.stringify(searchHandler))
+
   useCallOnEscape(searchHandler.closeSearch)
   useSetBodyBackgroundColor('#475569')
 
