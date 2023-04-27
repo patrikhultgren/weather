@@ -3,21 +3,16 @@ import classNames from 'classnames'
 import SearchIcon from 'components/Icon/Search'
 import ChartIcon from 'components/Icon/Chart'
 import TableIcon from 'components/Icon/Table'
-import { IApp } from 'utils/types'
 import useScrollDirection from 'hooks/useScrollDirection'
 
 interface IProps {
-  app: IApp
+  isFullscreen: boolean
   activeMenuItem?: 'tables' | 'charts'
 }
 
-export default function NavBar({ app, activeMenuItem }: IProps) {
+export default function NavBar({ isFullscreen, activeMenuItem }: IProps) {
   const location = useLocation()
   const scrollDirection = useScrollDirection()
-
-  const {
-    status: { isFullscreen },
-  } = app
 
   return (
     <nav
