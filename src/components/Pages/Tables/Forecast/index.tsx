@@ -15,6 +15,10 @@ export default function Forecast({ app }: IProps) {
   const [hasScrolled, setHasScrolled] = useState(false)
 
   useEffect(() => {
+    if (hasScrolled) {
+      return
+    }
+
     const onScroll = () => {
       setHasScrolled(true)
     }
@@ -24,7 +28,7 @@ export default function Forecast({ app }: IProps) {
     return () => {
       window.removeEventListener('scroll', onScroll)
     }
-  }, [])
+  }, [hasScrolled])
 
   return days ? (
     <Container className={className}>
