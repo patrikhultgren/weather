@@ -3,16 +3,16 @@ import { withRouter } from 'storybook-addon-react-router-v6'
 
 import forecastLoaded from '__fixtures__/app/forecast/loaded'
 import forecastUserDeniedGeo from '__fixtures__/app/forecast/userDeniedGeo'
-import Tables from 'components/Pages/Tables'
+import Charts from 'components/Pages/Charts'
 
 const meta = {
-  title: 'Pages/Tables',
-  component: Tables,
+  title: 'Pages/Charts',
+  component: Charts,
   decorators: [withRouter],
   parameters: {
     layout: 'fullscreen',
   },
-} satisfies Meta<typeof Tables>
+} satisfies Meta<typeof Charts>
 
 export default meta
 type Story = StoryObj<typeof meta>
