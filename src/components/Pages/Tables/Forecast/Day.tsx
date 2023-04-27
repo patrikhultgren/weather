@@ -2,6 +2,7 @@ import { useCallback, useState, useMemo } from 'react'
 import { format } from 'utils/date'
 import Arrow from 'components/Icon/Arrow'
 import ErrorBoundary from 'components/ErrorBoundary'
+import Button from 'components/Button'
 import classNames from 'classnames'
 import { isToday, isTomorrow } from 'date-fns'
 import { ITimeSerie } from 'utils/types'
@@ -91,16 +92,12 @@ export default function Day({ day }: IProps) {
         </tbody>
       </table>
       {showAllEnabled && (
-        <button
-          onClick={onClick}
-          type="button"
-          className="py-2 block flex mx-auto items-center bg-slate-50 px-4 mt-6 rounded hover:bg-slate-600 border border-slate-300 shadow hover:text-white"
-        >
+        <Button onClick={onClick} className="mt-6 mx-auto">
           <span className="mr-1">
             {showAll ? 'Visa färre timmar' : 'Visa alla timmar'}
           </span>
           <Arrow direction={showAll ? 'up' : 'down'} />
-        </button>
+        </Button>
       )}
     </article>
   )

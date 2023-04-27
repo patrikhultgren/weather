@@ -1,6 +1,7 @@
 import { useState, useCallback, useRef, useEffect } from 'react'
 import Container from 'components/Container'
 import Arrow from 'components/Icon/Arrow'
+import Button from 'components/Button'
 
 export default function Footer() {
   const messageRef = useRef<null | HTMLDivElement>(null)
@@ -19,14 +20,10 @@ export default function Footer() {
   return (
     <footer className="my-10 mb-[90px] md:mb-10 border-t border-slate-300 pt-10">
       <Container className="text-sm text-slate-900">
-        <button
-          type="button"
-          className="py-2 block flex mx-auto items-center bg-slate-50 px-4 rounded hover:bg-slate-600 border border-slate-300 shadow hover:text-white"
-          onClick={onClick}
-        >
+        <Button onClick={onClick} className="mx-auto">
           <span className="mr-1">Om sajten</span>
           <Arrow direction={show ? 'up' : 'down'} />
-        </button>
+        </Button>
         {show && (
           <div
             ref={messageRef}
