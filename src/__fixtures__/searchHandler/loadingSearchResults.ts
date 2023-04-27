@@ -2,12 +2,15 @@ import { ISearchHandler } from 'utils/types'
 
 const data: ISearchHandler = {
   searchResults: {
-    loading: false,
+    response: {
+      type: 'searchResults',
+      positions: [],
+    },
+    loading: true,
+    finished: false,
     error: null,
-    finished: true,
-    response: { type: 'history', positions: [] },
   },
-  searchTerm: '',
+  searchTerm: 'Stockholm',
   selectedIndex: null,
   onSubmitSearch: () => null,
   onChangeSearchTerm: () => null,
