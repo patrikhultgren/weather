@@ -22,9 +22,9 @@ const Spinner = () => (
         'animate-spin',
         'rounded-[50%]',
         'border-8',
-        'border-x-akb-black',
-        'border-b-akb-black',
-        'border-t-[#fffef9]'
+        'border-x-slate-700',
+        'border-b-slate-700',
+        'border-t-white'
       )}
     />
     <span className="sr-only">Laddar...</span>
