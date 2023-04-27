@@ -43,7 +43,7 @@ export default function Day({ day }: IProps) {
   const dateStr = useMemo(() => day[0].time, [day])
 
   return (
-    <article className="mt-6 first:mt-0 md:first:mt-4" key={dateStr}>
+    <div className="mt-6 first:mt-0 md:first:mt-4" key={dateStr}>
       <table
         className={classNames(
           'w-full',
@@ -120,6 +120,6 @@ export default function Day({ day }: IProps) {
           <Arrow direction={showAll ? 'up' : 'down'} />
         </Button>
       )}
-    </article>
+    </div>
   )
 }
