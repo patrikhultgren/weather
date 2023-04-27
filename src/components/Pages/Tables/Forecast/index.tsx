@@ -12,17 +12,13 @@ interface IProps {
 export default function Forecast({ app }: IProps) {
   const { days } = app
 
-  if (days) {
-    return (
-      <Container className={className}>
-        {days.map((day) => (
-          <ErrorBoundary key={day[0].time}>
-            <Day day={day} />
-          </ErrorBoundary>
-        ))}
-      </Container>
-    )
-  }
-
-  return null
+  return days ? (
+    <Container className={className}>
+      {days.map((day) => (
+        <ErrorBoundary key={day[0].time}>
+          <Day day={day} />
+        </ErrorBoundary>
+      ))}
+    </Container>
+  ) : null
 }
