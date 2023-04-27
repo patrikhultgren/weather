@@ -5,7 +5,8 @@ import NavBar from 'components/NavBar'
 import Header from 'components/Header'
 import Footer from 'components/Footer'
 import ForecastNotReady from 'components/ForecastNotReady'
-import ErrorBoundaryEveryChild from 'components/ErrorBoundaryEveryChild'
+import ErrorBoundary from 'components/ErrorBoundary'
+import SkipToContent from 'components/SkipToContent'
 
 interface IProps {
   app: IApp
@@ -20,20 +21,21 @@ export default function ForecastPageLayout({
 }: IProps) {
   return (
     <>
-      <main role="main">
-        <ErrorBoundaryEveryChild>
-          {app.error && <Error error={app.error} />}
-          <Header city={app.city} />
-          <NavBar
-            isFullscreen={app.status.isFullscreen}
-            activeMenuItem={activeMenuItem}
-          />
+      <SkipToContent />
+      {app.error && <Error error={app.error} />}
+      <Header city={app.city} />
+      <NavBar
+        isFullscreen={app.status.isFullscreen}
+        activeMenuItem={activeMenuItem}
+      />
+      <main id="main" role="main">
+        <ErrorBoundary>
           {app.days ? (
             <>{children}</>
           ) : (
             <ForecastNotReady app={app} activeMenuItem={activeMenuItem} />
           )}
-        </ErrorBoundaryEveryChild>
+        </ErrorBoundary>
       </main>
       <Footer />
     </>

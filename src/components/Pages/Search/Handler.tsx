@@ -4,6 +4,7 @@ import Loading from 'components/Loading'
 import ErrorBoundaryEveryChild from 'components/ErrorBoundaryEveryChild'
 import useCallOnEscape from 'hooks/useCallOnEscape'
 import useSetBodyBackgroundColor from 'hooks/useSetBodyBackgroundColor'
+import SkipToContent from 'components/SkipToContent'
 
 import Search from './Search'
 
@@ -23,7 +24,7 @@ export default function Handler({ searchHandler }: IProps) {
   )
 
   return (
-    <main role="main">
+    <main id="main" role="main">
       <ErrorBoundaryEveryChild>
         <Loading loading={searchHandler.searchResults.loading} error={error} />
         <Search searchHandler={searchHandler} />
