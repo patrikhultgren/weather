@@ -5,6 +5,7 @@ import forecastLoaded from '__fixtures__/app/forecast/finished'
 import forecastUserDeniedGeo from '__fixtures__/app/forecast/userDeniedGeo'
 import forecastLoading from '__fixtures__/app/forecast/loading'
 import offline from '__fixtures__/app/forecast/offline'
+import fallback from '__fixtures__/app/forecast/fallback'
 import Charts from 'components/Pages/Charts'
 
 const meta = {
@@ -34,6 +35,12 @@ export const Success: Story = {
 export const Offline: Story = {
   args: {
     app: offline,
+  },
+}
+
+export const Fallback: Story = {
+  args: {
+    app: fallback,
   },
 }
 

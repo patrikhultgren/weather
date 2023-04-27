@@ -27,9 +27,9 @@ export default function ForecastNotReady({ app, activeMenuItem }: IProps) {
         )}
       >
         <div className="mx-auto px-4 mt-6">
-          <p className="text-2xl font-bold">
+          <h1 className="text-2xl md:text-3xl font-bold">
             Ops... det gick inte att hitta din plats.
-          </p>
+          </h1>
           <p className="mt-4 text-xl">
             Använd{' '}
             <Link
@@ -78,7 +78,9 @@ export default function ForecastNotReady({ app, activeMenuItem }: IProps) {
         )}
       >
         <div className="mx-auto px-4 mt-6 w-full">
-          <p className="text-2xl font-bold">Tappat uppkopplingen?</p>
+          <h1 className="text-2xl md:text-3xl font-bold">
+            Tappat uppkopplingen?
+          </h1>
           <p className="mt-4 text-xl">
             Väderprognosen finns tyvärr inte sparad i offline läge. Testa att
             besöka någon av dina tidigare platser via{' '}
@@ -106,9 +108,9 @@ export default function ForecastNotReady({ app, activeMenuItem }: IProps) {
         )}
       >
         <div className="mx-auto px-4 mt-6 w-full">
-          <p className="text-2xl font-bold">Se väderprognoser</p>
+          <h1 className="text-2xl md:text-3xl font-bold">Väderprognoser</h1>
           <p className="mt-4 text-xl">
-            Använd{' '}
+            Se väderprognoser med hjälp av{' '}
             <Link
               to="/weather/search"
               className="underline py-2"
@@ -116,7 +118,7 @@ export default function ForecastNotReady({ app, activeMenuItem }: IProps) {
             >
               sökfunktionen
             </Link>
-            .
+            . Sök efter vilken plats som helst.
           </p>
         </div>
       </Container>
