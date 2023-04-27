@@ -22,10 +22,13 @@ const Error = ({ error, className }: Props) => {
   }, [error])
 
   return show ? (
-    <div className={classNames('bg-red-100', 'px-4', 'py-2', className)}>
+    <div
+      role="alert"
+      className={classNames('bg-red-100', 'px-4', 'py-2', className)}
+    >
       <Container className="flex items-center">
         <ErrorIcon />
-        <span className="mx-2">{error.message || 'Någonting gick fel'}</span>
+        <p className="mx-2">{error.message || 'Någonting gick fel'}</p>
         <button type="button" className="ml-auto p-3" onClick={hideError}>
           <Close title="Stäng felmeddelande" size={18} />
         </button>
