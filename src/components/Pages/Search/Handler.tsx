@@ -22,7 +22,7 @@ export default function Handler({ searchHandler }: IProps) {
   )
 
   return (
-    <main id="main" role="main">
+    <main role="main">
       <ErrorBoundaryEveryChild>
         <Loading loading={searchHandler.searchResults.loading} error={error} />
         <Search searchHandler={searchHandler} />
