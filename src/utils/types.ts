@@ -47,17 +47,17 @@ export interface ITimeSerie {
         cloud_area_fraction_low: number
         cloud_area_fraction_medium: number
         dew_point_temperature: number
-        fog_area_fraction: number
+        fog_area_fraction?: number
         relative_humidity: number
-        ultraviolet_index_clear_sky: number
+        ultraviolet_index_clear_sky?: number
         wind_from_direction: number
         wind_speed: number
-        wind_speed_of_gust: number
+        wind_speed_of_gust?: number
         wind_speed_percentile_10: number
         wind_speed_percentile_90: number
       }
     }
-    next_12_hours: {
+    next_12_hours?: {
       summary: {
         symbol_code: string
         symbol_confidence: string
@@ -66,7 +66,7 @@ export interface ITimeSerie {
         probability_of_precipitation: number
       }
     }
-    next_1_hours: {
+    next_1_hours?: {
       summary: {
         symbol_code: string
       }
@@ -78,7 +78,7 @@ export interface ITimeSerie {
         probability_of_thunder: number
       }
     }
-    next_6_hours: {
+    next_6_hours?: {
       summary: {
         symbol_code: string
       }
