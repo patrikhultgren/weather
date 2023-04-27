@@ -64,7 +64,7 @@ export default function Temperature({ app }: IProps) {
   })
 
   return (
-    <div>
+    <article>
       <h2 className="font-bold ml-4 text-xl md:text-2xl">
         Väder och temperatur (grader)
       </h2>
@@ -92,6 +92,6 @@ export default function Temperature({ app }: IProps) {
           />
         </LineChart>
       </ResponsiveContainer>
-    </div>
+    </article>
   )
 }

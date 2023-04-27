@@ -10,7 +10,7 @@ interface IProps {
 
 export default function Charts({ app }: IProps) {
   return (
-    <div className="overflow-x-scroll pb-10 pt-4">
+    <section aria-label="Diagram" className="overflow-x-scroll pb-10 pt-4">
       <div className="w-[1500px] mx-auto">
         <ErrorBoundaryEveryChild>
           <Temperature app={app} />
@@ -18,6 +18,6 @@ export default function Charts({ app }: IProps) {
           <Wind app={app} />
         </ErrorBoundaryEveryChild>
       </div>
-    </div>
+    </section>
   )
 }
