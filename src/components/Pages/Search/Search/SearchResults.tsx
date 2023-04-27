@@ -14,7 +14,7 @@ export default function SearchResults({
 
   return (
     <div id={searchResultsId}>
-      <h2 className="p-4 py-2 bg-gray-300 mt-4 font-bold tracking-wide">
+      <h2 className="p-4 py-2 bg-gray-300 mt-4 font-bold tracking-wider border-b border-slate-400">
         {response?.type === 'searchResults'
           ? 'Sökresultat'
           : 'Tidigare platser'}

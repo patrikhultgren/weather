@@ -22,8 +22,6 @@ export default function Handler({ searchHandler }: IProps) {
     [searchResultsError]
   )
 
-  console.log(JSON.stringify(searchHandler))
-
   return (
     <main role="main">
       <ErrorBoundaryEveryChild>
