@@ -6,7 +6,6 @@ import Header from 'components/Header'
 import Footer from 'components/Footer'
 import ForecastNotReady from 'components/ForecastNotReady'
 import ErrorBoundaryEveryChild from 'components/ErrorBoundaryEveryChild'
-import useSetBodyBackgroundColor from 'hooks/useSetBodyBackgroundColor'
 
 interface IProps {
   app: IApp
