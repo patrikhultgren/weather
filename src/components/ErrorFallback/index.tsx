@@ -1,4 +1,5 @@
 import { useCallback } from 'react'
+import Button from 'components/Button'
 
 interface IProps {
   error: Error
@@ -10,21 +11,18 @@ const ErrorFallback = ({ error }: IProps) => {
   }, [])
 
   return (
-    <div className="bg-red-200 p-4" role="alert">
+    <div className="bg-red-100 p-4" role="alert">
       <div className="flex items-center justify-center">
         <div>
-          <p className="text-lg">Någonting gick fel</p>
-          <pre className="mt-2 text-sm">{error.message}</pre>
-          <button
-            className="mt-3 bg-red-700 hover:bg-red-600 px-3 py-2 text-white rounded"
-            type="button"
-            onClick={onClick}
-          >
+          <h2 className="text-lg md:text-xl">Någonting gick fel</h2>
+          <pre className="mt-3 text-sm">{error.message}</pre>
+          <Button className="mt-3" variant="secondary" onClick={onClick}>
             Ladda om sidan
-          </button>
+          </Button>
         </div>
       </div>
     </div>
   )
 }
+
 export default ErrorFallback
