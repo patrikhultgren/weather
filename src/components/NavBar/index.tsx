@@ -24,7 +24,7 @@ export default function NavBar({ isFullscreen, activeMenuItem }: IProps) {
       )}
     >
       <Link
-        to="/weather"
+        to="/weather/"
         aria-label="Tabeller"
         className={classNames(
           'ml-auto z-10 shadow border rounded md:rounded-none md:shadow-none h-12 w-12 md:w-auto md:px-4 flex items-center justify-center md:mb-0 md:border-0',

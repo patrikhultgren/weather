@@ -27,7 +27,7 @@ export default function Header({ city, className }: IProps) {
       )}
     >
       <h1 className="truncate max-w-[700px]">
-        <Link to="/weather">
+        <Link to="/weather/">
           <span className="font-bold">Vädret i</span> {city ? city : '...'}
         </Link>
       </h1>
