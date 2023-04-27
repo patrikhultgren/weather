@@ -12,20 +12,29 @@ const classes = {
 }
 
 interface IProps {
+  id?: string
   className?: string
   children: ReactNode
+  ariaControls?: string
+  ariaExpanded?: boolean
   onClick: MouseEventHandler<HTMLButtonElement>
   variant?: 'primary' | 'secondary'
 }
 
 export default function Button({
+  id,
   className,
   children,
+  ariaControls,
+  ariaExpanded,
   variant = 'primary',
   onClick,
 }: IProps) {
   return (
     <button
+      id={id}
+      aria-controls={ariaControls}
+      aria-expanded={ariaExpanded}
       onClick={onClick}
       type="button"
       className={classNames(

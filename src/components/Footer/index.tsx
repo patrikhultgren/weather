@@ -1,9 +1,11 @@
-import { useState, useCallback, useRef, useEffect } from 'react'
+import { useState, useCallback, useRef, useEffect, useId } from 'react'
 import Container from 'components/Container'
 import Arrow from 'components/Icon/Arrow'
 import Button from 'components/Button'
 
 export default function Footer() {
+  const buttonId = useId()
+  const messageId = useId()
   const messageRef = useRef<null | HTMLDivElement>(null)
   const [show, setShow] = useState(false)
 
@@ -20,13 +22,21 @@ export default function Footer() {
   return (
     <footer className="my-10 mb-[90px] md:mb-10 border-t border-slate-300 pt-10">
       <Container className="text-sm text-slate-900">
-        <Button onClick={onClick} className="mx-auto">
+        <Button
+          id={buttonId}
+          onClick={onClick}
+          ariaExpanded={show}
+          ariaControls={messageId}
+          className="mx-auto"
+        >
           <span className="mr-1">Om sajten</span>
           <Arrow direction={show ? 'up' : 'down'} />
         </Button>
         {show && (
           <div
+            id={messageId}
             ref={messageRef}
+            aria-labelledby={buttonId}
             className="px-4 [&>p]:mt-4 first:[&>p]:mt-0 mt-8"
           >
             <h2 className="text-lg">
