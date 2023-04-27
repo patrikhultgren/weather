@@ -26,7 +26,7 @@ export default function Footer() {
           id={buttonId}
           onClick={onClick}
           ariaExpanded={show}
-          ariaControls={messageId}
+          ariaControls={show ? messageId : undefined}
           className="mx-auto"
         >
           <span className="mr-1">Om sajten</span>
