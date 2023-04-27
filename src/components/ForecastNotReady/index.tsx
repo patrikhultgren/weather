@@ -4,6 +4,7 @@ import Container from 'components/Container'
 import TablePlaceholder from 'components/Placeholder/Table'
 import ChartPlaceholder from 'components/Placeholder/Chart'
 import { IApp } from 'utils/types'
+import Heading from './Heading'
 
 const className = 'mb-10'
 
@@ -27,9 +28,7 @@ export default function ForecastNotReady({ app, activeMenuItem }: IProps) {
         )}
       >
         <div className="mx-auto px-4 mt-6">
-          <h1 className="text-2xl md:text-3xl font-bold">
-            Ops... det gick inte att hitta din plats.
-          </h1>
+          <Heading>Ops... det gick inte att hitta din plats.</Heading>
           <p className="mt-4 text-xl">
             Använd{' '}
             <Link
@@ -72,9 +71,7 @@ export default function ForecastNotReady({ app, activeMenuItem }: IProps) {
         )}
       >
         <div className="mx-auto px-4 mt-6 w-full">
-          <h1 className="text-2xl md:text-3xl font-bold">
-            Tappat uppkopplingen?
-          </h1>
+          <Heading>Tappat uppkopplingen?</Heading>
           <p className="mt-4 text-xl">
             Väderprognosen finns tyvärr inte sparad i offline läge. Testa att
             besöka någon av dina tidigare platser via{' '}
@@ -102,7 +99,7 @@ export default function ForecastNotReady({ app, activeMenuItem }: IProps) {
         )}
       >
         <div className="mx-auto px-4 mt-6 w-full">
-          <h1 className="text-2xl md:text-3xl font-bold">Väderprognoser</h1>
+          <Heading>Väderprognoser</Heading>
           <p className="mt-4 text-xl">
             Se väderprognoser med hjälp av{' '}
             <Link
