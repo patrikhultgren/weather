@@ -8,8 +8,6 @@ interface IProps {
 }
 
 export default function TablesPage({ app }: IProps) {
-  useSetBodyBackgroundColor('#fff')
-
   return (
     <ForecastPageLayout app={app} activeMenuItem="tables">
       <Forecast app={app} />

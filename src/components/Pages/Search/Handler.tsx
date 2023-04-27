@@ -12,8 +12,8 @@ interface IProps {
 }
 
 export default function Handler({ searchHandler }: IProps) {
+  useSetBodyBackgroundColor('#475569', '#fff')
   useCallOnEscape(searchHandler.closeSearch)
-  useSetBodyBackgroundColor('#475569')
 
   const searchResultsError = searchHandler.searchResults.error
 

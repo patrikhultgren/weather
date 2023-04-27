@@ -19,8 +19,6 @@ export default function ForecastPageLayout({
   children,
   activeMenuItem,
 }: IProps) {
-  useSetBodyBackgroundColor('#fff')
-
   return (
     <>
       <main role="main">

@@ -1,11 +1,16 @@
 import { useEffect } from 'react'
 
 const useSetBodyBackgroundColor = (
-  backgroundColor: CSSStyleDeclaration['backgroundColor']
+  mountBackgroundColor: CSSStyleDeclaration['backgroundColor'],
+  unmountBackgroundColor: CSSStyleDeclaration['backgroundColor']
 ) => {
   useEffect(() => {
-    document.body.style.backgroundColor = backgroundColor
-  }, [backgroundColor])
+    document.body.style.backgroundColor = mountBackgroundColor
+
+    return () => {
+      document.body.style.backgroundColor = unmountBackgroundColor
+    }
+  }, [mountBackgroundColor, unmountBackgroundColor])
 }
 
 export default useSetBodyBackgroundColor
