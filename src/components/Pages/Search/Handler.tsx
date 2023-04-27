@@ -4,8 +4,6 @@ import Loading from 'components/Loading'
 import ErrorBoundaryEveryChild from 'components/ErrorBoundaryEveryChild'
 import useCallOnEscape from 'hooks/useCallOnEscape'
 import useSetBodyBackgroundColor from 'hooks/useSetBodyBackgroundColor'
-import SkipToContent from 'components/SkipToContent'
-
 import Search from './Search'
 
 interface IProps {
