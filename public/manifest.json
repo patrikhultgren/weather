@@ -1,5 +1,5 @@
 {
-  "start_url": "/weather",
+  "start_url": "/weather/",
   "name": "Väderprognoser",
   "short_name": "Väderprognoser",
   "icons": [
