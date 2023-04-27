@@ -5,5 +5,5 @@ interface IProps {
 }
 
 export default function Heading({ children }: IProps) {
-  return <h1 className="text-2xl md:text-3xl font-bold">{children}</h1>
+  return <h2 className="text-2xl md:text-3xl font-bold">{children}</h2>
 }
