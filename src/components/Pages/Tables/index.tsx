@@ -10,6 +10,7 @@ interface IProps {
 
 export default function TablesPage({ app }: IProps) {
   const { days } = app
+
   return (
     <PageLayoutForecast app={app} activeMenuItem="tables">
       {days && (
