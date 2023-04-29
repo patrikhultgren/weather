@@ -1,16 +1,16 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import ErrorFallback from 'components/Error/Fallback'
+import ErrorBoundaryFallback from 'components/Error/Boundary/Fallback'
 
 const meta = {
-  title: 'Components/Error/Fallback',
-  component: ErrorFallback,
+  title: 'Components/Error/Boundary',
+  component: ErrorBoundaryFallback,
   args: {
     error: new Error('An error did occurr'),
   },
   parameters: {
     layout: 'fullscreen',
   },
-} satisfies Meta<typeof ErrorFallback>
+} satisfies Meta<typeof ErrorBoundaryFallback>
 
 export default meta
 type Story = StoryObj<typeof meta>
