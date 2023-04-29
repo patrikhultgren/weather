@@ -47,7 +47,7 @@ const useApp = (): IApp => {
       geoPosition,
       positions,
       setPositions,
-      error: geoPosition.error || address.error || forecast.error,
+      error: address.error || forecast.error,
       status: {
         online,
         isFullscreen,
