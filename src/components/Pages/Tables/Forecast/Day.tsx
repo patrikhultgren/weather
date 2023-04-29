@@ -1,7 +1,7 @@
 import { useCallback, useState, useMemo } from 'react'
 import { format } from 'utils/date'
 import Arrow from 'components/Icon/Arrow'
-import ErrorBoundary from 'components/ErrorBoundary'
+import ErrorBoundary from 'components/Error/Boundary'
 import Button from 'components/Button'
 import classNames from 'classnames'
 import { isToday, isTomorrow } from 'date-fns'

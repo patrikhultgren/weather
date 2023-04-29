@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import ErrorBoundary from 'components/ErrorBoundary'
+import ErrorBoundary from 'components/Error/Boundary'
 import 'css/style.css'
 import Router from './Router'
 import * as serviceWorkerRegistration from './serviceWorkerRegistration'

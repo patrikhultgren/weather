@@ -1,5 +1,5 @@
 import Container from 'components/Container'
-import ErrorBoundary from 'components/ErrorBoundary'
+import ErrorBoundary from 'components/Error/Boundary'
 import { IApp } from 'utils/types'
 import Day from './Day'
 

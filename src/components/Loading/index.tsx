@@ -1,5 +1,5 @@
 import Spinner from 'components/Icon/Spinner'
-import ErrorAlert from 'components/ErrorAlert'
+import ErrorAlert from 'components/Error/Alert'
 import { IError } from 'utils/types'
 
 export interface IProps {

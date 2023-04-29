@@ -1,11 +1,11 @@
 import { ReactNode } from 'react'
 import { IApp } from 'utils/types'
-import ErrorAlert from 'components/ErrorAlert'
+import ErrorAlert from 'components/Error/Alert'
 import NavBar from 'components/NavBar'
 import Header from 'components/Header'
 import Footer from 'components/Footer'
 import ForecastNotReady from 'components/ForecastNotReady'
-import ErrorBoundary from 'components/ErrorBoundary'
+import ErrorBoundary from 'components/Error/Boundary'
 import SkipToContent from 'components/SkipToContent'
 
 interface IProps {

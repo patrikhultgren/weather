@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import ErrorFallback from 'components/ErrorFallback'
+import ErrorFallback from 'components/Error/Fallback'
 
 const meta = {
-  title: 'Components/ErrorFallback',
+  title: 'Components/Error/Fallback',
   component: ErrorFallback,
   args: {
     error: new Error('An error did occurr'),

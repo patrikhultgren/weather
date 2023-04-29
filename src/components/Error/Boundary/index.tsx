@@ -1,6 +1,6 @@
 import { ErrorInfo, ReactNode, useCallback } from 'react'
 import { ErrorBoundary as ReactErrorBoundary } from 'react-error-boundary'
-import ErrorFallback from 'components/ErrorFallback'
+import ErrorFallback from 'components/Error/Fallback'
 
 interface IProps {
   children: ReactNode

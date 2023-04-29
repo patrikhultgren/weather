@@ -1,5 +1,5 @@
 import { IApp } from 'utils/types'
-import ErrorBoundaryEveryChild from 'components/ErrorBoundaryEveryChild'
+import ErrorBoundaryEveryChild from 'components/Error/BoundaryEveryChild'
 import Temperature from './Temperature'
 import Precipitation from './Precipitation'
 import Wind from './Wind'

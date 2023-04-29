@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 import { ISearchHandler } from 'utils/types'
 import Loading from 'components/Loading'
-import ErrorBoundaryEveryChild from 'components/ErrorBoundaryEveryChild'
+import ErrorBoundaryEveryChild from 'components/Error/BoundaryEveryChild'
 import useCallOnEscape from 'hooks/useCallOnEscape'
 import useSetBodyBackgroundColor from 'hooks/useSetBodyBackgroundColor'
 import Search from './Search'
