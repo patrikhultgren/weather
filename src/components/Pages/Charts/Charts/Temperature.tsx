@@ -8,9 +8,9 @@ import {
 } from 'recharts'
 import { IApp, ITimeSerie } from 'utils/types'
 import { format } from 'utils/date'
-import AxisTickHour from 'components/AxisTickHour'
 import weatherIcons from 'config/weatherIcons'
 import usePrepareChartData from 'hooks/usePrepareChartData'
+import AxisTickHour from './utils/AxisTickHour'
 
 const LINE_CHART_TOP = 25
 const ICON_SIZE = 30
