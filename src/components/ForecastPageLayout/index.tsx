@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 import { IApp } from 'utils/types'
-import Error from 'components/Error'
+import ErrorAlert from 'components/ErrorAlert'
 import NavBar from 'components/NavBar'
 import Header from 'components/Header'
 import Footer from 'components/Footer'
@@ -22,7 +22,7 @@ export default function ForecastPageLayout({
   return (
     <>
       <SkipToContent />
-      {app.error && <Error error={app.error} />}
+      {app.error && <ErrorAlert error={app.error} />}
       <Header city={app.city} />
       <NavBar
         isFullscreen={app.status.isFullscreen}

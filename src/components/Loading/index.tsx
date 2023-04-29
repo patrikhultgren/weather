@@ -1,5 +1,5 @@
 import Spinner from 'components/Icon/Spinner'
-import Error from 'components/Error'
+import ErrorAlert from 'components/ErrorAlert'
 import { IError } from 'utils/types'
 
 export interface IProps {
@@ -9,7 +9,7 @@ export interface IProps {
 
 const Loading = ({ error, loading }: IProps) => {
   if (error) {
-    return <Error error={error} />
+    return <ErrorAlert error={error} />
   } else if (loading) {
     return <Spinner />
   }

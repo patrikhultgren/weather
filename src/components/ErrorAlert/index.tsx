@@ -10,7 +10,7 @@ interface Props {
   className?: string
 }
 
-const Error = ({ error, className }: Props) => {
+const ErrorAlert = ({ error, className }: Props) => {
   const [show, setShow] = useState<boolean>(true)
 
   const hideError = useCallback(() => {
@@ -37,4 +37,4 @@ const Error = ({ error, className }: Props) => {
   ) : null
 }
 
-export default Error
+export default ErrorAlert
