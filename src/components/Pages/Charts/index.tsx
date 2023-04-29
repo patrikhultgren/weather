@@ -1,5 +1,5 @@
 import { IApp } from 'utils/types'
-import ForecastPageLayout from 'components/ForecastPageLayout'
+import PageLayoutForecast from 'components/PageLayout/Forecast'
 import Charts from './Charts'
 
 interface IProps {
@@ -8,8 +8,8 @@ interface IProps {
 
 export default function ChartsPage({ app }: IProps) {
   return (
-    <ForecastPageLayout app={app} activeMenuItem="charts">
+    <PageLayoutForecast app={app} activeMenuItem="charts">
       <Charts app={app} />
-    </ForecastPageLayout>
+    </PageLayoutForecast>
   )
 }

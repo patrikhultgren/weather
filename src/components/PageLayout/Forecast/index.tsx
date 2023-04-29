@@ -14,7 +14,7 @@ interface IProps {
   activeMenuItem: 'tables' | 'charts'
 }
 
-export default function ForecastPageLayout({
+export default function PageLayoutForecast({
   app,
   children,
   activeMenuItem,
