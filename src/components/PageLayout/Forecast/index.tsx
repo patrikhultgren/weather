@@ -4,9 +4,9 @@ import ErrorAlert from 'components/Error/Alert'
 import NavBar from 'components/NavBar'
 import Header from 'components/Header'
 import Footer from 'components/Footer'
-import ForecastNotReady from 'components/ForecastNotReady'
 import ErrorBoundary from 'components/Error/Boundary'
 import SkipToContent from 'components/SkipToContent'
+import NoForecast from './NoForecast'
 
 interface IProps {
   app: IApp
@@ -33,7 +33,7 @@ export default function PageLayoutForecast({
           {app.days ? (
             <>{children}</>
           ) : (
-            <ForecastNotReady app={app} activeMenuItem={activeMenuItem} />
+            <NoForecast app={app} activeMenuItem={activeMenuItem} />
           )}
         </ErrorBoundary>
       </main>
