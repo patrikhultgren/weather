@@ -5,7 +5,7 @@ const data: IApp = {
   city: '',
   days: null,
   geoPosition: {
-    error: new Error('User denied to user their position'),
+    error: new Error('User denied GeoLocation'),
     loading: false,
     finished: true,
   },
@@ -41,7 +41,7 @@ const data: IApp = {
       status: 'foundBySearch',
     },
   ],
-  error: new Error('User denied to user their position'),
+  error: null,
   status: {
     online: true,
     isFullscreen: false,
