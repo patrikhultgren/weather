@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 import ChartsPage from 'components/Pages/Charts'
+import { Route, Routes } from 'react-router-dom'
 import TablesPage from 'components/Pages/Tables'
 import SearchPage from 'components/Pages/Search'
-import { Route, Routes } from 'react-router-dom'
 import useApp from 'hooks/app/useApp'
 
 export default function App() {
