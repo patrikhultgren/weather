@@ -1,5 +1,3 @@
-export const FORECAST_API_URL = process.env.REACT_APP_FORECAST_API_URL || ''
-
 export const BIG_DATA_CLOUD_ADDRESS_API_URL =
   process.env.REACT_APP_BIG_DATA_CLOUD_ADDRESS_API_URL || ''
 

@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { IQuery, IForecast, ITimeSerie } from 'utils/types'
-import { FORECAST_API_URL } from 'config'
+import endpoints from 'services/yrWeather/endpoints'
 import { format } from 'utils/date'
 import useFetch from 'hooks/useFetch'
 
@@ -40,7 +40,7 @@ const useForecast = ({
   )
 
   const url = useMemo(
-    () => `${FORECAST_API_URL}?lat=${latitude}&lon=${longitude}`,
+    () => endpoints.getForecastUrl(latitude, longitude),
     [latitude, longitude]
   )
 

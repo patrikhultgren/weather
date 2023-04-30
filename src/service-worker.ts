@@ -17,6 +17,11 @@ import {
   NetworkFirst,
   CacheFirst,
 } from 'workbox-strategies'
+import {
+  YR_WEATHER_FORECAST_API_URL,
+  LOQATION_IQ_SEARCH_API_URL,
+  BIG_DATA_CLOUD_ADDRESS_API_URL,
+} from 'config'
 
 declare const self: ServiceWorkerGlobalScope
 
@@ -76,15 +81,15 @@ registerRoute(
 
 // Read API response from cache when user is offline.
 registerRoute(
-  ({ url }) => url.href.includes(process.env.REACT_APP_FORECAST_API_URL || ''),
+  ({ url }) => url.href.includes(YR_WEATHER_FORECAST_API_URL),
   new NetworkFirst()
 )
 
 // Read search API response from cache when possible.
 registerRoute(
   ({ url }) =>
-    url.href.includes(process.env.REACT_APP_ADDRESS_API_URL || '') ||
-    url.href.includes(process.env.REACT_APP_LOQATION_IQ_SEARCH_API_URL || ''),
+    url.href.includes(LOQATION_IQ_SEARCH_API_URL) ||
+    url.href.includes(BIG_DATA_CLOUD_ADDRESS_API_URL),
   new CacheFirst()
 )
 
