@@ -6,7 +6,7 @@ import searchHandlerNoSearchResults from '__fixtures__/searchHandler/noSearchRes
 import waitingForInputSearchResults from '__fixtures__/searchHandler/waitingForInput'
 import loadingSearchResults from '__fixtures__/searchHandler/loadingSearchResults'
 import loadingWithSearchResults from '__fixtures__/searchHandler/loadingWithSearchResults'
-import SearchHandler from 'components/Pages/Search/Handler'
+import SearchHandler from 'pages/Search/Handler'
 
 const meta = {
   title: 'Pages/Search',

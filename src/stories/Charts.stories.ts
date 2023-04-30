@@ -6,7 +6,7 @@ import forecastUserDeniedGeo from '__fixtures__/app/forecast/userDeniedGeo'
 import forecastLoading from '__fixtures__/app/forecast/loading'
 import offline from '__fixtures__/app/forecast/offline'
 import fallback from '__fixtures__/app/forecast/fallback'
-import Charts from 'components/Pages/Charts'
+import Charts from 'pages/Charts'
 
 const meta = {
   title: 'Pages/Charts',
