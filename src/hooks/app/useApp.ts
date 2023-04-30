@@ -1,12 +1,12 @@
 import { useEffect, useMemo, useState } from 'react'
 import { getPositions } from 'utils/position'
 import { IPosition, IApp } from 'utils/types'
-import useGeoPosition from 'hooks/useGeoPosition'
-import useAddress from 'hooks/useAddress'
-import useForecast from 'hooks/useForecast'
-import usePersistPositions from 'hooks/usePersistPositions'
-import useIsFullscreen from 'hooks/useIsFullscreen'
-import useOnline from 'hooks/useOnline'
+import useGeoPosition from './useGeoPosition'
+import useAddress from './useAddress'
+import useForecast from './useForecast'
+import usePersistPositions from './usePersistPositions'
+import useIsFullscreen from './useIsFullscreen'
+import useOnline from './useOnline'
 import useFirstPosition from './useFirstPosition'
 
 const useApp = (): IApp => {
