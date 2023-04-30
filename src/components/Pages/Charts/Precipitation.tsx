@@ -8,7 +8,7 @@ import {
 } from 'recharts'
 import { IApp, ITimeSerie } from 'utils/types'
 import { format } from 'utils/date'
-import usePrepareChartData from 'hooks/usePrepareChartData'
+import usePrepareChartData from './utils/usePrepareChartData'
 import AxisTickHour from './utils/AxisTickHour'
 
 const prepareChartData = (hour: ITimeSerie) => ({
