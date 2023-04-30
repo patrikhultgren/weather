@@ -1,15 +1,15 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import ErrorBoundary from 'components/Error/Boundary'
-import 'css/style.css'
-import Router from './Router'
+import PreApp from './PreApp'
 import * as serviceWorkerRegistration from './serviceWorkerRegistration'
+import 'css/style.css'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
   <React.StrictMode>
     <ErrorBoundary>
-      <Router />
+      <PreApp />
     </ErrorBoundary>
   </React.StrictMode>
 )
