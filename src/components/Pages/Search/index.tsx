@@ -1,5 +1,5 @@
 import { IApp } from 'utils/types'
-import useSearchHandler from 'hooks/useSearchHandler'
+import useSearchHandler from './utils/useSearchHandler'
 import Handler from './Handler'
 
 interface IProps {
