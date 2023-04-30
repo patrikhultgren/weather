@@ -1,9 +1,9 @@
 import { useEffect, useMemo } from 'react'
 import { IQuery } from 'utils/types'
-import { ADDRESS_API_URL } from 'config'
 import useFetch from 'hooks/useFetch'
 import { addPosition } from 'utils/position'
 import { IPosition, IAddress } from 'utils/types'
+import endpoints from 'services/bigDataCloud/endpoints'
 
 interface IProps {
   position: IPosition
@@ -17,8 +17,7 @@ const useAddress = ({ position, setPositions }: IProps): IQuery<IAddress> => {
   )
 
   const url = useMemo(
-    () =>
-      `${ADDRESS_API_URL}?latitude=${position.latitude}&longitude=${position.longitude}&localityLanguage=sv`,
+    () => endpoints.getAddressUrl(position.latitude, position.longitude),
     [position.latitude, position.longitude]
   )
 

@@ -1,6 +1,5 @@
 import { useMemo, useCallback, useState } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
-import { SEARCH_API_KEY, SEARCH_API_URL } from 'config'
 import { addPosition } from 'utils/position'
 import {
   IPosition,
@@ -16,6 +15,7 @@ import {
   ESC_KEY_CODE,
 } from 'utils/keyCodes'
 import useFetch from 'hooks/useFetch'
+import endpoints from 'services/locationIQ/endpoints'
 
 const transformResponse = (
   response: Array<ILocationIQPosition>
@@ -97,11 +97,7 @@ const useSearchHandler = (
     []
   )
 
-  const url = useMemo(
-    () =>
-      `${SEARCH_API_URL}?key=${SEARCH_API_KEY}&q=${searchTerm.trim()}&format=json`,
-    [searchTerm]
-  )
+  const url = useMemo(() => endpoints.searchUrl(searchTerm), [searchTerm])
 
   const fetchedSearchResults = useFetch<Array<IPosition>>({
     url,

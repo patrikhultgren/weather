@@ -84,7 +84,7 @@ registerRoute(
 registerRoute(
   ({ url }) =>
     url.href.includes(process.env.REACT_APP_ADDRESS_API_URL || '') ||
-    url.href.includes(process.env.REACT_APP_SEARCH_API_URL || ''),
+    url.href.includes(process.env.REACT_APP_LOQATION_IQ_SEARCH_API_URL || ''),
   new CacheFirst()
 )
 
