@@ -44,7 +44,7 @@ const useSearchHandler = (
     setSearchTerm('')
     setReset(true)
     setRun(false)
-    navigate(locationFrom || '/')
+    navigate(locationFrom || process.env.REACT_APP_BASE_PATH)
     setSelectedIndex(null)
   }, [navigate, locationFrom, setSelectedIndex])
 
