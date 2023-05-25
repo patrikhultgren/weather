@@ -27,10 +27,8 @@ const WeatherChangeAlert = ({ weatherChange, className }: Props) => {
     <div
       role="alert"
       className={classNames(
-        'bg-slate-800',
         'px-4',
         'py-1',
-        'text-white',
         'font-bold',
         'text-sm',
         'md:text-base',
