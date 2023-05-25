@@ -43,7 +43,7 @@ const WeatherChangeAlert = ({ weatherChange, className }: Props) => {
         </p>
         <Icon size="1.7rem" />
         <button type="button" className="mr-auto p-3" onClick={hideError}>
-          <Close title="Stäng felmeddelande" size={18} />
+          <Close title="Stäng meddelande" size={18} />
         </button>
       </Container>
     </div>
