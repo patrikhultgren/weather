@@ -1,15 +1,34 @@
-import { useMemo } from 'react'
+import { useMemo, useState, useEffect } from 'react'
 import { ITimeSerie, IWeatherChange } from 'utils/types'
 import { getSymbolCode } from 'utils/weather'
 import weatherIcons from 'config/weatherIcons'
 
-const useWeatherChange = (
+interface IProps {
   days: ITimeSerie[][] | null
-): IWeatherChange | null => {
-  const hour = useMemo(() => {
+  error: any
+}
+
+const useWeatherChange = ({ days, error }: IProps): IWeatherChange | null => {
+  const [daysInState, setDaysInstate] = useState<ITimeSerie[][] | null>(null)
+
+  useEffect(() => {
     if (days) {
-      const daysToCheck = days.filter((_, index) => index && index < 4)
-      const currentSymbolCodes = days[0].map((hour) => getSymbolCode(hour))
+      setDaysInstate(days)
+    }
+  }, [days])
+
+  useEffect(() => {
+    if (error) {
+      setDaysInstate(null)
+    }
+  }, [error])
+
+  const hour = useMemo(() => {
+    if (daysInState) {
+      const daysToCheck = daysInState.filter((_, index) => index && index < 4)
+      const currentSymbolCodes = daysInState[0].map((hour) =>
+        getSymbolCode(hour)
+      )
 
       const filteredSymbolCodes = [
         'sun',
@@ -31,7 +50,7 @@ const useWeatherChange = (
     }
 
     return null
-  }, [days])
+  }, [daysInState])
 
   return useMemo(
     () =>
