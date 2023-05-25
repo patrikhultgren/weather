@@ -6,6 +6,7 @@ import forecastUserDeniedGeo from '__fixtures__/app/forecast/userDeniedGeo'
 import forecastLoading from '__fixtures__/app/forecast/loading'
 import offline from '__fixtures__/app/forecast/offline'
 import fallback from '__fixtures__/app/forecast/fallback'
+import error from '__fixtures__/app/forecast/error'
 import Tables from 'pages/Tables'
 
 const meta = {
@@ -41,6 +42,12 @@ export const Offline: Story = {
 export const Fallback: Story = {
   args: {
     app: fallback,
+  },
+}
+
+export const Error: Story = {
+  args: {
+    app: error,
   },
 }
 

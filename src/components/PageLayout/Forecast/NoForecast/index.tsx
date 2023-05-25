@@ -43,6 +43,23 @@ export default function ForecastNotReady({ app, activeMenuItem }: IProps) {
         </div>
       </Container>
     )
+  } else if (app.error) {
+    return (
+      <Container
+        className={classNames(
+          'min-h-[65vh]',
+          'flex',
+          'items-center',
+          'text-center',
+          className
+        )}
+      >
+        <div className="mx-auto px-4 mt-6">
+          <Heading>Ops... ett fel uppstod.</Heading>
+          <p className="mt-4 text-xl">Försök gärna på nytt.</p>
+        </div>
+      </Container>
+    )
   } else if (app.status.loading && activeMenuItem === 'tables') {
     return (
       <Container className={className}>
