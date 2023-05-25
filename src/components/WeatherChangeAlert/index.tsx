@@ -29,6 +29,7 @@ const WeatherChangeAlert = ({ weatherChange, className }: Props) => {
       className={classNames(
         'px-4',
         'py-1',
+        'bg-gray-100',
         'font-bold',
         'text-sm',
         'md:text-base',
