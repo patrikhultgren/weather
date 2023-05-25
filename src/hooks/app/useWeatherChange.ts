@@ -14,7 +14,7 @@ const useWeatherChange = ({ days }: IProps): IWeatherChange | null => {
       const currentSymbolCodes = days[0].map((hour) => getSymbolCode(hour))
 
       const filteredSymbolCodes = [
-        'sun',
+        'clearsky',
         'rain',
         'snow',
         'sleet',
