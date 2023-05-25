@@ -36,10 +36,10 @@ export default function PageLayoutForecast({
       />
       <main>
         <ErrorBoundary>
-          {!app.days ? (
-            <NoForecast app={app} activeMenuItem={activeMenuItem} />
-          ) : (
+          {app.days ? (
             <>{children}</>
+          ) : (
+            <NoForecast app={app} activeMenuItem={activeMenuItem} />
           )}
         </ErrorBoundary>
       </main>
