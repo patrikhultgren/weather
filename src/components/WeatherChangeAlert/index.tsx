@@ -19,7 +19,7 @@ const WeatherChangeAlert = ({ weatherChange, className }: Props) => {
 
   useEffect(() => {
     setShow(true)
-  }, [weatherChange.time])
+  }, [weatherChange])
 
   const { Icon } = weatherChange.icon
 
