@@ -36,7 +36,7 @@ export default function PageLayoutForecast({
       />
       <main>
         <ErrorBoundary>
-          {app.days ? (
+          {app.days && !app.status.loading ? (
             <>{children}</>
           ) : (
             <NoForecast app={app} activeMenuItem={activeMenuItem} />
