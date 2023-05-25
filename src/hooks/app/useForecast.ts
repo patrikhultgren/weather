@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo } from 'react'
 import { IQuery, IForecast, ITimeSerie } from 'utils/types'
 import endpoints from 'services/yrWeather/endpoints'
 import { format } from 'utils/date'
@@ -30,10 +30,6 @@ const useForecast = ({
   latitude,
   longitude,
 }: IProps): IQuery<Array<Array<ITimeSerie>>> => {
-  const [forecasts, setForecasts] = useState<{
-    [key: string]: IQuery<Array<Array<ITimeSerie>>>
-  }>({})
-
   const run = useMemo(
     () => Boolean(latitude && longitude),
     [latitude, longitude]
@@ -50,15 +46,7 @@ const useForecast = ({
     transformResponse,
   })
 
-  const key = useMemo(() => `${latitude}_${longitude}`, [latitude, longitude])
-
-  useEffect(() => {
-    if (run) {
-      setForecasts((prev) => ({ ...prev, [key]: forecast }))
-    }
-  }, [forecast, run, key, setForecasts])
-
-  return forecasts[key] || { loading: true, response: null, error: null }
+  return forecast
 }
 
 export default useForecast

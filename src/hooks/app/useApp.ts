@@ -35,7 +35,6 @@ const useApp = (): IApp => {
 
   const weatherChange = useWeatherChange({
     days: forecast.response,
-    error: forecast.error,
   })
 
   useEffect(() => {
