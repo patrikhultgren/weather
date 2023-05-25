@@ -33,9 +33,7 @@ const useApp = (): IApp => {
     longitude: position.longitude,
   })
 
-  const weatherChange = useWeatherChange(
-    forecast.finished ? forecast.response : null
-  )
+  const weatherChange = useWeatherChange(forecast.response)
 
   useEffect(() => {
     const positionsFromLocalStorage = getPositions()
