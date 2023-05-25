@@ -6,6 +6,7 @@ import Header from 'components/Header'
 import Footer from 'components/Footer'
 import ErrorBoundary from 'components/Error/Boundary'
 import SkipToContent from 'components/SkipToContent'
+import WeatherChangeAlert from 'components/WeatherChangeAlert'
 import NoForecast from './NoForecast'
 
 interface IProps {
@@ -24,6 +25,9 @@ export default function PageLayoutForecast({
       <SkipToContent />
       {app.error && <ErrorAlert error={app.error} />}
       <Header city={app.city} />
+      {app.weatherChange && (
+        <WeatherChangeAlert weatherChange={app.weatherChange} />
+      )}
       <NavBar
         isFullscreen={app.status.isFullscreen}
         activeMenuItem={activeMenuItem}

@@ -22,8 +22,6 @@ export default function Header({ city, className }: IProps) {
         'py-2',
         'bg-slate-600',
         'text-white',
-        'md:border-b-4',
-        'md:border-slate-400',
         textSize,
         className
       )}

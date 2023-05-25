@@ -197,6 +197,7 @@ export interface IApp {
   geoPosition: IGeoPosition
   positions: Array<IPosition>
   setPositions: Function
+  weatherChange: IWeatherChange | null
 }
 
 export interface IGeoPosition {
@@ -208,4 +209,18 @@ export interface IGeoPosition {
 export interface ISearchResults {
   positions: Array<IPosition> | null
   type: 'searchResults' | 'history'
+}
+
+export interface IWeatherIcon {
+  Icon: any
+  title: string
+}
+
+export interface IWeatherIcons {
+  [key: string]: IWeatherIcon
+}
+
+export interface IWeatherChange {
+  time: string
+  icon: IWeatherIcon
 }

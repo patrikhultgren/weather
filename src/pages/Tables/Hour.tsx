@@ -2,6 +2,7 @@ import { useMemo } from 'react'
 import classNames from 'classnames'
 import { format } from 'utils/date'
 import { ITimeSerie } from 'utils/types'
+import { getSymbolCode } from 'utils/weather'
 import weatherIcons from 'config/weatherIcons'
 import LongArrow from 'components/Icon/LongArrow'
 
@@ -15,18 +16,7 @@ export default function Hour({ hour }: IProps) {
     [hour]
   )
 
-  const symbolCodeByHours = useMemo(
-    () => ({
-      1: hour.data?.next_1_hours?.summary?.symbol_code,
-      6: hour.data?.next_6_hours?.summary?.symbol_code,
-    }),
-    [hour]
-  )
-
-  const symbolCode = useMemo(
-    () => symbolCodeByHours['1'] || symbolCodeByHours['6'],
-    [symbolCodeByHours]
-  )
+  const symbolCode = useMemo(() => getSymbolCode(hour), [hour])
 
   const weatherIcon = useMemo(
     () => weatherIcons?.[symbolCode || ''],

@@ -8,6 +8,7 @@ import usePersistPositions from './usePersistPositions'
 import useIsFullscreen from './useIsFullscreen'
 import useOnline from './useOnline'
 import useFirstPosition from './useFirstPosition'
+import useWeatherChange from './useWeatherChange'
 
 const useApp = (): IApp => {
   const online = useOnline()
@@ -32,6 +33,8 @@ const useApp = (): IApp => {
     longitude: position.longitude,
   })
 
+  const weatherChange = useWeatherChange(forecast.response)
+
   useEffect(() => {
     const positionsFromLocalStorage = getPositions()
     setPositions(positionsFromLocalStorage)
@@ -47,6 +50,7 @@ const useApp = (): IApp => {
       geoPosition,
       positions,
       setPositions,
+      weatherChange,
       error: address.error || forecast.error,
       status: {
         online,
@@ -62,6 +66,7 @@ const useApp = (): IApp => {
       positions,
       setPositions,
       forecast,
+      weatherChange,
       online,
       isFullscreen,
     ]

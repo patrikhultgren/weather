@@ -83,8 +83,9 @@ import {
   SnowShowersAndThunderNight,
   SnowShowersAndThunderPolarTwilight,
 } from '@patrikhultgren/react-weather-icons'
+import { IWeatherIcons } from 'utils/types'
 
-const weatherIcons: { [key: string]: { Icon: any; title: string } } = {
+const weatherIcons: IWeatherIcons = {
   clearsky_day: { Icon: ClearSkyDay, title: 'Soligt' },
   clearsky_night: { Icon: ClearSkyNight, title: 'Klar natt' },
   clearsky_polartwilight: { Icon: ClearSkyPolarTwilight, title: 'Klar natt' },

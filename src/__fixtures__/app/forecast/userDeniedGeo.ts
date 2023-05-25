@@ -4,6 +4,7 @@ const data: IApp = {
   setPositions: () => null,
   city: '',
   days: null,
+  weatherChange: null,
   geoPosition: {
     error: new Error('User denied GeoLocation'),
     loading: false,
