@@ -64,7 +64,10 @@ export default function ForecastNotReady({ app, activeMenuItem }: IProps) {
     return (
       <Container className={className}>
         {[0, 1, 2, 4, 5, 6, 7, 8, 9].map((placeholderIndex: number) => (
-          <TablePlaceholder key={placeholderIndex} className="mt-4" />
+          <TablePlaceholder
+            key={placeholderIndex}
+            className="mt-4 first:mt-0 md:first:mt-4"
+          />
         ))}
       </Container>
     )
