@@ -38,7 +38,7 @@ const WeatherChangeAlert = ({ weatherChange, className }: Props) => {
     >
       <Container className="flex items-center justity-center">
         <p className="ml-auto mr-1">
-          På {format(weatherChange.time, 'EEEE')} förväntas{' '}
+          På {format(weatherChange.time, 'EEEE')}{' '}
           {weatherChange.icon.title.toLowerCase()}
         </p>
         <Icon size="1.7rem" />
