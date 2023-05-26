@@ -24,16 +24,16 @@ export default function PageLayoutForecast({
     <>
       <SkipToContent />
       {app.error && <ErrorAlert error={app.error} />}
-      <Header city={app.city} />
-      <NavBar
-        isFullscreen={app.status.isFullscreen}
-        activeMenuItem={activeMenuItem}
-      />
       {app.weatherChange && (
         <ErrorBoundary>
           <WeatherChangeAlert weatherChange={app.weatherChange} />
         </ErrorBoundary>
       )}
+      <Header city={app.city} />
+      <NavBar
+        isFullscreen={app.status.isFullscreen}
+        activeMenuItem={activeMenuItem}
+      />
       <main>
         <ErrorBoundary>
           {app.days && !app.status.loading && !app.error ? (
