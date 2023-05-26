@@ -4,18 +4,53 @@ import { getSymbolCode } from 'utils/weather'
 import { getAirTemperature } from 'utils/weather'
 import weatherIcons from 'config/weatherIcons'
 
+type GroupedSymbolCodesSorted = Array<{ key: string; value: number }>
+type GroupedSymbolCodes = { [key: string]: number }
+
+const groupSymbolCodes = (dayToCheck: ITimeSerie[]): GroupedSymbolCodes =>
+  dayToCheck.reduce(
+    (acc: any, hour) => ({
+      ...acc,
+      [getSymbolCode(hour)]: acc[getSymbolCode(hour)]
+        ? acc[getSymbolCode(hour)] + 1
+        : 1,
+    }),
+    {}
+  )
+
+const sortGroupedSymbolCodes = (
+  groupedSymbolCodes: GroupedSymbolCodes
+): GroupedSymbolCodesSorted => {
+  const result = Object.keys(groupedSymbolCodes).map((key) => ({
+    key,
+    value: groupedSymbolCodes[key],
+  }))
+
+  result.sort((a, b) => b.value - a.value)
+
+  return result
+}
+
+const getFinalSymbolCode = (
+  groupedSymbolCodesSorted: GroupedSymbolCodesSorted,
+  filteredSymbolCodes: string[]
+): string | null => {
+  for (const groupedSymbolCodeSorted of groupedSymbolCodesSorted) {
+    for (const filteredSymbolCode of filteredSymbolCodes) {
+      if (groupedSymbolCodeSorted.key.includes(filteredSymbolCode)) {
+        return filteredSymbolCode
+      }
+    }
+  }
+
+  return null
+}
+
 const findHourIndex = (
   dayToCheck: ITimeSerie[],
-  filteredSymbolCodes: string[],
-  excludeIndex?: number
+  finalSymbolCode: string
 ): number =>
-  dayToCheck.findIndex((hour, index) =>
-    filteredSymbolCodes.some(
-      (filteredSymbolCode) =>
-        getSymbolCode(hour).includes(filteredSymbolCode) &&
-        (excludeIndex === undefined || excludeIndex !== index)
-    )
-  )
+  dayToCheck.findIndex((hour) => getSymbolCode(hour).includes(finalSymbolCode))
 
 interface IProps {
   days: ITimeSerie[][] | null
@@ -56,19 +91,23 @@ const useWeatherChange = ({ days }: IProps): IWeatherChange | null => {
       )
 
       for (let dayIndex = 0; dayIndex < daysToCheck.length; dayIndex++) {
-        const currentHourIndex = findHourIndex(
-          daysToCheck[dayIndex],
+        const groupedSymbolCodes = groupSymbolCodes(daysToCheck[dayIndex])
+
+        const groupedSymbolCodesSorted =
+          sortGroupedSymbolCodes(groupedSymbolCodes)
+
+        const finalSymbolCode = getFinalSymbolCode(
+          groupedSymbolCodesSorted,
           filteredSymbolCodes
         )
 
-        if (currentHourIndex > -1) {
-          const nextHourIndex = findHourIndex(
+        if (finalSymbolCode) {
+          const currentHourIndex = findHourIndex(
             daysToCheck[dayIndex],
-            filteredSymbolCodes,
-            currentHourIndex
+            finalSymbolCode
           )
 
-          if (nextHourIndex > -1) {
+          if (currentHourIndex > -1) {
             return daysToCheck[dayIndex][currentHourIndex]
           }
         }
