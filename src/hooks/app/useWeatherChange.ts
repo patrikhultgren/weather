@@ -47,7 +47,7 @@ const useWeatherChange = ({ days }: IProps): IWeatherChange | null => {
           filteredSymbolCodes.some(
             (filteredSymbolCode) =>
               getSymbolCode(hour).includes(filteredSymbolCode) &&
-              new Date(hour.time).getHours() > 6
+              new Date(hour.time).getHours() > 5
           )
         )
 
