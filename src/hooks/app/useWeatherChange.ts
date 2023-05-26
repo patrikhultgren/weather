@@ -4,6 +4,20 @@ import { getSymbolCode } from 'utils/weather'
 import { getAirTemperature } from 'utils/weather'
 import weatherIcons from 'config/weatherIcons'
 
+const findHourIndex = (
+  dayToCheck: ITimeSerie[],
+  filteredSymbolCodes: string[],
+  excludeIndex?: number
+): number =>
+  dayToCheck.findIndex((hour, index) =>
+    filteredSymbolCodes.some(
+      (filteredSymbolCode) =>
+        getSymbolCode(hour).includes(filteredSymbolCode) &&
+        getSymbolCode(hour).includes('_day') &&
+        (excludeIndex === undefined || excludeIndex !== index)
+    )
+  )
+
 interface IProps {
   days: ITimeSerie[][] | null
 }
@@ -43,16 +57,21 @@ const useWeatherChange = ({ days }: IProps): IWeatherChange | null => {
       )
 
       for (let dayIndex = 0; dayIndex < daysToCheck.length; dayIndex++) {
-        const hourIndex = daysToCheck[dayIndex].findIndex((hour) =>
-          filteredSymbolCodes.some(
-            (filteredSymbolCode) =>
-              getSymbolCode(hour).includes(filteredSymbolCode) &&
-              new Date(hour.time).getHours() > 5
-          )
+        const currentHourIndex = findHourIndex(
+          daysToCheck[dayIndex],
+          filteredSymbolCodes
         )
 
-        if (hourIndex > -1) {
-          return daysToCheck[dayIndex][hourIndex]
+        if (currentHourIndex > -1) {
+          const nextHourIndex = findHourIndex(
+            daysToCheck[dayIndex],
+            filteredSymbolCodes,
+            currentHourIndex
+          )
+
+          if (nextHourIndex > -1) {
+            return daysToCheck[dayIndex][currentHourIndex]
+          }
         }
       }
     }
