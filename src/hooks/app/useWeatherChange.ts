@@ -78,11 +78,11 @@ const useWeatherChange = ({ days }: IProps): IWeatherChange | null => {
       }
 
       const filteredSymbolCodes = [
-        'clearsky',
-        'rain',
+        'thunder',
         'snow',
         'sleet',
-        'thunder',
+        'rain',
+        'clearsky',
       ].filter(
         (symbolCode) =>
           !currentSymbolCodes.some((currentSymbolCode) =>
