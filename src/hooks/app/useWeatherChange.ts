@@ -9,15 +9,24 @@ interface IProps {
 
 const useWeatherChange = ({ days }: IProps): IWeatherChange | null => {
   const hour = useMemo(() => {
-    if (days) {
+    if (days && days.length >= 2) {
       const firstDay = days[0]
+      const nextDay = days[1]
+
       const offset = firstDay.length < 3 ? 1 : 0
 
       const daysToCheck = days.filter(
         (_, index) => index > 0 + offset && index < 4 + offset
       )
 
-      const currentSymbolCodes = firstDay.map((hour) => getSymbolCode(hour))
+      let currentSymbolCodes = firstDay.map((hour) => getSymbolCode(hour))
+
+      if (offset) {
+        currentSymbolCodes = [
+          ...currentSymbolCodes,
+          ...nextDay.map((hour) => getSymbolCode(hour)),
+        ]
+      }
 
       const filteredSymbolCodes = [
         'clearsky',
