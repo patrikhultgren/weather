@@ -39,7 +39,8 @@ const getFinalSymbolCode = (
     for (const filteredSymbolCode of filteredSymbolCodes) {
       if (
         groupedSymbolCodeSorted.key.includes(filteredSymbolCode) &&
-        groupedSymbolCodeSorted.key.includes('_day')
+        groupedSymbolCodeSorted.key.includes('_day') &&
+        groupedSymbolCodeSorted.value > 1
       ) {
         return groupedSymbolCodeSorted.key
       }
