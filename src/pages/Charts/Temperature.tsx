@@ -9,6 +9,7 @@ import {
 import { IApp, ITimeSerie } from 'utils/types'
 import { format } from 'utils/date'
 import weatherIcons from 'config/weatherIcons'
+import { getAirTemperature } from 'utils/weather'
 import usePrepareChartData from './utils/usePrepareChartData'
 import AxisTickHour from './utils/AxisTickHour'
 
@@ -19,7 +20,7 @@ const prepareChartData = (hour: ITimeSerie) => ({
   time: hour.time,
   symbolCode: hour.data?.next_1_hours?.summary?.symbol_code,
   x: format(hour.time, 'HH'),
-  y: hour.data.instant.details.air_temperature,
+  y: getAirTemperature(hour),
 })
 
 const CustomizedLabel = (props: any) => {
