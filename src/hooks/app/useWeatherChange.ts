@@ -75,7 +75,7 @@ const useWeatherChange = ({ days }: IProps): IWeatherChange | null => {
             tempChange,
           }
         : null,
-    [hour]
+    [hour, tempChange]
   )
 }
 
