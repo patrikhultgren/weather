@@ -5,6 +5,11 @@ import Close from 'ui/Icon/Close'
 import { IWeatherChange } from 'utils/types'
 import { format } from 'utils/date'
 
+const tempChangeText = {
+  'minus-to-plus': 'plusgrader',
+  'plus-to-minus': 'minusgrader',
+}
+
 interface Props {
   weatherChange: IWeatherChange
   className?: string
@@ -21,7 +26,8 @@ const WeatherChangeAlert = ({ weatherChange, className }: Props) => {
     setShow(true)
   }, [weatherChange])
 
-  const { Icon } = weatherChange.icon
+  const { time, tempChange } = weatherChange
+  const { Icon, title } = weatherChange.icon
 
   return show ? (
     <div
@@ -38,8 +44,8 @@ const WeatherChangeAlert = ({ weatherChange, className }: Props) => {
     >
       <Container className="flex items-center justity-center">
         <p className="ml-auto mr-1">
-          På {format(weatherChange.time, 'EEEE')}{' '}
-          {weatherChange.icon.title.toLowerCase()}
+          På {format(time, 'EEEE')} {title.toLowerCase()}
+          {tempChange && ` och ${tempChangeText[tempChange]}`}
         </p>
         <Icon size="1.7rem" />
         <button type="button" className="mr-auto p-3" onClick={hideError}>

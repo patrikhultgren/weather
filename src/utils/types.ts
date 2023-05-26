@@ -223,4 +223,5 @@ export interface IWeatherIcons {
 export interface IWeatherChange {
   time: string
   icon: IWeatherIcon
+  tempChange: 'minus-to-plus' | 'plus-to-minus' | null
 }

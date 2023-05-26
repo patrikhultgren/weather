@@ -7,6 +7,7 @@ const data: IApp = {
   weatherChange: {
     time: '2023-04-06T07:00:00Z',
     icon: weatherIcons.clearsky_day,
+    tempChange: 'minus-to-plus',
   },
   days: [
     [
@@ -1116,7 +1117,7 @@ const data: IApp = {
           instant: {
             details: {
               air_pressure_at_sea_level: 1026,
-              air_temperature: -1.1,
+              air_temperature: 3.1,
               air_temperature_percentile_10: -2.1,
               air_temperature_percentile_90: 0.7,
               cloud_area_fraction: 84.6,
@@ -1142,7 +1143,7 @@ const data: IApp = {
             details: { probability_of_precipitation: 82.9 },
           },
           next_1_hours: {
-            summary: { symbol_code: 'partlycloudy_day' },
+            summary: { symbol_code: 'clearsky_day' },
             details: {
               precipitation_amount: 0,
               precipitation_amount_max: 0,

@@ -1,6 +1,7 @@
 import { useMemo } from 'react'
 import { ITimeSerie, IWeatherChange } from 'utils/types'
 import { getSymbolCode } from 'utils/weather'
+import { getAirTemperature } from 'utils/weather'
 import weatherIcons from 'config/weatherIcons'
 
 interface IProps {
@@ -50,12 +51,28 @@ const useWeatherChange = ({ days }: IProps): IWeatherChange | null => {
     return null
   }, [days])
 
+  const tempChange = useMemo(() => {
+    if (days && hour) {
+      const fromTemp = getAirTemperature(days[0][0])
+      const toTemp = getAirTemperature(hour)
+
+      if (fromTemp < 0 && toTemp > 0) {
+        return 'minus-to-plus'
+      } else if (fromTemp > 0 && toTemp < 0) {
+        return 'plus-to-minus'
+      }
+    }
+
+    return null
+  }, [days, hour])
+
   return useMemo(
     () =>
       hour
         ? {
             time: hour.time,
             icon: weatherIcons[getSymbolCode(hour)],
+            tempChange,
           }
         : null,
     [hour]
