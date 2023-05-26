@@ -43,7 +43,7 @@ const WeatherChangeAlert = ({ weatherChange, className }: Props) => {
     >
       <Container className="flex items-center justify-between">
         <div />
-        <div className="flex">
+        <div className="flex items-center">
           <p className="pl-4 mr-1">
             På {format(time, 'EEEE')} {title.toLowerCase()}
             {tempChange && ` och ${tempChangeText[tempChange]}`}
