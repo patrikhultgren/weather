@@ -33,7 +33,6 @@ const WeatherChangeAlert = ({ weatherChange, className }: Props) => {
     <div
       role="alert"
       className={classNames(
-        'px-4',
         'py-1',
         'bg-gray-100',
         'font-bold',
@@ -42,13 +41,16 @@ const WeatherChangeAlert = ({ weatherChange, className }: Props) => {
         className
       )}
     >
-      <Container className="flex items-center justity-center">
-        <p className="ml-auto mr-1">
-          På {format(time, 'EEEE')} {title.toLowerCase()}
-          {tempChange && ` och ${tempChangeText[tempChange]}`}
-        </p>
-        <Icon size="1.7rem" />
-        <button type="button" className="mr-auto p-3" onClick={hideError}>
+      <Container className="flex items-center justify-between">
+        <div />
+        <div className="flex">
+          <p className="pl-4 mr-1">
+            På {format(time, 'EEEE')} {title.toLowerCase()}
+            {tempChange && ` och ${tempChangeText[tempChange]}`}
+          </p>
+          <Icon size="1.7rem" />
+        </div>
+        <button type="button" className="p-3" onClick={hideError}>
           <Close title="Stäng meddelande" size={18} />
         </button>
       </Container>
