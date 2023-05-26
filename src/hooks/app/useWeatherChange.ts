@@ -66,7 +66,7 @@ const useWeatherChange = ({ days }: IProps): IWeatherChange | null => {
       const today = days[0]
       const tomorrow = days[1]
 
-      const offset = today.length < 3 ? 1 : 0
+      const offset = today.length < 4 ? 1 : 0
 
       const daysToCheck = days.filter(
         (_, index) => index > 0 + offset && index < 4 + offset
