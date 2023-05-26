@@ -11,21 +11,21 @@ interface IProps {
 const useWeatherChange = ({ days }: IProps): IWeatherChange | null => {
   const hour = useMemo(() => {
     if (days && days.length >= 2) {
-      const firstDay = days[0]
-      const nextDay = days[1]
+      const today = days[0]
+      const tomorrow = days[1]
 
-      const offset = firstDay.length < 3 ? 1 : 0
+      const offset = today.length < 3 ? 1 : 0
 
       const daysToCheck = days.filter(
         (_, index) => index > 0 + offset && index < 4 + offset
       )
 
-      let currentSymbolCodes = firstDay.map((hour) => getSymbolCode(hour))
+      let currentSymbolCodes = today.map((hour) => getSymbolCode(hour))
 
       if (offset) {
         currentSymbolCodes = [
           ...currentSymbolCodes,
-          ...nextDay.map((hour) => getSymbolCode(hour)),
+          ...tomorrow.map((hour) => getSymbolCode(hour)),
         ]
       }
 
