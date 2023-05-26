@@ -44,7 +44,9 @@ const useWeatherChange = ({ days }: IProps): IWeatherChange | null => {
 
       for (let dayIndex = 0; dayIndex < daysToCheck.length; dayIndex++) {
         const hourIndex = daysToCheck[dayIndex].findIndex((hour) =>
-          filteredSymbolCodes.includes(getSymbolCode(hour))
+          filteredSymbolCodes.some((filteredSymbolCode) =>
+            getSymbolCode(hour).includes(filteredSymbolCode)
+          )
         )
 
         if (hourIndex > -1) {

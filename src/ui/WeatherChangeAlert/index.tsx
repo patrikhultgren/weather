@@ -4,6 +4,7 @@ import Container from 'ui/Container'
 import Close from 'ui/Icon/Close'
 import { IWeatherChange } from 'utils/types'
 import { format } from 'utils/date'
+import { capitalizeFirstLetter } from 'utils/string'
 
 const tempChangeText = {
   'minus-to-plus': 'plusgrader',
@@ -45,7 +46,7 @@ const WeatherChangeAlert = ({ weatherChange, className }: Props) => {
         <div />
         <div className="flex items-center">
           <p className="pl-8 mr-1">
-            På {format(time, 'EEEE')} {title.toLowerCase()}
+            {capitalizeFirstLetter(format(time, 'EEEE'))} {title.toLowerCase()}
             {tempChange && ` och ${tempChangeText[tempChange]}`}
           </p>
           <Icon size="1.7rem" />
