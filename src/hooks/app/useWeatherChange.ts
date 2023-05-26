@@ -41,7 +41,7 @@ const getFinalSymbolCode = (
         groupedSymbolCodeSorted.key.includes(filteredSymbolCode) &&
         groupedSymbolCodeSorted.key.includes('_day')
       ) {
-        return filteredSymbolCode
+        return groupedSymbolCodeSorted.key
       }
     }
   }
@@ -53,7 +53,7 @@ const findHourIndex = (
   dayToCheck: ITimeSerie[],
   finalSymbolCode: string
 ): number =>
-  dayToCheck.findIndex((hour) => getSymbolCode(hour).includes(finalSymbolCode))
+  dayToCheck.findIndex((hour) => getSymbolCode(hour) === finalSymbolCode)
 
 interface IProps {
   days: ITimeSerie[][] | null
