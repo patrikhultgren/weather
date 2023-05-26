@@ -13,7 +13,6 @@ const findHourIndex = (
     filteredSymbolCodes.some(
       (filteredSymbolCode) =>
         getSymbolCode(hour).includes(filteredSymbolCode) &&
-        getSymbolCode(hour).includes('_day') &&
         (excludeIndex === undefined || excludeIndex !== index)
     )
   )
