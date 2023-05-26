@@ -35,7 +35,12 @@ const useWeatherChange = ({ days }: IProps): IWeatherChange | null => {
         'snow',
         'sleet',
         'thunder',
-      ].filter((symbolCode) => !currentSymbolCodes.includes(symbolCode))
+      ].filter(
+        (symbolCode) =>
+          !currentSymbolCodes.some((currentSymbolCode) =>
+            currentSymbolCode.includes(symbolCode)
+          )
+      )
 
       for (let dayIndex = 0; dayIndex < daysToCheck.length; dayIndex++) {
         const hourIndex = daysToCheck[dayIndex].findIndex((hour) =>
