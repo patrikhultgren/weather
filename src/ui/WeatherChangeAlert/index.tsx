@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import classNames from 'classnames'
-import Container from 'components/Container'
-import Close from 'components/Icon/Close'
+import Container from 'ui/Container'
+import Close from 'ui/Icon/Close'
 import { IWeatherChange } from 'utils/types'
 import { format } from 'utils/date'
 

@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useState } from 'react'
 import classNames from 'classnames'
-import Container from 'components/Container'
-import ErrorIcon from 'components/Icon/Error'
-import Close from 'components/Icon/Close'
+import Container from 'ui/Container'
+import ErrorIcon from 'ui/Icon/Error'
+import Close from 'ui/Icon/Close'
 import { IError } from 'utils/types'
 
 interface Props {

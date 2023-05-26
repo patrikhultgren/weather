@@ -1,7 +1,7 @@
 import { useState, useCallback, useRef, useEffect, useId } from 'react'
-import Container from 'components/Container'
-import Arrow from 'components/Icon/Arrow'
-import Button from 'components/Button'
+import Container from 'ui/Container'
+import Arrow from 'ui/Icon/Arrow'
+import Button from 'ui/Button'
 
 export default function Footer() {
   const buttonId = useId()

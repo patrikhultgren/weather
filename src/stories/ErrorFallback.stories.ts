@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import ErrorBoundaryFallback from 'components/Error/Boundary/Fallback'
+import ErrorBoundaryFallback from 'ui/Error/Boundary/Fallback'
 
 const meta = {
-  title: 'Components/ErrorBoundaryFallback',
+  title: 'ui/ErrorBoundaryFallback',
   component: ErrorBoundaryFallback,
   args: {
     error: new Error('An error did occurr'),

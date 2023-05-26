@@ -1,8 +1,8 @@
 import { Link, useLocation } from 'react-router-dom'
 import classNames from 'classnames'
-import SearchIcon from 'components/Icon/Search'
-import ChartIcon from 'components/Icon/Chart'
-import TableIcon from 'components/Icon/Table'
+import SearchIcon from 'ui/Icon/Search'
+import ChartIcon from 'ui/Icon/Chart'
+import TableIcon from 'ui/Icon/Table'
 import useScrollDirection from 'hooks/useScrollDirection'
 
 interface IProps {

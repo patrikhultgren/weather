@@ -1,5 +1,5 @@
-import SearchIcon from 'components/Icon/Search'
-import Close from 'components/Icon/Close'
+import SearchIcon from 'ui/Icon/Search'
+import Close from 'ui/Icon/Close'
 import { ISearchHandler } from 'utils/types'
 
 interface IProps {

@@ -1,6 +1,6 @@
 import { IApp } from 'utils/types'
-import PageLayoutForecast from 'components/PageLayout/Forecast'
-import ErrorBoundaryEveryChild from 'components/Error/BoundaryEveryChild'
+import PageLayoutForecast from 'ui/PageLayout/Forecast'
+import ErrorBoundaryEveryChild from 'ui/Error/BoundaryEveryChild'
 import Temperature from './Temperature'
 import Precipitation from './Precipitation'
 import Wind from './Wind'
