@@ -56,14 +56,9 @@ const useSearchHandler = (
 
   const onSelectSearchResult = useCallback(
     (searchResult: IPosition) => {
-      const isStockholm = searchResult.city
-        .toLowerCase()
-        .includes('stockholms kommun')
-
       setPositions((prev: Array<IPosition>) =>
         addPosition(prev, {
           ...searchResult,
-          city: isStockholm ? 'Stockholm' : searchResult.city,
         })
       )
 
