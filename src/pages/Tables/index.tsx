@@ -1,6 +1,5 @@
 import { IApp } from 'utils/types'
 import PageLayoutForecast from 'ui/PageLayout/Forecast'
-import Container from 'ui/Container'
 import ErrorBoundary from 'ui/Error/Boundary'
 import Day from './Day'
 
@@ -14,13 +13,13 @@ export default function TablesPage({ app }: IProps) {
   return (
     <PageLayoutForecast app={app} activeMenuItem="tables">
       {days && (
-        <Container className="mb-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4 lg:mx-4">
           {days.map((day) => (
             <ErrorBoundary key={day[0].time}>
               <Day day={day} />
             </ErrorBoundary>
           ))}
-        </Container>
+        </div>
       )}
     </PageLayoutForecast>
   )
