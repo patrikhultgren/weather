@@ -13,7 +13,7 @@ const Gps = ({ size = 24 }: Props) => (
     strokeWidth="2"
     strokeLinecap="round"
     strokeLinejoin="round"
-    style={{ transform: `rotate(45deg)` }}
+    className="rotate-45"
   >
     <polygon points="12 2 19 21 12 17 5 21 12 2" />
   </svg>
