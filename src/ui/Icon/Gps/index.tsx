@@ -15,6 +15,7 @@ const Gps = ({ size = 24 }: Props) => (
     strokeLinejoin="round"
     className="rotate-45"
   >
+    <title>Gps</title>
     <polygon points="12 2 19 21 12 17 5 21 12 2" />
   </svg>
 )

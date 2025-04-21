@@ -71,6 +71,7 @@ export default function NavBar({
       {showUseMyLocation && (
         <button
           type="button"
+          aria-label="Använd min plats"
           onClick={activateMyLocation}
           className={classNames(
             'block md:hidden z-10 shadow rounded md:rounded-t md:rounded-b-none md:shadow-none h-12 w-12 md:w-auto md:px-4 flex items-center justify-center bg-slate-600 text-white md:bg-gray-200 md:hover:bg-white md:text-black  md:mb-0'
