@@ -5,7 +5,7 @@ import { format } from 'utils/date'
 import useFetch from 'hooks/useFetch'
 
 const transformResponse = (response: IForecast): Array<Array<ITimeSerie>> => {
-  const groupDaysByMonth: {
+  const groupByDays: {
     [key: string]: Array<ITimeSerie>
   } = response.properties.timeseries.reduce(
     (acc: { [key: string]: Array<ITimeSerie> }, timeSerie) => {
@@ -18,7 +18,7 @@ const transformResponse = (response: IForecast): Array<Array<ITimeSerie>> => {
     {}
   )
 
-  return Object.keys(groupDaysByMonth).map((key) => groupDaysByMonth[key])
+  return Object.keys(groupByDays).map((key) => groupByDays[key])
 }
 
 interface IProps {
