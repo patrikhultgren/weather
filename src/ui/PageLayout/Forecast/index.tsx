@@ -40,7 +40,7 @@ export default function PageLayoutForecast({
       <main>
         <ErrorBoundary>
           <UseMyLocation
-            className="hidden md:block my-5 mx-auto"
+            className="hidden md:block mt-5 mx-auto"
             showUseMyLocation={app.showUseMyLocation}
             activateMyLocation={app.activateMyLocation}
           />
