@@ -12,22 +12,19 @@ const initialState: IGeoPosition = {
   error: null,
   loading: false,
   finished: false,
+  userHasApprovedToShareLocation: false,
 }
 
 interface Props {
   positionsAreLoaded: boolean
   positions: Array<IPosition>
   setPositions: React.Dispatch<React.SetStateAction<IPosition[]>>
-  setUserHasApprovedToShareLocation: React.Dispatch<
-    React.SetStateAction<boolean>
-  >
 }
 
 const useGeoPosition = ({
   positionsAreLoaded,
   positions,
   setPositions,
-  setUserHasApprovedToShareLocation,
 }: Props): IGeoPosition => {
   const location = useLocation()
 
@@ -41,9 +38,8 @@ const useGeoPosition = ({
       setGeoPosition({
         ...initialState,
         finished: true,
+        userHasApprovedToShareLocation: true,
       })
-
-      setUserHasApprovedToShareLocation(true)
 
       if (allPositionsAreFoundByAllowingPosition(positions)) {
         setPositions((prev: Array<IPosition>) =>
@@ -56,7 +52,7 @@ const useGeoPosition = ({
         )
       }
     },
-    [setPositions, setUserHasApprovedToShareLocation, positions]
+    [setPositions, positions]
   )
 
   const onError = useCallback(
@@ -65,6 +61,7 @@ const useGeoPosition = ({
         ...prev,
         loading: false,
         finished: true,
+        userHasApprovedToShareLocation: false,
         error,
       }))
     },

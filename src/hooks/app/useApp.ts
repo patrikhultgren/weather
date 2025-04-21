@@ -16,14 +16,11 @@ const useApp = (): IApp => {
   const [positions, setPositions] = useState<Array<IPosition>>([])
   const position = useFirstPosition(positions)
   const [positionsAreLoaded, setPositionsAreLoaded] = useState<boolean>(false)
-  const [userHasApprovedToShareLocation, setUserHasApprovedToShareLocation] =
-    useState<boolean>(false)
 
   const geoPosition = useGeoPosition({
     positionsAreLoaded,
     positions,
     setPositions,
-    setUserHasApprovedToShareLocation,
   })
 
   const address = useAddress({
@@ -52,8 +49,9 @@ const useApp = (): IApp => {
   )
 
   const showUseMyLocation = useMemo(
-    () => userHasApprovedToShareLocation && hasPositionFoundBySearch,
-    [userHasApprovedToShareLocation, hasPositionFoundBySearch]
+    () =>
+      geoPosition.userHasApprovedToShareLocation && hasPositionFoundBySearch,
+    [geoPosition.userHasApprovedToShareLocation, hasPositionFoundBySearch]
   )
 
   const activateMyLocation = useCallback(() => {

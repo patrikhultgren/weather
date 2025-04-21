@@ -3999,7 +3999,12 @@ const data: IApp = {
       },
     ],
   ],
-  geoPosition: { error: null, loading: false, finished: true },
+  geoPosition: {
+    error: null,
+    loading: false,
+    finished: true,
+    userHasApprovedToShareLocation: false,
+  },
   positions: [
     {
       latitude: 60.16,

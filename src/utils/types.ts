@@ -206,6 +206,7 @@ export interface IGeoPosition {
   error: any
   loading: boolean
   finished: boolean
+  userHasApprovedToShareLocation: boolean
 }
 
 export interface ISearchResults {

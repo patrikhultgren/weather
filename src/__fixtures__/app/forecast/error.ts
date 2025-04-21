@@ -4,7 +4,12 @@ const data: IApp = {
   setPositions: () => null,
   city: '',
   days: null,
-  geoPosition: { error: null, loading: false, finished: true },
+  geoPosition: {
+    error: null,
+    loading: false,
+    finished: true,
+    userHasApprovedToShareLocation: false,
+  },
   weatherChange: null,
   showUseMyLocation: false,
   activateMyLocation: () => null,

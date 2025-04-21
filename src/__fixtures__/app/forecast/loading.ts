@@ -6,7 +6,12 @@ const data: IApp = {
   activateMyLocation: () => null,
   city: '',
   days: null,
-  geoPosition: { error: null, loading: true, finished: true },
+  geoPosition: {
+    error: null,
+    loading: true,
+    finished: true,
+    userHasApprovedToShareLocation: false,
+  },
   weatherChange: null,
   positions: [
     {

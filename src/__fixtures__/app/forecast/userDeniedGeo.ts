@@ -11,6 +11,7 @@ const data: IApp = {
     error: new Error('User denied GeoLocation'),
     loading: false,
     finished: true,
+    userHasApprovedToShareLocation: false,
   },
   positions: [
     {
