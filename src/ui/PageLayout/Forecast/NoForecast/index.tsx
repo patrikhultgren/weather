@@ -62,14 +62,24 @@ export default function ForecastNotReady({ app, activeMenuItem }: IProps) {
     )
   } else if (app.status.loading && activeMenuItem === 'tables') {
     return (
-      <Container className={className}>
+      <div
+        className={classNames(
+          'grid',
+          'grid-cols-1',
+          'lg:grid-cols-2',
+          'xl:grid-cols-3',
+          'gap-4',
+          'lg:mx-4',
+          className
+        )}
+      >
         {[0, 1, 2, 4, 5, 6, 7, 8, 9].map((placeholderIndex: number) => (
           <TablePlaceholder
             key={placeholderIndex}
             className="mt-4 first:mt-0 md:first:mt-4"
           />
         ))}
-      </Container>
+      </div>
     )
   } else if (app.status.loading && activeMenuItem === 'charts') {
     return (
