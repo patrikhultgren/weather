@@ -2,6 +2,8 @@ import { IApp } from 'utils/types'
 
 const data: IApp = {
   setPositions: () => null,
+  showUseMyLocation: false,
+  activateMyLocation: () => null,
   city: '',
   days: null,
   weatherChange: null,

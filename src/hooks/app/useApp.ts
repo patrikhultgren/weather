@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useState, useCallback } from 'react'
 import { getPositions } from 'utils/position'
 import { IPosition, IApp } from 'utils/types'
 import useGeoPosition from './useGeoPosition'
@@ -16,12 +16,15 @@ const useApp = (): IApp => {
   const [positions, setPositions] = useState<Array<IPosition>>([])
   const position = useFirstPosition(positions)
   const [positionsAreLoaded, setPositionsAreLoaded] = useState<boolean>(false)
+  const [userHasApprovedToShareLocation, setUserHasApprovedToShareLocation] =
+    useState<boolean>(false)
 
-  const geoPosition = useGeoPosition(
-    setPositions,
+  const geoPosition = useGeoPosition({
     positionsAreLoaded,
-    positions
-  )
+    positions,
+    setPositions,
+    setUserHasApprovedToShareLocation,
+  })
 
   const address = useAddress({
     position,
@@ -43,6 +46,20 @@ const useApp = (): IApp => {
     setPositionsAreLoaded(true)
   }, [])
 
+  const hasPositionFoundBySearch = useMemo(
+    () => positions.some((position) => position.status === 'foundBySearch'),
+    [positions]
+  )
+
+  const showUseMyLocation = useMemo(
+    () => userHasApprovedToShareLocation && hasPositionFoundBySearch,
+    [userHasApprovedToShareLocation, hasPositionFoundBySearch]
+  )
+
+  const activateMyLocation = useCallback(() => {
+    setPositions([])
+  }, [setPositions])
+
   usePersistPositions(positionsAreLoaded, positions)
 
   return useMemo(
@@ -51,9 +68,11 @@ const useApp = (): IApp => {
       days: forecast.response,
       geoPosition,
       positions,
-      setPositions,
       weatherChange,
       error: address.error || forecast.error,
+      showUseMyLocation,
+      activateMyLocation,
+      setPositions,
       status: {
         online,
         isFullscreen,
@@ -66,11 +85,13 @@ const useApp = (): IApp => {
       address,
       position,
       positions,
-      setPositions,
       forecast,
       weatherChange,
       online,
       isFullscreen,
+      showUseMyLocation,
+      activateMyLocation,
+      setPositions,
     ]
   )
 }

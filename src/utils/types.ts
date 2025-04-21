@@ -196,8 +196,10 @@ export interface IApp {
   error: any
   geoPosition: IGeoPosition
   positions: Array<IPosition>
-  setPositions: Function
   weatherChange: IWeatherChange | null
+  showUseMyLocation: boolean
+  activateMyLocation: () => void
+  setPositions: React.Dispatch<React.SetStateAction<IPosition[]>>
 }
 
 export interface IGeoPosition {

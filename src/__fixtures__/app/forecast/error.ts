@@ -6,6 +6,8 @@ const data: IApp = {
   days: null,
   geoPosition: { error: null, loading: false, finished: true },
   weatherChange: null,
+  showUseMyLocation: false,
+  activateMyLocation: () => null,
   positions: [
     {
       latitude: 60.16,
