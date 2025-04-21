@@ -3,6 +3,8 @@ import weatherIcons from 'config/weatherIcons'
 
 const data: IApp = {
   setPositions: () => null,
+  showUseMyLocation: false,
+  activateMyLocation: () => null,
   city: 'Stockholm, Vårdö, Ålands skärgård, Landskapet Åland, Finland',
   weatherChange: {
     time: '2023-04-06T07:00:00Z',
@@ -3997,7 +3999,12 @@ const data: IApp = {
       },
     ],
   ],
-  geoPosition: { error: null, loading: false, finished: true },
+  geoPosition: {
+    error: null,
+    loading: false,
+    finished: true,
+    userHasApprovedToShareLocation: false,
+  },
   positions: [
     {
       latitude: 60.16,

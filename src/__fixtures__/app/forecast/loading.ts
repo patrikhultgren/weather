@@ -2,9 +2,16 @@ import { IApp } from 'utils/types'
 
 const data: IApp = {
   setPositions: () => null,
+  showUseMyLocation: false,
+  activateMyLocation: () => null,
   city: '',
   days: null,
-  geoPosition: { error: null, loading: true, finished: true },
+  geoPosition: {
+    error: null,
+    loading: true,
+    finished: true,
+    userHasApprovedToShareLocation: false,
+  },
   weatherChange: null,
   positions: [
     {

@@ -12,13 +12,20 @@ const initialState: IGeoPosition = {
   error: null,
   loading: false,
   finished: false,
+  userHasApprovedToShareLocation: false,
 }
 
-const useGeoPosition = (
-  setPositions: Function,
-  positionsAreLoaded: boolean,
+interface Props {
+  positionsAreLoaded: boolean
   positions: Array<IPosition>
-): IGeoPosition => {
+  setPositions: React.Dispatch<React.SetStateAction<IPosition[]>>
+}
+
+const useGeoPosition = ({
+  positionsAreLoaded,
+  positions,
+  setPositions,
+}: Props): IGeoPosition => {
   const location = useLocation()
 
   const [geoPosition, setGeoPosition] = useState<IGeoPosition>({
@@ -31,6 +38,7 @@ const useGeoPosition = (
       setGeoPosition({
         ...initialState,
         finished: true,
+        userHasApprovedToShareLocation: true,
       })
 
       if (allPositionsAreFoundByAllowingPosition(positions)) {
@@ -53,6 +61,7 @@ const useGeoPosition = (
         ...prev,
         loading: false,
         finished: true,
+        userHasApprovedToShareLocation: false,
         error,
       }))
     },

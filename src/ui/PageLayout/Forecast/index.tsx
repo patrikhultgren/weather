@@ -7,6 +7,7 @@ import Footer from 'ui/Footer'
 import ErrorBoundary from 'ui/Error/Boundary'
 import SkipToContent from 'ui/SkipToContent'
 import WeatherChangeAlert from 'ui/WeatherChangeAlert'
+import UseMyLocation from 'ui/UseMyLocation'
 import NoForecast from './NoForecast'
 
 interface IProps {
@@ -33,8 +34,17 @@ export default function PageLayoutForecast({
       <NavBar
         isFullscreen={app.status.isFullscreen}
         activeMenuItem={activeMenuItem}
+        showUseMyLocation={app.showUseMyLocation}
+        activateMyLocation={app.activateMyLocation}
       />
       <main>
+        <ErrorBoundary>
+          <UseMyLocation
+            className="hidden md:block mt-4 mx-auto"
+            showUseMyLocation={app.showUseMyLocation}
+            activateMyLocation={app.activateMyLocation}
+          />
+        </ErrorBoundary>
         <ErrorBoundary>
           {app.days && !app.status.loading && !app.error ? (
             <>{children}</>

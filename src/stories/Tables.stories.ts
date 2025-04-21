@@ -33,6 +33,12 @@ export const Finished: Story = {
   },
 }
 
+export const UseMyLocation: Story = {
+  args: {
+    app: { ...forecastFinished, showUseMyLocation: true },
+  },
+}
+
 export const Offline: Story = {
   args: {
     app: offline,
