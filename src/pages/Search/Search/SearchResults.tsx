@@ -12,7 +12,7 @@ export default function SearchResults({
 }: IProps) {
   const { response } = searchHandler.searchResults
 
-  return (
+  return response?.type === 'searchResults' ? (
     <div id={searchResultsId}>
       <h2 className="p-4 py-2 bg-gray-300 mt-4 font-bold tracking-wider border-b border-slate-400">
         {response?.type === 'searchResults'
@@ -46,5 +46,5 @@ export default function SearchResults({
         ))}
       </ul>
     </div>
-  )
+  ) : null
 }
