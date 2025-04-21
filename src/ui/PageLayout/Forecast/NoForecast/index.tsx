@@ -13,7 +13,7 @@ interface IProps {
   activeMenuItem: 'tables' | 'charts'
 }
 
-export default function ForecastNotReady({ app, activeMenuItem }: IProps) {
+export default function NoForecast({ app, activeMenuItem }: IProps) {
   const location = useLocation()
 
   if (app.geoPosition.error && !app.days) {
