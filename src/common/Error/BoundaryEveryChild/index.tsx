@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import ErrorBoundary from 'ui/Error/Boundary'
+import ErrorBoundary from 'common/Error/Boundary'
 
 interface IProps {
   children: Array<ReactNode>

@@ -1,8 +1,8 @@
 import { Link, useLocation } from 'react-router-dom'
 import classNames from 'classnames'
-import Container from 'ui/Container'
-import TablePlaceholder from 'ui/Placeholder/Table'
-import ChartPlaceholder from 'ui/Placeholder/Chart'
+import Container from 'common/Container'
+import TablePlaceholder from 'common/Placeholder/Table'
+import ChartPlaceholder from 'common/Placeholder/Chart'
 import { IApp } from 'utils/types'
 import Heading from './Heading'
 

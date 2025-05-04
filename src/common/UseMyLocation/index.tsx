@@ -1,5 +1,5 @@
-import Button from 'ui/Button'
-import Gps from 'ui/Icon/Gps'
+import Button from 'common/Button'
+import Gps from 'common/Icon/Gps'
 
 interface IProps {
   className?: string

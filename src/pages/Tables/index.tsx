@@ -1,6 +1,6 @@
 import { IApp } from 'utils/types'
-import PageLayoutForecast from 'ui/PageLayout/Forecast'
-import ErrorBoundary from 'ui/Error/Boundary'
+import PageLayoutForecast from 'common/PageLayout/Forecast'
+import ErrorBoundary from 'common/Error/Boundary'
 import Day from './Day'
 
 interface IProps {

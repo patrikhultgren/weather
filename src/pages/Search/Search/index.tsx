@@ -1,5 +1,5 @@
 import { useCallback, useMemo, useId } from 'react'
-import Close from 'ui/Icon/Close'
+import Close from 'common/Icon/Close'
 import { ISearchHandler } from 'utils/types'
 import SearchForm from './SearchForm'
 import SearchResults from './SearchResults'

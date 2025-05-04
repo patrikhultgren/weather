@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import Button from 'ui/Button'
+import Button from 'common/Button'
 
 const meta = {
-  title: 'ui/Button',
+  title: 'common/Button',
   component: Button,
   args: {
     children: 'Button Text',

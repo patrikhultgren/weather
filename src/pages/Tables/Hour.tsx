@@ -4,7 +4,7 @@ import { format } from 'utils/date'
 import { ITimeSerie } from 'utils/types'
 import { getSymbolCode, getAirTemperature } from 'utils/weather'
 import weatherIcons from 'config/weatherIcons'
-import LongArrow from 'ui/Icon/LongArrow'
+import LongArrow from 'common/Icon/LongArrow'
 
 interface IProps {
   hour: ITimeSerie

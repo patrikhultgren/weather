@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import Button from 'ui/Button'
+import Button from 'common/Button'
 
 interface IProps {
   error: Error

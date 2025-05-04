@@ -1,5 +1,5 @@
-import Spinner from 'ui/Icon/Spinner'
-import ErrorAlert from 'ui/Error/Alert'
+import Spinner from 'common/Icon/Spinner'
+import ErrorAlert from 'common/Error/Alert'
 import { IError } from 'utils/types'
 
 export interface IProps {
