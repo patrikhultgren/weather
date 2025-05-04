@@ -13,7 +13,7 @@ import NoForecast from './NoForecast'
 interface IProps {
   app: IApp
   children: ReactNode
-  activeMenuItem: 'tables' | 'charts'
+  activeMenuItem: 'tables'
 }
 
 export default function PageLayoutForecast({
