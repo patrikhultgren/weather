@@ -1,7 +1,6 @@
 import { Link, useLocation } from 'react-router-dom'
 import classNames from 'classnames'
 import SearchIcon from 'ui/Icon/Search'
-import ChartIcon from 'ui/Icon/Chart'
 import TableIcon from 'ui/Icon/Table'
 import useScrollDirection from 'hooks/useScrollDirection'
 import Gps from 'ui/Icon/Gps'
