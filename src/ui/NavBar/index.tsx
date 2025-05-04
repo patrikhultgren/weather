@@ -45,19 +45,6 @@ export default function NavBar({
         <span className="hidden md:inline">Tabeller</span>
       </Link>
       <Link
-        to="/weather/charts"
-        aria-label="Diagram"
-        className={classNames(
-          'z-10 shadow border rounded md:rounded-t md:rounded-b-none md:shadow-none h-12 w-12 md:w-auto md:px-4 flex items-center justify-center md:mb-0 md:border-0',
-          activeMenuItem === 'charts'
-            ? 'bg-white text-black'
-            : 'bg-slate-600 text-white md:bg-gray-200 md:hover:bg-white md:text-black'
-        )}
-      >
-        <ChartIcon className="md:mr-2" title="Diagram" />
-        <span className="hidden md:inline">Diagram</span>
-      </Link>
-      <Link
         to="/weather/search"
         aria-label="Sök"
         state={{ from: location.pathname }}

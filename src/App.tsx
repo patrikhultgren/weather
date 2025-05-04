@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import ChartsPage from 'pages/Charts'
 import { Route, Routes } from 'react-router-dom'
 import TablesPage from 'pages/Tables'
 import SearchPage from 'pages/Search'
@@ -16,7 +15,6 @@ export default function App() {
   return (
     <div className={loading ? 'invisible' : 'block'}>
       <Routes>
-        <Route path="weather/charts" element={<ChartsPage app={app} />} />
         <Route path="weather/search" element={<SearchPage app={app} />} />
         <Route path="*" element={<TablesPage app={app} />} />
       </Routes>
