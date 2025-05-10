@@ -6,6 +6,7 @@ const meta = {
   component: Button,
   args: {
     children: 'Button Text',
+    onClick: () => null,
   },
 } satisfies Meta<typeof Button>
 
