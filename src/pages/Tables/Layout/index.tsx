@@ -16,11 +16,7 @@ interface IProps {
   activeMenuItem: 'tables'
 }
 
-export default function PageLayoutForecast({
-  app,
-  children,
-  activeMenuItem,
-}: IProps) {
+export default function Layout({ app, children, activeMenuItem }: IProps) {
   return (
     <>
       <SkipToContent />
