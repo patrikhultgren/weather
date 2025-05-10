@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react'
-// import { withRouter } from 'storybook-addon-react-router-v6'
 import searchHandlerWaitingForInput from '__fixtures__/searchHandler/history'
 import searchHandlerSearchResults from '__fixtures__/searchHandler/searchResults'
 import searchHandlerNoSearchResults from '__fixtures__/searchHandler/noSearchResults'
@@ -11,7 +10,6 @@ import SearchHandler from 'pages/Search/Handler'
 const meta = {
   title: 'Pages/Search',
   component: SearchHandler,
-  // decorators: [withRouter],
   parameters: {
     layout: 'fullscreen',
   },
