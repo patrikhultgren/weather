@@ -217,6 +217,7 @@ export interface ISearchResults {
 export interface IWeatherIcon {
   Icon: any
   title: string
+  id: string
 }
 
 export interface IWeatherIcons {
