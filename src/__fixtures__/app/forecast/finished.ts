@@ -1,5 +1,4 @@
 import { IApp } from 'utils/types'
-import weatherIcons from 'config/weatherIcons'
 
 const data: IApp = {
   setPositions: () => null,
@@ -8,7 +7,7 @@ const data: IApp = {
   city: 'Stockholm, Vårdö, Ålands skärgård, Landskapet Åland, Finland',
   weatherChange: {
     time: '2023-04-06T07:00:00Z',
-    icon: weatherIcons.clearsky_day,
+    symbolCode: 'clearsky_day',
     tempChange: 'minus-to-plus',
   },
   days: [

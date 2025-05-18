@@ -5,6 +5,8 @@ import Close from 'common/Icon/Close'
 import { IWeatherChange } from 'utils/types'
 import { format } from 'utils/date'
 import { capitalizeFirstLetter } from 'utils/string'
+import { YrWeatherIcon } from 'react-yr-weather-icons'
+import weatherIconTitles from 'config/weatherIconTitles'
 
 const tempChangeText = {
   'minus-to-plus': 'plusgrader',
@@ -28,7 +30,6 @@ const WeatherChangeAlert = ({ weatherChange, className }: Props) => {
   }, [weatherChange])
 
   const { time, tempChange } = weatherChange
-  const { Icon, title } = weatherChange.icon
 
   return show ? (
     <div
@@ -46,10 +47,15 @@ const WeatherChangeAlert = ({ weatherChange, className }: Props) => {
         <div />
         <div className="flex items-center">
           <p className="pl-8 mr-1">
-            {capitalizeFirstLetter(format(time, 'EEEE'))} {title.toLowerCase()}
+            {capitalizeFirstLetter(format(time, 'EEEE'))}{' '}
+            {weatherIconTitles[weatherChange.symbolCode].toLowerCase()}
             {tempChange && ` och ${tempChangeText[tempChange]}`}
           </p>
-          <Icon size="1.7rem" />
+          <YrWeatherIcon
+            symbolCode={weatherChange.symbolCode}
+            width="1.7rem"
+            height="1.7rem"
+          />
         </div>
         <button type="button" className="p-3" onClick={hideError}>
           <Close title="Stäng meddelande" size={18} />

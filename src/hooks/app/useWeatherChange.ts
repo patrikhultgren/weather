@@ -1,8 +1,8 @@
 import { useMemo } from 'react'
+import { SymbolCode } from 'react-yr-weather-icons'
 import { ITimeSerie, IWeatherChange } from 'utils/types'
 import { getSymbolCode } from 'utils/weather'
 import { getAirTemperature } from 'utils/weather'
-import weatherIcons from 'config/weatherIcons'
 
 type GroupedSymbolCodesSorted = Array<{ key: string; value: number }>
 type GroupedSymbolCodes = { [key: string]: number }
@@ -141,7 +141,7 @@ const useWeatherChange = ({ days }: IProps): IWeatherChange | null => {
       hour
         ? {
             time: hour.time,
-            icon: weatherIcons[getSymbolCode(hour)],
+            symbolCode: getSymbolCode(hour) as SymbolCode,
             tempChange,
           }
         : null,

@@ -3,8 +3,9 @@ import classNames from 'classnames'
 import { format } from 'utils/date'
 import { ITimeSerie } from 'utils/types'
 import { getSymbolCode, getAirTemperature } from 'utils/weather'
-import weatherIcons from 'config/weatherIcons'
 import LongArrow from 'common/Icon/LongArrow'
+import { SymbolCode, YrWeatherIcon } from 'react-yr-weather-icons'
+import weatherIconTitles from 'config/weatherIconTitles'
 
 interface IProps {
   hour: ITimeSerie
@@ -17,9 +18,6 @@ export default function Hour({ hour }: IProps) {
   )
 
   const symbolCode = useMemo(() => getSymbolCode(hour), [hour])
-
-  const weatherIcon = useMemo(() => weatherIcons?.[symbolCode], [symbolCode])
-  const WeatherIcon = useMemo(() => weatherIcon?.Icon, [weatherIcon])
 
   const airTemperature = useMemo(
     () => Math.round(getAirTemperature(hour)),
@@ -47,11 +45,10 @@ export default function Hour({ hour }: IProps) {
       </td>
       <td className="border-y border-slate-300 px-2 py-1">
         <div className="flex justify-center">
-          {WeatherIcon ? (
-            <WeatherIcon title={weatherIcon?.title} />
-          ) : (
-            symbolCode
-          )}
+          <YrWeatherIcon
+            symbolCode={symbolCode as SymbolCode}
+            title={weatherIconTitles[symbolCode]}
+          />
         </div>
       </td>
       <td className="border-y border-slate-300 px-2 py-1 text-center">
