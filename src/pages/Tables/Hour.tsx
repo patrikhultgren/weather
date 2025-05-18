@@ -4,7 +4,7 @@ import { format } from 'utils/date'
 import { ITimeSerie } from 'utils/types'
 import { getSymbolCode, getAirTemperature } from 'utils/weather'
 import LongArrow from 'common/Icon/LongArrow'
-import { YrWeatherIcon } from 'react-yr-weather-icons'
+import { SymbolCode, YrWeatherIcon } from 'react-yr-weather-icons'
 import weatherIconTitles from 'config/weatherIconTitles'
 
 interface IProps {
@@ -46,7 +46,7 @@ export default function Hour({ hour }: IProps) {
       <td className="border-y border-slate-300 px-2 py-1">
         <div className="flex justify-center">
           <YrWeatherIcon
-            symbolCode={symbolCode as any}
+            symbolCode={symbolCode as SymbolCode}
             title={weatherIconTitles[symbolCode]}
           />
         </div>
