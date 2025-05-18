@@ -1,3 +1,5 @@
+import { SymbolCode } from 'react-yr-weather-icons'
+
 export interface IError {
   name: string
   message: string
@@ -59,7 +61,7 @@ export interface ITimeSerie {
     }
     next_12_hours?: {
       summary: {
-        symbol_code: string
+        symbol_code: SymbolCode
         symbol_confidence: string
       }
       details: {
@@ -68,7 +70,7 @@ export interface ITimeSerie {
     }
     next_1_hours?: {
       summary: {
-        symbol_code: string
+        symbol_code: SymbolCode
       }
       details: {
         precipitation_amount: number
@@ -80,7 +82,7 @@ export interface ITimeSerie {
     }
     next_6_hours?: {
       summary: {
-        symbol_code: string
+        symbol_code: SymbolCode
       }
       details: {
         air_temperature_max: number
@@ -214,18 +216,8 @@ export interface ISearchResults {
   type: 'searchResults' | 'history'
 }
 
-export interface IWeatherIcon {
-  Icon: any
-  title: string
-  id: string
-}
-
-export interface IWeatherIcons {
-  [key: string]: IWeatherIcon
-}
-
 export interface IWeatherChange {
   time: string
-  icon: IWeatherIcon
+  symbolCode: SymbolCode
   tempChange: 'minus-to-plus' | 'plus-to-minus' | null
 }
