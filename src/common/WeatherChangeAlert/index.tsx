@@ -6,7 +6,6 @@ import { IWeatherChange } from 'utils/types'
 import { format } from 'utils/date'
 import { capitalizeFirstLetter } from 'utils/string'
 import { YrWeatherIcon } from 'react-yr-weather-icons'
-import weatherIconTitles from 'config/weatherIconTitles'
 import { useTranslation } from 'context/TranslationProvider'
 
 const tempChangeText = {
@@ -20,7 +19,7 @@ interface Props {
 }
 
 const WeatherChangeAlert = ({ weatherChange, className }: Props) => {
-  const { language } = useTranslation()
+  const { t, language } = useTranslation()
   const [show, setShow] = useState<boolean>(true)
 
   const hideError = useCallback(() => {
@@ -50,7 +49,7 @@ const WeatherChangeAlert = ({ weatherChange, className }: Props) => {
         <div className="flex items-center">
           <p className="pl-8 mr-1">
             {capitalizeFirstLetter(format(time, 'EEEE', language))}{' '}
-            {weatherIconTitles[weatherChange.symbolCode].toLowerCase()}
+            {t(weatherChange.symbolCode).toLowerCase()}
             {tempChange && ` och ${tempChangeText[tempChange]}`}
           </p>
           <YrWeatherIcon
