@@ -4,6 +4,7 @@ import SearchIcon from 'common/Icon/Search'
 import TableIcon from 'common/Icon/Table'
 import useScrollDirection from 'hooks/useScrollDirection'
 import Gps from 'common/Icon/Gps'
+import { useTranslation } from 'context/TranslationProvider'
 
 interface IProps {
   isFullscreen: boolean
@@ -20,6 +21,8 @@ export default function NavBar({
 }: IProps) {
   const location = useLocation()
   const scrollDirection = useScrollDirection()
+
+  const { t } = useTranslation()
 
   return (
     <nav
@@ -41,7 +44,7 @@ export default function NavBar({
         )}
       >
         <TableIcon className="md:mr-2" title="Tabeller" />
-        <span className="hidden md:inline">Tabeller</span>
+        <span className="hidden md:inline">{t('tables')}</span>
       </Link>
       <Link
         to="/weather/search"
@@ -52,7 +55,7 @@ export default function NavBar({
         )}
       >
         <SearchIcon className="md:mr-2" />
-        <span className="hidden md:inline">Sök</span>
+        <span className="hidden md:inline">{t('search')}</span>
       </Link>
       {showUseMyLocation && (
         <button

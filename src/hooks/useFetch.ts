@@ -3,12 +3,13 @@ import { useLocation } from 'react-router-dom'
 import { IQuery } from 'utils/types'
 import request from 'utils/request'
 import useVisibilityChange from 'hooks/useVisibilityChange'
+import { useTranslation, SupportedLanguage } from 'context/TranslationProvider'
 
 interface IProps {
   url: string
   run: boolean
   reset?: boolean
-  transformResponse?: (response: any) => any
+  transformResponse?: (response: any, language: SupportedLanguage) => any
 }
 
 const initialState = {
@@ -24,6 +25,8 @@ const useFetch = <TResponse>({
   reset,
   transformResponse,
 }: IProps): IQuery<TResponse> => {
+  const { language } = useTranslation()
+
   const location = useLocation()
   const [count, setCount] = useState<number>(1)
 
@@ -54,7 +57,9 @@ const useFetch = <TResponse>({
         })
 
         setResult({
-          response: transformResponse ? transformResponse(response) : response,
+          response: transformResponse
+            ? transformResponse(response, language)
+            : response,
           loading: false,
           finished: true,
           error: null,
@@ -68,7 +73,7 @@ const useFetch = <TResponse>({
         })
       }
     }
-  }, [url, count, run, transformResponse])
+  }, [url, count, run, language, transformResponse])
 
   useEffect(() => {
     loadData()

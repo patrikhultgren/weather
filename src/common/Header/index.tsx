@@ -1,6 +1,7 @@
 import { useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import classNames from 'classnames'
+import { useTranslation } from 'context/TranslationProvider'
 
 interface IProps {
   city: string
@@ -8,6 +9,8 @@ interface IProps {
 }
 
 export default function Header({ city, className }: IProps) {
+  const { t } = useTranslation()
+
   const textSize = useMemo(
     () => (city.length > 40 ? 'text-2xl' : 'text-2xl md:text-3xl'),
     [city]
@@ -28,7 +31,8 @@ export default function Header({ city, className }: IProps) {
     >
       <h1 className="truncate max-w-[700px]">
         <Link to="/weather/">
-          <span className="font-bold">Vädret i</span> {city ? city : '...'}
+          <span className="font-bold">{t('the-weather-in')}</span>{' '}
+          {city ? city : '...'}
         </Link>
       </h1>
     </header>
