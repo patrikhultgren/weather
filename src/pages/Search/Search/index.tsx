@@ -4,12 +4,14 @@ import { ISearchHandler } from 'utils/types'
 import SearchForm from './SearchForm'
 import SearchResults from './SearchResults'
 import NoSearchResults from './NoSearchResults'
+import { useTranslation } from 'context/TranslationProvider'
 
 interface IProps {
   searchHandler: ISearchHandler
 }
 
 export default function Search({ searchHandler }: IProps) {
+  const { t } = useTranslation()
   const searchResultsId = useId()
 
   const { response, finished } = searchHandler.searchResults
@@ -33,7 +35,7 @@ export default function Search({ searchHandler }: IProps) {
           data-ref="close-search"
           className="text-black z-10 right-0 w-14 ml-2 text-xl bg-slate-100 py-2.5 flex items-center justify-center"
         >
-          <Close title="Stäng sök" />
+          <Close title={t('close-search')} />
         </button>
       </div>
       {hasSearchResults && (

@@ -2,8 +2,10 @@ import { useState, useCallback, useRef, useEffect, useId } from 'react'
 import Container from 'common/Container'
 import Arrow from 'common/Icon/Arrow'
 import Button from 'common/Button'
+import { useTranslation } from 'context/TranslationProvider'
 
 export default function Footer() {
+  const { t } = useTranslation()
   const buttonId = useId()
   const messageId = useId()
   const messageRef = useRef<null | HTMLDivElement>(null)
@@ -29,7 +31,7 @@ export default function Footer() {
           ariaControls={show ? messageId : undefined}
           className="mx-auto"
         >
-          <span className="mr-1">Om sajten</span>
+          <span className="mr-1">{t('about')}</span>
           <Arrow direction={show ? 'up' : 'down'} />
         </Button>
         {show && (
@@ -39,49 +41,45 @@ export default function Footer() {
             aria-labelledby={buttonId}
             className="px-4 [&>p]:mt-4 first:[&>p]:mt-0 mt-8"
           >
-            <h2 className="text-lg">
-              Denna sajt är till för att enkelt kunna se väderprognoser
-            </h2>
+            <h2 className="text-lg">{t('footer-header')}</h2>
             <p>
-              Prognosdatan tillhandahålls av MET Norge och är licenserad under{' '}
+              {t('footer-body-1-1')}{' '}
               <a className="underline" href="https://data.norge.no/nlod/en/2.0">
                 Norwegian Licence for Open Government Data (NLOD) 2.0
               </a>{' '}
-              och{' '}
+              {t('footer-body-1-2')}{' '}
               <a
                 className="underline"
                 href="https://creativecommons.org/licenses/by/4.0/"
               >
                 Creative Commons 4.0 BY International
               </a>
-              . Väderikonerna är skapade av{' '}
+              . {t('footer-body-1-3')}{' '}
               <a href="https://www.yr.no" className="underline">
                 Yr
               </a>{' '}
-              och är licensierade under MIT.
+              {t('footer-body-1-4')} "Yr weather symbols © 2015 by Yr/NRK is
+              licensed under Attribution 4.0 International".
             </p>
             <p>
-              Tjänsten{' '}
+              {t('footer-body-2-1')}{' '}
               <a className="underline" href="https://locationiq.com/">
                 LoqationIQ
               </a>{' '}
-              anropas vid sökningar.
+              {t('footer-body-2-2')}
             </p>
             <p>
-              Om du tillåter att dela din position så anropas{' '}
+              {t('footer-body-3-1')}{' '}
               <a className="underline" href="https://www.bigdatacloud.com">
                 Big Data Cloud
               </a>{' '}
-              för att ta fram aktuell adress. Latitud och longitud avrundas till
-              två decimaler för att inte exakt ange din position.
+              {t('footer-body-3-2')}
             </p>
-            <p>Inga kakor används på sajten.</p>
+            <p>{t('footer-body-4-1')}</p>
+            <p>{t('footer-body-5-1')}</p>
             <p>
-              Innehållet kan vara felaktigt. Inget ansvar tas kring innehållet.
-            </p>
-            <p>
-              Sidan är byggd av mig{' '}
-              <a className="underline" href="mailto:patrik.hult@gmail.com">
+              {t('footer-body-6-1')}{' '}
+              <a className="underline" href="mailto:info@patrikhultgren.se">
                 Patrik Hultgren.
               </a>
               .

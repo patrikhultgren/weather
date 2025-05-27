@@ -119,7 +119,7 @@ export default function Day({ day }: IProps) {
           className="mt-6 mx-auto"
         >
           <span className="mr-1">
-            {showAll ? 'Visa färre timmar' : 'Visa alla timmar'}
+            {showAll ? t('show-less-hours') : t('show-all-hours')}
           </span>
           <Arrow direction={showAll ? 'up' : 'down'} />
         </Button>

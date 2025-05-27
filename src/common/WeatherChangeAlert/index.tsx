@@ -59,7 +59,7 @@ const WeatherChangeAlert = ({ weatherChange, className }: Props) => {
           />
         </div>
         <button type="button" className="p-3" onClick={hideError}>
-          <Close title="Stäng meddelande" size={18} />
+          <Close title={t('close-message')} size={18} />
         </button>
       </Container>
     </div>
