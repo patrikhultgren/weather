@@ -5,13 +5,15 @@ import { ITimeSerie } from 'utils/types'
 import { getSymbolCode, getAirTemperature } from 'utils/weather'
 import LongArrow from 'common/Icon/LongArrow'
 import { SymbolCode, YrWeatherIcon } from 'react-yr-weather-icons'
-import weatherIconTitles from 'config/weatherIconTitles'
+import { useTranslation } from 'context/TranslationProvider'
 
 interface IProps {
   hour: ITimeSerie
 }
 
 export default function Hour({ hour }: IProps) {
+  const { t, language } = useTranslation()
+
   const precipitationAmount = useMemo(
     () => hour.data?.next_1_hours?.details?.precipitation_amount || 0,
     [hour]
@@ -41,13 +43,13 @@ export default function Hour({ hour }: IProps) {
   return (
     <>
       <td className="border-y border-slate-300 px-2 py-1 text-center">
-        {format(hour.time, 'HH')}
+        {format(hour.time, language === 'sv' ? 'HH' : 'HH a', language)}
       </td>
       <td className="border-y border-slate-300 px-2 py-1">
         <div className="flex justify-center">
           <YrWeatherIcon
             symbolCode={symbolCode as SymbolCode}
-            title={weatherIconTitles[symbolCode]}
+            title={t(symbolCode)}
           />
         </div>
       </td>

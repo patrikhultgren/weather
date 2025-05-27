@@ -3,13 +3,17 @@ import { IQuery, IForecast, ITimeSerie } from 'utils/types'
 import endpoints from 'services/yrWeather/endpoints'
 import { format } from 'utils/date'
 import useFetch from 'hooks/useFetch'
+import { SupportedLanguage } from 'context/TranslationProvider'
 
-const transformResponse = (response: IForecast): Array<Array<ITimeSerie>> => {
+const transformResponse = (
+  response: IForecast,
+  language: SupportedLanguage
+): Array<Array<ITimeSerie>> => {
   const groupByDays: {
     [key: string]: Array<ITimeSerie>
   } = response.properties.timeseries.reduce(
     (acc: { [key: string]: Array<ITimeSerie> }, timeSerie) => {
-      const key = format(timeSerie.time, 'yyyy-MM-dd')
+      const key = format(timeSerie.time, 'yyyy-MM-dd', language)
       return {
         ...acc,
         [key]: acc[key] ? [...acc[key], timeSerie] : [timeSerie],

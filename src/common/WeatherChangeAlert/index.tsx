@@ -6,12 +6,7 @@ import { IWeatherChange } from 'utils/types'
 import { format } from 'utils/date'
 import { capitalizeFirstLetter } from 'utils/string'
 import { YrWeatherIcon } from 'react-yr-weather-icons'
-import weatherIconTitles from 'config/weatherIconTitles'
-
-const tempChangeText = {
-  'minus-to-plus': 'plusgrader',
-  'plus-to-minus': 'minusgrader',
-}
+import { useTranslation } from 'context/TranslationProvider'
 
 interface Props {
   weatherChange: IWeatherChange
@@ -19,6 +14,7 @@ interface Props {
 }
 
 const WeatherChangeAlert = ({ weatherChange, className }: Props) => {
+  const { t, language } = useTranslation()
   const [show, setShow] = useState<boolean>(true)
 
   const hideError = useCallback(() => {
@@ -47,9 +43,9 @@ const WeatherChangeAlert = ({ weatherChange, className }: Props) => {
         <div />
         <div className="flex items-center">
           <p className="pl-8 mr-1">
-            {capitalizeFirstLetter(format(time, 'EEEE'))}{' '}
-            {weatherIconTitles[weatherChange.symbolCode].toLowerCase()}
-            {tempChange && ` och ${tempChangeText[tempChange]}`}
+            {capitalizeFirstLetter(format(time, 'EEEE', language))}{' '}
+            {t(weatherChange.symbolCode).toLowerCase()}
+            {tempChange && ` ${t('and')} ${t(tempChange)}`}
           </p>
           <YrWeatherIcon
             symbolCode={weatherChange.symbolCode}
@@ -58,7 +54,7 @@ const WeatherChangeAlert = ({ weatherChange, className }: Props) => {
           />
         </div>
         <button type="button" className="p-3" onClick={hideError}>
-          <Close title="Stäng meddelande" size={18} />
+          <Close title={t('close-message')} size={18} />
         </button>
       </Container>
     </div>

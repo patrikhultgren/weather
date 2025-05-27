@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import ErrorBoundary from 'common/Error/Boundary'
+import { TranslationProvider } from 'context/TranslationProvider'
 import App from './App'
 import * as serviceWorkerRegistration from './serviceWorkerRegistration'
 import 'css/style.css'
@@ -11,7 +12,9 @@ root.render(
   <React.StrictMode>
     <ErrorBoundary>
       <BrowserRouter>
-        <App />
+        <TranslationProvider>
+          <App />
+        </TranslationProvider>
       </BrowserRouter>
     </ErrorBoundary>
   </React.StrictMode>

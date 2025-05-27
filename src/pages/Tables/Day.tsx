@@ -7,12 +7,14 @@ import classNames from 'classnames'
 import { isToday, isTomorrow } from 'date-fns'
 import { ITimeSerie } from 'utils/types'
 import Hours from './Hours'
+import { useTranslation } from 'context/TranslationProvider'
 
 interface IProps {
   day: Array<ITimeSerie>
 }
 
 export default function Day({ day }: IProps) {
+  const { t, language } = useTranslation()
   const [showAll, setShowAll] = useState<boolean>(false)
 
   const onClick = useCallback(() => {
@@ -58,12 +60,14 @@ export default function Day({ day }: IProps) {
         <caption className="font-bold text-xl bg-slate-200 border-t border-slate-300 py-2">
           <span className="flex">
             <span className="font-bold text-xl px-3">
-              <span className="capitalize">{format(dateStr, 'EEEE')}</span>{' '}
-              {format(dateStr, 'd MMMM')}
+              <span className="capitalize">
+                {format(dateStr, 'EEEE', language)}
+              </span>{' '}
+              {format(dateStr, 'd MMMM', language)}
             </span>
             {(isToday(date) || isTomorrow(date)) && (
               <span className="ml-auto border-l border-slate-300 px-3 basis-1/4 text-center">
-                {isToday(date) ? 'Idag' : 'Imorgon'}
+                {isToday(date) ? t('today') : t('tomorrow')}
               </span>
             )}
           </span>
@@ -74,31 +78,31 @@ export default function Day({ day }: IProps) {
               scope="col"
               className="text-left border-y border-slate-300 px-2 py-1 text-center"
             >
-              Tid
+              {t('time')}
             </th>
             <th
               scope="col"
               className="text-left border-y border-slate-300 px-2 py-1 text-center"
             >
-              Väder
+              {t('weather')}
             </th>
             <th
               scope="col"
               className="text-left border-y border-slate-300 px-2 py-1 text-center"
             >
-              Temp
+              {t('temperature')}
             </th>
             <th
               scope="col"
               className="text-left border-y border-slate-300 px-2 py-1 text-center"
             >
-              Vind
+              {t('wind')}
             </th>
             <th
               scope="col"
               className="text-left border-y border-slate-300 px-2 py-1 text-center hidden md:table-cell"
             >
-              Nederbörd
+              {t('precipitation')}
             </th>
           </tr>
         </thead>
@@ -115,7 +119,7 @@ export default function Day({ day }: IProps) {
           className="mt-6 mx-auto"
         >
           <span className="mr-1">
-            {showAll ? 'Visa färre timmar' : 'Visa alla timmar'}
+            {showAll ? t('show-less-hours') : t('show-all-hours')}
           </span>
           <Arrow direction={showAll ? 'up' : 'down'} />
         </Button>

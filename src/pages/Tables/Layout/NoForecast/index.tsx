@@ -5,6 +5,7 @@ import TablePlaceholder from 'common/Placeholder/Table'
 import ChartPlaceholder from 'common/Placeholder/Chart'
 import { IApp } from 'utils/types'
 import Heading from './Heading'
+import { useTranslation } from 'context/TranslationProvider'
 
 const className = 'mb-10'
 
@@ -14,6 +15,7 @@ interface IProps {
 }
 
 export default function NoForecast({ app, activeMenuItem }: IProps) {
+  const { t } = useTranslation()
   const location = useLocation()
 
   if (app.geoPosition.error && !app.days) {
@@ -28,17 +30,17 @@ export default function NoForecast({ app, activeMenuItem }: IProps) {
         )}
       >
         <div className="mx-auto px-4 mt-6">
-          <Heading>Ops... det gick inte att hitta din plats.</Heading>
+          <Heading>{t('your-location-could-not-be-found')}</Heading>
           <p className="mt-4 text-xl">
-            Använd{' '}
+            {t('use')}{' '}
             <Link
               to="/weather/search"
               className="underline py-2"
               state={{ from: location.pathname }}
             >
-              sökfunktionen
+              {t('the-search')}
             </Link>{' '}
-            istället.
+            {t('instead')}
           </p>
         </div>
       </Container>
@@ -55,8 +57,8 @@ export default function NoForecast({ app, activeMenuItem }: IProps) {
         )}
       >
         <div className="mx-auto px-4 mt-6">
-          <Heading>Ops... ett fel uppstod.</Heading>
-          <p className="mt-4 text-xl">Försök gärna på nytt.</p>
+          <Heading>{t('an-error-occurred')}</Heading>
+          <p className="mt-4 text-xl">{t('please-feel-free-to-try-again')}</p>
         </div>
       </Container>
     )
@@ -101,10 +103,8 @@ export default function NoForecast({ app, activeMenuItem }: IProps) {
         )}
       >
         <div className="mx-auto px-4 mt-6 w-full">
-          <Heading>Tappat uppkopplingen?</Heading>
-          <p className="mt-4 text-xl">
-            Väderprognosen finns tyvärr inte sparad i offline läge.
-          </p>
+          <Heading>{t('lost-connection')}</Heading>
+          <p className="mt-4 text-xl">{t('not-saved-offline')}</p>
         </div>
       </Container>
     )
@@ -120,17 +120,17 @@ export default function NoForecast({ app, activeMenuItem }: IProps) {
         )}
       >
         <div className="mx-auto px-4 mt-6 w-full">
-          <Heading>Väderprognoser</Heading>
+          <Heading>{t('weather-forecasts')}</Heading>
           <p className="mt-4 text-xl">
-            Se väderprognoser med hjälp av{' '}
+            {t('wiew-weather-forecasts-using')}{' '}
             <Link
               to="/weather/search"
               className="underline py-2"
               state={{ from: location.pathname }}
             >
-              sökfunktionen
+              {t('the-search')}
             </Link>
-            . Sök efter vilken plats som helst.
+            . {t('search-for-any-location')}
           </p>
         </div>
       </Container>
