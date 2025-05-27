@@ -26,7 +26,7 @@ export default function NavBar({
 
   return (
     <nav
-      aria-label="Huvudmeny"
+      aria-label={t('main-menu')}
       className={classNames(
         'fixed md:static left-0 w-full z-10 transition-all ease-in-out duration-300 flex justify-center gap-3 md:pt-2.5 md:bg-gray-200 md:pb-0',
         isFullscreen ? 'pb-6' : 'pb-3',
@@ -35,7 +35,7 @@ export default function NavBar({
     >
       <Link
         to="/weather/"
-        aria-label="Tabeller"
+        aria-label={t('tables')}
         className={classNames(
           'z-10 shadow border rounded md:rounded-t md:rounded-b-none md:shadow-none h-12 w-12 md:w-auto md:px-4 flex items-center justify-center md:mb-0 md:border-0',
           activeMenuItem === 'tables'
@@ -43,12 +43,12 @@ export default function NavBar({
             : 'bg-slate-600 text-white md:bg-gray-200 md:hover:bg-white md:text-black'
         )}
       >
-        <TableIcon className="md:mr-2" title="Tabeller" />
+        <TableIcon className="md:mr-2" title={t('tables')} />
         <span className="hidden md:inline">{t('tables')}</span>
       </Link>
       <Link
         to="/weather/search"
-        aria-label="Sök"
+        aria-label={t('search')}
         state={{ from: location.pathname }}
         className={classNames(
           'z-10 shadow rounded md:rounded-t md:rounded-b-none md:shadow-none h-12 w-12 md:w-auto md:px-4 flex items-center justify-center bg-slate-600 text-white md:bg-gray-200 md:hover:bg-white md:text-black  md:mb-0'

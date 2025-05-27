@@ -1,5 +1,6 @@
 import classNames from 'classnames'
 import { ISearchHandler } from 'utils/types'
+import { useTranslation } from 'context/TranslationProvider'
 
 interface IProps {
   searchHandler: ISearchHandler
@@ -10,14 +11,14 @@ export default function SearchResults({
   searchHandler,
   searchResultsId,
 }: IProps) {
+  const { t } = useTranslation()
+
   const { response } = searchHandler.searchResults
 
   return response?.type === 'searchResults' ? (
     <div id={searchResultsId}>
       <h2 className="p-4 py-2 bg-gray-300 mt-4 font-bold tracking-wider border-b border-slate-400">
-        {response?.type === 'searchResults'
-          ? 'Sökresultat'
-          : 'Tidigare platser'}
+        {response?.type === 'searchResults' ? t('search-results') : ''}
       </h2>
       <ul className="overflow-auto">
         {response?.positions?.map((searchResult, index) => (

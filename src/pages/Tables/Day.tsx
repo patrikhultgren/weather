@@ -67,7 +67,7 @@ export default function Day({ day }: IProps) {
             </span>
             {(isToday(date) || isTomorrow(date)) && (
               <span className="ml-auto border-l border-slate-300 px-3 basis-1/4 text-center">
-                {isToday(date) ? 'Idag' : 'Imorgon'}
+                {isToday(date) ? t('today') : t('tomorrow')}
               </span>
             )}
           </span>
