@@ -21,8 +21,7 @@ const TranslationContext = createContext<TranslationContextProps | undefined>(
 )
 
 const getDefaultLanguage = (): SupportedLanguage => {
-  //const browserLang = navigator.language.split('-')[0] as SupportedLanguage
-  const browserLang = 'en'
+  const browserLang = navigator.language.split('-')[0] as SupportedLanguage
   return supportedLanguages.includes(browserLang) ? browserLang : 'en'
 }
 
