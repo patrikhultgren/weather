@@ -8,11 +8,6 @@ import { capitalizeFirstLetter } from 'utils/string'
 import { YrWeatherIcon } from 'react-yr-weather-icons'
 import { useTranslation } from 'context/TranslationProvider'
 
-const tempChangeText = {
-  'minus-to-plus': 'plusgrader',
-  'plus-to-minus': 'minusgrader',
-}
-
 interface Props {
   weatherChange: IWeatherChange
   className?: string
@@ -50,7 +45,7 @@ const WeatherChangeAlert = ({ weatherChange, className }: Props) => {
           <p className="pl-8 mr-1">
             {capitalizeFirstLetter(format(time, 'EEEE', language))}{' '}
             {t(weatherChange.symbolCode).toLowerCase()}
-            {tempChange && ` och ${tempChangeText[tempChange]}`}
+            {tempChange && ` ${t('and')} ${t(tempChange)}`}
           </p>
           <YrWeatherIcon
             symbolCode={weatherChange.symbolCode}
