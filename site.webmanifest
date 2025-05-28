@@ -2,7 +2,7 @@
   "id": "/weather/",
   "start_url": "/weather/",
   "name": "Weather forecasts",
-  "short_name": "Weather forecasts",
+  "short_name": "Weather",
   "icons": [
     {
       "src": "/weather/android-chrome-192x192.png",
