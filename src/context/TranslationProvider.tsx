@@ -6,7 +6,7 @@ import {
   ReactNode,
 } from 'react'
 
-export type SupportedLanguage = 'en' | 'sv'
+export type SupportedLanguage = 'en' | 'sv' | 'es'
 type Translations = Record<string, string>
 
 interface TranslationContextProps {
@@ -14,7 +14,7 @@ interface TranslationContextProps {
   language: SupportedLanguage
 }
 
-const supportedLanguages: SupportedLanguage[] = ['en', 'sv']
+const supportedLanguages: SupportedLanguage[] = ['en', 'sv', 'es']
 
 const TranslationContext = createContext<TranslationContextProps | undefined>(
   undefined

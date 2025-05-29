@@ -43,7 +43,7 @@ export default function Hour({ hour }: IProps) {
   return (
     <>
       <td className="border-y border-slate-300 px-2 py-1 text-center">
-        {format(hour.time, language === 'sv' ? 'HH' : 'HH a', language)}
+        {format(hour.time, language === 'en' ? 'HH a' : 'HH', language)}
       </td>
       <td className="border-y border-slate-300 px-2 py-1">
         <div className="flex justify-center">
