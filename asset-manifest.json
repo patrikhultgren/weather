@@ -1,9 +1,9 @@
 {
   "files": {
-    "main.css": "/weather/static/css/main.91e235c6.css",
-    "main.js": "/weather/static/js/main.c0da6312.js",
-    "static/js/790.7badc41f.chunk.js": "/weather/static/js/790.7badc41f.chunk.js",
-    "static/js/3244.79576afe.chunk.js": "/weather/static/js/3244.79576afe.chunk.js",
+    "main.css": "/weather/static/css/main.962ec3a1.css",
+    "main.js": "/weather/static/js/main.e4b475dd.js",
+    "static/js/790.13e174a3.chunk.js": "/weather/static/js/790.13e174a3.chunk.js",
+    "static/js/3244.14213377.chunk.js": "/weather/static/js/3244.14213377.chunk.js",
     "static/js/6520.64c0ac46.chunk.js": "/weather/static/js/6520.64c0ac46.chunk.js",
     "static/js/2913.94101c4d.chunk.js": "/weather/static/js/2913.94101c4d.chunk.js",
     "static/js/4209.653eaadc.chunk.js": "/weather/static/js/4209.653eaadc.chunk.js",
@@ -174,8 +174,8 @@
     "static/media/sofiapro-light-webfont.woff": "/weather/static/media/sofiapro-light-webfont.7cd8c0a2832854783e72.woff",
     "static/media/sofiapro-light-webfont.woff2": "/weather/static/media/sofiapro-light-webfont.6272bcf746ba32eb968e.woff2",
     "index.html": "/weather/index.html",
-    "main.91e235c6.css.map": "/weather/static/css/main.91e235c6.css.map",
-    "main.c0da6312.js.map": "/weather/static/js/main.c0da6312.js.map",
+    "main.962ec3a1.css.map": "/weather/static/css/main.962ec3a1.css.map",
+    "main.e4b475dd.js.map": "/weather/static/js/main.e4b475dd.js.map",
     "6520.64c0ac46.chunk.js.map": "/weather/static/js/6520.64c0ac46.chunk.js.map",
     "2913.94101c4d.chunk.js.map": "/weather/static/js/2913.94101c4d.chunk.js.map",
     "4209.653eaadc.chunk.js.map": "/weather/static/js/4209.653eaadc.chunk.js.map",
@@ -344,7 +344,7 @@
     "7883.fda7f7b3.chunk.js.map": "/weather/static/js/7883.fda7f7b3.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.91e235c6.css",
-    "static/js/main.c0da6312.js"
+    "static/css/main.962ec3a1.css",
+    "static/js/main.e4b475dd.js"
   ]
 }
