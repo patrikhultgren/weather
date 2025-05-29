@@ -194,6 +194,7 @@ export interface ISearchHandler {
 export interface IApp {
   city: string
   days: Array<Array<ITimeSerie>> | null
+  updated_at: string | null
   status: IAppStatus
   error: any
   geoPosition: IGeoPosition
@@ -220,4 +221,9 @@ export interface IWeatherChange {
   time: string
   symbolCode: SymbolCode
   tempChange: 'minus-to-plus' | 'plus-to-minus' | null
+}
+
+export interface ITransformedForecast {
+  timeseries: ITimeSerie[][]
+  updated_at: string
 }

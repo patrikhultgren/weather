@@ -34,7 +34,7 @@ const useApp = (): IApp => {
   })
 
   const weatherChange = useWeatherChange({
-    days: forecast.response,
+    days: forecast.response?.timeseries || null,
   })
 
   useEffect(() => {
@@ -63,7 +63,8 @@ const useApp = (): IApp => {
   return useMemo(
     () => ({
       city: position.city,
-      days: forecast.response,
+      days: forecast.response?.timeseries || null,
+      updated_at: forecast.response?.updated_at || null,
       geoPosition,
       positions,
       weatherChange,

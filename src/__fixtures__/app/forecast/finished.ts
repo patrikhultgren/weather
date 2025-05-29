@@ -2,6 +2,7 @@ import { IApp } from 'utils/types'
 
 const data: IApp = {
   setPositions: () => null,
+  updated_at: null,
   showUseMyLocation: false,
   activateMyLocation: () => null,
   city: 'Stockholm, Vårdö, Ålands skärgård, Landskapet Åland, Finland',

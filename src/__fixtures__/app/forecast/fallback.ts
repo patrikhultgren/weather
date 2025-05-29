@@ -4,6 +4,7 @@ const data: IApp = {
   setPositions: () => null,
   city: '',
   days: null,
+  updated_at: null,
   geoPosition: {
     error: null,
     loading: false,

@@ -4,6 +4,7 @@ import ErrorAlert from 'common/Error/Alert'
 import NavBar from 'common/NavBar'
 import Header from 'common/Header'
 import Footer from 'common/Footer'
+import LastUpdated from 'common/LastUpdated'
 import ErrorBoundary from 'common/Error/Boundary'
 import SkipToContent from 'common/SkipToContent'
 import WeatherChangeAlert from 'common/WeatherChangeAlert'
@@ -49,6 +50,7 @@ export default function Layout({ app, children, activeMenuItem }: IProps) {
           )}
         </ErrorBoundary>
       </main>
+      <LastUpdated updated_at={app.updated_at} />
       <Footer />
     </>
   )

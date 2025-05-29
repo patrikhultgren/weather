@@ -1,5 +1,10 @@
 import { useMemo } from 'react'
-import { IQuery, IForecast, ITimeSerie } from 'utils/types'
+import {
+  IQuery,
+  IForecast,
+  ITimeSerie,
+  ITransformedForecast,
+} from 'utils/types'
 import endpoints from 'services/yrWeather/endpoints'
 import { format } from 'utils/date'
 import useFetch from 'hooks/useFetch'
@@ -8,7 +13,7 @@ import { SupportedLanguage } from 'context/TranslationProvider'
 const transformResponse = (
   response: IForecast,
   language: SupportedLanguage
-): Array<Array<ITimeSerie>> => {
+): ITransformedForecast => {
   const groupByDays: {
     [key: string]: Array<ITimeSerie>
   } = response.properties.timeseries.reduce(
@@ -22,7 +27,10 @@ const transformResponse = (
     {}
   )
 
-  return Object.keys(groupByDays).map((key) => groupByDays[key])
+  return {
+    updated_at: response.properties.meta.updated_at,
+    timeseries: Object.keys(groupByDays).map((key) => groupByDays[key]),
+  }
 }
 
 interface IProps {
@@ -33,7 +41,7 @@ interface IProps {
 const useForecast = ({
   latitude,
   longitude,
-}: IProps): IQuery<Array<Array<ITimeSerie>>> => {
+}: IProps): IQuery<ITransformedForecast> => {
   const run = useMemo(
     () => Boolean(latitude && longitude),
     [latitude, longitude]
@@ -44,7 +52,7 @@ const useForecast = ({
     [latitude, longitude]
   )
 
-  const forecast = useFetch<Array<Array<ITimeSerie>>>({
+  const forecast = useFetch<ITransformedForecast>({
     url,
     run,
     transformResponse,

@@ -22,7 +22,7 @@ export default function Footer() {
   }, [show, messageRef])
 
   return (
-    <footer className="my-10 mb-[90px] md:mb-10 border-t border-slate-300 pt-10">
+    <footer className="my-10 mb-[90px] md:mb-10 border-tS border-slate-300 pt-10S">
       <Container className="text-sm text-slate-900">
         <Button
           id={buttonId}

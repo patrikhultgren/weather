@@ -8,6 +8,7 @@
   "temperature": "Temp",
   "wind": "Wind",
   "precipitation": "Precipitation",
+  "last_updated": "Last updated",
   "today": "Today",
   "tomorrow": "Tomorrow",
   "search-results": "Search results",
