@@ -47,11 +47,7 @@ const WeatherChangeAlert = ({ weatherChange, className }: Props) => {
             {t(weatherChange.symbolCode).toLowerCase()}
             {tempChange && ` ${t('and')} ${t(tempChange)}`}
           </p>
-          <YrWeatherIcon
-            symbolCode={weatherChange.symbolCode}
-            width="1.7rem"
-            height="1.7rem"
-          />
+          <YrWeatherIcon symbolCode={weatherChange.symbolCode} size="1.7rem" />
         </div>
         <button type="button" className="p-3" onClick={hideError}>
           <Close title={t('close-message')} size={18} />
