@@ -1,4 +1,4 @@
-import { useCallback, useState, useEffect } from 'react'
+import { useCallback, useState, useEffect, useRef } from 'react'
 import { useLocation } from 'react-router-dom'
 import { addPosition } from 'utils/position'
 import { IPosition, IGeoPosition } from 'utils/types'
@@ -27,14 +27,23 @@ const useGeoPosition = ({
   setPositions,
 }: Props): IGeoPosition => {
   const location = useLocation()
-
   const [geoPosition, setGeoPosition] = useState<IGeoPosition>({
     ...initialState,
     loading: true,
   })
 
+  const lastUpdateRef = useRef<number>(0)
+
   const onChange = useCallback(
     ({ coords }: GeolocationPosition) => {
+      const now = Date.now()
+
+      if (now - lastUpdateRef.current < 60_000) {
+        return
+      }
+
+      lastUpdateRef.current = now
+
       setGeoPosition({
         ...initialState,
         finished: true,
@@ -55,18 +64,15 @@ const useGeoPosition = ({
     [setPositions, positions]
   )
 
-  const onError = useCallback(
-    (error: any) => {
-      setGeoPosition((prev) => ({
-        ...prev,
-        loading: false,
-        finished: true,
-        userHasApprovedToShareLocation: false,
-        error,
-      }))
-    },
-    [setGeoPosition]
-  )
+  const onError = useCallback((error: any) => {
+    setGeoPosition((prev) => ({
+      ...prev,
+      loading: false,
+      finished: true,
+      userHasApprovedToShareLocation: false,
+      error,
+    }))
+  }, [])
 
   useEffect(() => {
     if (!navigator.geolocation) {
@@ -74,18 +80,14 @@ const useGeoPosition = ({
         ...initialState,
         finished: true,
       })
-
       return
     }
 
-    if (!positionsAreLoaded) {
-      return
-    }
+    if (!positionsAreLoaded) return
 
     const watcher = navigator.geolocation.watchPosition(onChange, onError)
-
     return () => navigator.geolocation.clearWatch(watcher)
-  }, [positionsAreLoaded, onError, onChange])
+  }, [positionsAreLoaded, onChange, onError])
 
   useEffect(() => {
     setGeoPosition((prev) => (prev.error ? { ...prev, error: null } : prev))
