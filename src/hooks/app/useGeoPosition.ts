@@ -38,7 +38,7 @@ const useGeoPosition = ({
     ({ coords }: GeolocationPosition) => {
       const now = Date.now()
 
-      if (now - lastUpdateRef.current < 60_000) {
+      if (now - lastUpdateRef.current < 60_000 && positions.length) {
         return
       }
 
