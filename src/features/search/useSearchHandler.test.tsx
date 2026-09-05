@@ -2,7 +2,7 @@ import { act, renderHook, waitFor } from '@testing-library/react'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import type { IPosition } from 'types'
 import { ProviderWrapper } from 'test/render'
-import useSearchHandler from './useSearchHandler'
+import useSearchHandler, { toPositions } from './useSearchHandler'
 
 const json = (body: unknown) =>
   new Response(JSON.stringify(body), {
@@ -246,5 +246,37 @@ describe('useSearchHandler', () => {
     )
 
     expect(fetchMock).not.toHaveBeenCalled()
+  })
+})
+
+const rawHit = (overrides = {}) => ({
+  place_id: '1',
+  lat: '59.3251172',
+  lon: '18.0710935',
+  display_name: 'Stockholm, Sverige',
+  ...overrides,
+})
+
+describe('toPositions', () => {
+  it('maps a LocationIQ hit onto a position', () => {
+    expect(toPositions([rawHit()])).toEqual([
+      {
+        latitude: 59.3251172,
+        longitude: 18.0710935,
+        city: 'Stockholm, Sverige',
+        status: 'foundBySearch',
+      },
+    ])
+  })
+
+  it('drops hits with unusable coordinates', () => {
+    expect(toPositions([rawHit({ lat: 'nope' }), rawHit({ lon: '' })])).toEqual(
+      []
+    )
+  })
+
+  it('copes with a response that is not an array', () => {
+    expect(toPositions(undefined as never)).toEqual([])
+    expect(toPositions({ error: 'Unauthorized' } as never)).toEqual([])
   })
 })
