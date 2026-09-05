@@ -4,10 +4,14 @@ import { renderWithProviders, screen } from 'test/render'
 import ErrorAlert from './Alert'
 
 describe('ErrorAlert', () => {
-  it('shows the error message', () => {
+  it('shows what the server said', () => {
     renderWithProviders(
       <ErrorAlert
-        error={{ name: 'StatusError', message: 'Status error: 500' }}
+        error={{
+          name: 'StatusError',
+          message: 'Status error: 500',
+          status: 500,
+        }}
       />
     )
 
@@ -18,6 +22,23 @@ describe('ErrorAlert', () => {
     renderWithProviders(<ErrorAlert error={{ name: 'Error', message: '' }} />)
 
     expect(screen.getByRole('alert')).toHaveTextContent('Something went wrong')
+  })
+
+  // Workbox and fetch produce messages like "FetchEvent.respondWith received
+  // an error: no-response :: [{...}]", which no user should ever be shown.
+  it('does not surface an internal message from a failed request', () => {
+    renderWithProviders(
+      <ErrorAlert
+        error={{
+          name: 'Error',
+          message:
+            'FetchEvent.respondWith received an error: no-response :: [{"url":"https://api.met.no/..."}]',
+        }}
+      />
+    )
+
+    expect(screen.getByRole('alert')).toHaveTextContent('Something went wrong')
+    expect(screen.getByRole('alert')).not.toHaveTextContent('FetchEvent')
   })
 
   it('can be dismissed', async () => {
@@ -38,7 +59,10 @@ describe('ErrorAlert', () => {
     const user = userEvent.setup()
 
     const alert = (message: string) => (
-      <ErrorAlert key={message} error={{ name: 'Error', message }} />
+      <ErrorAlert
+        key={message}
+        error={{ name: 'StatusError', message, status: 500 }}
+      />
     )
 
     const { rerender } = renderWithProviders(alert('Boom'))
@@ -54,7 +78,7 @@ describe('ErrorAlert', () => {
   it('stays dismissed while the same error persists', async () => {
     const user = userEvent.setup()
 
-    const error = { name: 'Error', message: 'Boom' }
+    const error = { name: 'StatusError', message: 'Boom', status: 500 }
     const { rerender } = renderWithProviders(
       <ErrorAlert key={error.message} error={error} />
     )

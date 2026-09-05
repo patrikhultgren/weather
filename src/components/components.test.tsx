@@ -51,7 +51,10 @@ describe('LastUpdated', () => {
 describe('Loading', () => {
   it('prefers the error over the spinner', () => {
     renderWithProviders(
-      <Loading loading error={{ name: 'Error', message: 'Boom' }} />
+      <Loading
+        loading
+        error={{ name: 'StatusError', message: 'Boom', status: 500 }}
+      />
     )
 
     expect(screen.getByRole('alert')).toHaveTextContent('Boom')

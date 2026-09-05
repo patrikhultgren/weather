@@ -25,7 +25,11 @@ export default function TablesLayout({
   return (
     <>
       <SkipToContent />
-      {app.error && <ErrorAlert key={app.error.message} error={app.error} />}
+      {/* Offline the page already explains itself; a failed request on top
+          of that is noise. */}
+      {app.error && app.status.online && (
+        <ErrorAlert key={app.error.message} error={app.error} />
+      )}
       {app.weatherChange && (
         <ErrorBoundary>
           <WeatherChangeAlert

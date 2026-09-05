@@ -47,6 +47,14 @@ interface IProps {
 export default function NoForecast({ app, activeMenuItem }: IProps) {
   const { t } = useTranslation()
 
+  // Offline first: it is the cause of the location lookup and the request
+  // failing, so saying so is more use than reporting either of them.
+  if (!app.status.online) {
+    return (
+      <Message heading={t('lost-connection')}>{t('not-saved-offline')}</Message>
+    )
+  }
+
   if (app.geoPosition.error && !app.days) {
     return (
       <Message heading={t('your-location-could-not-be-found')}>
@@ -79,12 +87,6 @@ export default function NoForecast({ app, activeMenuItem }: IProps) {
           <ChartPlaceholder key={index} className="mt-4" />
         ))}
       </div>
-    )
-  }
-
-  if (!app.status.online) {
-    return (
-      <Message heading={t('lost-connection')}>{t('not-saved-offline')}</Message>
     )
   }
 

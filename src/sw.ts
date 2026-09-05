@@ -1,5 +1,6 @@
 /// <reference lib="webworker" />
 import { clientsClaim } from 'workbox-core'
+import { CacheableResponsePlugin } from 'workbox-cacheable-response'
 import { ExpirationPlugin } from 'workbox-expiration'
 import { createHandlerBoundToURL, precacheAndRoute } from 'workbox-precaching'
 import { registerRoute } from 'workbox-routing'
@@ -44,18 +45,39 @@ registerRoute(
   })
 )
 
-// Serve the last forecast when the user is offline.
+// Serve the last forecast when the user is offline or on a stalled connection.
+// A named cache keeps it inspectable, and the timeout matters more than it
+// looks: without it a connection that hangs rather than fails never falls back.
 registerRoute(
   ({ url }) => url.href.includes(YR_WEATHER_FORECAST_API_URL),
-  new NetworkFirst()
+  new NetworkFirst({
+    cacheName: 'forecasts',
+    networkTimeoutSeconds: 5,
+    plugins: [
+      // Only successful responses are worth keeping.
+      new CacheableResponsePlugin({ statuses: [200] }),
+      // A handful of places, kept for a week; the forecast itself is stale
+      // long before that, but a stale forecast beats a blank page offline.
+      new ExpirationPlugin({ maxEntries: 20, maxAgeSeconds: 7 * 24 * 60 * 60 }),
+    ],
+  })
 )
 
-// Search and address lookups are stable enough to answer from cache.
+// Search and address lookups answer the same way for months.
 registerRoute(
   ({ url }) =>
     url.href.includes(LOQATION_IQ_SEARCH_API_URL) ||
     url.href.includes(BIG_DATA_CLOUD_ADDRESS_API_URL),
-  new CacheFirst()
+  new CacheFirst({
+    cacheName: 'places',
+    plugins: [
+      new CacheableResponsePlugin({ statuses: [200] }),
+      new ExpirationPlugin({
+        maxEntries: 50,
+        maxAgeSeconds: 30 * 24 * 60 * 60,
+      }),
+    ],
+  })
 )
 
 self.addEventListener('message', (event) => {

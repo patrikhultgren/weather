@@ -21,6 +21,13 @@ const ErrorAlert = ({ error, className }: IProps) => {
 
   const hide = useCallback(() => setShow(false), [])
 
+  /**
+   * Only a message the app produced itself is fit to show. Anything from the
+   * network layer reads like "FetchEvent.respondWith received an error:
+   * no-response :: [{...}]", which means nothing to a reader.
+   */
+  const message = error.status ? error.message : t('something-went-wrong')
+
   if (!show) {
     return null
   }
@@ -29,7 +36,7 @@ const ErrorAlert = ({ error, className }: IProps) => {
     <div role="alert" className={classNames('bg-red-100 px-4 py-2', className)}>
       <Container className="flex items-center">
         <ErrorIcon />
-        <p className="mx-2">{error.message || t('something-went-wrong')}</p>
+        <p className="mx-2">{message}</p>
         <button type="button" className="ml-auto p-3" onClick={hide}>
           <Close title={t('close-message')} size={18} />
         </button>

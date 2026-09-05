@@ -51,6 +51,25 @@ describe('NoForecast', () => {
     )
   })
 
+  // Offline, the geolocation lookup fails too, but "you are offline" is the
+  // useful explanation and it is the cause of the other failure.
+  it('explains being offline rather than blaming the location lookup', () => {
+    const app = buildApp({
+      status: { online: false, isFullscreen: false, loading: false, finished: true },
+      geoPosition: {
+        error: { name: 'Error', message: 'Position unavailable' },
+        loading: false,
+        finished: true,
+        userHasApprovedToShareLocation: true,
+      },
+      error: { name: 'Error', message: 'Failed to fetch' },
+    })
+
+    renderWithProviders(<NoForecast app={app} activeMenuItem="tables" />)
+
+    expect(screen.getByRole('heading', { name: /lost connection/i })).toBeInTheDocument()
+  })
+
   it('reports a failed request', () => {
     const app = buildApp({
       error: { name: 'StatusError', message: 'Status error: 500' },
