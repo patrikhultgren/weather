@@ -55,6 +55,11 @@ same checks first and only publishes `build/` to the `gh-pages` branch if they
 pass, so what goes live is always something that was verified. `npm run deploy`
 still works from a laptop, but it skips the checks.
 
+GitHub Pages serves `404.html` for any path it has no file for rather than
+falling back to `index.html`, so the build writes a copy of the shell there.
+That is what makes a deep link such as `/weather/search` work instead of
+showing GitHub's own 404 page.
+
 The deploy needs `REACT_APP_LOQATION_IQ_API_KEY` as a repository secret
 (Settings > Secrets and variables > Actions). Without it the build succeeds but
 the deployed search returns 401.

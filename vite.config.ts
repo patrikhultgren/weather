@@ -1,4 +1,6 @@
-import { defineConfig } from 'vite'
+import fs from 'node:fs/promises'
+import path from 'node:path'
+import { defineConfig, type Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import { VitePWA } from 'vite-plugin-pwa'
@@ -9,6 +11,32 @@ const productionBase = '/weather/'
 
 /** Storybook renders components in isolation and has no use for the PWA. */
 const isStorybook = Boolean(process.env.STORYBOOK)
+
+/**
+ * GitHub Pages serves 404.html for any path it has no file for, rather than
+ * falling back to index.html. Publishing a copy of the shell there is what
+ * makes a deep link such as /weather/search work instead of showing GitHub's
+ * own 404 page.
+ */
+const spaFallback = (): Plugin => {
+  let outDir = 'build'
+
+  return {
+    name: 'spa-404-fallback',
+    apply: 'build',
+    configResolved(config) {
+      outDir = config.build.outDir
+    },
+    // closeBundle rather than an emitted asset: the html is written by another
+    // plugin, so copying the finished file is not tied to bundler internals.
+    async closeBundle() {
+      const from = path.resolve(outDir, 'index.html')
+      const to = path.resolve(outDir, '404.html')
+
+      await fs.copyFile(from, to)
+    },
+  }
+}
 
 export default defineConfig(({ command }) => ({
   base: command === 'build' ? productionBase : '/',
@@ -21,6 +49,7 @@ export default defineConfig(({ command }) => ({
   plugins: [
     react(),
     tailwindcss(),
+    spaFallback(),
     !isStorybook &&
       VitePWA({
         strategies: 'injectManifest',
@@ -31,6 +60,9 @@ export default defineConfig(({ command }) => ({
         manifest: false,
         injectManifest: {
           globPatterns: ['**/*.{js,css,html,ico,png,svg,woff,woff2}'],
+          // 404.html is written after this runs, so it is not picked up
+          // today; the ignore keeps it that way if the order ever changes.
+          globIgnores: ['**/404.html'],
         },
         devOptions: { enabled: false },
       }),

@@ -33,3 +33,10 @@ jobs:
 
       - name: Build
         run: npm run build
+
+      # Deep links only work on GitHub Pages because of this file, and nothing
+      # else would notice if the build stopped producing it.
+      - name: Check the SPA fallback was published
+        run: |
+          test -f build/404.html
+          diff build/index.html build/404.html
