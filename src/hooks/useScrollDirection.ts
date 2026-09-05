@@ -1,41 +1,37 @@
-import { useState, useRef, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
-const THRESHOLD = 0
+export type ScrollDirection = 'up' | 'down'
 
-const useScrollDirection = (): 'up' | 'down' => {
-  const [scrollDirection, setScrollDirection] = useState<'up' | 'down'>('up')
-
-  const blocking = useRef(false)
-  const prevScrollY = useRef(0)
+/** Reports which way the page was last scrolled, throttled to a frame. */
+const useScrollDirection = (): ScrollDirection => {
+  const [scrollDirection, setScrollDirection] = useState<ScrollDirection>('up')
 
   useEffect(() => {
-    prevScrollY.current = window.pageYOffset
+    let previousScrollY = window.scrollY
+    let frameRequested = false
 
-    const updateScrollDirection = () => {
-      const scrollY = window.pageYOffset
+    const update = () => {
+      const scrollY = window.scrollY
 
-      if (Math.abs(scrollY - prevScrollY.current) >= THRESHOLD) {
-        const newScrollDirection = scrollY > prevScrollY.current ? 'down' : 'up'
-
-        setScrollDirection(newScrollDirection)
-
-        prevScrollY.current = scrollY > 0 ? scrollY : 0
+      if (scrollY !== previousScrollY) {
+        setScrollDirection(scrollY > previousScrollY ? 'down' : 'up')
+        previousScrollY = Math.max(scrollY, 0)
       }
 
-      blocking.current = false
+      frameRequested = false
     }
 
     const onScroll = () => {
-      if (!blocking.current) {
-        blocking.current = true
-        window.requestAnimationFrame(updateScrollDirection)
+      if (!frameRequested) {
+        frameRequested = true
+        window.requestAnimationFrame(update)
       }
     }
 
-    window.addEventListener('scroll', onScroll)
+    window.addEventListener('scroll', onScroll, { passive: true })
 
     return () => window.removeEventListener('scroll', onScroll)
-  }, [scrollDirection])
+  }, [])
 
   return scrollDirection
 }

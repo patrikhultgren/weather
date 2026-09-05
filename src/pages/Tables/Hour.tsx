@@ -1,11 +1,16 @@
 import { useMemo } from 'react'
 import classNames from 'classnames'
-import { format } from 'utils/date'
-import { ITimeSerie } from 'utils/types'
-import { getSymbolCode, getAirTemperature } from 'utils/weather'
-import LongArrow from 'common/Icon/LongArrow'
 import { SymbolCode, YrWeatherIcon } from 'react-yr-weather-icons'
-import { useTranslation } from 'context/TranslationProvider'
+import LongArrow from 'components/Icon/LongArrow'
+import { getAirTemperature, getSymbolCode } from 'features/forecast/symbols'
+import { useTranslation } from 'i18n/context'
+import { format } from 'lib/date'
+import type { ITimeSerie } from 'types'
+
+const cell = 'border-y border-slate-300 px-2 py-1 text-center'
+
+const round = (value: number | undefined): number | null =>
+  typeof value === 'number' && Number.isFinite(value) ? Math.round(value) : null
 
 interface IProps {
   hour: ITimeSerie
@@ -14,36 +19,21 @@ interface IProps {
 export default function Hour({ hour }: IProps) {
   const { t, language } = useTranslation()
 
-  const precipitationAmount = useMemo(
-    () => hour.data?.next_1_hours?.details?.precipitation_amount || 0,
-    [hour]
-  )
+  const { instant, next_1_hours } = hour.data
+
+  const precipitationAmount = next_1_hours?.details?.precipitation_amount ?? 0
 
   const symbolCode = useMemo(() => getSymbolCode(hour), [hour])
 
-  const airTemperature = useMemo(
-    () => Math.round(getAirTemperature(hour)),
-    [hour]
-  )
-
-  const windSpeed = useMemo(() => {
-    const speed = hour.data.instant.details.wind_speed
-    return speed ? Math.round(speed) : null
-  }, [hour])
-
-  const windSpeedOfGust = useMemo(() => {
-    const speed = hour.data.instant.details.wind_speed_of_gust
-    return speed ? Math.round(speed) : null
-  }, [hour])
-
-  const windFromDirection = useMemo(() => {
-    return hour.data.instant.details.wind_from_direction
-  }, [hour])
+  const airTemperature = Math.round(getAirTemperature(hour))
+  const windSpeed = round(instant.details.wind_speed)
+  const windSpeedOfGust = round(instant.details.wind_speed_of_gust)
+  const windFromDirection = instant.details.wind_from_direction
 
   return (
     <>
-      <td className="border-y border-slate-300 px-2 py-1 text-center">
-        {format(hour.time, language === 'en' ? 'HH a' : 'HH', language)}
+      <td className={cell}>
+        {format(hour.time, language === 'en' ? 'h a' : 'HH', language)}
       </td>
       <td className="border-y border-slate-300 px-2 py-1">
         <div className="flex justify-center">
@@ -53,7 +43,7 @@ export default function Hour({ hour }: IProps) {
           />
         </div>
       </td>
-      <td className="border-y border-slate-300 px-2 py-1 text-center">
+      <td className={cell}>
         <span
           className={classNames(
             'font-bold',
@@ -63,20 +53,22 @@ export default function Hour({ hour }: IProps) {
           {airTemperature} °
         </span>
       </td>
-      <td className="border-y border-slate-300 px-2 py-1 text-center">
+      <td className={cell}>
         <div className="flex items-center justify-center">
           <span className="mr-1.5">
             {windSpeed} {windSpeedOfGust ? `(${windSpeedOfGust})` : ''}
           </span>
           <LongArrow
-            title={`Vindriktning ${windFromDirection.toLocaleString()} grader`}
-            degress={windFromDirection}
+            title={t('wind-direction', {
+              degrees: windFromDirection.toLocaleString(language),
+            })}
+            degrees={windFromDirection}
           />
         </div>
       </td>
-      <td className="border-y border-slate-300 px-2 py-1 text-center hidden md:table-cell text-blue-700">
+      <td className={`${cell} hidden text-blue-700 md:table-cell`}>
         {precipitationAmount > 0 &&
-          `${precipitationAmount.toLocaleString('sv-SE')} mm`}
+          `${precipitationAmount.toLocaleString(language)} mm`}
       </td>
     </>
   )

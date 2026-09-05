@@ -1,7 +1,8 @@
-import '../src/css/style.css'
+import React from 'react'
 import type { Preview } from '@storybook/react'
 import { MemoryRouter } from 'react-router-dom'
-import React from 'react'
+import { TranslationProvider } from '../src/i18n/TranslationProvider'
+import '../src/css/style.css'
 
 const preview: Preview = {
   parameters: {
@@ -15,7 +16,9 @@ const preview: Preview = {
   decorators: [
     (Story) => (
       <MemoryRouter>
-        <Story />
+        <TranslationProvider language="en">
+          <Story />
+        </TranslationProvider>
       </MemoryRouter>
     ),
   ],

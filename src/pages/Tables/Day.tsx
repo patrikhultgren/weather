@@ -1,13 +1,26 @@
-import { useCallback, useState, useMemo } from 'react'
-import { format } from 'utils/date'
-import Arrow from 'common/Icon/Arrow'
-import ErrorBoundary from 'common/Error/Boundary'
-import Button from 'common/Button'
-import classNames from 'classnames'
+import { useCallback, useMemo, useState } from 'react'
 import { isToday, isTomorrow } from 'date-fns'
-import { ITimeSerie } from 'utils/types'
+import Arrow from 'components/Icon/Arrow'
+import Button from 'components/Button'
+import ErrorBoundary from 'components/Error/Boundary'
+import { useTranslation } from 'i18n/context'
+import { format } from 'lib/date'
+import type { ITimeSerie } from 'types'
 import Hours from './Hours'
-import { useTranslation } from 'context/TranslationProvider'
+
+/** How many hours a collapsed day shows. */
+const SUMMARY_HOURS = 4
+
+const headerCell = 'border-y border-slate-300 px-2 py-1 text-center'
+
+/** Evenly spaced sample of the day, used until the user expands it. */
+const summarize = (day: Array<ITimeSerie>): Array<ITimeSerie> => {
+  const step = Math.floor(day.length / SUMMARY_HOURS)
+
+  return day.filter(
+    (_hour, index) => index % step === 0 && index / step < SUMMARY_HOURS
+  )
+}
 
 interface IProps {
   day: Array<ITimeSerie>
@@ -17,56 +30,31 @@ export default function Day({ day }: IProps) {
   const { t, language } = useTranslation()
   const [showAll, setShowAll] = useState<boolean>(false)
 
-  const onClick = useCallback(() => {
-    setShowAll((prev) => !prev)
-  }, [])
+  const toggle = useCallback(() => setShowAll((prev) => !prev), [])
 
-  const showAllEnabled = useMemo(() => day.length > 4, [day])
+  const canExpand = day.length > SUMMARY_HOURS
 
-  const hours = useMemo(() => {
-    const hoursPerPart = Math.floor(day.length / 4)
-    let countHours = 0
+  const hours = useMemo(
+    () => (showAll || !canExpand ? day : summarize(day)),
+    [day, showAll, canExpand]
+  )
 
-    return day.filter((_hour, hourIndex) => {
-      if (showAll || !showAllEnabled) {
-        return true
-      } else {
-        if (hourIndex % hoursPerPart === 0 && countHours < 4) {
-          countHours++
-          return true
-        }
-      }
-
-      return false
-    })
-  }, [day, showAll, showAllEnabled])
-
-  const date = useMemo(() => new Date(day[0].time), [day])
-  const dateStr = useMemo(() => day[0].time, [day])
+  const time = day[0].time
+  const date = useMemo(() => new Date(time), [time])
 
   return (
-    <div key={dateStr}>
-      <table
-        className={classNames(
-          'w-full',
-          'table-fixed',
-          'border-collapse',
-          'border',
-          'border-slate-300',
-          'text-lg',
-          'duration-700'
-        )}
-      >
-        <caption className="font-bold text-xl bg-slate-200 border-t border-slate-300 py-2">
+    <div>
+      <table className="w-full table-fixed border-collapse border border-slate-300 text-lg duration-700">
+        <caption className="border-t border-slate-300 bg-slate-200 py-2 text-xl font-bold">
           <span className="flex">
-            <span className="font-bold text-xl px-3">
+            <span className="px-3 text-xl font-bold">
               <span className="capitalize">
-                {format(dateStr, 'EEEE', language)}
+                {format(time, 'EEEE', language)}
               </span>{' '}
-              {format(dateStr, 'd MMMM', language)}
+              {format(time, 'd MMMM', language)}
             </span>
             {(isToday(date) || isTomorrow(date)) && (
-              <span className="ml-auto border-l border-slate-300 px-3 basis-1/4 text-center">
+              <span className="ml-auto basis-1/4 border-l border-slate-300 px-3 text-center">
                 {isToday(date) ? t('today') : t('tomorrow')}
               </span>
             )}
@@ -74,34 +62,19 @@ export default function Day({ day }: IProps) {
         </caption>
         <thead>
           <tr>
-            <th
-              scope="col"
-              className="text-left border-y border-slate-300 px-2 py-1 text-center"
-            >
+            <th scope="col" className={headerCell}>
               {t('time')}
             </th>
-            <th
-              scope="col"
-              className="text-left border-y border-slate-300 px-2 py-1 text-center"
-            >
+            <th scope="col" className={headerCell}>
               {t('weather')}
             </th>
-            <th
-              scope="col"
-              className="text-left border-y border-slate-300 px-2 py-1 text-center"
-            >
+            <th scope="col" className={headerCell}>
               {t('temperature')}
             </th>
-            <th
-              scope="col"
-              className="text-left border-y border-slate-300 px-2 py-1 text-center"
-            >
+            <th scope="col" className={headerCell}>
               {t('wind')}
             </th>
-            <th
-              scope="col"
-              className="text-left border-y border-slate-300 px-2 py-1 text-center hidden md:table-cell"
-            >
+            <th scope="col" className={`${headerCell} hidden md:table-cell`}>
               {t('precipitation')}
             </th>
           </tr>
@@ -112,12 +85,8 @@ export default function Day({ day }: IProps) {
           </ErrorBoundary>
         </tbody>
       </table>
-      {showAllEnabled && (
-        <Button
-          onClick={onClick}
-          ariaPressed={showAll}
-          className="mt-6 mx-auto"
-        >
+      {canExpand && (
+        <Button onClick={toggle} ariaPressed={showAll} className="mx-auto mt-6">
           <span className="mr-1">
             {showAll ? t('show-less-hours') : t('show-all-hours')}
           </span>

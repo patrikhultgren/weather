@@ -1,30 +1,35 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
 
 @font-face {
   font-family: 'sofiapro-light';
-  src: url('../fonts/sofiapro-light-webfont.woff2') format('woff2'),
+  src:
+    url('../fonts/sofiapro-light-webfont.woff2') format('woff2'),
     url('../fonts/sofiapro-light-webfont.woff') format('woff');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
 }
 
-body {
-  color: #000;
-  font-family: 'sofiapro-light', sans-serif, Arial, Verdana;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
-  background-color: #fff;
+@theme {
+  --font-sans: 'sofiapro-light', ui-sans-serif, system-ui, sans-serif;
 }
 
-.placeholder {
-  background-color: #eee;
+@layer base {
+  body {
+    font-family: var(--font-sans);
+    color: var(--color-black);
+    background-color: var(--color-white);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
 }
 
-@keyframes placeHolderAnimation {
+@utility placeholder-block {
+  background-color: --alpha(var(--color-slate-200) / 60%);
+}
+
+@keyframes placeholder-shimmer {
   0% {
     background-position: -468px 0;
   }
@@ -33,14 +38,14 @@ body {
   }
 }
 
-.placeholder__animated-background {
-  animation-duration: 1s;
-  animation-fill-mode: forwards;
-  animation-iteration-count: infinite;
-  animation-name: placeHolderAnimation;
-  animation-timing-function: linear;
-  background: darkgray;
-  background: linear-gradient(to right, #eeeeee 10%, #dddddd 18%, #eeeeee 33%);
-  background-size: 800px 104px;
+@utility placeholder-shimmer {
   position: relative;
+  background: linear-gradient(
+    to right,
+    var(--color-slate-100) 10%,
+    var(--color-slate-200) 18%,
+    var(--color-slate-100) 33%
+  );
+  background-size: 800px 104px;
+  animation: placeholder-shimmer 1s linear infinite forwards;
 }

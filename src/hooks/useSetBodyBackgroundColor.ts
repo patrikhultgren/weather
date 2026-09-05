@@ -1,9 +1,9 @@
 import { useEffect } from 'react'
 
 const useSetBodyBackgroundColor = (
-  mountBackgroundColor: CSSStyleDeclaration['backgroundColor'],
-  unmountBackgroundColor: CSSStyleDeclaration['backgroundColor']
-) => {
+  mountBackgroundColor: string,
+  unmountBackgroundColor: string
+): void => {
   useEffect(() => {
     document.body.style.backgroundColor = mountBackgroundColor
 

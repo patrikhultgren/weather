@@ -3,6 +3,9 @@
 
 # build
 /build
+/dev-dist
+/storybook-static
+/coverage
 
 # settings
 .env.local

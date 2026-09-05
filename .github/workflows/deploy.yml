@@ -1,0 +1,49 @@
+name: Deploy
+
+# Deliberately manual: this publishes to the live site, so it stays a decision
+# rather than a side effect of pushing. It runs the full CI suite first and
+# refuses to publish if anything fails.
+on:
+  workflow_dispatch:
+
+# Never let two deploys race for the gh-pages branch.
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    uses: ./.github/workflows/ci.yml
+
+  publish:
+    name: Publish to GitHub Pages
+    needs: verify
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - run: npm ci
+
+      - name: Build
+        run: npm run build
+        env:
+          # Without this the deployed search returns 401. Add it under
+          # Settings > Secrets and variables > Actions.
+          REACT_APP_LOQATION_IQ_API_KEY: ${{ secrets.REACT_APP_LOQATION_IQ_API_KEY }}
+
+      - name: Publish build/ to the gh-pages branch
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          npx gh-pages --dist build --dotfiles \
+            --user 'github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>' \
+            --message "Deploy ${GITHUB_SHA}"
