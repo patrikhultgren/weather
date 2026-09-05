@@ -1,6 +1,6 @@
 import classNames from 'classnames'
-import { ITimeSerie } from 'utils/types'
-import ErrorBoundary from 'common/Error/Boundary'
+import ErrorBoundary from 'components/Error/Boundary'
+import type { ITimeSerie } from 'types'
 import Hour from './Hour'
 
 interface IProps {

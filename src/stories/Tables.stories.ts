@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import forecastFinished from '__fixtures__/app/forecast/finished'
-import forecastUserDeniedGeo from '__fixtures__/app/forecast/userDeniedGeo'
-import forecastLoading from '__fixtures__/app/forecast/loading'
-import offline from '__fixtures__/app/forecast/offline'
-import fallback from '__fixtures__/app/forecast/fallback'
-import error from '__fixtures__/app/forecast/error'
-import Tables from 'pages/Tables'
+import forecastFinished from 'test/fixtures/forecast/finished'
+import forecastUserDeniedGeo from 'test/fixtures/forecast/userDeniedGeo'
+import forecastLoading from 'test/fixtures/forecast/loading'
+import offline from 'test/fixtures/forecast/offline'
+import fallback from 'test/fixtures/forecast/fallback'
+import error from 'test/fixtures/forecast/error'
+import Tables from 'pages/Tables/TablesPage'
 
 const meta = {
   title: 'Pages/Tables',

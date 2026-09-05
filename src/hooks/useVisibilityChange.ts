@@ -1,13 +1,17 @@
 import { useEffect } from 'react'
+import useLatestRef from './useLatestRef'
 
-const useVisibilityChange = (onVisibilityChange: any) => {
+/** Calls back on every visibilitychange without needing a stable callback. */
+const useVisibilityChange = (onVisibilityChange: () => void): void => {
+  const callbackRef = useLatestRef(onVisibilityChange)
+
   useEffect(() => {
-    document.addEventListener('visibilitychange', onVisibilityChange)
+    const listener = () => callbackRef.current()
 
-    return () => {
-      document.removeEventListener('visibilitychange', onVisibilityChange)
-    }
-  }, [onVisibilityChange])
+    document.addEventListener('visibilitychange', listener)
+
+    return () => document.removeEventListener('visibilitychange', listener)
+  }, [callbackRef])
 }
 
 export default useVisibilityChange

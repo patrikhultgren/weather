@@ -1,22 +1,20 @@
-import { useCallback, useEffect } from 'react'
+import { useEffect } from 'react'
+import useLatestRef from './useLatestRef'
 
-const useCallOnEscape = (callback: Function) => {
-  const onKeyDown = useCallback(
-    (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        callback()
-      }
-    },
-    [callback]
-  )
+const useCallOnEscape = (callback: () => void): void => {
+  const callbackRef = useLatestRef(callback)
 
   useEffect(() => {
-    document.addEventListener('keydown', onKeyDown, false)
-
-    return () => {
-      document.removeEventListener('keydown', onKeyDown, false)
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        callbackRef.current()
+      }
     }
-  }, [onKeyDown])
+
+    document.addEventListener('keydown', onKeyDown)
+
+    return () => document.removeEventListener('keydown', onKeyDown)
+  }, [callbackRef])
 }
 
 export default useCallOnEscape

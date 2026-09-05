@@ -1,15 +1,18 @@
-import { useEffect, useCallback, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
-import { IQuery } from 'utils/types'
-import request from 'utils/request'
+import { getJson, isAbortError, toError } from 'lib/http'
+import { useTranslation, type SupportedLanguage } from 'i18n/context'
+import useLatestRef from 'hooks/useLatestRef'
+import useOnValueChange from 'hooks/useOnValueChange'
 import useVisibilityChange from 'hooks/useVisibilityChange'
-import { useTranslation, SupportedLanguage } from 'context/TranslationProvider'
+import type { IQuery } from 'types'
 
-interface IProps {
+interface IProps<TResponse, TRaw> {
   url: string
   run: boolean
+  /** Clears the result, used when a search is emptied. */
   reset?: boolean
-  transformResponse?: (response: any, language: SupportedLanguage) => any
+  transformResponse?: (response: TRaw, language: SupportedLanguage) => TResponse
 }
 
 const initialState = {
@@ -17,77 +20,86 @@ const initialState = {
   error: null,
   response: null,
   finished: false,
-}
+} as const
 
-const useFetch = <TResponse>({
+const useFetch = <TResponse, TRaw = TResponse>({
   url,
   run,
   reset,
   transformResponse,
-}: IProps): IQuery<TResponse> => {
+}: IProps<TResponse, TRaw>): IQuery<TResponse> => {
   const { language } = useTranslation()
-
   const location = useLocation()
-  const [count, setCount] = useState<number>(1)
 
-  const onVisibilityChange = useCallback(() => {
-    const state = document.visibilityState
-
-    if (state === 'visible') {
-      setCount((prev) => prev + 1)
-    }
-  }, [])
-
-  useVisibilityChange(onVisibilityChange)
-
+  const [reloadCount, setReloadCount] = useState<number>(0)
   const [result, setResult] = useState<IQuery<TResponse>>({ ...initialState })
 
-  const loadData = useCallback(async () => {
-    if (url && count && run) {
-      setResult((prev) => ({
-        ...prev,
-        finished: false,
-        loading: true,
-        error: null,
-      }))
+  // Held in a ref so an inline transform doesn't retrigger the request.
+  const transformRef = useLatestRef(transformResponse)
 
-      try {
-        const response = await request({
-          endpoint: url,
-        })
+  useVisibilityChange(() => {
+    if (document.visibilityState === 'visible') {
+      setReloadCount((prev) => prev + 1)
+    }
+  })
+
+  useEffect(() => {
+    if (!url || !run) {
+      return
+    }
+
+    const controller = new AbortController()
+
+    // Starting the request and marking it in flight are one transition, and
+    // there is no external source to derive the loading state from.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setResult((prev) => ({
+      ...prev,
+      finished: false,
+      loading: true,
+      error: null,
+    }))
+
+    getJson<TRaw>(url, controller.signal)
+      .then((response) => {
+        const transform = transformRef.current
 
         setResult({
-          response: transformResponse
-            ? transformResponse(response, language)
-            : response,
+          response: transform
+            ? transform(response as TRaw, language)
+            : (response as unknown as TResponse),
           loading: false,
           finished: true,
           error: null,
         })
-      } catch (error) {
+      })
+      .catch((error: unknown) => {
+        // A superseded or unmounted request must not overwrite newer state.
+        if (isAbortError(error)) {
+          return
+        }
+
         setResult({
           response: null,
           loading: false,
           finished: true,
-          error,
+          error: toError(error),
         })
-      }
-    }
-  }, [url, count, run, language, transformResponse])
+      })
 
-  useEffect(() => {
-    loadData()
-  }, [loadData])
+    return () => controller.abort()
+  }, [url, run, reloadCount, language, transformRef])
 
-  useEffect(() => {
-    if (reset) {
+  useOnValueChange(reset, (isReset) => {
+    if (isReset) {
       setResult({ ...initialState })
     }
-  }, [reset])
+  })
 
-  useEffect(() => {
+  // An error from the previous page is no longer relevant once we navigate.
+  useOnValueChange(location.pathname, () => {
     setResult((prev) => (prev.error ? { ...prev, error: null } : prev))
-  }, [location.pathname])
+  })
 
   return result
 }

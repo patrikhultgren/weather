@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import searchHandlerWaitingForInput from '__fixtures__/searchHandler/history'
-import searchHandlerSearchResults from '__fixtures__/searchHandler/searchResults'
-import searchHandlerNoSearchResults from '__fixtures__/searchHandler/noSearchResults'
-import waitingForInputSearchResults from '__fixtures__/searchHandler/waitingForInput'
-import loadingSearchResults from '__fixtures__/searchHandler/loadingSearchResults'
-import loadingWithSearchResults from '__fixtures__/searchHandler/loadingWithSearchResults'
-import SearchHandler from 'pages/Search/Handler'
+import searchHandlerWaitingForInput from 'test/fixtures/searchHandler/history'
+import searchHandlerSearchResults from 'test/fixtures/searchHandler/searchResults'
+import searchHandlerNoSearchResults from 'test/fixtures/searchHandler/noSearchResults'
+import waitingForInputSearchResults from 'test/fixtures/searchHandler/waitingForInput'
+import loadingSearchResults from 'test/fixtures/searchHandler/loadingSearchResults'
+import loadingWithSearchResults from 'test/fixtures/searchHandler/loadingWithSearchResults'
+import SearchHandler from 'pages/Search/SearchLayout'
 
 const meta = {
   title: 'Pages/Search',
