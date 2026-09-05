@@ -42,8 +42,10 @@ jobs:
 
       - name: Publish build/ to the gh-pages branch
         run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          npx gh-pages --dist build --dotfiles \
-            --user 'github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>' \
-            --message "Deploy ${GITHUB_SHA}"
+          # Global, not local: gh-pages commits inside its own cache clone
+          # rather than this checkout. Passing --user instead would fail, since
+          # gh-pages parses it as an RFC 5322 address and the [bot] in the
+          # local part is not valid there.
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          npx gh-pages --dist build --dotfiles --message "Deploy ${GITHUB_SHA}"
