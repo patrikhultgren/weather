@@ -40,12 +40,15 @@ jobs:
           # Settings > Secrets and variables > Actions.
           REACT_APP_LOQATION_IQ_API_KEY: ${{ secrets.REACT_APP_LOQATION_IQ_API_KEY }}
 
+      # gh-pages works in a fresh clone of its own rather than in this
+      # checkout, which is why it needs both the identity set globally and the
+      # remote spelled out with a token: it inherits neither from the checkout.
+      # Passing --user instead of git config would fail, since gh-pages parses
+      # it as an RFC 5322 address and the [bot] in the local part is invalid.
       - name: Publish build/ to the gh-pages branch
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          # Global, not local: gh-pages commits inside its own cache clone
-          # rather than this checkout. Passing --user instead would fail, since
-          # gh-pages parses it as an RFC 5322 address and the [bot] in the
-          # local part is not valid there.
           git config --global user.name 'github-actions[bot]'
           git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          npx gh-pages --dist build --dotfiles --message "Deploy ${GITHUB_SHA}"
+          npx gh-pages --dist build --dotfiles --message "Deploy ${GITHUB_SHA}" --repo "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
