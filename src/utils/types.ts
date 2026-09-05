@@ -13,9 +13,16 @@ export interface IQuery<IResponse> {
   finished: boolean
 }
 
-export interface IPosition {
+export interface ICoordinates {
   latitude: number
   longitude: number
+}
+
+export interface IFix extends ICoordinates {
+  time: number
+}
+
+export interface IPosition extends ICoordinates {
   city: string
   status: 'foundBySearch' | 'foundByAllowingPosition' | 'empty'
 }

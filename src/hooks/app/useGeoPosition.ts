@@ -1,7 +1,11 @@
 import { useCallback, useState, useEffect, useRef } from 'react'
 import { useLocation } from 'react-router-dom'
-import { addPosition } from 'utils/position'
-import { IPosition, IGeoPosition } from 'utils/types'
+import {
+  addPosition,
+  shouldUpdatePosition,
+  speedInMetersPerSecond,
+} from 'utils/position'
+import { IFix, IPosition, IGeoPosition } from 'utils/types'
 
 const allPositionsAreFoundByAllowingPosition = (positions: Array<IPosition>) =>
   positions.every(
@@ -14,6 +18,18 @@ const initialState: IGeoPosition = {
   finished: false,
   userHasApprovedToShareLocation: false,
 }
+
+const approvedState: IGeoPosition = {
+  ...initialState,
+  finished: true,
+  userHasApprovedToShareLocation: true,
+}
+
+const isApproved = (geoPosition: IGeoPosition) =>
+  geoPosition.finished &&
+  geoPosition.userHasApprovedToShareLocation &&
+  !geoPosition.loading &&
+  !geoPosition.error
 
 interface Props {
   positionsAreLoaded: boolean
@@ -33,35 +49,63 @@ const useGeoPosition = ({
   })
 
   const lastUpdateRef = useRef<number>(0)
+  const lastFixRef = useRef<IFix | null>(null)
+
+  // Read through a ref so that a new position doesn't recreate the callback,
+  // which would tear down and restart the watcher on every update.
+  const positionsRef = useRef<Array<IPosition>>(positions)
+  positionsRef.current = positions
+
+  const hasPositions = positions.length > 0
 
   const onChange = useCallback(
     ({ coords }: GeolocationPosition) => {
-      const now = Date.now()
+      const fix: IFix = {
+        latitude: coords.latitude,
+        longitude: coords.longitude,
+        time: Date.now(),
+      }
 
-      if (now - lastUpdateRef.current < 60_000 && positions.length) {
+      const speed = speedInMetersPerSecond(
+        lastFixRef.current,
+        fix,
+        coords.speed
+      )
+
+      lastFixRef.current = fix
+
+      setGeoPosition((prev) => (isApproved(prev) ? prev : approvedState))
+
+      const currentPositions = positionsRef.current
+
+      if (!allPositionsAreFoundByAllowingPosition(currentPositions)) {
         return
       }
 
-      lastUpdateRef.current = now
-
-      setGeoPosition({
-        ...initialState,
-        finished: true,
-        userHasApprovedToShareLocation: true,
-      })
-
-      if (allPositionsAreFoundByAllowingPosition(positions)) {
-        setPositions((prev: Array<IPosition>) =>
-          addPosition(prev, {
-            latitude: coords.latitude,
-            longitude: coords.longitude,
-            city: '',
-            status: 'foundByAllowingPosition',
-          })
-        )
+      if (
+        currentPositions.length &&
+        !shouldUpdatePosition({
+          fix,
+          currentPosition: currentPositions[0],
+          lastUpdate: lastUpdateRef.current,
+          speed,
+        })
+      ) {
+        return
       }
+
+      lastUpdateRef.current = fix.time
+
+      setPositions((prev: Array<IPosition>) =>
+        addPosition(prev, {
+          latitude: fix.latitude,
+          longitude: fix.longitude,
+          city: '',
+          status: 'foundByAllowingPosition',
+        })
+      )
     },
-    [setPositions, positions]
+    [setPositions]
   )
 
   const onError = useCallback((error: any) => {
@@ -87,7 +131,9 @@ const useGeoPosition = ({
 
     const watcher = navigator.geolocation.watchPosition(onChange, onError)
     return () => navigator.geolocation.clearWatch(watcher)
-  }, [positionsAreLoaded, onChange, onError])
+    // hasPositions restarts the watcher when the positions are cleared with
+    // "use my location", since a new watcher reports a position right away.
+  }, [positionsAreLoaded, hasPositions, onChange, onError])
 
   useEffect(() => {
     setGeoPosition((prev) => (prev.error ? { ...prev, error: null } : prev))
