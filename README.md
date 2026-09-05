@@ -45,6 +45,20 @@ returns 401 in production builds.
 | `npm run storybook`     | Storybook on port 6006                       |
 | `npm run deploy`        | Build and publish `build/` to GitHub Pages   |
 
+## CI and deploying
+
+Every push to `main` and every pull request runs type check, lint, tests and a
+production build (`.github/workflows/ci.yml`).
+
+Deploying is a manual trigger — Actions > Deploy > Run workflow. It runs the
+same checks first and only publishes `build/` to the `gh-pages` branch if they
+pass, so what goes live is always something that was verified. `npm run deploy`
+still works from a laptop, but it skips the checks.
+
+The deploy needs `REACT_APP_LOQATION_IQ_API_KEY` as a repository secret
+(Settings > Secrets and variables > Actions). Without it the build succeeds but
+the deployed search returns 401.
+
 ## How it is laid out
 
 ```
