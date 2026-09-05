@@ -136,6 +136,23 @@ describe('useFetch', () => {
     expect(result.current.response).toEqual({ city: 'Uppsala' })
   })
 
+  // Aborting rejects with an AbortError that is deliberately swallowed, so
+  // dropping a request has to clear the loading flag itself.
+  it('does not stay loading when a request is dropped before it finishes', async () => {
+    deferredFetch()
+
+    const { result, rerender } = renderHook(
+      ({ run }: { run: boolean }) => useFetch<unknown>({ url: '/forecast', run }),
+      { wrapper: ProviderWrapper, initialProps: { run: true } }
+    )
+
+    await waitFor(() => expect(result.current.loading).toBe(true))
+
+    rerender({ run: false })
+
+    await waitFor(() => expect(result.current.loading).toBe(false))
+  })
+
   it('aborts the request it leaves behind', async () => {
     const { pending } = deferredFetch()
 

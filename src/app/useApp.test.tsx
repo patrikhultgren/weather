@@ -109,6 +109,44 @@ describe('useApp', () => {
     await waitFor(() => expect(result.current.positions).toEqual([]))
   })
 
+  // Clicking "use my location" mid request used to abort the forecast and
+  // leave the app showing placeholders for ever.
+  it('does not get stuck loading when the location is activated mid request', async () => {
+    let resolveForecast: ((value: Response) => void) | undefined
+
+    vi.stubGlobal(
+      'fetch',
+      vi.fn((url: string, options?: RequestInit) => {
+        if (url.includes('address')) {
+          return Promise.resolve(json({ city: 'Stockholm' }))
+        }
+
+        return new Promise<Response>((resolve, reject) => {
+          options?.signal?.addEventListener('abort', () =>
+            reject(new DOMException('Aborted', 'AbortError'))
+          )
+          resolveForecast = resolve
+        })
+      })
+    )
+
+    // The button only appears once a search has taken over from the device
+    // location, so both have to be in play.
+    stored([{ ...STOCKHOLM, city: 'Stockholm', status: 'foundBySearch' }])
+
+    const { result } = renderHook(() => useApp(), { wrapper: ProviderWrapper })
+
+    act(() => geolocation.emit({ latitude: 59.86, longitude: 17.64 }))
+
+    await waitFor(() => expect(result.current.showUseMyLocation).toBe(true))
+    await waitFor(() => expect(result.current.status.loading).toBe(true))
+    expect(resolveForecast).toBeDefined()
+
+    act(() => result.current.activateMyLocation())
+
+    await waitFor(() => expect(result.current.status.loading).toBe(false))
+  })
+
   it('surfaces a failed forecast request', async () => {
     vi.stubGlobal(
       'fetch',

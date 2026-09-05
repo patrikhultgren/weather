@@ -43,8 +43,22 @@ const useFetch = <TResponse, TRaw = TResponse>({
     }
   })
 
+  const shouldRun = Boolean(url) && run
+
+  /**
+   * Aborting rejects with an AbortError that is deliberately swallowed below,
+   * so a request that is dropped rather than superseded has to clear the flag
+   * here. Otherwise the hook looks busy for ever — which is what used to
+   * happen when "use my location" cleared the position mid request.
+   */
+  useOnValueChange(shouldRun, (isRunning) => {
+    if (!isRunning) {
+      setResult((prev) => (prev.loading ? { ...prev, loading: false } : prev))
+    }
+  })
+
   useEffect(() => {
-    if (!url || !run) {
+    if (!shouldRun) {
       return
     }
 
@@ -88,7 +102,7 @@ const useFetch = <TResponse, TRaw = TResponse>({
       })
 
     return () => controller.abort()
-  }, [url, run, reloadCount, language, transformRef])
+  }, [shouldRun, url, reloadCount, language, transformRef])
 
   useOnValueChange(reset, (isReset) => {
     if (isReset) {
