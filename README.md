@@ -100,6 +100,12 @@ Vitest with Testing Library, in jsdom. `src/test/render.tsx` provides a render
 that supplies the router and the real English messages synchronously, so tests
 assert on the strings a user actually sees.
 
+Nothing exercises the service worker: workbox only runs in a real browser with
+a real cache, so offline behaviour has to be checked by hand. Load a forecast
+online, reload once so a new service worker takes over, then go offline — the
+forecast should still be there. The caches are named `forecasts` and `places`,
+so devtools shows what was actually kept.
+
 Note that `src/test/storage.ts` installs an in-memory `localStorage`: Node 24+
 defines an experimental `localStorage` global that resolves to `undefined`
 without `--localstorage-file`, and it shadows the one jsdom provides.
